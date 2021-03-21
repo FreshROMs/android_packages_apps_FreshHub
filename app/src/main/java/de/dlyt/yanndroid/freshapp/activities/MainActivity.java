@@ -67,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements Constants,
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
     private final String TAG = this.getClass().getSimpleName();
+    String omc_url = "https://tiny.cc/FRSH-OMC";
+    String feedback_url = "https://tiny.cc/FRSH-Feedback";
+    WebView webView;
+    ProgressBar web_progressbar;
     private Builder mCompatibilityDialog;
     private Builder mDonateDialog;
     private Builder mPlayStoreDialog;
@@ -78,12 +82,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         }
     };
-
-    String omc_url = "https://tiny.cc/FRSH-OMC";
-    String feedback_url = "https://tiny.cc/FRSH-Feedback";
-
-    WebView webView;
-    ProgressBar web_progressbar;
 
     public static void updateProgress(int progress) {
         if (mProgressBar != null) {

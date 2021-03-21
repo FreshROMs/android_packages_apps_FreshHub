@@ -11,19 +11,19 @@
 
 
     <LinearLayout
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:foreground="@drawable/rounded_corner_top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <ListView
-            android:nestedScrollingEnabled="true"
             android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@null"
-            android:dividerHeight="10dp" />
+            android:dividerHeight="10dp"
+            android:nestedScrollingEnabled="true" />
 
     </LinearLayout>
 

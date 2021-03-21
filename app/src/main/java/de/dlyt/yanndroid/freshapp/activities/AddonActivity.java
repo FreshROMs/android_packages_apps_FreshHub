@@ -1,7 +1,6 @@
 package de.dlyt.yanndroid.freshapp.activities;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -21,7 +20,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SeslProgressBar;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.appbar.AppBarLayout;
 
@@ -123,7 +121,6 @@ public class AddonActivity extends AppCompatActivity implements Constants {
         expanded_title.setText(title);
         collapsed_title.setText(title);
     }
-
 
 
     public void setupListView(ArrayList<Addon> addonsList) {

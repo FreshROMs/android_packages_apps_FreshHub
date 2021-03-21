@@ -11,15 +11,11 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.widget.SeslProgressBar;
 
@@ -224,7 +220,6 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         expanded_title.setText(title);
         collapsed_title.setText(title);
     }
-
 
 
     @Override

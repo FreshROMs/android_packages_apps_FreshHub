@@ -20,8 +20,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import de.dlyt.yanndroid.freshapp.R;
-
 public class Preferences implements Constants {
 
     public static final String TAG = "Preferences";

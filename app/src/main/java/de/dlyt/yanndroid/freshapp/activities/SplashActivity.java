@@ -7,7 +7,6 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import de.dlyt.yanndroid.freshapp.R;
-import de.dlyt.yanndroid.freshapp.activities.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

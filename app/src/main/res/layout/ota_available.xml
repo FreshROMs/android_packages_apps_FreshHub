@@ -36,16 +36,14 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
-                            android:layout_marginHorizontal="24dp"
-                            android:layout_marginVertical="10dp"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            >
+                            android:layout_marginHorizontal="24dp"
+                            android:layout_marginVertical="10dp"
+                            android:orientation="vertical">
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/tv_available_update_name"
@@ -97,11 +95,11 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-    <include layout="@layout/ota_available_menu"
+    <include
+        layout="@layout/ota_available_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

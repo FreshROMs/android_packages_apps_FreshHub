@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_main_dev_donate_link"
-    android:layout_marginVertical="5dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="5dp">
 
     <RelativeLayout
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginVertical="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="10dp">
 
         <LinearLayout
             android:id="@+id/addon_information"
@@ -43,12 +42,12 @@
                 android:textSize="10.0sp" />
 
             <androidx.appcompat.widget.SeslProgressBar
-                android:indeterminate="false"
-                style="?android:progressBarStyleHorizontal"
                 android:id="@+id/progress_bar"
+                style="?android:progressBarStyleHorizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dip" />
+                android:layout_marginTop="8dip"
+                android:indeterminate="false" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,11 +57,11 @@
             android:layout_below="@id/addon_information"
             android:orientation="horizontal">
 
-            <include layout="@layout/ota_addon_download_button"
-                android:layout_height="wrap_content"
+            <include
+                layout="@layout/ota_addon_download_button"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
-                />
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <!--<View
                 android:layout_width="1dp"
@@ -71,10 +70,11 @@
                 android:layout_marginVertical="15dp"
                 android:background="@color/divider_color" />-->
 
-            <include layout="@layout/ota_addon_cancel_button"
-                android:layout_height="wrap_content"
+            <include
+                layout="@layout/ota_addon_cancel_button"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <!--<View
                 android:layout_width="1dp"
@@ -83,10 +83,11 @@
                 android:layout_marginVertical="15dp"
                 android:background="@color/divider_color" />-->
 
-            <include layout="@layout/ota_addon_delete_button"
-                android:layout_height="wrap_content"
+            <include
+                layout="@layout/ota_addon_delete_button"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
         </LinearLayout>
     </RelativeLayout>

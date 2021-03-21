@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="end">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end">
 
     <ImageButton
         android:id="@+id/btn_main_changelog"
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/main_actionbar_button"
         android:onClick="openChangelog"
-        android:src="@drawable/ic_add"/>
+        android:src="@drawable/ic_add" />
 
     <ImageButton
         android:id="@+id/btn_main_help"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/main_actionbar_button"
         android:onClick="openHelp"
-        android:src="@drawable/ic_add"/>
+        android:src="@drawable/ic_add" />
 
     <ImageButton
         android:id="@+id/btn_main_settings"
@@ -29,6 +29,6 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/main_actionbar_button"
         android:onClick="openSettings"
-        android:src="@drawable/ic_add"/>
+        android:src="@drawable/ic_add" />
 
 </LinearLayout>
