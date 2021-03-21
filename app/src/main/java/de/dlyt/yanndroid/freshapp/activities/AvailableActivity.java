@@ -14,11 +14,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
+
+import androidx.appcompat.widget.SeslProgressBar;
+
+import com.google.android.material.appbar.AppBarLayout;
 
 import de.dlyt.yanndroid.freshapp.R;
 import de.dlyt.yanndroid.freshapp.download.DownloadRom;
@@ -31,11 +36,10 @@ import de.dlyt.yanndroid.freshapp.utils.Tools;
 import de.dlyt.yanndroid.freshapp.utils.Utils;
 
 @SuppressLint("StaticFieldLeak")
-public class AvailableActivity extends Activity implements Constants, View
-        .OnClickListener {
+public class AvailableActivity extends Activity implements Constants, View.OnClickListener {
 
     public final static String TAG = "AvailableActivity";
-    public static ProgressBar mProgressBar;
+    public static SeslProgressBar mProgressBar;
     public static TextView mProgressCounterText;
     private static Button mCheckMD5Button;
     private static Button mDeleteButton;
@@ -137,12 +141,12 @@ public class AvailableActivity extends Activity implements Constants, View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ota_available);
 
-        Toolbar toolbarBottom = (Toolbar) findViewById(R.id.toolbar_available_bottom);
-        toolbarBottom.setTitle("");
+        initToolbar();
+        settilte("Update");
 
         mDownloadRom = new DownloadRom();
 
-        mProgressBar = (ProgressBar) findViewById(R.id.bar_available_progress_bar);
+        mProgressBar = (SeslProgressBar) findViewById(R.id.bar_available_progress_bar);
         mProgressCounterText = (TextView) findViewById(R.id.tv_available_progress_counter);
         mCheckMD5Button = (Button) findViewById(R.id.menu_available_check_md5);
         mDeleteButton = (Button) findViewById(R.id.menu_available_delete);
@@ -174,6 +178,55 @@ public class AvailableActivity extends Activity implements Constants, View
             new DownloadRomProgress(mContext, downloadManager).execute();
         }
     }
+
+
+    public void initToolbar() {
+        /** Def */
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        AppBarLayout AppBar = findViewById(R.id.app_bar);
+
+        TextView expanded_title = findViewById(R.id.expanded_title);
+        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
+        TextView collapsed_title = findViewById(R.id.collapsed_title);
+
+        /** 1/3 of the Screen */
+        ViewGroup.LayoutParams layoutParams = AppBar.getLayoutParams();
+        layoutParams.height = (int) ((double) this.getResources().getDisplayMetrics().heightPixels / 2.6);
+
+
+        /** Collapsing */
+        AppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                float percentage = (AppBar.getY() / AppBar.getTotalScrollRange());
+                expanded_title.setAlpha(1 - (percentage * 2 * -1));
+                expanded_subtitle.setAlpha(1 - (percentage * 2 * -1));
+                collapsed_title.setAlpha(percentage * -1);
+            }
+        });
+
+        /**Back*/
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
+    }
+
+    public void settilte(String title) {
+        TextView expanded_title = findViewById(R.id.expanded_title);
+        TextView collapsed_title = findViewById(R.id.collapsed_title);
+        expanded_title.setText(title);
+        collapsed_title.setText(title);
+    }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -305,7 +358,7 @@ public class AvailableActivity extends Activity implements Constants, View
     }
 
     private void setupDialogs() {
-        mDeleteDialog = new Builder(mContext);
+        mDeleteDialog = new Builder(mContext, R.style.AlertDialogStyle);
         mDeleteDialog.setTitle(R.string.are_you_sure)
                 .setMessage(R.string.available_delete_confirm_message)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
@@ -321,7 +374,7 @@ public class AvailableActivity extends Activity implements Constants, View
                     setupMenuToolbar(mContext); // Reset options menu
                 }).setNegativeButton(R.string.cancel, null);
 
-        mRebootDialog = new Builder(mContext);
+        mRebootDialog = new Builder(mContext, R.style.AlertDialogStyle);
         mRebootDialog.setTitle(R.string.are_you_sure)
                 .setMessage(R.string.available_reboot_confirm)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
@@ -333,7 +386,7 @@ public class AvailableActivity extends Activity implements Constants, View
                     }
                 }).setNegativeButton(R.string.cancel, null);
 
-        mNetworkDialog = new Builder(mContext);
+        mNetworkDialog = new Builder(mContext, R.style.AlertDialogStyle);
         mNetworkDialog.setTitle(R.string.available_wrong_network_title)
                 .setMessage(R.string.available_wrong_network_message)
                 .setPositiveButton(R.string.ok, null)
@@ -342,7 +395,7 @@ public class AvailableActivity extends Activity implements Constants, View
                     mContext.startActivity(intent);
                 });
 
-        mRebootManualDialog = new Builder(mContext);
+        mRebootManualDialog = new Builder(mContext, R.style.AlertDialogStyle);
         mRebootManualDialog.setTitle(R.string.available_reboot_manual_title)
                 .setMessage(R.string.available_reboot_manual_message)
                 .setPositiveButton(R.string.cancel, null);
@@ -418,7 +471,7 @@ public class AvailableActivity extends Activity implements Constants, View
         @Override
         protected void onPreExecute() {
             // Setup Checking dialog
-            mMD5CheckDialog = new ProgressDialog(mContext);
+            mMD5CheckDialog = new ProgressDialog(mContext, R.style.AlertDialogStyle);
             mMD5CheckDialog.setCancelable(false);
             mMD5CheckDialog.setIndeterminate(true);
             mMD5CheckDialog.setMessage(mContext.getString(R.string.available_checking_md5));

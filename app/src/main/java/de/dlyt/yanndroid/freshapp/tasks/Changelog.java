@@ -64,7 +64,7 @@ public class Changelog extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
 
         // Show a loading/progress dialog while the search is being performed
-        mLoadingDialog = new ProgressDialog(mContext);
+        mLoadingDialog = new ProgressDialog(mContext, R.style.AlertDialogStyle);
         mLoadingDialog.setIndeterminate(true);
         mLoadingDialog.setCancelable(false);
         mLoadingDialog.setMessage(mContext.getResources().getString(R.string.loading));
@@ -152,7 +152,7 @@ public class Changelog extends AsyncTask<Void, Void, String> {
         CharSequence string = bypass.markdownToSpannable(changelogText);
         changelog.setText(string);
 
-        Builder dialog = new Builder(mContext);
+        Builder dialog = new Builder(mContext, R.style.AlertDialogStyle);
         dialog.setTitle(mTitle);
         dialog.setView(view);
         dialog.setPositiveButton(R.string.done, null);

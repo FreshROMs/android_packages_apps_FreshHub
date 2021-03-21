@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content" />
 
             <androidx.appcompat.widget.SeslProgressBar
+                android:indeterminate="false"
                 style="?android:progressBarStyleHorizontal"
                 android:id="@+id/bar_main_progress_bar"
                 android:layout_width="fill_parent"

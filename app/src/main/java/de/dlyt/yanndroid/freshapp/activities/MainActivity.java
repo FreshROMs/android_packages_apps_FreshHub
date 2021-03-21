@@ -19,14 +19,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SeslProgressBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.card.MaterialCardView;
 
 import java.io.File;
@@ -43,7 +50,7 @@ import de.dlyt.yanndroid.freshapp.utils.RomUpdate;
 import de.dlyt.yanndroid.freshapp.utils.Tools;
 import de.dlyt.yanndroid.freshapp.utils.Utils;
 
-public class MainActivity extends Activity implements Constants,
+public class MainActivity extends AppCompatActivity implements Constants,
         ActivityCompat.OnRequestPermissionsResultCallback {
 
     private static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
@@ -92,8 +99,14 @@ public class MainActivity extends Activity implements Constants,
 
         mContext = this;
 
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ota_main);
+
+        initToolbar();
+        initDrawer();
+        settilte("OTA");
 
         boolean firstRun = Preferences.getFirstRun(mContext);
         if (firstRun) {
@@ -116,7 +129,7 @@ public class MainActivity extends Activity implements Constants,
         // Also executes the manifest/update check
 
         if (!Utils.isConnected(mContext)) {
-            Builder notConnectedDialog = new Builder(mContext);
+            Builder notConnectedDialog = new Builder(mContext, R.style.AlertDialogStyle);
             notConnectedDialog.setTitle(R.string.main_not_connected_title)
                     .setMessage(R.string.main_not_connected_message)
                     .setPositiveButton(R.string.ok, (dialog, which) -> ((Activity) mContext)
@@ -147,6 +160,87 @@ public class MainActivity extends Activity implements Constants,
         new checkRoot().execute("");
     }
 
+
+
+    public void initDrawer() {
+        View content = findViewById(R.id.main_content);
+        DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
+        View drawer = findViewById(R.id.drawer);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+        ViewGroup.LayoutParams layoutParams = drawer.getLayoutParams();
+        layoutParams.width = (int) ((double) this.getResources().getDisplayMetrics().widthPixels / 1.19);
+        drawerLayout.setScrimColor(ContextCompat.getColor(getBaseContext(), R.color.drawer_dim_color));
+        drawerLayout.setDrawerElevation(0);
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.opend, R.string.closed) {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+                float slideX = drawerView.getWidth() * slideOffset;
+                content.setTranslationX(slideX);
+            }
+        };
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(drawer, true);
+            }
+        });
+
+
+        /**Items*/
+        View drawer_settings = findViewById(R.id.drawer_settings);
+        drawer_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSettings(null);
+                drawerLayout.closeDrawer(drawer, true);
+            }
+        });
+
+    }
+
+    public void initToolbar() {
+        /** Def */
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        AppBarLayout AppBar = findViewById(R.id.app_bar);
+
+        TextView expanded_title = findViewById(R.id.expanded_title);
+        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
+        TextView collapsed_title = findViewById(R.id.collapsed_title);
+
+        /** 1/3 of the Screen */
+        ViewGroup.LayoutParams layoutParams = AppBar.getLayoutParams();
+        layoutParams.height = (int) ((double) this.getResources().getDisplayMetrics().heightPixels / 2.6);
+
+
+        /** Collapsing */
+        AppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                float percentage = (AppBar.getY() / AppBar.getTotalScrollRange());
+                expanded_title.setAlpha(1 - (percentage * 2 * -1));
+                expanded_subtitle.setAlpha(1 - (percentage * 2 * -1));
+                collapsed_title.setAlpha(percentage * -1);
+            }
+        });
+
+
+    }
+
+
+    public void settilte(String title) {
+        TextView expanded_title = findViewById(R.id.expanded_title);
+        TextView collapsed_title = findViewById(R.id.collapsed_title);
+        expanded_title.setText(title);
+        collapsed_title.setText(title);
+    }
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -167,7 +261,7 @@ public class MainActivity extends Activity implements Constants,
             case PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
                 if (grantResults.length <= 0 || grantResults[0]
                         != PackageManager.PERMISSION_GRANTED) {
-                    new Builder(this)
+                    new Builder(this, R.style.AlertDialogStyle)
                             .setTitle(R.string.permission_not_granted_dialog_title)
                             .setMessage(R.string.permission_not_granted_dialog_message)
                             .setPositiveButton(R.string.dialog_ok, (dialog, which) ->
@@ -195,24 +289,20 @@ public class MainActivity extends Activity implements Constants,
                         .string.changelog_url)));
                 startActivity(browserIntent);
                 return true;
-            case R.id.menu_settings:
-                openSettings(null);
-                return true;
         }
         return false;
     }
 
     private void createDialogs() {
         // Compatibility Dialog
-        mCompatibilityDialog = new Builder(mContext);
+        mCompatibilityDialog = new Builder(mContext, R.style.AlertDialogStyle);
         mCompatibilityDialog.setCancelable(false);
         mCompatibilityDialog.setTitle(R.string.main_not_compatible_title);
         mCompatibilityDialog.setMessage(R.string.main_not_compatible_message);
-        mCompatibilityDialog.setPositiveButton(R.string.ok, (dialog, which) -> MainActivity.this
-                .finish());
+        mCompatibilityDialog.setPositiveButton(R.string.ok, (dialog, which) -> MainActivity.this.finish());
 
         // Donate Dialog
-        mDonateDialog = new Builder(this);
+        mDonateDialog = new Builder(this, R.style.AlertDialogStyle);
         String[] donateItems = {"PayPal", "BitCoin"};
         mDonateDialog.setTitle(getResources().getString(R.string.donate))
                 .setSingleChoiceItems(donateItems, 0, null)
@@ -240,7 +330,7 @@ public class MainActivity extends Activity implements Constants,
                 .setNegativeButton(getResources().getString(R.string.cancel), (dialog, which) ->
                         dialog.cancel());
 
-        mPlayStoreDialog = new Builder(mContext);
+        mPlayStoreDialog = new Builder(mContext, R.style.AlertDialogStyle);
         mPlayStoreDialog.setCancelable(true);
         mPlayStoreDialog.setTitle(R.string.main_playstore_title);
         mPlayStoreDialog.setMessage(R.string.main_playstore_message);

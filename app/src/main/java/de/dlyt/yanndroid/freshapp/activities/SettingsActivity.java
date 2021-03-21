@@ -53,7 +53,6 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
     public final String TAG = this.getClass().getSimpleName();
     private Context mContext;
     private Preference mInstallPrefs;
-    private Preference mAboutActivity;
     private RingtonePreference mRingtonePreference;
 
     private SparseBooleanArray mInstallPrefsItems = new SparseBooleanArray();
@@ -71,9 +70,6 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 
         mInstallPrefs = findPreference(INSTALL_PREFS);
         mInstallPrefs.setOnPreferenceClickListener(this);
-
-        mAboutActivity = findPreference(ABOUT_ACTIVITY_PREF);
-        mAboutActivity.setOnPreferenceClickListener(this);
 
         mRingtonePreference = (RingtonePreference) findPreference(NOTIFICATIONS_SOUND);
 
@@ -124,10 +120,7 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
             ListPreference listPref = (ListPreference) pref;
             pref.setSummary(listPref.getEntry());
 
-            if (key.equals(CURRENT_THEME)) {
-                Preferences.setTheme(mContext, listPref.getValue());
-                this.recreate();
-            } else if (key.equals(UPDATER_BACK_FREQ)) {
+            if (key.equals(UPDATER_BACK_FREQ)) {
                 Utils.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
             }
         } else if (pref instanceof SwitchPreference) {
@@ -149,37 +142,6 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
     public boolean onPreferenceClick(Preference preference) {
         if (preference == mInstallPrefs) {
             showInstallPrefs();
-        } else if (preference == mAboutActivity) {
-            Builder builder = new Builder(this);
-            final CharSequence[] items =
-                    getApplicationContext().getResources().getStringArray(R.array.credits);
-            builder.setTitle(R.string.about_credits_title);
-            builder.setItems(items, (dialog, item) -> {
-                switch (item) {
-                    case 0:
-                        try {
-                            String sourceURL = getString(R.string.about_credits_matt_link);
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(sourceURL));
-                            startActivity(i);
-                        } catch (ActivityNotFoundException activityNotFoundException) {
-                            //
-                        }
-                        break;
-                    case 1:
-                        try {
-                            String sourceURL = getString(R.string.about_credits_nicholas_link);
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(sourceURL));
-                            startActivity(i);
-                        } catch (ActivityNotFoundException activityNotFoundException) {
-                            //
-                        }
-                        break;
-                }
-                dialog.dismiss();
-            });
-            builder.create().show();
         }
         return false;
     }
@@ -220,7 +182,7 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
         mInstallPrefsItems.put(2, wipeDalvik);
         mInstallPrefsItems.put(3, deleteAfterInstall);
 
-        Builder mInstallPrefsDialog = new Builder(mContext);
+        Builder mInstallPrefsDialog = new Builder(mContext, R.style.AlertDialogStyle);
         mInstallPrefsDialog.setTitle(R.string.twrp_ors_install_prefs);
         mInstallPrefsDialog.setMultiChoiceItems(R.array.ors_install_entries, defaultValues,
                 (dialog, which, isChecked) -> mInstallPrefsItems.put(which, isChecked));

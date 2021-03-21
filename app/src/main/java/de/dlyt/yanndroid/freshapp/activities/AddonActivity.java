@@ -17,10 +17,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SeslProgressBar;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.appbar.AppBarLayout;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -44,7 +47,7 @@ import de.dlyt.yanndroid.freshapp.utils.RomUpdate;
 import de.dlyt.yanndroid.freshapp.utils.Utils;
 import in.uncod.android.bypass.Bypass;
 
-public class AddonActivity extends Activity implements Constants {
+public class AddonActivity extends AppCompatActivity implements Constants {
 
     public final static String TAG = "AddonActivity";
 
@@ -60,6 +63,7 @@ public class AddonActivity extends Activity implements Constants {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ota_addons);
 
+        initToolbar();
 
         mListview = (ListView) findViewById(R.id.listview);
         mDownloadAddon = new DownloadAddon();
@@ -72,6 +76,38 @@ public class AddonActivity extends Activity implements Constants {
 
         new LoadAddonManifest(mContext).execute(RomUpdate.getAddonsUrl(mContext) + isRomhut);
     }
+
+
+    public void initToolbar() {
+        /** Def */
+        androidx.appcompat.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        AppBarLayout AppBar = findViewById(R.id.app_bar);
+
+        TextView expanded_title = findViewById(R.id.expanded_title);
+        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
+        TextView collapsed_title = findViewById(R.id.collapsed_title);
+
+        /** 1/3 of the Screen */
+        ViewGroup.LayoutParams layoutParams = AppBar.getLayoutParams();
+        layoutParams.height = (int) ((double) this.getResources().getDisplayMetrics().heightPixels / 2.6);
+
+
+        /** Collapsing */
+        AppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                float percentage = (AppBar.getY() / AppBar.getTotalScrollRange());
+                expanded_title.setAlpha(1 - (percentage * 2 * -1));
+                expanded_subtitle.setAlpha(1 - (percentage * 2 * -1));
+                collapsed_title.setAlpha(percentage * -1);
+            }
+        });
+
+
+    }
+
+
 
     public void setupListView(ArrayList<Addon> addonsList) {
         final AddonsArrayAdapter adapter = new AddonsArrayAdapter(mContext, addonsList);
@@ -131,7 +167,7 @@ public class AddonActivity extends Activity implements Constants {
         }
 
         private void showNetworkDialog() {
-            Builder mNetworkDialog = new Builder(mContext);
+            Builder mNetworkDialog = new Builder(mContext, R.style.AlertDialogStyle);
             mNetworkDialog.setTitle(R.string.available_wrong_network_title)
                     .setMessage(R.string.available_wrong_network_message)
                     .setPositiveButton(R.string.ok, null)
@@ -144,7 +180,7 @@ public class AddonActivity extends Activity implements Constants {
         }
 
         private void deleteConfirm(final File file, final Addon item) {
-            Builder deleteConfirm = new Builder(mContext);
+            Builder deleteConfirm = new Builder(mContext, R.style.AlertDialogStyle);
             deleteConfirm.setTitle(R.string.delete);
             deleteConfirm.setMessage(mContext.getResources().getString(R.string.delete_confirm) +
                     "\n\n" + file.getName());
@@ -265,7 +301,7 @@ public class AddonActivity extends Activity implements Constants {
         protected void onPreExecute() {
 
             // Show a loading/progress dialog while the search is being performed
-            mLoadingDialog = new ProgressDialog(mContext);
+            mLoadingDialog = new ProgressDialog(mContext, R.style.AlertDialogStyle);
             mLoadingDialog.setIndeterminate(true);
             mLoadingDialog.setCancelable(false);
             mLoadingDialog.setMessage(mContext.getResources().getString(R.string.loading));

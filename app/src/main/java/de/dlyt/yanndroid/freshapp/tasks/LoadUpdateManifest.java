@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2017 Nicholas Chum (nicholaschum) and Matt Booth (Kryten2k35).
- *
- * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International
- * (the "License") you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package de.dlyt.yanndroid.freshapp.tasks;
 
 import android.app.ProgressDialog;
@@ -50,7 +34,7 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
     @Override
     protected void onPreExecute() {
         if (shouldUpdateForegroundApp) {
-            mLoadingDialog = new ProgressDialog(mContext);
+            mLoadingDialog = new ProgressDialog(mContext, R.style.AlertDialogStyle);
             mLoadingDialog.setIndeterminate(true);
             mLoadingDialog.setCancelable(false);
             mLoadingDialog.setMessage(mContext.getResources().getString(R.string.loading));
@@ -70,7 +54,8 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
         try {
             InputStream input;
 
-            URL url = new URL(Utils.getProp("ro.ota.manifest"));
+            //URL url = new URL(Utils.getProp("ro.ota.manifest"));
+            URL url = new URL("https://ota.tensevntysevn.cf/api/fresh/a50xx/beta/20210204001/");
             URLConnection connection = url.openConnection();
             connection.connect();
             // download the file

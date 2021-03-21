@@ -39,7 +39,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="-5dp"
                 android:gravity="center"
-                android:text="Design"
+                android:text="@string/freshrom"
                 android:textSize="20dp" />
 
         </LinearLayout>

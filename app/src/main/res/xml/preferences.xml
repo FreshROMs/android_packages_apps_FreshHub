@@ -69,28 +69,5 @@
         android:summary="@string/list_summary"
         android:title="@string/mobile_wifi_title" />
 
-    <!-- App Theme -->
-    <PreferenceCategory
-        android:key="updater_theme_cat"
-        android:title="@string/theme_title" />
-
-    <ListPreference
-        android:defaultValue="0"
-        android:entries="@array/theme_entries"
-        android:entryValues="@array/theme_values"
-        android:key="current_theme"
-        android:summary="@string/list_summary"
-        android:title="@string/theme" />
-
-    <!-- About -->
-    <PreferenceCategory
-        android:key="settings_about"
-        android:title="@string/app_name" />
-
-    <Preference
-        android:key="about_activity_pref"
-        android:summary="@string/about_preferences_summary"
-        android:title="@string/about_title" />
-
 
 </PreferenceScreen>

@@ -49,7 +49,7 @@ public class GenerateRecoveryScript extends AsyncTask<Void, String, Boolean> imp
     @SuppressLint("SdCardPath")
     protected void onPreExecute() {
         // Show dialog
-        mLoadingDialog = new ProgressDialog(mContext);
+        mLoadingDialog = new ProgressDialog(mContext, R.style.AlertDialogStyle);
         mLoadingDialog.setCancelable(false);
         mLoadingDialog.setIndeterminate(true);
         mLoadingDialog.setMessage(mContext.getString(R.string.rebooting));
