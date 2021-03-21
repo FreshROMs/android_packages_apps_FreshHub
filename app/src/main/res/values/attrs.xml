@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="progressActivatedColor" format="reference|color" />
+    <attr name="progressNormalColor" format="reference|color" />
+    <attr name="colorControlActivated" format="color" />
+    <attr name="colorControlNormal" format="color" />
+
+
+    <attr name="seslSwitchBarBackgroundActivatedColor" format="color" />
+    <attr name="seslSwitchBarBackgroundColor" format="color" />
+    <attr name="seslSwitchBarStyle" format="reference" />
+    <attr name="seslSwitchBarTextActivatedColor" format="color" />
+    <attr name="seslSwitchBarTextColor" format="color" />
+
+    <attr name="min" format="integer" />
+    <attr name="useDisabledAlpha" format="boolean" />
+
+    <attr name="seslSeekBarMode">
+        <enum name="expand" value="5" />
+        <enum name="expand_vertical" value="6" />
+        <enum name="split" value="4" />
+        <enum name="standard" value="0" />
+        <enum name="vertical" value="3" />
+        <enum name="warning" value="1" />
+    </attr>
+    <attr name="seslThumbRadius" format="dimension" />
+    <attr name="seslTrackMaxWidth" format="dimension" />
+    <attr name="seslTrackMinWidth" format="dimension" />
+
+
+
+</resources>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Samsung</string>
+    <string name="closed" translatable="false">closed</string>
+    <string name="opend" translatable="false">opend</string>
+    <string name="sesl_switch">Switch</string>
+    <string name="sesl_switchbar_off_text">Off</string>
+    <string name="sesl_switchbar_on_text">On</string>
+    <string name="sesl_font_family_regular">sec-roboto-light</string>
+
+    <string name="update_available">ROM update available</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="rebooting">Rebooting&#8230;</string>
+    <string name="changelog_error">Error reading changelog</string>
+    <string name="done">Done</string>
+    <string name="main_release_ignored">Release skipped.</string>
+    <string name="downloading">Downloading&#8230;</string>
+    <string name="preferences_name">Settings</string>
+    <string name="download">Download</string>
+    <string name="ignore">Ignore</string>
+
+
+</resources>
