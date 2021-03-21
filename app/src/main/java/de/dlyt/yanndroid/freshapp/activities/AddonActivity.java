@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2017 Nicholas Chum (nicholaschum) and Matt Booth (Kryten2k35).
- *
- * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International
- * (the "License") you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package de.dlyt.yanndroid.freshapp.activities;
 
 import android.annotation.SuppressLint;
@@ -24,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,9 +16,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toolbar;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SeslProgressBar;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -71,14 +56,10 @@ public class AddonActivity extends Activity implements Constants {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         mContext = this;
-        setTheme(Preferences.getTheme(mContext));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ota_addons);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_addons);
-        setActionBar(toolbar);
-        toolbar.setTitle(getResources().getString(R.string.app_name));
 
         mListview = (ListView) findViewById(R.id.listview);
         mDownloadAddon = new DownloadAddon();
@@ -113,7 +94,7 @@ public class AddonActivity extends Activity implements Constants {
                 return;
             }
 
-            ProgressBar progressBar = (ProgressBar) v.findViewById(R.id.progress_bar);
+            SeslProgressBar progressBar = (SeslProgressBar) v.findViewById(R.id.progress_bar);
 
             if (finished) {
                 progressBar.setProgress(0);
@@ -183,8 +164,7 @@ public class AddonActivity extends Activity implements Constants {
         public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             final Addon item = getItem(position);
             if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout
-                        .card_addons_list_item, parent, false);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.card_addons_list_item, parent, false);
             }
 
             TextView title = (TextView) convertView.findViewById(R.id.title);

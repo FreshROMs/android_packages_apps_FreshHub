@@ -17,7 +17,6 @@
 package de.dlyt.yanndroid.freshapp.tasks;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.Context;

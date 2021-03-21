@@ -102,27 +102,6 @@ public class Preferences implements Constants {
         return Integer.parseInt(getPrefs(context).getString(CURRENT_THEME, THEME_LIGHT));
     }
 
-    public static int getTheme(Context context) {
-        switch (getCurrentTheme(context)) {
-            case 0:
-                return R.style.Theme_Light;
-            case 2:
-                return R.style.Theme_Dark;
-            default:
-                return R.style.Theme_Light;
-        }
-    }
-
-    public static int getSettingsTheme(Context context) {
-        switch (getCurrentTheme(context)) {
-            case 0:
-                return R.style.Theme_Light_Settings;
-            case 2:
-                return R.style.Theme_Dark_Settings;
-            default:
-                return R.style.Theme_Light_Settings;
-        }
-    }
 
     public static String getIgnoredRelease(Context context) {
         return getPrefs(context).getString(IGNORE_RELEASE_VERSION, "0");

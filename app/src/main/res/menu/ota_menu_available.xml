@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_available_check_md5"
+        android:enabled="false"
+        android:orderInCategory="99"
+        android:title="@string/available_check_md5"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_available_delete"
+        android:enabled="false"
+        android:orderInCategory="99"
+        android:title="@string/delete"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_available_download"
+        android:orderInCategory="100"
+        android:title="@string/download"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_available_cancel"
+        android:orderInCategory="100"
+        android:title="@string/cancel"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_available_install"
+        android:orderInCategory="100"
+        android:title="@string/install"
+        android:visible="false"
+        app:showAsAction="always" />
+
+</menu>

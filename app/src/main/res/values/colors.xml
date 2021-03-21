@@ -16,7 +16,6 @@
     <color name="sesl_control_normal_color">#cc8f8f8f</color>
 
 
-
     <color name="background_color">#fff2f2f2</color>
     <color name="item_background_color">#ffffffff</color>
     <color name="item_color">#ff000000</color>
@@ -37,14 +36,12 @@
     <color name="transparent">#00000000</color>
 
 
-
     <!--Sesl-->
     <color name="sesl_control_activated_color">@color/sesl_secondary_color</color>
     <color name="sesl_white">#fffafafa</color>
     <color name="sesl_black">#ff252525</color>
     <color name="divider_color">#ff979797</color>
     <color name="sesl_thumb_control_color_activated">@color/sesl_primary_color</color>
-
 
 
     <!--ProgressBar-->
@@ -94,7 +91,6 @@
     <color name="sesl_seekbar_overlap_color_activated">#ffff6021</color>
     <color name="sesl_seekbar_overlap_color_default_dark">#ff673724</color>
     <color name="sesl_seekbar_overlap_color_default_light">#fffcb69b</color>
-
 
 
     <!--Others-->

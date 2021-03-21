@@ -1,10 +1,10 @@
 package de.dlyt.yanndroid.freshapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import de.dlyt.yanndroid.freshapp.activities.MainActivity;
 

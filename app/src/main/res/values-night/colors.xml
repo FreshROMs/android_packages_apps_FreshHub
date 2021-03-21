@@ -31,7 +31,6 @@
     <color name="sesl_action_bar_text_color_title_dark">@color/sesl_black</color>
 
 
-
     <!--Others-->
     <color name="button_ripple_color">#515151</color>
     <color name="drawer_dim_color">#cc000000</color>

@@ -1,24 +1,7 @@
-/*
- * Copyright (C) 2017 Nicholas Chum (nicholaschum) and Matt Booth (Kryten2k35).
- *
- * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International 
- * (the "License") you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package de.dlyt.yanndroid.freshapp.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
@@ -74,14 +57,8 @@ public class AvailableActivity extends Activity implements Constants, View
             if (DEBUGGING)
                 Log.d(TAG, "Download finished. Setting up Progress Bars accordingly.");
             String ready = context.getResources().getString(R.string.available_ready_to_install);
-            int color;
-            if (Preferences.getCurrentTheme(context) == 0) { // Light
-                color = context.getColor(R.color.material_deep_teal_500);
-            } else {
-                color = context.getColor(R.color.material_deep_teal_200);
-            }
+
             if (mProgressCounterText != null) {
-                mProgressCounterText.setTextColor(color);
                 mProgressCounterText.setText(ready);
             }
             if (mProgressBar != null) {
@@ -157,7 +134,6 @@ public class AvailableActivity extends Activity implements Constants, View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mContext = this;
-        setTheme(Preferences.getTheme(mContext));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ota_available);
 
@@ -377,14 +353,6 @@ public class AvailableActivity extends Activity implements Constants, View
         TextView updateNameInfoText = (TextView) findViewById(R.id.tv_available_update_name);
         String downloading = getResources().getString(R.string.available_downloading);
         String filename = RomUpdate.getFilename(mContext);
-
-        int color;
-        if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-            color = getColor(R.color.material_deep_teal_500);
-        } else {
-            color = getColor(R.color.material_deep_teal_200);
-        }
-        updateNameInfoText.setTextColor(color);
 
         if (isDownloadOnGoing) {
             updateNameInfoText.setText(downloading);

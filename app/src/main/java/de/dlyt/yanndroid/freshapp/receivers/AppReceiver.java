@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2017 Nicholas Chum (nicholaschum) and Matt Booth (Kryten2k35).
  *
- * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International 
+ * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International
  * (the "License") you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -25,9 +25,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
-import android.util.Log;
 
 import java.util.Iterator;
 import java.util.Set;

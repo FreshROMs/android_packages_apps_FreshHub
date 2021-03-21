@@ -57,7 +57,6 @@ public final class RdotStyleable {
         public static final int AppCompatTheme_android_disabledAlpha = 0;
 
 
-
     }
 
 }

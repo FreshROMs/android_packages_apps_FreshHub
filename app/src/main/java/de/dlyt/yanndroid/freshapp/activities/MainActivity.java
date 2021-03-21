@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2017 Nicholas Chum (nicholaschum) and Matt Booth (Kryten2k35).
- *
- * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International 
- * (the "License") you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package de.dlyt.yanndroid.freshapp.activities;
 
 import android.annotation.SuppressLint;
@@ -29,10 +13,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -40,9 +20,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toolbar;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SeslProgressBar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.card.MaterialCardView;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -66,7 +51,7 @@ public class MainActivity extends Activity implements Constants,
     private static final boolean ENABLE_COMPATIBILITY_CHECK = true;
     public static boolean hasRoot;
     @SuppressLint("StaticFieldLeak")
-    private static ProgressBar mProgressBar;
+    private static SeslProgressBar mProgressBar;
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
     private final String TAG = this.getClass().getSimpleName();
@@ -106,14 +91,10 @@ public class MainActivity extends Activity implements Constants,
     public void onCreate(Bundle savedInstanceState) {
 
         mContext = this;
-        setTheme(Preferences.getTheme(mContext));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ota_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
-        setActionBar(toolbar);
-        toolbar.setTitle(getResources().getString(R.string.app_name));
         boolean firstRun = Preferences.getFirstRun(mContext);
         if (firstRun) {
             Preferences.setFirstRun(mContext, false);
@@ -283,20 +264,17 @@ public class MainActivity extends Activity implements Constants,
         updateAvailable.setVisibility(View.GONE);
         updateNotAvailable.setVisibility(View.GONE);
 
-        TextView updateAvailableSummary = (TextView) findViewById(R.id
-                .main_tv_update_available_summary);
-        TextView updateNotAvailableSummary = (TextView) findViewById(R.id
-                .main_tv_no_update_available_summary);
+        TextView updateAvailableSummary = (TextView) findViewById(R.id.main_tv_update_available_summary);
+        TextView updateNotAvailableSummary = (TextView) findViewById(R.id.main_tv_no_update_available_summary);
 
-        mProgressBar = (ProgressBar) findViewById(R.id.bar_main_progress_bar);
+        mProgressBar = (SeslProgressBar) findViewById(R.id.bar_main_progress_bar);
         mProgressBar.setVisibility(View.GONE);
 
         // Update is available
         if (RomUpdate.getUpdateAvailability(mContext) ||
                 (!RomUpdate.getUpdateAvailability(mContext)) && Utils.isUpdateIgnored(mContext)) {
             updateAvailable.setVisibility(View.VISIBLE);
-            TextView updateAvailableTitle = (TextView) findViewById(R.id
-                    .main_tv_update_available_title);
+            TextView updateAvailableTitle = (TextView) findViewById(R.id.main_tv_update_available_title);
 
             if (Preferences.getDownloadFinished(mContext)) { //  Update already finished?
                 updateAvailableTitle.setText(getResources().getString(R.string
@@ -368,7 +346,7 @@ public class MainActivity extends Activity implements Constants,
     }
 
     private void updateAddonsLayout() {
-        CardView addonsLink = (CardView) findViewById(R.id.layout_main_addons);
+        MaterialCardView addonsLink = (MaterialCardView) findViewById(R.id.layout_main_addons);
         addonsLink.setVisibility(View.GONE);
 
         if (RomUpdate.getAddonsCount(mContext) > 0) {
@@ -377,7 +355,7 @@ public class MainActivity extends Activity implements Constants,
     }
 
     private void updateDonateLinkLayout() {
-        CardView donateLink = (CardView) findViewById(R.id.layout_main_dev_donate_link);
+        MaterialCardView donateLink = (MaterialCardView) findViewById(R.id.layout_main_dev_donate_link);
         donateLink.setVisibility(View.GONE);
 
         if (!(RomUpdate.getDonateLink(mContext).trim().equals("null"))
@@ -387,7 +365,7 @@ public class MainActivity extends Activity implements Constants,
     }
 
     private void updateWebsiteLayout() {
-        CardView webLink = (CardView) findViewById(R.id.layout_main_dev_website);
+        MaterialCardView webLink = (MaterialCardView) findViewById(R.id.layout_main_dev_website);
         webLink.setVisibility(View.GONE);
 
         if (!RomUpdate.getWebsite(mContext).trim().equals("null")) {
@@ -438,11 +416,9 @@ public class MainActivity extends Activity implements Constants,
 
         //ROM android version
         TextView romAndroid = (TextView) findViewById(R.id.tv_main_android_version);
-        String romAndroidTitle = getApplicationContext().getResources().getString(R.string
-                .main_android_version) + " ";
+        String romAndroidTitle = getApplicationContext().getResources().getString(R.string.main_android_version) + " ";
         String romAndroidActual = Utils.getProp(getResources().getString(R.string.prop_release));
-        String romAndroidBuildID = Utils.getProp(getResources().getString(R.string
-                .prop_release_build_id));
+        String romAndroidBuildID = Utils.getProp(getResources().getString(R.string.prop_release_build_id));
         romAndroid.setText(Html.fromHtml(romAndroidTitle + htmlColorOpen + romAndroidActual +
                 separator_open + romAndroidBuildID + separator_close + htmlColorClose));
 
@@ -451,12 +427,9 @@ public class MainActivity extends Activity implements Constants,
         boolean showDevName = !RomUpdate.getDeveloper(this).equals("null");
         //romDeveloper.setVisibility(showDevName? View.VISIBLE : View.GONE);
 
-        String romDeveloperTitle = getApplicationContext().getResources().getString(R.string
-                .main_rom_developer) + " ";
-        String romDeveloperActual = showDevName ? RomUpdate.getDeveloper(this) : Utils.getProp
-                (getResources().getString(R.string.prop_developer));
-        romDeveloper.setText(Html.fromHtml(romDeveloperTitle + htmlColorOpen + romDeveloperActual
-                + htmlColorClose));
+        String romDeveloperTitle = getApplicationContext().getResources().getString(R.string.main_rom_developer) + " ";
+        String romDeveloperActual = showDevName ? RomUpdate.getDeveloper(this) : Utils.getProp(getResources().getString(R.string.prop_developer));
+        romDeveloper.setText(Html.fromHtml(romDeveloperTitle + htmlColorOpen + romDeveloperActual + htmlColorClose));
 
     }
 

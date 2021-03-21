@@ -5,6 +5,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.SeekBar;
+
 import androidx.annotation.RestrictTo;
 
 import de.dlyt.yanndroid.freshapp.R;
@@ -13,22 +14,6 @@ public class SeslSeekBar extends SeslAbsSeekBar {
     private int mOldValue;
     private OnSeekBarChangeListener mOnSeekBarChangeListener;
     private OnSeekBarHoverListener mOnSeekBarHoverListener;
-
-    public interface OnSeekBarChangeListener {
-        void onProgressChanged(SeslSeekBar seslSeekBar, int i, boolean z);
-
-        void onStartTrackingTouch(SeslSeekBar seslSeekBar);
-
-        void onStopTrackingTouch(SeslSeekBar seslSeekBar);
-    }
-
-    public interface OnSeekBarHoverListener {
-        void onHoverChanged(SeslSeekBar seslSeekBar, int i, boolean z);
-
-        void onStartTrackingHover(SeslSeekBar seslSeekBar, int i);
-
-        void onStopTrackingHover(SeslSeekBar seslSeekBar);
-    }
 
     public SeslSeekBar(Context context) {
         this(context, null);
@@ -140,5 +125,21 @@ public class SeslSeekBar extends SeslAbsSeekBar {
 
     public void setOnSeekBarHoverListener(OnSeekBarHoverListener onSeekBarHoverListener) {
         this.mOnSeekBarHoverListener = onSeekBarHoverListener;
+    }
+
+    public interface OnSeekBarChangeListener {
+        void onProgressChanged(SeslSeekBar seslSeekBar, int i, boolean z);
+
+        void onStartTrackingTouch(SeslSeekBar seslSeekBar);
+
+        void onStopTrackingTouch(SeslSeekBar seslSeekBar);
+    }
+
+    public interface OnSeekBarHoverListener {
+        void onHoverChanged(SeslSeekBar seslSeekBar, int i, boolean z);
+
+        void onStartTrackingHover(SeslSeekBar seslSeekBar, int i);
+
+        void onStopTrackingHover(SeslSeekBar seslSeekBar);
     }
 }

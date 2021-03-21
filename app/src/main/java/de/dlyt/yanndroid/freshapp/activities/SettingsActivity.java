@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2017 Nicholas Chum (nicholaschum) and Matt Booth (Kryten2k35).
  *
- * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International 
+ * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International
  * (the "License") you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -18,7 +18,6 @@ package de.dlyt.yanndroid.freshapp.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -64,7 +63,6 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
     @Override
     public void onCreate(Bundle savedInstanceState) {
         mContext = this;
-        setTheme(Preferences.getSettingsTheme(mContext));
         super.onCreate(savedInstanceState);
 
         getPreferenceManager().setSharedPreferencesName(Preferences.PREF_NAME);
