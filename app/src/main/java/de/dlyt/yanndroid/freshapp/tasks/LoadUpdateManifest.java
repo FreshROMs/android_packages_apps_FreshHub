@@ -54,8 +54,8 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
         try {
             InputStream input;
 
-            //URL url = new URL(Utils.getProp("ro.ota.manifest"));
-            URL url = new URL("https://ota.tensevntysevn.cf/api/fresh/a50xx/beta/20210204001/");
+            URL url = new URL(Utils.getProp("ro.ota.manifest"));
+            //URL url = new URL("https://raw.githubusercontent.com/Yanndroid/testFresh/main/rom.xml");
             URLConnection connection = url.openConnection();
             connection.connect();
             // download the file

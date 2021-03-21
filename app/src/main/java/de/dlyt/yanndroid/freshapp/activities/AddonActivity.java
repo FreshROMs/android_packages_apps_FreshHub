@@ -64,6 +64,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
         setContentView(R.layout.ota_addons);
 
         initToolbar();
+        settilte("Addons");
 
         mListview = (ListView) findViewById(R.id.listview);
         mDownloadAddon = new DownloadAddon();
@@ -80,8 +81,8 @@ public class AddonActivity extends AppCompatActivity implements Constants {
 
     public void initToolbar() {
         /** Def */
-        androidx.appcompat.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         AppBarLayout AppBar = findViewById(R.id.app_bar);
 
         TextView expanded_title = findViewById(R.id.expanded_title);
@@ -104,7 +105,23 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             }
         });
 
+        /**Back*/
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
+
+    }
+
+    public void settilte(String title) {
+        TextView expanded_title = findViewById(R.id.expanded_title);
+        TextView collapsed_title = findViewById(R.id.collapsed_title);
+        expanded_title.setText(title);
+        collapsed_title.setText(title);
     }
 
 

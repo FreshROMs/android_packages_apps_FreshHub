@@ -97,14 +97,11 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-    <Toolbar
-        android:id="@+id/toolbar_available_bottom"
+    <include layout="@layout/ota_available_menu"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true">
-
-        <include layout="@layout/ota_available_menu" />
-    </Toolbar>
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>

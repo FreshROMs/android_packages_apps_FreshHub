@@ -1,4 +1,4 @@
-package de.dlyt.yanndroid.freshapp;
+package de.dlyt.yanndroid.freshapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import de.dlyt.yanndroid.freshapp.R;
 import de.dlyt.yanndroid.freshapp.activities.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 750);
+        }, getResources().getInteger(R.integer.splash_time));
 
     }
 }

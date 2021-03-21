@@ -1,80 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:orientation="horizontal">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_centerInParent="true"
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center_horizontal"
+    android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/md5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="-5dp">
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/menu_available_check_md5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/available_check_md5"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/changelog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_toRightOf="@+id/md5">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/menu_available_changelog"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/available_changelog"/>
-    </LinearLayout>
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="10dp"
-        android:layout_toRightOf="@+id/changelog">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_available_check_md5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/available_check_md5" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/menu_available_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/delete"/>
-    </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_available_changelog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/available_changelog" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_available_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/menu_available_download"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/download"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_available_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/download" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/menu_available_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cancel"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_available_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/menu_available_install"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/install"/>
-    </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_available_install"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/install" />
 
-</RelativeLayout>
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</LinearLayout>

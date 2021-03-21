@@ -2,7 +2,11 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_main_update_available"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_width="match_parent"
+    android:onClick="openDownload"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -11,7 +15,6 @@
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="openDownload"
         android:orientation="horizontal">
 
         <ImageView
@@ -20,9 +23,11 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:contentDescription="@string/main_button_icon"
-            android:src="@drawable/ic_add" />
+            android:src="@drawable/ic_new"
+            card_view:tint="@color/green" />
 
         <LinearLayout
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -44,6 +49,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="-1"
+            android:src="@drawable/ic_back" />
+
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -22,12 +23,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SeslProgressBar;
+import androidx.appcompat.widget.SeslSeekBar;
+import androidx.appcompat.widget.SeslSwitchBar;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -159,7 +165,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
         new checkRoot().execute("");
     }
-
 
 
     public void initDrawer() {
@@ -340,9 +345,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             intent.setData(Uri.parse(url));
             startActivity(intent);
         });
-        mPlayStoreDialog.setNegativeButton(getResources().getString(R.string.cancel), (dialog,
-                                                                                       which) ->
-                dialog.cancel());
+        mPlayStoreDialog.setNegativeButton(getResources().getString(R.string.cancel), (dialog, which) -> dialog.cancel());
     }
 
     @SuppressWarnings("deprecation")
@@ -361,8 +364,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         mProgressBar.setVisibility(View.GONE);
 
         // Update is available
-        if (RomUpdate.getUpdateAvailability(mContext) ||
-                (!RomUpdate.getUpdateAvailability(mContext)) && Utils.isUpdateIgnored(mContext)) {
+        if (RomUpdate.getUpdateAvailability(mContext) || (!RomUpdate.getUpdateAvailability(mContext)) && Utils.isUpdateIgnored(mContext)) {
             updateAvailable.setVisibility(View.VISIBLE);
             TextView updateAvailableTitle = (TextView) findViewById(R.id.main_tv_update_available_title);
 

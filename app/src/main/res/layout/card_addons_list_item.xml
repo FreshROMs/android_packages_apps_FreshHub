@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_main_dev_donate_link"
+    android:layout_marginVertical="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -52,23 +53,41 @@
 
         <LinearLayout
             android:id="@+id/addon_links_box"
-            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/addon_information"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <include layout="@layout/ota_addon_download_button"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                />
 
-                <include layout="@layout/ota_addon_download_button" />
+            <!--<View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="15dp"
+                android:background="@color/divider_color" />-->
 
-                <include layout="@layout/ota_addon_cancel_button" />
+            <include layout="@layout/ota_addon_cancel_button"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
 
-                <include layout="@layout/ota_addon_delete_button" />
-            </RelativeLayout>
+            <!--<View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="15dp"
+                android:background="@color/divider_color" />-->
+
+            <include layout="@layout/ota_addon_delete_button"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+
         </LinearLayout>
     </RelativeLayout>
 

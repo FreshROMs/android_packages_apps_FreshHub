@@ -217,8 +217,7 @@ public class Utils implements Constants {
             }
         }
 
-        if (DEBUGGING)
-            Log.d(TAG, "Current: " + current + " Manifest: " + manifest);
+        if (DEBUGGING) Log.d(TAG, "Current: " + current + " Manifest: " + manifest);
 
         return Integer.parseInt(current) < Integer.parseInt(manifest);
     }
@@ -235,8 +234,7 @@ public class Utils implements Constants {
         String manifestVer = Integer.toString(otaVersion);
 
         boolean available;
-        available = !Preferences.getIgnoredRelease(context).matches(manifestVer) &&
-                (DEBUG_NOTIFICATIONS || versionBiggerThan(currentVer, manifestVer));
+        available = !Preferences.getIgnoredRelease(context).matches(manifestVer) && (DEBUG_NOTIFICATIONS || versionBiggerThan(currentVer, manifestVer));
 
         RomUpdate.setUpdateAvailable(context, available);
         if (DEBUGGING)
