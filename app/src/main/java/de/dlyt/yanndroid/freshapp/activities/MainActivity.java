@@ -10,10 +10,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -22,18 +22,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.SeekBar;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SeslProgressBar;
-import androidx.appcompat.widget.SeslSeekBar;
-import androidx.appcompat.widget.SeslSwitchBar;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -80,6 +79,12 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
     };
 
+    String omc_url = "https://tiny.cc/FRSH-OMC";
+    String feedback_url = "https://tiny.cc/FRSH-Feedback";
+
+    WebView webView;
+    ProgressBar web_progressbar;
+
     public static void updateProgress(int progress) {
         if (mProgressBar != null) {
             mProgressBar.setProgress(progress);
@@ -102,22 +107,23 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         mContext = this;
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ota_main);
 
+        webView = findViewById(R.id.webview);
+        web_progressbar = findViewById(R.id.web_progressbar);
+
         initToolbar();
         initDrawer();
-        settilte("OTA");
+        settilte(getString(R.string.update));
+        initWebView();
+
 
         boolean firstRun = Preferences.getFirstRun(mContext);
         if (firstRun) {
             Preferences.setFirstRun(mContext, false);
-            showWhatsNew();
+            //showWhatsNew(); todo
         }
 
         // Create download directories if needed
@@ -206,7 +212,93 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         });
 
+
+        View feedback_content = findViewById(R.id.feedback_content);
+        View ota_content = findViewById(R.id.ota_content);
+
+
+        View drawer_update = findViewById(R.id.drawer_update);
+        drawer_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                settilte(getString(R.string.update));
+                ota_content.setVisibility(View.VISIBLE);
+                feedback_content.setVisibility(View.GONE);
+                drawerLayout.closeDrawer(drawer, true);
+            }
+        });
+
+
+        View drawer_feedback = findViewById(R.id.drawer_feedback);
+        drawer_feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ota_content.setVisibility(View.GONE);
+                feedback_content.setVisibility(View.VISIBLE);
+                web_progressbar.setVisibility(View.VISIBLE);
+                webView.loadUrl(feedback_url);
+                settilte(getString(R.string.feedback));
+                drawerLayout.closeDrawer(drawer, true);
+            }
+        });
+
+        View drawer_omc_request = findViewById(R.id.drawer_omc_request);
+        drawer_omc_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ota_content.setVisibility(View.GONE);
+                feedback_content.setVisibility(View.VISIBLE);
+                web_progressbar.setVisibility(View.VISIBLE);
+                webView.loadUrl(omc_url);
+                settilte(getString(R.string.omc_request));
+                drawerLayout.closeDrawer(drawer, true);
+            }
+        });
+
+        View drawer_fresh_group = findViewById(R.id.drawer_fresh_group);
+        drawer_fresh_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/FreshROMs")));
+            }
+        });
+
+        View drawer_community = findViewById(R.id.drawer_community);
+        drawer_community.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/FreshROMsCommunity")));
+            }
+        });
+
     }
+
+
+    public void initWebView() {
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                web_progressbar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                web_progressbar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                web_progressbar.setVisibility(View.GONE);
+            }
+        });
+        webView.loadUrl(feedback_url);
+    }
+
 
     public void initToolbar() {
         /** Def */
@@ -582,6 +674,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         new Changelog(this, mContext, title, changelog, true).execute();
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CHANGE_THEME_REQUEST_CODE) {

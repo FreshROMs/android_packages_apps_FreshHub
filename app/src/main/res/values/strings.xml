@@ -176,4 +176,11 @@
     <string name="prop_release_build_id">ro.build.changelist</string>
     <string name="prop_developer">ro.build.user</string>
 
+
+    <string name="feedback">Feedback</string>
+    <string name="omc_request">OMC Request</string>
+    <string name="update">OTA</string>
+    <string name="fresh_community">Fresh Community</string>
+    <string name="fresh_updates">Fresh Updates</string>
+
 </resources>

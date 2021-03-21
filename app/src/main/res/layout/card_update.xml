@@ -6,6 +6,8 @@
     android:clickable="true"
     android:focusable="true"
     android:layout_width="match_parent"
+    card_view:strokeWidth="2dp"
+    card_view:strokeColor="@color/green"
     android:onClick="openDownload"
     android:layout_height="wrap_content">
 

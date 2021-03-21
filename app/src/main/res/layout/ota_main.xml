@@ -35,32 +35,89 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/card_rom_info" />
 
-                    <include layout="@layout/card_update"
-                        android:layout_marginTop="10dp"
+                    <LinearLayout
+                        android:id="@+id/ota_content"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <include layout="@layout/card_no_update"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        <include layout="@layout/card_rom_info" />
 
-                    <include layout="@layout/card_addons"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        <include
+                            layout="@layout/card_update"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
 
-                    <include layout="@layout/card_website"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        <include
+                            layout="@layout/card_no_update"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
 
-                    <include layout="@layout/card_donate"
-                        android:layout_marginTop="10dp"
+                        <include
+                            layout="@layout/card_addons"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
+                        <include
+                            layout="@layout/card_website"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
+                        <include
+                            layout="@layout/card_donate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
+                    </LinearLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:visibility="gone"
+                        android:id="@+id/feedback_content"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:elevation="1dp"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="@id/feedback_content"
+                            app:layout_constraintRight_toRightOf="@id/feedback_content"
+                            app:layout_constraintTop_toTopOf="@id/feedback_content"
+
+                            >
+
+                            <ProgressBar
+                                android:layout_margin="6dp"
+                                android:id="@+id/web_progressbar"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:background="@drawable/sesl_progress_dialog_circle_background_shape"
+                                android:elevation="4dp"
+                                android:padding="5dp"
+                                />
+
+                        </LinearLayout>
+
+
+
+                        <WebView
+                            android:foreground="@drawable/rounded_corner_bottom"
+                            android:id="@+id/webview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </LinearLayout>
 
