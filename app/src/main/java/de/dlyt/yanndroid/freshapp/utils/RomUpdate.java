@@ -65,6 +65,10 @@ public class RomUpdate implements Constants {
     public static String getMd5(Context context) {
         return getPrefs(context).getString(MD5, DEF_VALUE);
     }
+    
+    public static String getChangelog(Context context) {
+        return getPrefs(context).getString(CHANGELOG, DEF_VALUE);
+    }
 
     public static String getWebsite(Context context) {
         return getPrefs(context).getString(WEBSITE, DEF_VALUE);

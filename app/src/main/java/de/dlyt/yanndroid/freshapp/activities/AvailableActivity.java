@@ -162,6 +162,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         setupUpdateNameInfo();
         setupProgress(mContext);
         setupMd5Info();
+        setupChangeLog();
         setupMenuToolbar(mContext);
 
         if (Preferences.getIsDownloadOnGoing(mContext)) {
@@ -299,6 +300,16 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         mRebootManualDialog.setTitle(R.string.available_reboot_manual_title)
                 .setMessage(R.string.available_reboot_manual_message)
                 .setPositiveButton(R.string.cancel, null);
+    }
+
+
+    private void setupChangeLog() {
+        TextView changelogView = (TextView) findViewById(R.id.tv_available_changelog_content);
+        Bypass byPass = new Bypass(this);
+        String changeLogStr = RomUpdate.getChangelog(mContext);
+        CharSequence string = byPass.markdownToSpannable(changeLogStr);
+        changelogView.setText(string);
+        changelogView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void setupUpdateNameInfo() {
