@@ -21,6 +21,7 @@ import androidx.appcompat.widget.SeslProgressBar;
 
 import com.google.android.material.appbar.AppBarLayout;
 
+import in.uncod.android.bypass.Bypass;
 import de.dlyt.yanndroid.freshapp.R;
 import de.dlyt.yanndroid.freshapp.download.DownloadRom;
 import de.dlyt.yanndroid.freshapp.download.DownloadRomProgress;
