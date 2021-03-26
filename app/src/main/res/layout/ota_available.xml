@@ -87,17 +87,22 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical" >
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/tv_available_changelog_content"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="20dp"
+                                android:paddingTop="20dp"
                                 android:singleLine="false"
                                 android:text="@string/available_changelog_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
