@@ -463,11 +463,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 updateAvailableTitle.setText(getResources().getString(R.string
                         .main_update_finished));
                 String htmlColorOpen;
-                if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-                    htmlColorOpen = "<font color='#000000'>";
-                } else {
-                    htmlColorOpen = "<font color='#ffffff'>";
-                }
+                htmlColorOpen = "<font color='"+getResources().getColor(R.color.item_color)+"'>";
                 String htmlColorClose = "</font>";
                 String updateSummary = RomUpdate.getFilename(mContext)
                         + "<br />"
@@ -480,11 +476,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                         .main_update_progress));
                 mProgressBar.setVisibility(View.VISIBLE);
                 String htmlColorOpen;
-                if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-                    htmlColorOpen = "<font color='#000000'>";
-                } else {
-                    htmlColorOpen = "<font color='#ffffff'>";
-                }
+                htmlColorOpen = "<font color='"+getResources().getColor(R.color.item_color)+"'>";
                 String htmlColorClose = "</font>";
                 String updateSummary = htmlColorOpen
                         + getResources().getString(R.string.main_tap_to_view_progress)
@@ -494,11 +486,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 updateAvailableTitle.setText(getResources().getString(R.string
                         .main_update_available));
                 String htmlColorOpen;
-                if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-                    htmlColorOpen = "<font color='#000000'>";
-                } else {
-                    htmlColorOpen = "<font color='#ffffff'>";
-                }
+                htmlColorOpen = "<font color='"+getResources().getColor(R.color.item_color)+"'>";
                 String htmlColorClose = "</font>";
                 String updateSummary = RomUpdate.getFilename(mContext)
                         + "<br />"
@@ -559,7 +547,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
     @SuppressWarnings("deprecation")
     private void updateRomInformation() {
         String htmlColorOpen;
-        //htmlColorOpen = "<font color='#ffffff'>";
         htmlColorOpen = "<font color='"+getResources().getColor(R.color.item_color)+"'>";
         String htmlColorClose = "</font>";
 
@@ -714,7 +701,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 if (DEBUGGING)
                     Log.d(TAG, "Prop not found");
                 try {
-                    mCompatibilityDialog.show();
+                    //mCompatibilityDialog.show(); //todo
                 } catch (WindowManager.BadTokenException ex) {
                     Log.e(TAG, ex.getMessage());
                 }
