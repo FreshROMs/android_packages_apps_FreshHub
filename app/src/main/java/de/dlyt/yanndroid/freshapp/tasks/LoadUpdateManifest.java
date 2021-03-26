@@ -54,8 +54,8 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
         try {
             InputStream input;
 
-            //URL url = new URL(Utils.getProp("ro.ota.manifest"));
-            URL url = new URL("https://ota.tensevntysevn.cf/fresh/a50xx/beta/21032202/");
+            URL url = new URL(Utils.getProp("ro.ota.manifest")); //todo
+            //URL url = new URL("https://ota.tensevntysevn.cf/fresh/a50xx/beta/21032202/");
             URLConnection connection = url.openConnection();
             connection.connect();
             // download the file
@@ -76,8 +76,7 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
 
             // file finished downloading, parse it!
             RomXmlParser parser = new RomXmlParser();
-            parser.parse(new File(mContext.getFilesDir(), MANIFEST),
-                    mContext);
+            parser.parse(new File(mContext.getFilesDir(), MANIFEST), mContext);
         } catch (Exception e) {
             Log.d(TAG, "Exception: " + e.getMessage());
         }

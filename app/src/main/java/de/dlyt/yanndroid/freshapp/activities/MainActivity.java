@@ -397,6 +397,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
         mCompatibilityDialog.setMessage(R.string.main_not_compatible_message);
         mCompatibilityDialog.setPositiveButton(R.string.ok, (dialog, which) -> MainActivity.this.finish());
 
+        mCompatibilityDialog.setNegativeButton("debug", (dialog, which) -> dialog.cancel()); //todo
+
         // Donate Dialog
         mDonateDialog = new Builder(this, R.style.AlertDialogStyle);
         String[] donateItems = {"PayPal", "BitCoin"};
@@ -701,7 +703,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 if (DEBUGGING)
                     Log.d(TAG, "Prop not found");
                 try {
-                    //mCompatibilityDialog.show(); //todo
+                    mCompatibilityDialog.show();
                 } catch (WindowManager.BadTokenException ex) {
                     Log.e(TAG, ex.getMessage());
                 }
