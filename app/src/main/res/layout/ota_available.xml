@@ -85,27 +85,26 @@
                     </com.google.android.material.card.MaterialCardView>
 
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/tv_available_changelog_content"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:singleLine="false"
-                            android:text="@string/available_changelog_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:textColor="@color/sesl_action_bar_text_color_title_dark" />
+                            android:orientation="vertical" >
 
+                            <TextView
+                                android:id="@+id/tv_available_changelog_content"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="false"
+                                android:text="@string/available_changelog_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:textColor="@color/sesl_action_bar_text_color_title_dark" />
+                        </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
+
                 </LinearLayout>
 
 
