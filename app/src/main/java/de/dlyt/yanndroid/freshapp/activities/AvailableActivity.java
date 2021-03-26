@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import androidx.appcompat.widget.SeslProgressBar;
 
 import com.google.android.material.appbar.AppBarLayout;
 
+import in.uncod.android.bypass.Bypass;
 import de.dlyt.yanndroid.freshapp.R;
 import de.dlyt.yanndroid.freshapp.download.DownloadRom;
 import de.dlyt.yanndroid.freshapp.download.DownloadRomProgress;
@@ -162,6 +164,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         setupUpdateNameInfo();
         setupProgress(mContext);
         setupMd5Info();
+        setupChangeLog();
         setupMenuToolbar(mContext);
 
         if (Preferences.getIsDownloadOnGoing(mContext)) {
@@ -299,6 +302,16 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         mRebootManualDialog.setTitle(R.string.available_reboot_manual_title)
                 .setMessage(R.string.available_reboot_manual_message)
                 .setPositiveButton(R.string.cancel, null);
+    }
+
+
+    private void setupChangeLog() {
+        TextView changelogView = (TextView) findViewById(R.id.tv_available_changelog_content);
+        Bypass byPass = new Bypass(this);
+        String changeLogStr = RomUpdate.getChangelog(mContext);
+        CharSequence string = byPass.markdownToSpannable(changeLogStr);
+        changelogView.setText(string);
+        changelogView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void setupUpdateNameInfo() {

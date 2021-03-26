@@ -32,6 +32,7 @@ public class RomUpdate implements Constants {
     private static String MD5 = "rom_md5";
     private static String WEBSITE = "rom_website";
     private static String DEVELOPER = "rom_developer";
+    private static String CHANGELOG = "rom_changelog";
     private static String DONATE_LINK = "rom_donate_link";
     private static String BTC_LINK = "rom_bitcoin_link";
     private static String FILESIZE = "rom_filesize";
@@ -64,6 +65,10 @@ public class RomUpdate implements Constants {
 
     public static String getMd5(Context context) {
         return getPrefs(context).getString(MD5, DEF_VALUE);
+    }
+    
+    public static String getChangelog(Context context) {
+        return getPrefs(context).getString(CHANGELOG, DEF_VALUE);
     }
 
     public static String getWebsite(Context context) {
