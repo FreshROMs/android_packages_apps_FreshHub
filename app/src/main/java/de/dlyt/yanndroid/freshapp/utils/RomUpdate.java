@@ -32,6 +32,7 @@ public class RomUpdate implements Constants {
     private static String MD5 = "rom_md5";
     private static String WEBSITE = "rom_website";
     private static String DEVELOPER = "rom_developer";
+    private static String CHANGELOG = "rom_changelog";
     private static String DONATE_LINK = "rom_donate_link";
     private static String BTC_LINK = "rom_bitcoin_link";
     private static String FILESIZE = "rom_filesize";
