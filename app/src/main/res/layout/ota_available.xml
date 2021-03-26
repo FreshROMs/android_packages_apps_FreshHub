@@ -103,7 +103,7 @@
                             android:singleLine="false"
                             android:text="@string/available_changelog_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:textColor="?attr/textColorSecondary" />
+                            android:textColor="@color/sesl_action_bar_text_color_title_dark" />
 
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
