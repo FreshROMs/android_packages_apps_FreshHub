@@ -51,6 +51,9 @@
     <color name="sesl_progress_control_color_activated">@color/sesl_primary_color</color>
     <color name="sesl_progress_control_color_normal">@color/sesl_control_color_normal</color>
 
+    <color name="progress_bar_background_color">#4d9c9c9c</color>
+    <color name="progress_bar_progress_color">#ff3e91ff</color>
+
 
     <!--Switch-->
     <color name="sesl_switch_thumb_off_disabled_color">@color/white</color>

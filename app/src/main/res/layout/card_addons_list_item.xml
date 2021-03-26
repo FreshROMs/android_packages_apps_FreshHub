@@ -19,23 +19,27 @@
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
+                style="?textAppearanceBody1"
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18.0sp" />
 
             <com.google.android.material.textview.MaterialTextView
+                style="?android:attr/textAppearanceSmall"
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <com.google.android.material.textview.MaterialTextView
+                style="?android:attr/textAppearanceSmall"
                 android:id="@+id/size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10.0sp" />
 
             <com.google.android.material.textview.MaterialTextView
+                style="?android:attr/textAppearanceSmall"
                 android:id="@+id/updatedOn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +47,7 @@
 
             <androidx.appcompat.widget.SeslProgressBar
                 android:id="@+id/progress_bar"
-                style="?android:progressBarStyleHorizontal"
+                style="@style/ProgressBarStyle.Horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dip"

@@ -10,9 +10,10 @@
     <color name="sesl_primary_dark_color">#ffbd7800</color>
 
 
+
     <color name="background_color">#ff000000</color>
     <color name="item_background_color">#ff171717</color>
-    <color name="item_color">#ffffffff</color>
+    <color name="item_color">#fff2f2f2</color>
 
     <!--Sesl-->
     <color name="divider_color">#42fafafa</color>
@@ -29,6 +30,9 @@
     <color name="sesl_switchbar_off_background_color">#2bfafafa</color>
     <color name="sesl_switchbar_off_text_color">#fffafafa</color>
     <color name="sesl_action_bar_text_color_title_dark">@color/sesl_black</color>
+
+    <!--ProgressBar-->
+    <color name="progress_bar_progress_color">#ff3891ff</color>
 
 
     <!--Others-->

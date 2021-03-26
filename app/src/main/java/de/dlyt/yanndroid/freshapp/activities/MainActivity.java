@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -558,11 +559,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
     @SuppressWarnings("deprecation")
     private void updateRomInformation() {
         String htmlColorOpen;
-        if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-            htmlColorOpen = "<font color='#000000'>";
-        } else {
-            htmlColorOpen = "<font color='#ffffff'>";
-        }
+        //htmlColorOpen = "<font color='#ffffff'>";
+        htmlColorOpen = "<font color='"+getResources().getColor(R.color.item_color)+"'>";
         String htmlColorClose = "</font>";
 
         String space = " ";
