@@ -106,7 +106,7 @@
                                 android:singleLine="false"
                                 android:text="@string/available_changelog_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textColor="@color/sesl_action_bar_text_color_title_dark" />
+                                android:textColor="@color/ota_changelog_text_color" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
