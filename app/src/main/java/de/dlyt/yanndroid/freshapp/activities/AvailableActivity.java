@@ -22,7 +22,6 @@ import androidx.appcompat.widget.SeslProgressBar;
 
 import com.google.android.material.appbar.AppBarLayout;
 
-import in.uncod.android.bypass.Bypass;
 import de.dlyt.yanndroid.freshapp.R;
 import de.dlyt.yanndroid.freshapp.download.DownloadRom;
 import de.dlyt.yanndroid.freshapp.download.DownloadRomProgress;
@@ -32,6 +31,7 @@ import de.dlyt.yanndroid.freshapp.utils.Preferences;
 import de.dlyt.yanndroid.freshapp.utils.RomUpdate;
 import de.dlyt.yanndroid.freshapp.utils.Tools;
 import de.dlyt.yanndroid.freshapp.utils.Utils;
+import in.uncod.android.bypass.Bypass;
 
 @SuppressLint("StaticFieldLeak")
 public class AvailableActivity extends Activity implements Constants, View.OnClickListener {

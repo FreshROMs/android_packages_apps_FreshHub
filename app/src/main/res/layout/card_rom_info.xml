@@ -13,43 +13,43 @@
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
-            style="?android:attr/textAppearanceSmall"
             android:id="@+id/tv_main_rom_information"
+            style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/main_rom_information" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="?android:attr/textAppearanceSmall"
             android:id="@+id/tv_main_rom_name"
+            style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/main_rom_name" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="?android:attr/textAppearanceSmall"
             android:id="@+id/tv_main_rom_version"
+            style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/main_rom_version" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="?android:attr/textAppearanceSmall"
             android:id="@+id/tv_main_rom_date"
+            style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/main_rom_build_date" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="?android:attr/textAppearanceSmall"
             android:id="@+id/tv_main_android_version"
+            style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/main_android_version" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="?android:attr/textAppearanceSmall"
             android:id="@+id/tv_main_rom_developer"
+            style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/main_rom_developer" />

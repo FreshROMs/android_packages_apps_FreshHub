@@ -37,6 +37,7 @@
         <item name="android:progressDrawable">@drawable/progress_bar</item>
         <item name="android:minHeight">@dimen/progress_bar_height</item>
     </style>
+
     <style name="ProgressBarStyle.Circle" parent="@android:style/Widget.ProgressBar">
         <item name="android:maxWidth">@dimen/sesl_progress_circle_size</item>
         <item name="android:maxHeight">@dimen/sesl_progress_circle_size</item>
@@ -47,22 +48,27 @@
         <item name="android:minWidth">55.0dip</item>
         <item name="android:minHeight">55.0dip</item>
     </style>
+
     <style name="ProgressBarStyle.Horizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
-        <item name="android:indeterminateDrawable">@drawable/sesl_scrubber_progress_horizontal</item>
+        <item name="android:indeterminateDrawable">@drawable/sesl_scrubber_progress_horizontal
+        </item>
         <item name="android:progressDrawable">@drawable/sesl_scrubber_progress_horizontal</item>
     </style>
+
     <style name="ProgressBarStyle.Circle.Large" parent="@style/ProgressBarStyle.Circle">
         <item name="android:maxWidth">@dimen/sesl_progress_bar_size_large</item>
         <item name="android:maxHeight">@dimen/sesl_progress_bar_size_large</item>
         <item name="android:minWidth">@dimen/sesl_progress_bar_size_large</item>
         <item name="android:minHeight">@dimen/sesl_progress_bar_size_large</item>
     </style>
+
     <style name="ProgressBarStyle.Circle.Small" parent="@style/ProgressBarStyle.Circle">
         <item name="android:maxWidth">@dimen/sesl_progress_bar_size_small</item>
         <item name="android:maxHeight">@dimen/sesl_progress_bar_size_small</item>
         <item name="android:minWidth">@dimen/sesl_progress_bar_size_small</item>
         <item name="android:minHeight">@dimen/sesl_progress_bar_size_small</item>
     </style>
+
     <style name="ProgressBarStyle.Circle.Title" parent="@style/ProgressBarStyle.Circle">
         <item name="android:maxWidth">@dimen/sesl_progress_bar_size_small_title</item>
         <item name="android:maxHeight">@dimen/sesl_progress_bar_size_small_title</item>
@@ -109,10 +115,12 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/sesl_control_activated_color</item>
     </style>
+
     <style name="ButtonStyle.Invert">
         <item name="android:backgroundTint">@color/sesl_control_activated_color</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="ButtonStyle.Invert.Secondary">
         <item name="android:backgroundTint">@color/button_background_color</item>
         <item name="android:textColor">@color/item_color</item>
@@ -194,6 +202,7 @@
         <item name="android:textColorPrimary">?attr/textColorAlertDialogListItem</item>
         <item name="android:textColor">@color/item_color</item>
         <item name="android:dialogCornerRadius" tools:targetApi="p">26dp</item>
+        <item name="android:progressBarStyle">@style/ProgressBarStyle.Circle</item>
     </style>
 
 

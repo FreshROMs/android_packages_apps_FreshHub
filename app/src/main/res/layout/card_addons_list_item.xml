@@ -19,28 +19,28 @@
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                style="?textAppearanceBody1"
                 android:id="@+id/title"
+                style="?textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18.0sp" />
 
             <com.google.android.material.textview.MaterialTextView
-                style="?android:attr/textAppearanceSmall"
                 android:id="@+id/description"
+                style="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <com.google.android.material.textview.MaterialTextView
-                style="?android:attr/textAppearanceSmall"
                 android:id="@+id/size"
+                style="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10.0sp" />
 
             <com.google.android.material.textview.MaterialTextView
-                style="?android:attr/textAppearanceSmall"
                 android:id="@+id/updatedOn"
+                style="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10.0sp" />

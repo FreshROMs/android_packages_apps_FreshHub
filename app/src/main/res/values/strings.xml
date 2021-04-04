@@ -19,7 +19,7 @@
     <string name="main_website">Website</string>
     <string name="main_website_summary">Visit the official Team Bliss website</string>
     <string name="main_donate">Donate</string>
-    <string name="main_donate_summary">Donate to Team FreshRom!</string>
+    <string name="main_donate_summary">Donate to FreshRom!</string>
     <string name="main_tap_to_download">Tap to download</string>
     <string name="main_download_completed_details">Tap for details</string>
     <string name="main_tap_to_view_progress">Tap to view progress</string>
@@ -181,5 +181,6 @@
     <string name="update">OTA</string>
     <string name="fresh_community">Fresh Community</string>
     <string name="fresh_updates">Fresh Updates</string>
+    <string name="reboot">Reboot</string>
 
 </resources>

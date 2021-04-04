@@ -75,12 +75,12 @@
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/tv_available_md5"
-                                android:textIsSelectable="true"
                                 style="?android:attr/textAppearanceSmall"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:text="@string/available_md5"
+                                android:textIsSelectable="true"
                                 android:textSize="10sp"
                                 tools:ignore="SmallSp" />
 

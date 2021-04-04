@@ -12,15 +12,15 @@
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
-            style="?textAppearanceBody1"
             android:id="@+id/about_tv_changelog_title"
+            style="?textAppearanceBody1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/changelog" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="?android:attr/textAppearanceSmall"
             android:id="@+id/about_tv_changelog_summary"
+            style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"

@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -77,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     private Builder mCompatibilityDialog;
     private Builder mDonateDialog;
     private Builder mPlayStoreDialog;
+    private Builder mRebootDialog;
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -283,6 +283,15 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         });
 
+
+        View drawer_reboot = findViewById(R.id.drawer_reboot);
+        drawer_reboot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mRebootDialog.show();
+            }
+        });
+
     }
 
 
@@ -382,7 +391,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
     }
 
-    @Override
+    //todo
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.ota_menu_main, menu);
@@ -400,9 +410,18 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 return true;
         }
         return false;
-    }
+    }*/
 
     private void createDialogs() {
+        //reboot dialog
+        mRebootDialog = new Builder(mContext, R.style.AlertDialogStyle);
+        mRebootDialog.setTitle(R.string.are_you_sure)
+                .setMessage(R.string.available_reboot_confirm)
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    Tools.recovery(mContext);
+                }).setNegativeButton(R.string.cancel, null);
+
+
         // Compatibility Dialog
         mCompatibilityDialog = new Builder(mContext, R.style.AlertDialogStyle);
         mCompatibilityDialog.setCancelable(false);
@@ -478,7 +497,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 updateAvailableTitle.setText(getResources().getString(R.string
                         .main_update_finished));
                 String htmlColorOpen;
-                htmlColorOpen = "<font color='"+getResources().getColor(R.color.item_color)+"'>";
+                htmlColorOpen = "<font color='" + getResources().getColor(R.color.item_color) + "'>";
                 String htmlColorClose = "</font>";
                 String updateSummary = RomUpdate.getFilename(mContext)
                         + "<br />"
@@ -491,7 +510,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                         .main_update_progress));
                 mProgressBar.setVisibility(View.VISIBLE);
                 String htmlColorOpen;
-                htmlColorOpen = "<font color='"+getResources().getColor(R.color.item_color)+"'>";
+                htmlColorOpen = "<font color='" + getResources().getColor(R.color.item_color) + "'>";
                 String htmlColorClose = "</font>";
                 String updateSummary = htmlColorOpen
                         + getResources().getString(R.string.main_tap_to_view_progress)
@@ -501,7 +520,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 updateAvailableTitle.setText(getResources().getString(R.string
                         .main_update_available));
                 String htmlColorOpen;
-                htmlColorOpen = "<font color='"+getResources().getColor(R.color.item_color)+"'>";
+                htmlColorOpen = "<font color='" + getResources().getColor(R.color.item_color) + "'>";
                 String htmlColorClose = "</font>";
                 String updateSummary = RomUpdate.getFilename(mContext)
                         + "<br />"
@@ -562,7 +581,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     @SuppressWarnings("deprecation")
     private void updateRomInformation() {
         String htmlColorOpen;
-        htmlColorOpen = "<font color='"+getResources().getColor(R.color.item_color)+"'>";
+        htmlColorOpen = "<font color='" + getResources().getColor(R.color.item_color) + "'>";
         String htmlColorClose = "</font>";
 
         String space = " ";

@@ -8,43 +8,43 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_marginHorizontal="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="80dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <com.google.android.material.button.MaterialButton
-            style="@style/ButtonStyle.Invert"
             android:id="@+id/menu_available_download"
+            style="@style/ButtonStyle.Invert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/download" />
 
         <com.google.android.material.button.MaterialButton
-            style="@style/ButtonStyle.Invert"
             android:id="@+id/menu_available_install"
+            style="@style/ButtonStyle.Invert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/install" />
 
         <com.google.android.material.button.MaterialButton
-            android:visibility="gone"
             android:id="@+id/menu_available_changelog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/available_changelog" />
+            android:text="@string/available_changelog"
+            android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
-            style="@style/ButtonStyle.Invert.Secondary"
             android:id="@+id/menu_available_delete"
+            style="@style/ButtonStyle.Invert.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/delete" />
 
         <com.google.android.material.button.MaterialButton
-            style="@style/ButtonStyle.Invert.Secondary"
             android:id="@+id/menu_available_cancel"
+            style="@style/ButtonStyle.Invert.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/cancel" />
