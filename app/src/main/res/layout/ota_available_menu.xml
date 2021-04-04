@@ -7,53 +7,54 @@
     android:layout_gravity="center_horizontal"
     android:orientation="horizontal">
 
-    <HorizontalScrollView
+    <LinearLayout
+        android:layout_marginHorizontal="80dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            style="@style/ButtonStyle.Invert"
+            android:id="@+id/menu_available_download"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="@string/download" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/menu_available_check_md5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/available_check_md5" />
+        <com.google.android.material.button.MaterialButton
+            style="@style/ButtonStyle.Invert"
+            android:id="@+id/menu_available_install"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/install" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/menu_available_changelog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/available_changelog" />
+        <com.google.android.material.button.MaterialButton
+            android:visibility="gone"
+            android:id="@+id/menu_available_changelog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/available_changelog" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/menu_available_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/delete" />
+        <com.google.android.material.button.MaterialButton
+            style="@style/ButtonStyle.Invert.Secondary"
+            android:id="@+id/menu_available_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/menu_available_download"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/download" />
+        <com.google.android.material.button.MaterialButton
+            style="@style/ButtonStyle.Invert.Secondary"
+            android:id="@+id/menu_available_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/menu_available_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cancel" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/menu_available_check_md5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/available_check_md5" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/menu_available_install"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/install" />
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
+    </LinearLayout>
 
 </LinearLayout>

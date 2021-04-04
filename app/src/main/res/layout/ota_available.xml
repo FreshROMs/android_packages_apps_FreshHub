@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,6 +11,7 @@
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:foreground="@drawable/rounded_corner_bottom">
 
 
@@ -46,8 +47,8 @@
                             android:orientation="vertical">
 
                             <com.google.android.material.textview.MaterialTextView
-                                style="?textAppearanceBody1"
                                 android:id="@+id/tv_available_update_name"
+                                style="?textAppearanceBody1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/available_update_name"
@@ -63,8 +64,8 @@
                                 android:indeterminate="false" />
 
                             <com.google.android.material.textview.MaterialTextView
-                                style="?android:attr/textAppearanceSmall"
                                 android:id="@+id/tv_available_progress_counter"
+                                style="?android:attr/textAppearanceSmall"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
@@ -73,8 +74,9 @@
                                 tools:ignore="SmallSp" />
 
                             <com.google.android.material.textview.MaterialTextView
-                                style="?android:attr/textAppearanceSmall"
                                 android:id="@+id/tv_available_md5"
+                                android:textIsSelectable="true"
+                                style="?android:attr/textAppearanceSmall"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
@@ -104,15 +106,18 @@
                                 style="?textAppearanceBody1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="What's new" />
+                                android:text="What's new"
+                                android:textSize="24sp" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/tv_available_changelog_content"
+                                style="?android:attr/textAppearanceSmall"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:singleLine="false"
-                                android:text="@string/available_changelog_content"
-                                style="?android:attr/textAppearanceSmall" />
+                                android:text="@string/available_changelog_content" />
+
+
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -131,6 +136,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp" />
 
-</RelativeLayout>
+</LinearLayout>

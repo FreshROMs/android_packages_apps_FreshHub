@@ -204,6 +204,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
                 collapsed_title.setAlpha(percentage * -1);
             }
         });
+        AppBar.setExpanded(false);
 
         /**Back*/
         toolbar.setNavigationIcon(R.drawable.ic_back);

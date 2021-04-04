@@ -37,6 +37,7 @@
 
     <!--Others-->
     <color name="button_ripple_color">#515151</color>
+    <color name="button_background_color">#4d555555</color>
     <color name="drawer_dim_color">#cc000000</color>
     <color name="ota_changelog_text_color">@color/sesl_white</color>
 
