@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -117,6 +119,17 @@ public class MainActivity extends AppCompatActivity implements Constants,
         initDrawer();
         settilte(getString(R.string.update));
         initWebView();
+
+
+        //todo
+        CharSequence name = getString(R.string.update);
+        String description = getString(R.string.fresh_updates);
+        String CHANNEL_ID = getString(R.string.fresh_updates);
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+        channel.setDescription(description);
+        NotificationManager mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotifyManager.createNotificationChannel(channel);
 
 
         boolean firstRun = Preferences.getFirstRun(mContext);

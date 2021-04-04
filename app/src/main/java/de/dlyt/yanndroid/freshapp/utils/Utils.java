@@ -17,6 +17,7 @@
 package de.dlyt.yanndroid.freshapp.utils;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -146,13 +147,8 @@ public class Utils implements Constants {
 
         if (cancel) {
             if (alarmManager != null) {
-                if (DEBUGGING)
-                    Log.d(TAG, "Cancelling alarm");
-                alarmManager.cancel(PendingIntent.getBroadcast(
-                        context,
-                        intentId,
-                        intent,
-                        intentFlag));
+                if (DEBUGGING) Log.d(TAG, "Cancelling alarm");
+                alarmManager.cancel(PendingIntent.getBroadcast(context, intentId, intent, intentFlag));
             }
         } else {
             int requestedInterval;
@@ -163,18 +159,10 @@ public class Utils implements Constants {
                 requestedInterval = Preferences.getBackgroundFrequency(context);
             }
 
-            if (DEBUGGING)
-                Log.d(TAG, "Setting alarm for " + requestedInterval + " seconds");
+            if (DEBUGGING) Log.d(TAG, "Setting alarm for " + requestedInterval + " seconds");
             Calendar calendar = Calendar.getInstance();
             long time = calendar.getTimeInMillis() + requestedInterval * 1000;
-            alarmManager.set(
-                    AlarmManager.RTC_WAKEUP,
-                    time,
-                    PendingIntent.getBroadcast(
-                            context,
-                            intentId,
-                            intent,
-                            intentFlag));
+            alarmManager.set(AlarmManager.RTC_WAKEUP, time, PendingIntent.getBroadcast(context, intentId, intent, intentFlag));
         }
     }
 
@@ -242,30 +230,31 @@ public class Utils implements Constants {
     }
 
     public static void setupNotification(Context context, String filename) {
-        if (DEBUGGING)
-            Log.d(TAG, "Showing notification");
+        if (DEBUGGING) Log.d(TAG, "Showing notification");
 
-        NotificationManager mNotifyManager =
-                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        CharSequence name = context.getString(R.string.update);
+        String description = context.getString(R.string.fresh_updates);
+        String CHANNEL_ID = context.getString(R.string.fresh_updates);
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+        channel.setDescription(description);
 
+        NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        mNotifyManager.createNotificationChannel(channel);
 
         Builder mBuilder = new NotificationCompat.Builder(context);
         Intent resultIntent = new Intent(context, MainActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(MainActivity.class);
         stackBuilder.addNextIntent(resultIntent);
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(
-                        0,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
         Intent skipIntent = new Intent(context, AppReceiver.class);
         skipIntent.setAction(IGNORE_RELEASE);
         Intent downloadIntent = new Intent(context, AvailableActivity.class);
-        PendingIntent skipPendingIntent = PendingIntent.getBroadcast(context, 0, skipIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent downloadPendingIntent = PendingIntent.getActivity(context, 0,
-                downloadIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent skipPendingIntent = PendingIntent.getBroadcast(context, 0, skipIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent downloadPendingIntent = PendingIntent.getActivity(context, 0, downloadIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         mBuilder.setContentTitle(context.getString(R.string.update_available))
                 .setContentText(filename)
