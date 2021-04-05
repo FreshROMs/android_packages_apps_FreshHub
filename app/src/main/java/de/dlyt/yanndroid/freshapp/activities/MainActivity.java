@@ -593,8 +593,9 @@ public class MainActivity extends AppCompatActivity implements Constants,
         String romVersionTitle = getApplicationContext().getResources().getString(R.string
                 .system_name) + " ";
         String romVersionName = Utils.getProp(getResources().getString(R.string."OTA_SWUPDATE_PROP_RELEASE"));
+        String romVersionBranch = Utils.getProp(getResources().getString(R.string."OTA_SWUPDATE_PROP_BRANCH"));
         String romVersionActual = Utils.getProp(getResources().getString(R.string."OTA_SWUPDATE_PROP_VERSION"));
-        romVersion.setText(Html.fromHtml(romVersionTitle + htmlColorOpen + romVersionName + separator_open +
+        romVersion.setText(Html.fromHtml(romVersionTitle + htmlColorOpen + romVersionName + romVersionBranch + separator_open +
             romVersionActual + separator_close + htmlColorClose));
 
         //ROM date
@@ -696,7 +697,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
         CompatibilityTask(Context context) {
             mContext = context;
-            mPropName = mContext.getResources().getString(R.string.prop_name);
+            mPropName = mContext.getResources().getString(R.string."OTA_SWUPDATE_PROP_API_URL");
         }
 
         @Override
