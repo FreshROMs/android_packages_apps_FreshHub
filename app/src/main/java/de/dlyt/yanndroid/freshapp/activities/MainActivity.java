@@ -28,6 +28,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -279,6 +280,14 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         });
 
+        View drawer_discord_group = findViewById(R.id.drawer_discord_group);
+        drawer_discord_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(""))); //todo: discord link
+                Toast.makeText(getBaseContext(), "Todo", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         View drawer_reboot = findViewById(R.id.drawer_reboot);
         drawer_reboot.setOnClickListener(new View.OnClickListener() {
