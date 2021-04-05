@@ -20,13 +20,6 @@
             android:text="@string/main_rom_information" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_main_rom_name"
-            style="?android:attr/textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_rom_name" />
-
-        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_main_rom_version"
             style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
@@ -41,18 +34,11 @@
             android:text="@string/main_rom_build_date" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_main_android_version"
+            android:id="@+id/tv_main_android_spl"
             style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_android_version" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_main_rom_developer"
-            style="?android:attr/textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_rom_developer" />
+            android:text="@string/system_name" />
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
