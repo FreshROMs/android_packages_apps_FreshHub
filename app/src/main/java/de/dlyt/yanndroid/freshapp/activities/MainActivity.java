@@ -281,13 +281,19 @@ public class MainActivity extends AppCompatActivity implements Constants,
         });
 
         View drawer_discord_group = findViewById(R.id.drawer_discord_group);
-        drawer_discord_group.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(""))); //todo: discord link
-                Toast.makeText(getBaseContext(), "Todo", Toast.LENGTH_SHORT).show();
-            }
-        });
+        String discord_url = RomUpdate.getDiscord(mContext);
+
+        if (!discord_url.trim().equals("null")) {
+            drawer_discord_group.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(discord_url)));
+                    Toast.makeText(getBaseContext(), "Todo", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {  
+            drawer_discord_group.setVisibility(View.GONE);
+        }
 
         View drawer_reboot = findViewById(R.id.drawer_reboot);
         drawer_reboot.setOnClickListener(new View.OnClickListener() {
