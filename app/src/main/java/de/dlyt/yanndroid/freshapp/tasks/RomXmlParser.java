@@ -318,6 +318,17 @@ class RomXmlParser extends DefaultHandler implements Constants {
                 Log.d(TAG, "RelVar = " + input);
         }
 
+        if (tagWebsite) {
+            if (!input.isEmpty()) {
+                RomUpdate.setWebsite(mContext, input);
+            } else {
+                RomUpdate.setWebsite(mContext, "null");
+            }
+            tagForumUrl = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Website = " + input);
+        }
+
         if (tagForumUrl) {
             if (!input.isEmpty()) {
                 RomUpdate.setForum(mContext, input);

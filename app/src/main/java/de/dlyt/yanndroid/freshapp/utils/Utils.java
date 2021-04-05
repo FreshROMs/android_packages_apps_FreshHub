@@ -25,6 +25,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
@@ -36,7 +38,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import de.dlyt.yanndroid.freshapp.R;
 import de.dlyt.yanndroid.freshapp.activities.AvailableActivity;
@@ -217,25 +223,25 @@ public class Utils implements Constants {
 
     public static String getDeviceCodename() {
         String codename = Build.DEVICE;
-        return codename
+        return codename;
     }
 
     public static String getDeviceProduct() {
         String product = Build.PRODUCT;
-        return product
+        return product;
     }
 
-    public static void renderAndroidSpl(Context context, String level) {
+    public static String renderAndroidSpl(String level) {
         if (!"".equals(level)) {
             try {
                 SimpleDateFormat template = new SimpleDateFormat("yyyy-MM-dd");
                 Date patchDate = template.parse(level);
                 String format = DateFormat.getBestDateTimePattern(Locale.getDefault(), "dMMMMyyyy");
-                patch = DateFormat.format(format, patchDate).toString();
+                level = DateFormat.format(format, patchDate).toString();
             } catch (ParseException e) {
                 // broken parse; fall through and use the raw string
             }
-            return patch;
+            return level;
         } else {
             return null;
         }
@@ -244,7 +250,7 @@ public class Utils implements Constants {
     public static void setUpdateAvailability(Context context) {
         // Grab the data from the device and manifest
         int otaVersion = RomUpdate.getVersionNumber(context);
-        String currentVer = Utils.getProp(getResources().getString(R.string."OTA_SWUPDATE_PROP_VERSION"));
+        String currentVer = Utils.getProp("ro.fresh.ota.version");
         String manifestVer = Integer.toString(otaVersion);
 
         boolean available;
