@@ -215,6 +215,16 @@ public class Utils implements Constants {
         return Preferences.getIgnoredRelease(context).matches(manifestVer);
     }
 
+    public static String getDeviceCodename() {
+        String codename = Build.DEVICE;
+        return codename
+    }
+
+    public static String getDeviceProduct() {
+        String product = Build.PRODUCT;
+        return product
+    }
+
     public static void renderAndroidSpl(Context context, String level) {
         if (!"".equals(level)) {
             try {
@@ -234,7 +244,7 @@ public class Utils implements Constants {
     public static void setUpdateAvailability(Context context) {
         // Grab the data from the device and manifest
         int otaVersion = RomUpdate.getVersionNumber(context);
-        String currentVer = Utils.getProp("ro.ota.version");
+        String currentVer = Utils.getProp(getResources().getString(R.string."OTA_SWUPDATE_PROP_VERSION"));
         String manifestVer = Integer.toString(otaVersion);
 
         boolean available;
