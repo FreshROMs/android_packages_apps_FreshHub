@@ -40,6 +40,17 @@ public class RomUpdate implements Constants {
     private static String SPONSORED_ROMHUT = "rom_sponsored_romhut";
     private static String ADDONS_COUNT = "rom_addons_count";
     private static String ADDONS_URL = "rom_addons_url";
+
+    private static String RELEASE_TYPE = "rom_release_type";
+    private static String ANDROID_SPL = "rom_android_spl";
+    private static String ANDROID_SESL = "rom_android_sesl";
+    private static String RELEASE_STRING = "rom_release_string";
+    private static String RELEASE_VARIANT = "rom_release_variant";
+    private static String DISCORD_URL = "rom_discord_url";
+    private static String FORUM_URL = "rom_forum_url";
+    private static String GIT_ISSUES = "rom_git_issues_url";
+    private static String GIT_DISCUSSION = "rom_git_discussion_url";
+
     private static String DEF_VALUE = "null";
     public final String TAG = this.getClass().getSimpleName();
 
@@ -69,6 +80,42 @@ public class RomUpdate implements Constants {
 
     public static String getChangelog(Context context) {
         return getPrefs(context).getString(CHANGELOG, DEF_VALUE);
+    }
+
+    public static String getSpl(Context context) {
+        return getPrefs(context).getString(ANDROID_SPL, DEF_VALUE);
+    }
+
+    public static String getSesl(Context context) {
+        return getPrefs(context).getString(ANDROID_SESL, DEF_VALUE);
+    }
+
+    public static String getForum(Context context) {
+        return getPrefs(context).getString(FORUM_URL, DEF_VALUE);
+    }
+
+    public static String getDiscord(Context context) {
+        return getPrefs(context).getString(DISCORD_URL, DEF_VALUE);
+    }
+
+    public static String getGitIssues(Context context) {
+        return getPrefs(context).getString(GIT_ISSUES, DEF_VALUE);
+    }
+
+    public static String getGitDiscussion(Context context) {
+        return getPrefs(context).getString(GIT_DISCUSSION, DEF_VALUE);
+    }
+
+    public static String getReleaseVersion(Context context) {
+        return getPrefs(context).getString(RELEASE_STRING, DEF_VALUE);
+    }
+
+    public static String getReleaseVariant(Context context) {
+        return getPrefs(context).getString(RELEASE_VARIANT, DEF_VALUE);
+    }
+
+    public static String getReleaseType(Context context) {
+        return getPrefs(context).getString(RELEASE_TYPE, DEF_VALUE);
     }
 
     public static String getWebsite(Context context) {
@@ -135,6 +182,60 @@ public class RomUpdate implements Constants {
     public static void setHttpUrl(Context context, String url) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(HTTP_URL, url);
+        editor.apply();
+    }
+
+    public static void setReleaseVersion(Context context, String url) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(RELEASE_STRING, url);
+        editor.apply();
+    }
+
+    public static void setReleaseVariant(Context context, String url) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(RELEASE_VARIANT, url);
+        editor.apply();
+    }
+
+    public static void setReleaseType(Context context, String url) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(RELEASE_TYPE, url);
+        editor.apply();
+    }
+
+    public static void setSpl(Context context, String url) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(ANDROID_SPL, url);
+        editor.apply();
+    }
+
+    public static void setSesl(Context context, String url) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(ANDROID_SESL, url);
+        editor.apply();
+    }
+
+    public static void setForum(Context context, String url) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(FORUM_URL, url);
+        editor.apply();
+    }
+
+    public static void setDiscord(Context context, String url) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(DISCORD_URL, url);
+        editor.apply();
+    }
+
+    public static void setGitIssues(Context context, String url) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(GIT_ISSUES, url);
+        editor.apply();
+    }
+
+    public static void setGitDiscussion(Context context, String url) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(GIT_DISCUSSION, url);
         editor.apply();
     }
 
