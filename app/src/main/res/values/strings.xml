@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FreshApp</string>
+    <string name="app_name">Software updates</string>
     <string name="closed" translatable="false">closed</string>
     <string name="opend" translatable="false">opend</string>
     <string name="sesl_switch">Switch</string>
@@ -29,12 +29,16 @@
 
     <!-- ROM Information -->
     <string name="main_rom_information">About your device</string>
+    <string name="main_ota_information">Software update information</string>
     <string name="main_rom_name">System name:</string>
     <string name="main_rom_version">Release version:</string>
     <string name="main_rom_codename">ROM codename:</string>
     <string name="main_rom_build_date">Build date:</string>
     <string name="main_android_version">Android version:</string>
+    <string name="main_rom_spl">Security patch level:</string>
     <string name="main_rom_developer">Maintainer(s):</string>
+    <string name="main_ota_version">Version:</string>
+    <string name="main_ota_size">Size:</string>
 
     <!-- Dialogs -->
     <string name="main_not_compatible_title">Hold on!</string>
@@ -166,15 +170,14 @@
     <string name="notification_not_ignoring_release">You are not skipping any updates</string>
 
 
-    <string name="prop_name">ro.ota.romname</string>
-    <string name="prop_system_model">prop_system_model</string>
-    <string name="prop_rom_version">ro.ota.version</string>
-    <string name="prop_version">ro.ota.version</string>
-    <string name="prop_date">ro.build.PDA</string>
-    <string name="prop_release">ro.build.PDA</string>
-    <string name="prop_release_build_id">ro.build.changelist</string>
-    <string name="prop_developer">ro.build.user</string>
+    <string name="system_name">Fresh</string>
 
+    <string name="OTA_SWUPDATE_PROP_CODE" translatable="false">ro.fresh.ota.api</string>
+    <string name="ota_swupdate_prop_api_url" translatable="false">ro.fresh.ota.api</string>
+    <string name="ota_swupdate_prop_date" translatable="false">ro.system.build.date</string>
+    <string name="ota_swupdate_prop_release" translatable="false">ro.fresh.version</string>
+    <string name="ota_swupdate_prop_version" translatable="false">ro.fresh.ota.version</string>
+    <string name="ota_swupdate_prop_branch" translatable="false">ro.fresh.build.branch</string>
 
     <string name="feedback">Feedback</string>
     <string name="omc_request">OMC Request</string>

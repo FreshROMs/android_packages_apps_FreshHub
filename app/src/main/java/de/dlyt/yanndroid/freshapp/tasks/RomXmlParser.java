@@ -53,6 +53,16 @@ class RomXmlParser extends DefaultHandler implements Constants {
     private boolean tagRomHut = false;
     private boolean tagAddonsCount = false;
     private boolean tagAddonUrl = false;
+    private boolean tagSemVersion = false;
+    private boolean tagSpl = false;
+    private boolean tagReleaseType = false;
+    private boolean tagReleaseVersion = false;
+    private boolean tagReleaseVariant = false;
+    private boolean tagForumUrl = false;
+    private boolean tagDiscordUrl = false;
+    private boolean tagGitIssues = false;
+    private boolean tagGitDiscussion = false;
+
     private StringBuffer value = new StringBuffer();
     private Context mContext;
 
@@ -132,8 +142,44 @@ class RomXmlParser extends DefaultHandler implements Constants {
             tagAddonsCount = true;
         }
 
-        if (qName.equalsIgnoreCase("addonsurl")) {
+        if (qName.equalsIgnoreCase("addonsmanifest")) {
             tagAddonUrl = true;
+        }
+
+        if (qName.equalsIgnoreCase("semversion")) {
+            tagSemVersion = true;
+        }
+
+        if (qName.equalsIgnoreCase("spl")) {
+            tagSpl = true;
+        }
+
+        if (qName.equalsIgnoreCase("release")) {
+            tagReleaseType = true;
+        }
+
+        if (qName.equalsIgnoreCase("releaseversion")) {
+            tagReleaseVersion = true;
+        }
+
+        if (qName.equalsIgnoreCase("releasevariant")) {
+            tagReleaseVariant = true;
+        }
+
+        if (qName.equalsIgnoreCase("forumurl")) {
+            tagForumUrl = true;
+        }
+
+        if (qName.equalsIgnoreCase("discordurl")) {
+            tagDiscordUrl = true;
+        }
+
+        if (qName.equalsIgnoreCase("gitissues")) {
+            tagGitIssues = true;
+        }
+
+        if (qName.equalsIgnoreCase("gitdiscussion")) {
+            tagGitDiscussion = true;
         }
 
         if (qName.equalsIgnoreCase("romhut")) {
@@ -225,15 +271,106 @@ class RomXmlParser extends DefaultHandler implements Constants {
                 Log.d(TAG, "Developer = " + input);
         }
 
+        if (tagSemVersion) {
+            if (!input.isEmpty()) {
+                RomUpdate.setSesl(mContext, input);
+            } else {
+                RomUpdate.setSesl(mContext, "null");
+            }
+            tagSemVersion = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Sesl = " + input);
+        }
+
+        if (tagSpl) {
+            if (!input.isEmpty()) {
+                RomUpdate.setSpl(mContext, input);
+            } else {
+                RomUpdate.setSpl(mContext, "null");
+            }
+            tagSpl = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Spl = " + input);
+        }
+
+        if (tagReleaseType) {
+            if (!input.isEmpty()) {
+                RomUpdate.setReleaseType(mContext, input);
+            } else {
+                RomUpdate.setReleaseType(mContext, "null");
+            }
+            tagReleaseType = false;
+            if (DEBUGGING)
+                Log.d(TAG, "RelType = " + input);
+        }
+
+        if (tagReleaseVersion) {
+            RomUpdate.setReleaseVersion(mContext, input);
+            tagReleaseVersion = false;
+            if (DEBUGGING)
+                Log.d(TAG, "RelVer = " + input);
+        }
+
+        if (tagReleaseVariant) {
+            RomUpdate.setReleaseVariant(mContext, input);
+            tagReleaseVariant = false;
+            if (DEBUGGING)
+                Log.d(TAG, "RelVar = " + input);
+        }
+
         if (tagWebsite) {
             if (!input.isEmpty()) {
                 RomUpdate.setWebsite(mContext, input);
             } else {
                 RomUpdate.setWebsite(mContext, "null");
             }
-            tagWebsite = false;
+            tagForumUrl = false;
             if (DEBUGGING)
                 Log.d(TAG, "Website = " + input);
+        }
+
+        if (tagForumUrl) {
+            if (!input.isEmpty()) {
+                RomUpdate.setForum(mContext, input);
+            } else {
+                RomUpdate.setForum(mContext, "null");
+            }
+            tagForumUrl = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Forum = " + input);
+        }
+
+        if (tagDiscordUrl) {
+            if (!input.isEmpty()) {
+                RomUpdate.setDiscord(mContext, input);
+            } else {
+                RomUpdate.setDiscord(mContext, "null");
+            }
+            tagDiscordUrl = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Discord = " + input);
+        }
+
+        if (tagGitIssues) {
+            if (!input.isEmpty()) {
+                RomUpdate.setGitIssues(mContext, input);
+            } else {
+                RomUpdate.setGitIssues(mContext, "null");
+            }
+            tagGitDiscussion = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Git Issues = " + input);
+        }
+
+        if (tagGitDiscussion) {
+            if (!input.isEmpty()) {
+                RomUpdate.setGitDiscussion(mContext, input);
+            } else {
+                RomUpdate.setGitDiscussion(mContext, "null");
+            }
+            tagGitDiscussion = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Git Discussion = " + input);
         }
 
         if (tagDonateUrl) {

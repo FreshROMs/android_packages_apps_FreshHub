@@ -588,50 +588,32 @@ public class MainActivity extends AppCompatActivity implements Constants,
         String separator_open = " (";
         String separator_close = ") ";
 
-        //ROM name
-        TextView romName = (TextView) findViewById(R.id.tv_main_rom_name);
-        String romNameTitle = getApplicationContext().getResources().getString(R.string
-                .main_rom_name) + " ";
-        String romNameActual = Utils.getProp(getResources().getString(R.string.prop_name));
-        String romNameDevice = Utils.getProp(getResources().getString(R.string.prop_system_model));
-        String romNameVersion = Utils.getProp(getResources().getString(R.string.prop_rom_version));
-        romName.setText(Html.fromHtml(romNameTitle + htmlColorOpen + romNameActual + space +
-                romNameVersion + separator_open + romNameDevice + separator_close +
-                htmlColorClose));
-
         //ROM version
         TextView romVersion = (TextView) findViewById(R.id.tv_main_rom_version);
         String romVersionTitle = getApplicationContext().getResources().getString(R.string
-                .main_rom_version) + " ";
-        String romVersionActual = Utils.getProp(getResources().getString(R.string.prop_version));
-        romVersion.setText(Html.fromHtml(romVersionTitle + htmlColorOpen + romVersionActual +
-                htmlColorClose));
+                .system_name) + " ";
+        String romVersionName = Utils.getProp(getResources().getString(R.string.ota_swupdate_prop_release)) + " ";
+        String romBranchString = Utils.getProp(getResources().getString(R.string.ota_swupdate_prop_branch));
+        String romVersionString = Utils.getProp(getResources().getString(R.string.ota_swupdate_prop_version));
+        String romVersionBranch = romBranchString.substring(0,1).toUpperCase() + romBranchString.substring(1).toLowerCase();
+        romVersion.setText(Html.fromHtml(htmlColorOpen + romVersionTitle + romVersionName + romVersionBranch + separator_open +
+            romVersionString + separator_close + htmlColorClose));
 
         //ROM date
         TextView romDate = (TextView) findViewById(R.id.tv_main_rom_date);
         String romDateTitle = getApplicationContext().getResources().getString(R.string
                 .main_rom_build_date) + " ";
-        String romDateActual = Utils.getProp(getResources().getString(R.string.prop_date));
+        String romDateActual = Utils.getProp(getResources().getString(R.string.ota_swupdate_prop_date));
         romDate.setText(Html.fromHtml(romDateTitle + htmlColorOpen + romDateActual +
                 htmlColorClose));
 
-        //ROM android version
-        TextView romAndroid = (TextView) findViewById(R.id.tv_main_android_version);
-        String romAndroidTitle = getApplicationContext().getResources().getString(R.string.main_android_version) + " ";
-        String romAndroidActual = Utils.getProp(getResources().getString(R.string.prop_release));
-        String romAndroidBuildID = Utils.getProp(getResources().getString(R.string.prop_release_build_id));
-        romAndroid.setText(Html.fromHtml(romAndroidTitle + htmlColorOpen + romAndroidActual +
-                separator_open + romAndroidBuildID + separator_close + htmlColorClose));
-
-        //ROM developer
-        TextView romDeveloper = (TextView) findViewById(R.id.tv_main_rom_developer);
-        boolean showDevName = !RomUpdate.getDeveloper(this).equals("null");
-        //romDeveloper.setVisibility(showDevName? View.VISIBLE : View.GONE);
-
-        String romDeveloperTitle = getApplicationContext().getResources().getString(R.string.main_rom_developer) + " ";
-        String romDeveloperActual = showDevName ? RomUpdate.getDeveloper(this) : Utils.getProp(getResources().getString(R.string.prop_developer));
-        romDeveloper.setText(Html.fromHtml(romDeveloperTitle + htmlColorOpen + romDeveloperActual + htmlColorClose));
-
+        //ROM security patch
+        TextView splVersion = (TextView) findViewById(R.id.tv_main_android_spl);
+        String romSplTitle = getApplicationContext().getResources().getString(R.string
+                .main_rom_spl) + " ";
+        String romSplActual = Utils.renderAndroidSpl(Utils.getProp("ro.build.version.security_patch"));
+        splVersion.setText(Html.fromHtml(romSplTitle + htmlColorOpen + romSplActual +
+                htmlColorClose));
     }
 
     public void openCheckForUpdates(View v) {
@@ -716,7 +698,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
         CompatibilityTask(Context context) {
             mContext = context;
-            mPropName = mContext.getResources().getString(R.string.prop_name);
+            mPropName = mContext.getResources().getString(R.string.ota_swupdate_prop_api_url);
         }
 
         @Override
