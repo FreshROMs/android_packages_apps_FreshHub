@@ -81,39 +81,6 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         }
     }
 
-    @SuppressWarnings("deprecation")
-    private void updateOtaInformation() {
-        String space = " ";
-        String separator_open = " (";
-        String separator_close = ") ";
-
-        //ROM version
-        TextView otaVersion = (TextView) findViewById(R.id.tv_update_rom_version);
-        String otaVersionTitle = getApplicationContext().getResources().getString(R.string
-                .main_ota_version) + " ";
-        String otaVersionName = RomUpdate.getReleaseVersion(mContext) + " ";
-        String otaBranchString = RomUpdate.getReleaseVariant(mContext);
-        String otaTypeString = RomUpdate.getReleaseType(mContext);
-        String otaVersionBranch = otaBranchString.substring(0,1).toUpperCase() + otaBranchString.substring(1).toLowerCase();
-        otaVersion.setText(Html.fromHtml(otaVersionTitle + otaVersionName + otaVersionBranch + separator_open +
-            otaTypeString + separator_close));
-
-        //ROM size
-        TextView otaSize = (TextView) findViewById(R.id.tv_update_rom_size);
-        String otaSizeTitle = getApplicationContext().getResources().getString(R.string
-                .main_rom_build_date) + " ";
-        int otaFileSize = RomUpdate.getFileSize(mContext);
-        String otaSizeActual = Utils.formatDataFromBytes(otaFileSize);
-        otaSize.setText(Html.fromHtml(otaSizeTitle + otaSizeActual));
-
-        //ROM security patch
-        TextView otaSplVersion = (TextView) findViewById(R.id.tv_ota_android_spl);
-        String otaSplTitle = getApplicationContext().getResources().getString(R.string
-                .main_rom_spl) + " ";
-        String otaSplActual = Utils.renderAndroidSpl(RomUpdate.getSpl(mContext));
-        otaSplVersion.setText(Html.fromHtml(otaSplTitle + otaSplActual));
-    }
-
     public static void updateProgress(int progress, int downloaded, int total) {
         mProgressBar.setProgress(progress);
         mProgressCounterText.setText(
@@ -164,6 +131,39 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
             mCancelButton.setVisibility(View.GONE);
             mInstallButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void updateOtaInformation() {
+        String space = " ";
+        String separator_open = " (";
+        String separator_close = ") ";
+
+        //ROM version
+        TextView otaVersion = (TextView) findViewById(R.id.tv_update_rom_version);
+        String otaVersionTitle = getApplicationContext().getResources().getString(R.string
+                .main_ota_version) + " ";
+        String otaVersionName = RomUpdate.getReleaseVersion(mContext) + " ";
+        String otaBranchString = RomUpdate.getReleaseVariant(mContext);
+        String otaTypeString = RomUpdate.getReleaseType(mContext);
+        String otaVersionBranch = otaBranchString.substring(0, 1).toUpperCase() + otaBranchString.substring(1).toLowerCase();
+        otaVersion.setText(Html.fromHtml(otaVersionTitle + otaVersionName + otaVersionBranch + separator_open +
+                otaTypeString + separator_close));
+
+        //ROM size
+        TextView otaSize = (TextView) findViewById(R.id.tv_update_rom_size);
+        String otaSizeTitle = getApplicationContext().getResources().getString(R.string
+                .main_rom_build_date) + " ";
+        int otaFileSize = RomUpdate.getFileSize(mContext);
+        String otaSizeActual = Utils.formatDataFromBytes(otaFileSize);
+        otaSize.setText(Html.fromHtml(otaSizeTitle + otaSizeActual));
+
+        //ROM security patch
+        TextView otaSplVersion = (TextView) findViewById(R.id.tv_ota_android_spl);
+        String otaSplTitle = getApplicationContext().getResources().getString(R.string
+                .main_rom_spl) + " ";
+        String otaSplActual = Utils.renderAndroidSpl(RomUpdate.getSpl(mContext));
+        otaSplVersion.setText(Html.fromHtml(otaSplTitle + otaSplActual));
     }
 
     @SuppressLint("NewApi")

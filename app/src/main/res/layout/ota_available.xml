@@ -25,153 +25,152 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="24dp"
-                            android:layout_marginVertical="10dp"
-                            android:orientation="vertical">
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/tv_available_update_name"
-                                style="?textAppearanceBody1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/available_update_name"
-                                android:textSize="28sp" />
-
-                            <androidx.appcompat.widget.SeslProgressBar
-                                android:id="@+id/bar_available_progress_bar"
-                                style="@style/ProgressBarStyle.Horizontal.Large"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:indeterminate="false" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/tv_available_progress_counter"
-                                style="?android:attr/textAppearanceSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:text="@string/available_progress_counter"
-                                android:textSize="10sp"
-                                tools:ignore="SmallSp" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/tv_available_md5"
-                                style="?android:attr/textAppearanceSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:text="@string/available_md5"
-                                android:textIsSelectable="true"
-                                android:textSize="10sp"
-                                tools:ignore="SmallSp" />
-
-                        </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:foreground="@drawable/rounded_corner_top">
-
-            <androidx.core.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="24dp"
-                            android:layout_marginVertical="10dp"
-                            android:orientation="vertical">
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="?textAppearanceBody1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="What's new"
-                                android:textSize="24sp" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/tv_available_changelog_content"
-                                style="?android:attr/textAppearanceSmall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:singleLine="false"
-                                android:text="@string/available_changelog_content" />
-
-
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_available_update_name"
+                    style="?textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/available_update_name"
+                    android:textSize="28sp" />
+
+                <androidx.appcompat.widget.SeslProgressBar
+                    android:id="@+id/bar_available_progress_bar"
+                    style="@style/ProgressBarStyle.Horizontal.Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_marginVertical="24dp"
-                    android:clickable="false"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:indeterminate="false" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_main_rom_information"
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_available_progress_counter"
+                    style="?android:attr/textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="@string/available_progress_counter"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_available_md5"
+                    style="?android:attr/textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="@string/available_md5"
+                    android:textIsSelectable="true"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="@drawable/rounded_corner_top"
+                android:orientation="vertical">
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/main_ota_information" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_update_rom_version"
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/main_ota_version" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_update_rom_size"
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/main_ota_size" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_ota_android_spl"
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/main_rom_spl" />
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-                </LinearLayout>
+                        android:orientation="vertical">
 
 
-            </androidx.core.widget.NestedScrollView>
-        </LinearLayout>
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="24dp"
+                                android:layout_marginVertical="10dp"
+                                android:orientation="vertical">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    style="?textAppearanceBody1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="What's new"
+                                    android:textSize="24sp" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/tv_available_changelog_content"
+                                    style="?android:attr/textAppearanceSmall"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:singleLine="false"
+                                    android:text="@string/available_changelog_content" />
+
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="24dp"
+                                android:layout_marginVertical="24dp"
+                                android:clickable="false"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/tv_main_rom_information"
+                                    style="?android:attr/textAppearanceSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/main_ota_information" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/tv_update_rom_version"
+                                    style="?android:attr/textAppearanceSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/main_ota_version" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/tv_update_rom_size"
+                                    style="?android:attr/textAppearanceSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/main_ota_size" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/tv_ota_android_spl"
+                                    style="?android:attr/textAppearanceSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/main_rom_spl" />
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+
+                </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
         </LinearLayout>
 
 

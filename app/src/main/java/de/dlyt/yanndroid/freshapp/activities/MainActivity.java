@@ -19,8 +19,6 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -49,7 +47,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import de.dlyt.yanndroid.freshapp.R;
-import de.dlyt.yanndroid.freshapp.tasks.Changelog;
 import de.dlyt.yanndroid.freshapp.tasks.LoadUpdateManifest;
 import de.dlyt.yanndroid.freshapp.utils.Constants;
 import de.dlyt.yanndroid.freshapp.utils.Preferences;
@@ -121,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         initWebView();
 
 
-        //todo
+        //todo: maybe not needed
         CharSequence name = getString(R.string.update);
         String description = getString(R.string.fresh_updates);
         String CHANNEL_ID = getString(R.string.fresh_updates);
@@ -135,7 +132,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         boolean firstRun = Preferences.getFirstRun(mContext);
         if (firstRun) {
             Preferences.setFirstRun(mContext, false);
-            //showWhatsNew(); todo
         }
 
         // Create download directories if needed
@@ -391,27 +387,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
     }
 
-    //todo
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.ota_menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.menu_changelog:
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R
-                        .string.changelog_url)));
-                startActivity(browserIntent);
-                return true;
-        }
-        return false;
-    }*/
-
     private void createDialogs() {
         //reboot dialog
         mRebootDialog = new Builder(mContext, R.style.AlertDialogStyle);
@@ -429,7 +404,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         mCompatibilityDialog.setMessage(R.string.main_not_compatible_message);
         mCompatibilityDialog.setPositiveButton(R.string.ok, (dialog, which) -> MainActivity.this.finish());
 
-        mCompatibilityDialog.setNegativeButton("debug", (dialog, which) -> dialog.cancel()); //todo
+        mCompatibilityDialog.setNegativeButton("debug", (dialog, which) -> dialog.cancel()); //todo: must be disabled at release
 
         // Donate Dialog
         mDonateDialog = new Builder(this, R.style.AlertDialogStyle);
@@ -595,9 +570,10 @@ public class MainActivity extends AppCompatActivity implements Constants,
         String romVersionName = Utils.getProp(getResources().getString(R.string.ota_swupdate_prop_release)) + " ";
         String romBranchString = Utils.getProp(getResources().getString(R.string.ota_swupdate_prop_branch));
         String romVersionString = Utils.getProp(getResources().getString(R.string.ota_swupdate_prop_version));
-        String romVersionBranch = romBranchString.substring(0,1).toUpperCase() + romBranchString.substring(1).toLowerCase();
-        romVersion.setText(Html.fromHtml(htmlColorOpen + romVersionTitle + romVersionName + romVersionBranch + separator_open +
-            romVersionString + separator_close + htmlColorClose));
+        if (!romBranchString.isEmpty()) {
+            String romVersionBranch = romBranchString.substring(0, 1).toUpperCase() + romBranchString.substring(1).toLowerCase();
+            romVersion.setText(Html.fromHtml(htmlColorOpen + romVersionTitle + romVersionName + romVersionBranch + separator_open + romVersionString + separator_close + htmlColorClose));
+        }
 
         //ROM date
         TextView romDate = (TextView) findViewById(R.id.tv_main_rom_date);
@@ -661,17 +637,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         startActivityForResult(intent, CHANGE_THEME_REQUEST_CODE);
     }
 
-    public void openChangelog(View v) {
-        String title = getResources().getString(R.string.changelog);
-        String changelog = getResources().getString(R.string.changelog_url);
-        new Changelog(this, mContext, title, changelog, true).execute();
-    }
-
-    private void showWhatsNew() {
-        String title = getResources().getString(R.string.changelog);
-        String changelog = getResources().getString(R.string.changelog_url);
-        new Changelog(this, mContext, title, changelog, true).execute();
-    }
 
     @SuppressLint("MissingSuperCall")
     @Override

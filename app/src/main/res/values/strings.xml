@@ -172,6 +172,7 @@
 
     <string name="system_name">Fresh</string>
 
+    <!--Props-->
     <string name="OTA_SWUPDATE_PROP_CODE" translatable="false">ro.fresh.ota.api</string>
     <string name="ota_swupdate_prop_api_url" translatable="false">ro.fresh.ota.api</string>
     <string name="ota_swupdate_prop_date" translatable="false">ro.system.build.date</string>
@@ -179,6 +180,7 @@
     <string name="ota_swupdate_prop_version" translatable="false">ro.fresh.ota.version</string>
     <string name="ota_swupdate_prop_branch" translatable="false">ro.fresh.build.branch</string>
 
+    <!--Drawer-->
     <string name="feedback">Feedback</string>
     <string name="omc_request">OMC Request</string>
     <string name="update">OTA</string>

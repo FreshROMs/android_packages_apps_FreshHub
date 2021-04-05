@@ -55,10 +55,10 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
             InputStream input;
 
             URL url = new URL(
-                Utils.getProp(mContext.getResources().getString(R.string.ota_swupdate_prop_api_url)) + "/"
-                + Utils.getDeviceProduct() + "/"
-                + Utils.getProp(mContext.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
-                + Utils.getProp(mContext.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
+                    Utils.getProp(mContext.getResources().getString(R.string.ota_swupdate_prop_api_url)) + "/"
+                            + Utils.getDeviceProduct() + "/"
+                            + Utils.getProp(mContext.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
+                            + Utils.getProp(mContext.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
 
             //URL url = new URL("https://ota.tensevntysevn.cf/fresh/a50xx/beta/21032202/");
             URLConnection connection = url.openConnection();

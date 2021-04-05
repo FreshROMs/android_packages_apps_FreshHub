@@ -97,8 +97,8 @@
                             >
 
                             <ProgressBar
-                                style="@style/ProgressBarStyle.Circle"
                                 android:id="@+id/web_progressbar"
+                                style="@style/ProgressBarStyle.Circle"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_margin="6dp"
