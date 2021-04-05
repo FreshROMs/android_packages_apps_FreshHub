@@ -215,6 +215,22 @@ public class Utils implements Constants {
         return Preferences.getIgnoredRelease(context).matches(manifestVer);
     }
 
+    public static void renderAndroidSpl(Context context, String level) {
+        if (!"".equals(level)) {
+            try {
+                SimpleDateFormat template = new SimpleDateFormat("yyyy-MM-dd");
+                Date patchDate = template.parse(level);
+                String format = DateFormat.getBestDateTimePattern(Locale.getDefault(), "dMMMMyyyy");
+                patch = DateFormat.format(format, patchDate).toString();
+            } catch (ParseException e) {
+                // broken parse; fall through and use the raw string
+            }
+            return patch;
+        } else {
+            return null;
+        }
+    }
+
     public static void setUpdateAvailability(Context context) {
         // Grab the data from the device and manifest
         int otaVersion = RomUpdate.getVersionNumber(context);
