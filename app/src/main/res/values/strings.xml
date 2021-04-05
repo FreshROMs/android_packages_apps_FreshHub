@@ -29,13 +29,16 @@
 
     <!-- ROM Information -->
     <string name="main_rom_information">About your device</string>
+    <string name="main_ota_information">Software update information</string>
     <string name="main_rom_name">System name:</string>
     <string name="main_rom_version">Release version:</string>
     <string name="main_rom_codename">ROM codename:</string>
     <string name="main_rom_build_date">Build date:</string>
     <string name="main_android_version">Android version:</string>
-    <string name="main_rom_spl">Android security patch level:</string>
+    <string name="main_rom_spl">Security patch level:</string>
     <string name="main_rom_developer">Maintainer(s):</string>
+    <string name="main_ota_version">Version:</string>
+    <string name="main_ota_size">Size:</string>
 
     <!-- Dialogs -->
     <string name="main_not_compatible_title">Hold on!</string>
