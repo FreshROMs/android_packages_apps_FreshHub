@@ -37,7 +37,6 @@ public class Screen_Resolution extends AppCompatActivity {
         settilte("Screen resolution");
 
         sharedPreferences = getSharedPreferences("resolution", Activity.MODE_PRIVATE);
-
         resolution = sharedPreferences.getInt("current_resolution", R.id.resolution_high);
 
 
@@ -95,8 +94,11 @@ public class Screen_Resolution extends AppCompatActivity {
     }
 
     public void setResolution(String resolution, String density){
+        shell("pm grant de.dlyt.yanndroid.freshapp android.permission.WRITE_SECURE_SETTINGS", true);
         shell("su -c wm size "+ resolution, true);
         shell("su -c wm density "+ density, true);
+        shell("su -c settings put secure sysui_rounded_size 1", true);
+        shell("su -c settings put secure sysui_rounded_size 0", true);
     }
 
     public void initToolbar() {

@@ -215,13 +215,13 @@
     <string name="medium_resolution_radio">HD+\n1560 x 720</string>
     <string name="medium_resolution_summary">Improved visuals, moderate battery use</string>
     <string name="medium_resolution_value">720x1560</string>
-    <string name="medium_resolution_density">300</string>
+    <string name="medium_resolution_density">280</string>
 
-    <string name="low_resolution">QHD+</string>
-    <string name="low_resolution_radio">HD-\n1170 x 540</string>
+    <string name="low_resolution">qHD+</string>
+    <string name="low_resolution_radio">qHD+\n1170 x 540</string>
     <string name="low_resolution_summary">Ugly visuals, lowest battery use</string>
     <string name="low_resolution_value">540x1170</string>
-    <string name="low_resolution_density">240</string>
+    <string name="low_resolution_density">210</string>
 
     <!-- Notifications -->
     <string name="system_notification_channel_id" translatable="false">TnsOta</string>
