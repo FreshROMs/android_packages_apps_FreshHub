@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             Builder notConnectedDialog = new Builder(mContext, R.style.AlertDialogStyle);
             notConnectedDialog.setTitle(R.string.main_not_connected_title)
                     .setMessage(R.string.main_not_connected_message)
+                    .setCancelable(false)
                     .setPositiveButton(R.string.ok, (dialog, which) -> ((Activity) mContext)
                             .finish())
                     .show();
