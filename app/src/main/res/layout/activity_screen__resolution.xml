@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:foreground="@drawable/rounded_corner_bottom">
+
+
+        <include layout="@layout/toolbar_layout" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="@drawable/rounded_corner_top"
+                android:orientation="vertical">
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20.0dip"
+                                    android:layout_marginTop="24.0dip"
+                                    android:layout_marginRight="20.0dip"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:text="HD-"
+                                        style="?android:attr/textAppearanceSmall"
+                                        android:layout_width="0.0dip"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1.0"
+                                        android:gravity="center_horizontal" />
+
+                                    <TextView
+                                        android:text="HD+"
+                                        style="?android:attr/textAppearanceSmall"
+                                        android:layout_width="0.0dip"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1.0"
+                                        android:gravity="center_horizontal" />
+
+                                    <TextView
+                                        android:text="FHD+"
+                                        style="?android:attr/textAppearanceSmall"
+                                        android:layout_width="0.0dip"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1.0"
+                                        android:gravity="center_horizontal" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/sec_widget_img_margin"
+                                    android:layout_marginRight="@dimen/sec_widget_img_margin"
+                                    android:layout_marginBottom="@dimen/sec_widget_img_margin"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:adjustViewBounds="true"
+                                        android:gravity="center"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/screen_resolution_preview"
+
+                                        />
+                                </LinearLayout>
+
+
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="?android:attr/textAppearanceSmall"
+                                android:textColor="@color/item_color"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/sec_widget_body_text_padding_start_end"
+                                android:layout_marginTop="@dimen/sec_widget_preference_unclickable_margin_top"
+                                android:text="@string/screen_resolution_desc_summary" />
+                        </LinearLayout>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="24dp"
+                                android:layout_marginVertical="24dp"
+                                android:clickable="false"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <!--radiogroup-->
+
+
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+
+                </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</LinearLayout>

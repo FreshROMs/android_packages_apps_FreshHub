@@ -18,9 +18,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                startActivity(new Intent().setClass(getApplicationContext(), MainActivity.class));
                 finish();
             }
         }, getResources().getInteger(R.integer.splash_time));

@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         updateRomInformation();
         updateRomUpdateLayouts();
         updateWebsiteLayout();
+        refreshDrawer();
 
         // But check permissions first - download will be started in the callback
         int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(),
@@ -281,18 +282,13 @@ public class MainActivity extends AppCompatActivity implements Constants,
         });
 
         View drawer_discord_group = findViewById(R.id.drawer_discord_group);
-        String discord_url = RomUpdate.getDiscord(mContext);
+        drawer_discord_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(RomUpdate.getDiscord(mContext))));
+            }
+        });
 
-        if (!discord_url.trim().equals("null")) {
-            drawer_discord_group.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(discord_url)));
-                }
-            });
-        } else {  
-            drawer_discord_group.setVisibility(View.GONE);
-        }
 
         View drawer_reboot = findViewById(R.id.drawer_reboot);
         drawer_reboot.setOnClickListener(new View.OnClickListener() {
@@ -302,6 +298,25 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         });
 
+
+
+
+        View drawer_test = findViewById(R.id.drawer_test);
+        drawer_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent().setClass(getApplicationContext(), Screen_Resolution.class));
+            }
+        });
+
+    }
+
+    public void refreshDrawer(){
+        View drawer_discord_group = findViewById(R.id.drawer_discord_group);
+        String discord_url = RomUpdate.getDiscord(mContext);
+        if (discord_url.trim().equals("null")) {
+            drawer_discord_group.setVisibility(View.GONE);
+        }
     }
 
 

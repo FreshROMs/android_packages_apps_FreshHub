@@ -188,4 +188,8 @@
     <string name="fresh_updates">Fresh Updates</string>
     <string name="reboot">Reboot</string>
 
+
+    <!--Resolution-->
+    <string name="screen_resolution_desc_summary">Some apps may close when you change the resolution.</string>
+
 </resources>
