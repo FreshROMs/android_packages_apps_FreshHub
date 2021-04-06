@@ -180,6 +180,10 @@
     <string name="ota_swupdate_prop_version" translatable="false">ro.fresh.ota.version</string>
     <string name="ota_swupdate_prop_branch" translatable="false">ro.fresh.build.branch</string>
 
+    <!-- System settings plugin -->
+    <string name="system_settings_plugin_title">Software update</string>
+    <string name="system_settings_plugin_summary">"Device updates  •  Download addons"</string>
+
     <!--Drawer-->
     <string name="feedback">Feedback</string>
     <string name="omc_request">OMC Request</string>
@@ -195,4 +199,5 @@
     <string name="system_notification_channel_desc">This notification channel allows the app to notify you about updates available on your device.</string>
     <string name="system_notification_available_title">Software update available</string>
     <string name="system_notification_available_desc">Fresh %1$s %2$s is now available for your device!</string>
+    
 </resources>
