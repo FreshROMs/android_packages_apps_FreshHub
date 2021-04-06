@@ -137,6 +137,14 @@
         <item name="android:button">@drawable/sesl_btn_radio</item>
     </style>
 
+    <style name="RadioButtonStyle.Vertical">
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawableBottom">@drawable/sesl_btn_radio</item>
+        <item name="android:textColor">@color/sesl_radiobutton_text_color</item>
+
+    </style>
+
 
     <!--Drawer-->
     <style name="DrawerStyle">
