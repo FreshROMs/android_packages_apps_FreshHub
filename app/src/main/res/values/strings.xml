@@ -188,4 +188,11 @@
     <string name="fresh_updates">Fresh Updates</string>
     <string name="reboot">Reboot</string>
 
+    <!-- Notifications -->
+    <string name="system_notification_channel_id" translatable="false">TnsOta</string>
+    <string name="system_notification_group_title">Fresh OTA</string>
+    <string name="system_notification_channel_title">Available updates</string>
+    <string name="system_notification_channel_desc">This notification channel allows the app to notify you about updates available on your device.</string>
+    <string name="system_notification_available_title">Software update available</string>
+    <string name="system_notification_available_desc">Fresh %1$s %2$s is now available for your device!</string>
 </resources>

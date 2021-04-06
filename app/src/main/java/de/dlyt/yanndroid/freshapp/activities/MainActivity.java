@@ -118,17 +118,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         settilte(getString(R.string.update));
         initWebView();
 
-
-        //todo: maybe not needed
-        CharSequence name = getString(R.string.update);
-        String description = getString(R.string.fresh_updates);
-        String CHANNEL_ID = getString(R.string.fresh_updates);
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-        channel.setDescription(description);
-        NotificationManager mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotifyManager.createNotificationChannel(channel);
-
+        Utils.setupNotificationChannel(mContext);
 
         boolean firstRun = Preferences.getFirstRun(mContext);
         if (firstRun) {
@@ -517,7 +507,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
                         + getResources().getString(R.string.main_tap_to_download)
                         + htmlColorClose;
                 updateAvailableSummary.setText(Html.fromHtml(updateSummary));
-
             }
         } else {
             updateNotAvailable.setVisibility(View.VISIBLE);
