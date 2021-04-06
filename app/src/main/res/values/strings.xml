@@ -210,8 +210,6 @@
 
     <!--Resolution-->
     <string name="screen_resolution_desc_summary">Some apps may close when you change the resolution.</string>
-    <!--Resolution-->
-    <string name="screen_resolution_desc_summary">Some apps may close when you change the resolution.</string>
     <string name="high_resolution">FHD+</string>
     <string name="high_resolution_radio">FHD+\n2340 x 1080</string>
     <string name="high_resolution_summary">Sharpest visuals, most battery use</string>

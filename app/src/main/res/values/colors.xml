@@ -102,8 +102,7 @@
     <color name="drawer_dim_color">#33000000</color>
     <color name="item_divider_color">#ff979797</color>
     <color name="drawer_icon_color">#ff676768</color>
-    <color name="ota_changelog_text_color">@color/sesl_black</color>
-    <color name="system_settings_plugin_icon_bg_color">#ff7882ff</color>
+    <color name="ota_changelog_text_color">@color/sesl_black</color>    <color name="system_settings_plugin_icon_bg_color">#ff7882ff</color>
     <color name="system_notification_color">#fff3a425</color>
 
 
