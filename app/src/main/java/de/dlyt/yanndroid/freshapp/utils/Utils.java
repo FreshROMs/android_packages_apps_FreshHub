@@ -252,7 +252,7 @@ public class Utils implements Constants {
     public static void setUpdateAvailability(Context context) {
         // Grab the data from the device and manifest
         int otaVersion = RomUpdate.getVersionNumber(context);
-        String currentVer = Utils.getProp("ro.fresh.ota.version");
+        String currentVer = Utils.getProp("ro.fresh.build.version");
         String manifestVer = Integer.toString(otaVersion);
 
         boolean available;

@@ -177,7 +177,7 @@
     <string name="ota_swupdate_prop_api_url" translatable="false">ro.fresh.ota.api</string>
     <string name="ota_swupdate_prop_date" translatable="false">ro.system.build.date</string>
     <string name="ota_swupdate_prop_release" translatable="false">ro.fresh.version</string>
-    <string name="ota_swupdate_prop_version" translatable="false">ro.fresh.ota.version</string>
+    <string name="ota_swupdate_prop_version" translatable="false">ro.fresh.build.version</string>
     <string name="ota_swupdate_prop_branch" translatable="false">ro.fresh.build.branch</string>
 
     <!-- System settings plugin -->

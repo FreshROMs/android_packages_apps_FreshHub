@@ -94,7 +94,7 @@ class RomXmlParser extends DefaultHandler implements Constants {
             tagVersionName = true;
         }
 
-        if (qName.equalsIgnoreCase("versionnumber")) {
+        if (qName.equalsIgnoreCase("buildversion")) {
             tagVersionNumber = true;
         }
 
@@ -324,7 +324,7 @@ class RomXmlParser extends DefaultHandler implements Constants {
             } else {
                 RomUpdate.setWebsite(mContext, "null");
             }
-            tagForumUrl = false;
+            tagWebsite = false;
             if (DEBUGGING)
                 Log.d(TAG, "Website = " + input);
         }
@@ -357,7 +357,7 @@ class RomXmlParser extends DefaultHandler implements Constants {
             } else {
                 RomUpdate.setGitIssues(mContext, "null");
             }
-            tagGitDiscussion = false;
+            tagGitIssues = false;
             if (DEBUGGING)
                 Log.d(TAG, "Git Issues = " + input);
         }
