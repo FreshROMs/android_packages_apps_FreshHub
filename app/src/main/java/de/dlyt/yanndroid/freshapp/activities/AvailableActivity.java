@@ -353,13 +353,14 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
     private void setupUpdateNameInfo() {
         boolean isDownloadOnGoing = Preferences.getIsDownloadOnGoing(mContext);
         TextView updateNameInfoText = (TextView) findViewById(R.id.tv_available_update_name);
-        String downloading = getResources().getString(R.string.available_downloading);
-        String filename = RomUpdate.getFilename(mContext);
+        View downloadProgressBar = findViewById(R.id.bar_available_progress_bar);
 
         if (isDownloadOnGoing) {
-            updateNameInfoText.setText(downloading);
+            updateNameInfoText.setText(getResources().getString(R.string.available_update_downloading));
+            downloadProgressBar.setVisibility(View.VISIBLE);
         } else {
-            updateNameInfoText.setText(filename);
+            updateNameInfoText.setText(getResources().getString(R.string.available_update_install_info));
+            downloadProgressBar.setVisibility(View.GONE);
         }
     }
 

@@ -105,6 +105,13 @@
     <string name="addons_updated_on">Updated:</string>
 
     <!-- Available Strings -->
+    <string name="available_update_downloading">Downloading update…</string>
+
+    <string name="available_update_install_info">Update your phone and get new features</string>
+    <string name="available_update_install_info_desc">"Using mobile data to download may result in additional charges. Using Wi-Fi is recommended."</string>
+
+    <string name="available_update_install_ready">Fresh %1$s is ready to install</string>
+
     <string name="available_update_name">Update name and file info here</string>
     <string name="available_progress_counter">0MB / 0MB</string>
     <string name="available_changelog_title">Changelog</string>
@@ -171,14 +178,21 @@
 
 
     <string name="system_name">Fresh</string>
+    <string name="display_dashboard_summary">FreshROM updates</string>
 
     <!--Props-->
     <string name="OTA_SWUPDATE_PROP_CODE" translatable="false">ro.fresh.ota.api</string>
     <string name="ota_swupdate_prop_api_url" translatable="false">ro.fresh.ota.api</string>
     <string name="ota_swupdate_prop_date" translatable="false">ro.system.build.date</string>
     <string name="ota_swupdate_prop_release" translatable="false">ro.fresh.version</string>
-    <string name="ota_swupdate_prop_version" translatable="false">ro.fresh.ota.version</string>
+    <string name="ota_swupdate_prop_version" translatable="false">ro.fresh.build.version</string>
     <string name="ota_swupdate_prop_branch" translatable="false">ro.fresh.build.branch</string>
+
+    <!-- System settings plugin -->
+    <string name="system_settings_plugin_title">Software update</string>
+    <string name="system_settings_plugin_summary">"Device updates  •  Download addons"</string>
+    <string name="system_settings_resolution_plugin_title">Screen resolution</string>
+    <string name="system_settings_resolution_plugin_summary">"Change device resolution and density"</string>
 
     <!--Drawer-->
     <string name="feedback">Feedback</string>
@@ -187,7 +201,6 @@
     <string name="fresh_community">Fresh Community</string>
     <string name="fresh_updates">Fresh Updates</string>
     <string name="reboot">Reboot</string>
-
 
     <!--Resolution-->
     <string name="screen_resolution_desc_summary">Some apps may close when you change the resolution.</string>
@@ -207,4 +220,12 @@
     <string name="low_resolution_summary">Ugly visuals, lowest battery use</string>
     <string name="low_resolution_value">1170x540</string>
 
+    <!-- Notifications -->
+    <string name="system_notification_channel_id" translatable="false">TnsOta</string>
+    <string name="system_notification_group_title">Fresh OTA</string>
+    <string name="system_notification_channel_title">Available updates</string>
+    <string name="system_notification_channel_desc">This notification channel allows the app to notify you about updates available on your device.</string>
+    <string name="system_notification_available_title">Software update available</string>
+    <string name="system_notification_available_desc">Fresh %1$s %2$s is now available for your device!</string>
+    
 </resources>

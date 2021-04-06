@@ -245,13 +245,6 @@ public class RomUpdate implements Constants {
         editor.apply();
     }
 
-    public static void setChangelog(Context context, String change) {
-        SharedPreferences.Editor editor = getPrefs(context).edit();
-        String CHANGELOG = "rom_changelog";
-        editor.putString(CHANGELOG, change);
-        editor.apply();
-    }
-
     public static void setAndroidVersion(Context context, String android) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         String ANDROID = "rom_android_ver";
@@ -286,6 +279,13 @@ public class RomUpdate implements Constants {
     public static void setFileSize(Context context, int size) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putInt(FILESIZE, size);
+        editor.apply();
+    }
+
+    public static void setChangelog(Context context, String change) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        String CHANGELOG = "rom_changelog";
+        editor.putString(CHANGELOG, change);
         editor.apply();
     }
 

@@ -37,8 +37,8 @@
                     style="?textAppearanceBody1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/available_update_name"
-                    android:textSize="28sp" />
+                    android:text="@string/available_update_install_info"
+                    android:textSize="22sp" />
 
                 <androidx.appcompat.widget.SeslProgressBar
                     android:id="@+id/bar_available_progress_bar"

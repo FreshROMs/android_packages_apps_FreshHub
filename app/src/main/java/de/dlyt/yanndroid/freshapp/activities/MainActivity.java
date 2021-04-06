@@ -80,6 +80,10 @@ public class MainActivity extends AppCompatActivity implements Constants,
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MANIFEST_LOADED)) {
                 updateAllLayouts();
+
+                if (RomUpdate.getUpdateAvailability(mContext) && !Utils.isUpdateIgnored(mContext)) {
+                    Utils.setupNotification(mContext, RomUpdate.getReleaseVersion(mContext), RomUpdate.getReleaseVariant(mContext));
+                }
             }
         }
     };
@@ -118,17 +122,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         settilte(getString(R.string.update));
         initWebView();
 
-
-        //todo: maybe not needed
-        CharSequence name = getString(R.string.update);
-        String description = getString(R.string.fresh_updates);
-        String CHANNEL_ID = getString(R.string.fresh_updates);
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-        channel.setDescription(description);
-        NotificationManager mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotifyManager.createNotificationChannel(channel);
-
+        Utils.setupNotificationChannel(mContext);
 
         boolean firstRun = Preferences.getFirstRun(mContext);
         if (firstRun) {
@@ -153,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             Builder notConnectedDialog = new Builder(mContext, R.style.AlertDialogStyle);
             notConnectedDialog.setTitle(R.string.main_not_connected_title)
                     .setMessage(R.string.main_not_connected_message)
+                    .setCancelable(false)
                     .setPositiveButton(R.string.ok, (dialog, which) -> ((Activity) mContext)
                             .finish())
                     .show();
@@ -532,7 +527,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
                         + getResources().getString(R.string.main_tap_to_download)
                         + htmlColorClose;
                 updateAvailableSummary.setText(Html.fromHtml(updateSummary));
-
             }
         } else {
             updateNotAvailable.setVisibility(View.VISIBLE);
