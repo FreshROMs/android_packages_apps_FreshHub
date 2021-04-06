@@ -105,6 +105,13 @@
     <string name="addons_updated_on">Updated:</string>
 
     <!-- Available Strings -->
+    <string name="available_update_downloading">Downloading update…</string>
+
+    <string name="available_update_install_info">Update your phone and get new features</string>
+    <string name="available_update_install_info_desc">"Using mobile data to download may result in additional charges. Using Wi-Fi is recommended."</string>
+
+    <string name="available_update_install_ready">Fresh %1$s is ready to install</string>
+
     <string name="available_update_name">Update name and file info here</string>
     <string name="available_progress_counter">0MB / 0MB</string>
     <string name="available_changelog_title">Changelog</string>
@@ -171,6 +178,7 @@
 
 
     <string name="system_name">Fresh</string>
+    <string name="display_dashboard_summary">FreshROM updates</string>
 
     <!--Props-->
     <string name="OTA_SWUPDATE_PROP_CODE" translatable="false">ro.fresh.ota.api</string>
