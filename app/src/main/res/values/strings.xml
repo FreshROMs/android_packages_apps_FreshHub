@@ -191,6 +191,8 @@
     <!-- System settings plugin -->
     <string name="system_settings_plugin_title">Software update</string>
     <string name="system_settings_plugin_summary">"Device updates  •  Download addons"</string>
+    <string name="system_settings_resolution_plugin_title">Screen resolution</string>
+    <string name="system_settings_resolution_plugin_summary">"Set device resolution and density"</string>
 
     <!--Drawer-->
     <string name="feedback">Feedback</string>
