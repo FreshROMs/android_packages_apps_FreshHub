@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -59,28 +58,28 @@
                                     android:orientation="horizontal">
 
                                     <TextView
-                                        android:text="HD-"
                                         style="?android:attr/textAppearanceSmall"
                                         android:layout_width="0.0dip"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1.0"
-                                        android:gravity="center_horizontal" />
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/low_resolution" />
 
                                     <TextView
-                                        android:text="HD+"
                                         style="?android:attr/textAppearanceSmall"
                                         android:layout_width="0.0dip"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1.0"
-                                        android:gravity="center_horizontal" />
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/medium_resolution" />
 
                                     <TextView
-                                        android:text="FHD+"
                                         style="?android:attr/textAppearanceSmall"
                                         android:layout_width="0.0dip"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1.0"
-                                        android:gravity="center_horizontal" />
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/high_resolution" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -104,7 +103,6 @@
                                 </LinearLayout>
 
 
-
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
@@ -114,12 +112,12 @@
 
                             <TextView
                                 style="?android:attr/textAppearanceSmall"
-                                android:textColor="@color/item_color"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="@dimen/sec_widget_body_text_padding_start_end"
                                 android:layout_marginTop="@dimen/sec_widget_preference_unclickable_margin_top"
-                                android:text="@string/screen_resolution_desc_summary" />
+                                android:text="@string/screen_resolution_desc_summary"
+                                android:textColor="@color/item_color" />
                         </LinearLayout>
 
                         <com.google.android.material.card.MaterialCardView
@@ -136,13 +134,82 @@
                                 android:gravity="center_vertical"
                                 android:orientation="vertical">
 
-                                <!--radiogroup-->
+                                <RadioGroup
+                                    android:id="@+id/resolution_radiogroup"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
 
+
+                                    <com.google.android.material.radiobutton.MaterialRadioButton
+                                        android:id="@+id/resolution_low"
+                                        style="@style/RadioButtonStyle.Vertical"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/low_resolution_radio" />
+
+                                    <View
+                                        android:layout_width="1dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginHorizontal="5dp"
+                                        android:layout_marginVertical="5dp"
+                                        android:background="@color/divider_color" />
+
+                                    <com.google.android.material.radiobutton.MaterialRadioButton
+                                        android:id="@+id/resolution_medium"
+                                        style="@style/RadioButtonStyle.Vertical"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/medium_resolution_radio" />
+
+                                    <View
+                                        android:layout_width="1dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginHorizontal="5dp"
+                                        android:layout_marginVertical="5dp"
+                                        android:background="@color/divider_color" />
+
+                                    <com.google.android.material.radiobutton.MaterialRadioButton
+                                        android:id="@+id/resolution_high"
+                                        style="@style/RadioButtonStyle.Vertical"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/high_resolution_radio" />
+
+
+                                </RadioGroup>
 
 
                             </LinearLayout>
 
                         </com.google.android.material.card.MaterialCardView>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/resolution_summary"
+                                style="?android:attr/textAppearanceSmall"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/sec_widget_body_text_padding_start_end"
+                                android:layout_marginTop="@dimen/sec_widget_preference_unclickable_margin_top"
+                                android:text="summary"
+                                android:textColor="@color/item_color" />
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/resolution_apply"
+                            style="@style/ButtonStyle.Invert"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="100dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Apply" />
 
                     </LinearLayout>
 
