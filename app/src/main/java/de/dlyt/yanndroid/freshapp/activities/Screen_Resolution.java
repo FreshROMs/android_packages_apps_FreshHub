@@ -13,7 +13,11 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 
+import java.util.HashMap;
+
 import de.dlyt.yanndroid.freshapp.R;
+
+import static de.dlyt.yanndroid.freshapp.utils.Tools.shell;
 
 public class Screen_Resolution extends AppCompatActivity {
 
@@ -70,24 +74,36 @@ public class Screen_Resolution extends AppCompatActivity {
         resolution_apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resolution_summary.setText(R.string.low_resolution_summary);
                 switch (resolution){
                     case R.id.resolution_low:
-                        setResolution(getString(R.string.low_resolution_value));
+                        setResolution(getString(R.string.low_resolution_value), getString(R.string.low_resolution_density));
+                        break;
                     case R.id.resolution_medium:
-                        setResolution(getString(R.string.medium_resolution_value));
+                        setResolution(getString(R.string.medium_resolution_value), getString(R.string.medium_resolution_density));
+                        break;
                     case R.id.resolution_high:
-                        setResolution(getString(R.string.high_resolution_value));
+                        setResolution(getString(R.string.high_resolution_value), getString(R.string.high_resolution_density));
+                        break;
                 }
             }
         });
 
     }
 
-    public void setResolution(String resolution){
-        //todo: do something (might need to invert to values: 2340x1080 -> 1080x2340)
+    public void setResolution(String resolution, String density){
+        shell("su -c wm size "+ resolution, true);
+        shell("su -c wm density "+ density, true);
     }
 
+    public Integer getResolution(){
+        String shell_result = shell("su wm size", true);
+        shell_result = shell_result.replace("Physical size: ", "");
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.put(getString(R.string.high_resolution_value), R.id.resolution_high);
+        hashMap.put(getString(R.string.medium_resolution_value), R.id.resolution_medium);
+        hashMap.put(getString(R.string.low_resolution_value), R.id.resolution_low);
+        return hashMap.get(shell_result);
+    }
 
     public void initToolbar() {
         /** Def */
