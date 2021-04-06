@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="de.dlyt.yanndroid.freshapp">
 
-
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
@@ -26,7 +25,6 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -34,16 +32,15 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.Screen_Resolution"></activity>
         <activity
-            android:name="de.dlyt.yanndroid.freshapp.activities.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".activities.MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
@@ -74,7 +71,6 @@
             android:label="@string/preferences_name"
             android:screenOrientation="portrait" />
 
-
         <receiver
             android:name=".receivers.AppReceiver"
             android:enabled="true">
@@ -86,7 +82,6 @@
                 <action android:name="com.ota.update.START_UPDATE_CHECK" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>

@@ -28,4 +28,9 @@
     <dimen name="progress_bar_radius">12.0dip</dimen>
 
 
+    <dimen name="sec_widget_preference_unclickable_margin_top">20.0dip</dimen>
+    <dimen name="sec_widget_body_text_padding_start_end">24.0dip</dimen>
+    <dimen name="sec_widget_img_margin">20.0dip</dimen>
+
+
 </resources>
