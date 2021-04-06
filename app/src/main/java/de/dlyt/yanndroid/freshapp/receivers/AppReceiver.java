@@ -173,7 +173,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
 
             if (updateAvailable && !updateIgnored) {
                 Utils.setupNotification(context, relversion, relvariant);
-                Utils.scheduleNotification(context, !Preferences.getBackgroundService(context));
+                Utils.setupJobScheduler(context, !Preferences.getBackgroundService(context));
             }
         }
 
@@ -191,7 +191,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
             if (backgroundCheck) {
                 if (DEBUGGING)
                     Log.d(TAG, "Starting background check alarm");
-                Utils.scheduleNotification(context, !Preferences.getBackgroundService(context));
+                Utils.setupJobScheduler(context, !Preferences.getBackgroundService(context));
             }
         }
 

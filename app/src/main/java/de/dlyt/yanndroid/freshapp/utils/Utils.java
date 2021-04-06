@@ -21,6 +21,9 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.NotificationChannelGroup;
 import android.app.PendingIntent;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -50,6 +53,7 @@ import de.dlyt.yanndroid.freshapp.R;
 import de.dlyt.yanndroid.freshapp.activities.AvailableActivity;
 import de.dlyt.yanndroid.freshapp.activities.MainActivity;
 import de.dlyt.yanndroid.freshapp.receivers.AppReceiver;
+import de.dlyt.yanndroid.freshapp.tasks.OtaJobScheduler;
 
 public class Utils implements Constants {
 
@@ -143,37 +147,8 @@ public class Utils implements Constants {
     }
 
     public static void setBackgroundCheck(Context context, boolean set) {
-        scheduleNotification(context, !set);
+        setupJobScheduler(context, !set);
     }
-
-    public static void scheduleNotification(Context context, boolean cancel) {
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, AppReceiver.class);
-        intent.setAction(START_UPDATE_CHECK);
-        int intentId = 1673;
-        int intentFlag = PendingIntent.FLAG_UPDATE_CURRENT;
-
-        if (cancel) {
-            if (alarmManager != null) {
-                if (DEBUGGING) Log.d(TAG, "Cancelling alarm");
-                alarmManager.cancel(PendingIntent.getBroadcast(context, intentId, intent, intentFlag));
-            }
-        } else {
-            int requestedInterval;
-
-            if (DEBUG_NOTIFICATIONS) {
-                requestedInterval = 30000;
-            } else {
-                requestedInterval = Preferences.getBackgroundFrequency(context);
-            }
-
-            if (DEBUGGING) Log.d(TAG, "Setting alarm for " + requestedInterval + " seconds");
-            Calendar calendar = Calendar.getInstance();
-            long time = calendar.getTimeInMillis() + requestedInterval * 1000;
-            alarmManager.set(AlarmManager.RTC_WAKEUP, time, PendingIntent.getBroadcast(context, intentId, intent, intentFlag));
-        }
-    }
-
 
     public static boolean isConnected(Context context) {
         boolean isConnected = false;
@@ -263,6 +238,71 @@ public class Utils implements Constants {
             Log.d(TAG, "Update Availability is " + available);
     }
 
+    public static void scheduleNotification(Context context, boolean cancel) {
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, AppReceiver.class);
+        intent.setAction(START_UPDATE_CHECK);
+        int intentId = 1673;
+        int intentFlag = PendingIntent.FLAG_UPDATE_CURRENT;
+
+        if (cancel) {
+            if (alarmManager != null) {
+                if (DEBUGGING) Log.d(TAG, "Cancelling alarm");
+                alarmManager.cancel(PendingIntent.getBroadcast(context, intentId, intent, intentFlag));
+            }
+        } else {
+            int requestedInterval;
+
+            if (DEBUG_NOTIFICATIONS) {
+                requestedInterval = 30000;
+            } else {
+                requestedInterval = Preferences.getBackgroundFrequency(context);
+            }
+
+            if (DEBUGGING) Log.d(TAG, "Setting alarm for " + requestedInterval + " seconds");
+            Calendar calendar = Calendar.getInstance();
+            long time = calendar.getTimeInMillis() + requestedInterval * 1000;
+            alarmManager.set(AlarmManager.RTC_WAKEUP, time, PendingIntent.getBroadcast(context, intentId, intent, intentFlag));
+        }
+    }
+
+    public static void setupJobScheduler(Context context, boolean cancel) {
+        ComponentName serviceName = new ComponentName(context, OtaJobScheduler.class);
+        JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        int JOB_ID = 1771;
+
+        if (cancel) {
+            if (scheduler != null) {
+                if (DEBUGGING) Log.d(TAG, "Cancelling job");
+                scheduler.cancel(JOB_ID);
+            }
+        } else {
+            long requestedInterval;
+            long requestedFlex;
+
+            if (DEBUG_NOTIFICATIONS) {
+                requestedInterval = 900 * 1000;
+                requestedFlex = 900 * 500;
+            } else {
+                requestedInterval = Preferences.getBackgroundFrequency(context) * 1000; // sec to ms;
+                requestedFlex = Preferences.getBackgroundFrequency(context) * 500; // sec to ms;
+            }
+
+            JobInfo jobInfo = new JobInfo.Builder(JOB_ID, serviceName)
+                    .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                    .setRequiresDeviceIdle(false)
+                    .setRequiresCharging(false)
+                    .setPeriodic(requestedInterval, requestedFlex)
+                    .build();
+
+            int result = scheduler.schedule(jobInfo);
+            if (result == JobScheduler.RESULT_SUCCESS) {
+                Log.d(TAG, "Job scheduled successfully!");
+                Log.d(TAG, "Job scheduled for " + requestedInterval + " ms!");
+            }
+        }
+    }
+
     public static void setupNotificationChannel(Context context) {
         NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -270,7 +310,6 @@ public class Utils implements Constants {
         CharSequence groupName = context.getString(R.string.system_notification_group_title);
         String description = context.getString(R.string.system_notification_channel_desc);
         NotificationChannelGroup notificationGroup = new NotificationChannelGroup(GROUP_ID, groupName);
-        notificationGroup.setDescription(description);
 
         CharSequence name = context.getString(R.string.system_notification_channel_title);
         String CHANNEL_ID = context.getString(R.string.system_notification_channel_id);

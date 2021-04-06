@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         initWebView();
 
         Utils.setupNotificationChannel(mContext);
+        Utils.setupJobScheduler(mContext, !Preferences.getBackgroundService(mContext));
 
         boolean firstRun = Preferences.getFirstRun(mContext);
         if (firstRun) {
