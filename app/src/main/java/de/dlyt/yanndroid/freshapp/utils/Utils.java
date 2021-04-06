@@ -19,6 +19,7 @@ package de.dlyt.yanndroid.freshapp.utils;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.NotificationChannelGroup;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +31,7 @@ import android.text.format.DateFormat;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.NotificationCompat.Builder;
 import androidx.core.app.TaskStackBuilder;
 
@@ -261,21 +263,33 @@ public class Utils implements Constants {
             Log.d(TAG, "Update Availability is " + available);
     }
 
-    public static void setupNotification(Context context, String filename) {
-        if (DEBUGGING) Log.d(TAG, "Showing notification");
-
-        CharSequence name = context.getString(R.string.update);
-        String description = context.getString(R.string.fresh_updates);
-        String CHANNEL_ID = context.getString(R.string.fresh_updates);
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-        channel.setDescription(description);
-
+    public static void setupNotificationChannel(Context context) {
         NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        mNotifyManager.createNotificationChannel(channel);
+        String GROUP_ID = "tns_ota_group";
+        CharSequence groupName = context.getString(R.string.system_notification_group_title);
+        String description = context.getString(R.string.system_notification_channel_desc);
+        NotificationChannelGroup notificationGroup = new NotificationChannelGroup(GROUP_ID, groupName);
+        notificationGroup.setDescription(description);
 
-        Builder mBuilder = new NotificationCompat.Builder(context);
+        CharSequence name = context.getString(R.string.system_notification_channel_title);
+        String CHANNEL_ID = context.getString(R.string.system_notification_channel_id);
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+        channel.setGroup(GROUP_ID);
+        channel.setDescription(description);
+        mNotifyManager.createNotificationChannelGroup(notificationGroup);
+        mNotifyManager.createNotificationChannel(channel);
+    }
+
+    public static void setupNotification(Context context, String version, String variant) {
+        if (DEBUGGING) Log.d(TAG, "Showing notification");
+
+        String CHANNEL_ID = context.getString(R.string.system_notification_channel_id);
+        int notificationColor = context.getResources().getColor(R.color.sesl_primary_color);
+
+        NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
         Intent resultIntent = new Intent(context, MainActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(MainActivity.class);
@@ -288,15 +302,17 @@ public class Utils implements Constants {
         PendingIntent skipPendingIntent = PendingIntent.getBroadcast(context, 0, skipIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent downloadPendingIntent = PendingIntent.getActivity(context, 0, downloadIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        mBuilder.setContentTitle(context.getString(R.string.update_available))
-                .setContentText(filename)
+        mBuilder.setContentTitle(context.getString(R.string.system_notification_available_title))
+                .setContentText(context.getString(R.string.system_notification_available_desc, version, variant))
                 .setSmallIcon(R.drawable.ic_notif)
-                .setContentIntent(resultPendingIntent)
+                .setColor(notificationColor)
+                .setContentIntent(downloadPendingIntent)
                 .setAutoCancel(true)
+                .setShowWhen(false)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setDefaults(NotificationCompat.DEFAULT_LIGHTS)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setSound(Uri.parse(Preferences.getNotificationSound(context)))
+                .setCategory(NotificationCompat.CATEGORY_SYSTEM)
                 .addAction(R.drawable.ic_action_download, context.getString(R.string.download),
                         downloadPendingIntent)
                 .addAction(R.drawable.ic_close, context.getString(R.string.ignore),

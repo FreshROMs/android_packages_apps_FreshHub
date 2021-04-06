@@ -167,10 +167,12 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
                 Log.d(TAG, "Receiving background check confirmation");
 
             boolean updateAvailable = RomUpdate.getUpdateAvailability(context);
-            String filename = RomUpdate.getFilename(context);
+            boolean updateIgnored = Utils.isUpdateIgnored(context);
+            String relversion = RomUpdate.getReleaseVersion(context);
+            String relvariant = RomUpdate.getReleaseVariant(context);
 
-            if (updateAvailable) {
-                Utils.setupNotification(context, filename);
+            if (updateAvailable && !updateIgnored) {
+                Utils.setupNotification(context, relversion, relvariant);
                 Utils.scheduleNotification(context, !Preferences.getBackgroundService(context));
             }
         }

@@ -188,7 +188,6 @@
     <string name="fresh_updates">Fresh Updates</string>
     <string name="reboot">Reboot</string>
 
-
     <!--Resolution-->
     <string name="screen_resolution_desc_summary">Some apps may close when you change the resolution.</string>
 
@@ -207,4 +206,11 @@
     <string name="low_resolution_summary">Ugly visuals, lowest battery use</string>
     <string name="low_resolution_value">1170x540</string>
 
+    <!-- Notifications -->
+    <string name="system_notification_channel_id" translatable="false">TnsOta</string>
+    <string name="system_notification_group_title">Fresh OTA</string>
+    <string name="system_notification_channel_title">Available updates</string>
+    <string name="system_notification_channel_desc">This notification channel allows the app to notify you about updates available on your device.</string>
+    <string name="system_notification_available_title">Software update available</string>
+    <string name="system_notification_available_desc">Fresh %1$s %2$s is now available for your device!</string>
 </resources>
