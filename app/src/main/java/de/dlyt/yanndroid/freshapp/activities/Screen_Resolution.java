@@ -24,6 +24,9 @@ import static de.dlyt.yanndroid.freshapp.utils.Tools.shell;
 
 public class Screen_Resolution extends AppCompatActivity {
 
+    public static String PREF_NAME = "ScreenResolutionSettings";
+    public static String SCREEN_RESOLUTION = "device_screen_resolution";
+
     int resolution;
 
     private SharedPreferences sharedPreferences;
@@ -36,9 +39,8 @@ public class Screen_Resolution extends AppCompatActivity {
         initToolbar();
         settilte("Screen resolution");
 
-        sharedPreferences = getSharedPreferences("resolution", Activity.MODE_PRIVATE);
-        resolution = sharedPreferences.getInt("current_resolution", R.id.resolution_high);
-
+        sharedPreferences = getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
+        resolution = sharedPreferences.getInt(SCREEN_RESOLUTION, R.id.resolution_high);
 
         RadioGroup resolution_radiogroup = findViewById(R.id.resolution_radiogroup);
         MaterialRadioButton resolution_low = findViewById(R.id.resolution_low);
@@ -76,7 +78,7 @@ public class Screen_Resolution extends AppCompatActivity {
         resolution_apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreferences.edit().putInt("current_resolution", resolution).commit();
+                sharedPreferences.edit().putInt(SCREEN_RESOLUTION, resolution).commit();
                 switch (resolution){
                     case R.id.resolution_low:
                         setResolution(getString(R.string.low_resolution_value), getString(R.string.low_resolution_density));
