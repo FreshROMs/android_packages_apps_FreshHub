@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -28,7 +26,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -296,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
 
 
-        View drawer_test = findViewById(R.id.drawer_test);
+        View drawer_test = findViewById(R.id.drawer_resolution);
         drawer_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
