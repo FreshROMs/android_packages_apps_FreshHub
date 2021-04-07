@@ -112,5 +112,8 @@
     <color name="sec_display_resolution_desc_text_color">#ff7a7a7a</color>
     <color name="sec_display_resolution_help_desc_text_color">#ff252525</color>
 
+    <color name="ota_swupdate_new_header_background_color">#264a97e3</color>
+    <color name="ota_swupdate_new_sub_title_textcolor">#ff686868</color>
+    <color name="ota_swupdate_new_title_textcolor">#ff252525</color>
 
 </resources>

@@ -102,11 +102,14 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
             if (downloadIsRunning) {
                 // Download is still running
                 mDownloadButton.setVisibility(View.GONE);
+                mDeleteButton.setVisibility(View.GONE);
                 mCancelButton.setVisibility(View.VISIBLE);
-                mInstallButton.setVisibility(View.GONE);
+                mInstallButton.setVisibility(View.VISIBLE);
+                mInstallButton.setEnabled(false);
             } else {
                 // Download is not running and hasn't finished
                 mDownloadButton.setVisibility(View.VISIBLE);
+                mDeleteButton.setVisibility(View.VISIBLE);
                 mCancelButton.setVisibility(View.GONE);
                 mInstallButton.setVisibility(View.GONE);
             }
@@ -130,6 +133,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
             mDownloadButton.setVisibility(View.GONE);
             mCancelButton.setVisibility(View.GONE);
             mInstallButton.setVisibility(View.VISIBLE);
+            mInstallButton.setEnabled(true);
         }
     }
 
@@ -352,15 +356,21 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
 
     private void setupUpdateNameInfo() {
         boolean isDownloadOnGoing = Preferences.getIsDownloadOnGoing(mContext);
+        TextView preOtaText = (TextView) findViewById(R.id.tv_available_text_pre_ota);
+        TextView progressText = (TextView) findViewById(R.id.tv_available_progress_counter);
         TextView updateNameInfoText = (TextView) findViewById(R.id.tv_available_update_name);
         View downloadProgressBar = findViewById(R.id.bar_available_progress_bar);
 
         if (isDownloadOnGoing) {
             updateNameInfoText.setText(getResources().getString(R.string.available_update_downloading));
+            preOtaText.setVisibility(View.GONE);
             downloadProgressBar.setVisibility(View.VISIBLE);
+            progressText.setVisibility(View.VISIBLE);
         } else {
             updateNameInfoText.setText(getResources().getString(R.string.available_update_install_info));
+            preOtaText.setVisibility(View.VISIBLE);
             downloadProgressBar.setVisibility(View.GONE);
+            progressText.setVisibility(View.GONE);
         }
     }
 

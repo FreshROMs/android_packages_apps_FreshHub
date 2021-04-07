@@ -145,7 +145,7 @@
     </style>
 
     <style name="ButtonStyle.Invert.Secondary">
-        <item name="android:backgroundTint">@color/button_background_color</item>
+        <item name="android:backgroundTint">@color/sesl_btn_secondary_color_state</item>
         <item name="android:textColor">@color/item_color</item>
     </style>
 
