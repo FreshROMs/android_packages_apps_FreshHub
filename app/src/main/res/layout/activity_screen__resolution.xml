@@ -52,7 +52,7 @@
                                 <LinearLayout
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20.0dip"
+                                    android:layout_marginLeft="24.0dip"
                                     android:layout_marginTop="24.0dip"
                                     android:layout_marginRight="20.0dip"
                                     android:orientation="horizontal">
@@ -116,8 +116,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="@dimen/sec_widget_body_text_padding_start_end"
                                 android:layout_marginTop="@dimen/sec_widget_preference_unclickable_margin_top"
+                                android:textStyle="bold"
+                                android:textSize="16.0sp"
+                                android:fontFamily="sec-roboto-light"
                                 android:text="@string/screen_resolution_desc_summary"
-                                android:textColor="@color/item_color" />
+                                android:textColor="@color/sec_display_resolution_help_desc_text_color" />
                         </LinearLayout>
 
                         <com.google.android.material.card.MaterialCardView
@@ -199,12 +202,15 @@
                                 android:layout_marginHorizontal="@dimen/sec_widget_body_text_padding_start_end"
                                 android:layout_marginTop="@dimen/sec_widget_preference_unclickable_margin_top"
                                 android:text="summary"
-                                android:textColor="@color/item_color" />
+                                android:textStyle="bold"
+                                android:textSize="15.0dip"
+                                android:fontFamily="sec-roboto-light"
+                                android:textColor="@color/sec_display_resolution_desc_text_color" />
                         </LinearLayout>
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/resolution_apply"
-                            style="@style/ButtonStyle.Invert"
+                            style="@style/ButtonStyle_PreferenceSetting"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="100dp"

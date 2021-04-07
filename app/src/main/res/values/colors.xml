@@ -12,6 +12,8 @@
     <color name="sesl_primary_dark_color">#ffbd7800</color>
     <color name="sesl_control_color_normal">#4df3a425</color>
 
+    <color name="sesl_default_primary_color">#ff0381fe</color>
+    <color name="sesl_default_secondary_color">#ff0072de</color>
 
     <color name="sesl_control_normal_color">#cc8f8f8f</color>
 
@@ -40,9 +42,10 @@
     <color name="sesl_control_activated_color">@color/sesl_secondary_color</color>
     <color name="sesl_white">#fffafafa</color>
     <color name="sesl_black">#ff252525</color>
-    <color name="divider_color">#ff979797</color>
+    <color name="divider_color">#8a979797</color>
     <color name="sesl_thumb_control_color_activated">@color/sesl_primary_color</color>
 
+    <color name="sesl_btn_background_color">#0f000000</color>
 
     <!--ProgressBar-->
     <color name="sesl_loading_progress_color1">#ff06b485</color>
@@ -105,6 +108,9 @@
     <color name="ota_changelog_text_color">@color/sesl_black</color>
     <color name="system_settings_plugin_icon_bg_color">#ff7882ff</color>
     <color name="system_notification_color">#fff3a425</color>
+
+    <color name="sec_display_resolution_desc_text_color">#ff7a7a7a</color>
+    <color name="sec_display_resolution_help_desc_text_color">#ff252525</color>
 
 
 </resources>
