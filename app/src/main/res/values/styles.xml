@@ -24,6 +24,26 @@
 
     </style>
 
+    <style name="SystemPreference">
+        <item name="colorAccent">@color/sesl_default_primary_color</item>
+        <item name="colorBackgroundFloating">@color/sesl_background_floating</item>
+        <item name="colorControlActivated">@color/sesl_default_primary_color</item>
+        <item name="colorControlHighlight">@color/sesl_ripple_color</item>
+        <item name="colorControlNormal">@color/sesl_control_normal_color</item>
+        <item name="colorError">@color/sesl_error_color</item>
+        <item name="colorPrimary">@color/sesl_default_primary_color</item>
+        <item name="colorSecondary">@color/sesl_default_secondary_color</item>
+        <item name="colorPrimaryDark">@color/sesl_default_secondary_color</item>
+
+        <item name="checkboxStyle">@style/CheckBoxStyle</item>
+        <item name="materialCardViewStyle">@style/CardViewStyle</item>
+        <item name="switchStyle">@style/SwitchStyle</item>
+        <item name="materialButtonStyle">@style/ButtonStyle</item>
+        <item name="radioButtonStyle">@style/RadioButtonStyle</item>
+        <item name="seslSwitchBarStyle">@style/Base.Widget.AppCompat.SeslSwitchBar</item>
+        <item name="seekBarStyle">@style/SeekBarStyle</item>
+    </style>
+
 
     <!--ProgressBar-->
     <style name="ProgressBarStyle.Horizontal.Large" parent="@android:style/Widget.ProgressBar.Horizontal">
@@ -113,17 +133,25 @@
         <item name="rippleColor">@color/button_ripple_color</item>
         <item name="cornerRadius">26dp</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:padding">12dip</item>
         <item name="android:textColor">@color/sesl_control_activated_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">sec-roboto-light</item>
     </style>
 
     <style name="ButtonStyle.Invert">
-        <item name="android:backgroundTint">@color/sesl_control_activated_color</item>
+        <item name="android:backgroundTint">@color/sesl_btn_color_state</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="ButtonStyle.Invert.Secondary">
         <item name="android:backgroundTint">@color/button_background_color</item>
         <item name="android:textColor">@color/item_color</item>
+    </style>
+
+    <style name="ButtonStyle_PreferenceSetting" parent="@style/ButtonStyle.Invert">
+        <item name="android:backgroundTint">@color/sesl_preference_btn_color_state</item>
+        <item name="android:padding">8dip</item>
     </style>
 
 

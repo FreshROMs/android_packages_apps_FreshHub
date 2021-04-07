@@ -15,8 +15,9 @@
     <color name="item_color">#fff2f2f2</color>
 
     <!--Sesl-->
-    <color name="divider_color">#42fafafa</color>
+    <color name="divider_color">#2afafafa</color>
 
+    <color name="sesl_btn_background_color">#2bfafafa</color>
 
     <!--Switch-->
     <color name="sesl_switch_thumb_off_disabled_color">#ff828282</color>
@@ -39,5 +40,8 @@
     <color name="button_background_color">#4d555555</color>
     <color name="drawer_dim_color">#cc000000</color>
     <color name="ota_changelog_text_color">@color/sesl_white</color>
+
+    <color name="sec_display_resolution_desc_text_color">#ff7a7a7a</color>
+    <color name="sec_display_resolution_help_desc_text_color">#fffafafa</color>
 
 </resources>

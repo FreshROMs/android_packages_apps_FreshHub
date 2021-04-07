@@ -24,7 +24,9 @@
         android:name="android.permission.ACCESS_CACHE_FILESYSTEM"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
-    <uses-permission android:name="android.permission.WRITE_SYSTEM_SETTINGS" />
+    <uses-permission
+        android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
@@ -40,7 +42,8 @@
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:exported="true" />
             
-        <activity android:name=".activities.Screen_Resolution">
+        <activity android:name=".activities.Screen_Resolution"
+            android:theme="@style/SystemPreferenceTheme">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
