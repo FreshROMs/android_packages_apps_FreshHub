@@ -41,6 +41,9 @@
     <color name="drawer_dim_color">#cc000000</color>
     <color name="ota_changelog_text_color">@color/sesl_white</color>
 
+    <color name="ota_swupdate_new_sub_title_textcolor">#ff999999</color>
+    <color name="ota_swupdate_new_title_textcolor">#fffafafa</color>
+
     <color name="sec_display_resolution_desc_text_color">#ff7a7a7a</color>
     <color name="sec_display_resolution_help_desc_text_color">#fffafafa</color>
 

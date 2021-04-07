@@ -36,13 +36,6 @@
             android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/menu_available_delete"
-            style="@style/ButtonStyle.Invert.Secondary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/delete" />
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/menu_available_cancel"
             style="@style/ButtonStyle.Invert.Secondary"
             android:layout_width="match_parent"
@@ -50,10 +43,18 @@
             android:text="@string/cancel" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/menu_available_delete"
+            style="@style/ButtonStyle.Invert.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/menu_available_check_md5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/available_check_md5" />
+            android:text="@string/available_check_md5"
+            android:visibility="gone" />
 
     </LinearLayout>
 
