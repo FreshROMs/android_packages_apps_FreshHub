@@ -173,7 +173,6 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
 
             if (updateAvailable && !updateIgnored) {
                 Utils.setupNotification(context, relversion, relvariant);
-                Utils.setupJobScheduler(context, !Preferences.getBackgroundService(context));
             }
         }
 
