@@ -44,8 +44,8 @@ public class DownloadAddon implements Constants {
         request.setVisibleInDownloadsUi(true);
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         fileName = fileName + ".zip";
-        //request.setDestinationInExternalPublicDir(INSTALL_AFTER_FLASH_DIR_ADDON, fileName); //todo: custom path
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+        request.setDestinationInExternalPublicDir(INSTALL_AFTER_FLASH_DIR_ADDON, fileName); //todo: custom path
+        //request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
 
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context
                 .DOWNLOAD_SERVICE);
@@ -53,8 +53,7 @@ public class DownloadAddon implements Constants {
         OtaUpdates.putAddonDownload(id, mDownloadID);
         new DownloadAddonProgress(downloadManager, id).execute(mDownloadID);
         if (DEBUGGING) {
-            Log.d(TAG,
-                    "Starting download with manager ID " + mDownloadID + " and item id of " + id);
+            Log.d(TAG, "Starting download with manager ID " + mDownloadID + " and item id of " + id);
         }
     }
 

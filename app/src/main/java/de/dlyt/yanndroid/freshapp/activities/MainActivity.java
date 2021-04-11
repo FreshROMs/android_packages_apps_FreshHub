@@ -426,7 +426,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
         mCompatibilityDialog.setMessage(R.string.main_not_compatible_message);
         mCompatibilityDialog.setPositiveButton(R.string.ok, (dialog, which) -> MainActivity.this.finish());
 
-        mCompatibilityDialog.setNegativeButton("debug", (dialog, which) -> dialog.cancel()); //todo: must be disabled at release
+        /**enable to test the app without props*/
+        //mCompatibilityDialog.setNegativeButton("debug", (dialog, which) -> dialog.cancel());
 
         // Donate Dialog
         mDonateDialog = new Builder(this, R.style.AlertDialogStyle);
