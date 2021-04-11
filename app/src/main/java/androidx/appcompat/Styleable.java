@@ -1,6 +1,6 @@
-package de.dlyt.yanndroid.freshapp;
+package androidx.appcompat;
 
-public final class RdotStyleable {
+public final class Styleable {
 
     public static final class styleable {
 

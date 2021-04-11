@@ -24,8 +24,6 @@ import java.util.Scanner;
 
 import de.dlyt.yanndroid.freshapp.R;
 
-import static de.dlyt.yanndroid.freshapp.utils.Tools.shell;
-
 public class Screen_Resolution extends AppCompatActivity {
 
     public static String PREF_NAME = "ScreenResolutionSettings";
@@ -51,7 +49,7 @@ public class Screen_Resolution extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         mContext = this;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_screen__resolution);
+        setContentView(R.layout.activity_screen_resolution);
 
         initToolbar();
         settilte("Screen resolution");
