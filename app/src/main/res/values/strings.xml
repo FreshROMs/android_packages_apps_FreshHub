@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Software updates</string>
+    <string name="app_name">Fresh Hub</string>
     <string name="closed" translatable="false">closed</string>
     <string name="opend" translatable="false">opend</string>
     <string name="sesl_switch">Switch</string>
