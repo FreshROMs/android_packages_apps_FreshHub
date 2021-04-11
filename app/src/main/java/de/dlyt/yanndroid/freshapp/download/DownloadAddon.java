@@ -44,8 +44,8 @@ public class DownloadAddon implements Constants {
         request.setVisibleInDownloadsUi(true);
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         fileName = fileName + ".zip";
-        request.setDestinationInExternalPublicDir(INSTALL_AFTER_FLASH_DIR_ADDON, fileName); //todo: custom path
-        //request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+        //request.setDestinationInExternalPublicDir(INSTALL_AFTER_FLASH_DIR_ADDON, fileName); //todo: custom path... is crashing, reason: java.lang.IllegalStateException: Not one of standard directories
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
 
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context
                 .DOWNLOAD_SERVICE);

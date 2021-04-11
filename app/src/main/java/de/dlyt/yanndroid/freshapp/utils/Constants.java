@@ -25,7 +25,7 @@ public interface Constants {
 
     // Storage
     String SD_CARD = Environment.getExternalStorageDirectory().getAbsolutePath();
-    String OTA_DOWNLOAD_DIR = "/sdcard/FreshRom";
+    String OTA_DOWNLOAD_DIR = "Updates";
     String INSTALL_AFTER_FLASH_DIR = "InstallAfterFlash";
     String INSTALL_AFTER_FLASH_DIR_ADDON = "/Updates/InstallAfterFlash";
 
