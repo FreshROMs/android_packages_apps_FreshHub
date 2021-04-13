@@ -52,8 +52,10 @@ public class DownloadRom implements Constants {
 
         request.setVisibleInDownloadsUi(true);
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
-        //request.setDestinationInExternalPublicDir(OTA_DOWNLOAD_DIR, fileName);  //todo: custom path... is crashing, reason: java.lang.IllegalStateException: Not one of standard directories
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+
+        // Because of Scoped Storage, we can only download into public directories.
+        // Directory is '/storage/emulated/0/Download/Fresh'
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, OTA_DOWNLOAD_DIR+fileName);
 
         // Delete any existing files
         Utils.deleteFile(file);
