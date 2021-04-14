@@ -50,7 +50,9 @@ public interface Constants {
     String NETWORK_TYPE = "network_type";
     String DOWNLOAD_ID = "download_id";
     String UPDATER_BACK_SERVICE = "background_service";
+    String UPDATER_AUTO_DOWNLOAD_SERVICE = "background_download";
     String UPDATER_BACK_FREQ = "background_frequency";
+    String UPDATER_BACK_FREQ_OPTION = "background_frequency_option";
     String UPDATER_ENABLE_ORS = "updater_twrp_ors";
     String NOTIFICATIONS_SOUND = "notifications_sound";
     String NOTIFICATIONS_VIBRATE = "notifications_vibrate";

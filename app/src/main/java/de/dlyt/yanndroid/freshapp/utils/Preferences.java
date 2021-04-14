@@ -86,8 +86,19 @@ public class Preferences implements Constants {
         return getPrefs(context).getBoolean(UPDATER_BACK_SERVICE, true);
     }
 
-    static int getBackgroundFrequency(Context context) {
+    public static boolean getBackgroundDownload(Context context) {
+        if (DEBUGGING)
+            Log.d(TAG, "Background Download set to " + getPrefs(context).getBoolean
+                    (UPDATER_BACK_SERVICE, true));
+        return getPrefs(context).getBoolean(UPDATER_BACK_SERVICE, true);
+    }
+
+    public static int getBackgroundFrequency(Context context) {
         return Integer.parseInt(getPrefs(context).getString(UPDATER_BACK_FREQ, "43200"));
+    }
+
+    public static int getBackgroundFrequencyOption(Context context) {
+        return getPrefs(context).getInt(UPDATER_BACK_FREQ_OPTION, 3);
     }
 
     public static boolean getORSEnabled(Context context) {
@@ -118,6 +129,30 @@ public class Preferences implements Constants {
     public static void setDownloadFinished(Context context, boolean value) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putBoolean(IS_DOWNLOAD_FINISHED, value);
+        editor.apply();
+    }
+
+    public static void setBackgroundService(Context context, Boolean toggle) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putBoolean(UPDATER_BACK_SERVICE, toggle);
+        editor.apply();
+    }
+
+    public static void setBackgroundDownload(Context context, Boolean toggle) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putBoolean(UPDATER_AUTO_DOWNLOAD_SERVICE, toggle);
+        editor.apply();
+    }
+
+    public static void setBackgroundFrequency(Context context, String time) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(UPDATER_BACK_FREQ, time);
+        editor.apply();
+    }
+
+    public static void setBackgroundFrequencyOption(Context context, Integer selection) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putInt(UPDATER_BACK_FREQ_OPTION, selection);
         editor.apply();
     }
 

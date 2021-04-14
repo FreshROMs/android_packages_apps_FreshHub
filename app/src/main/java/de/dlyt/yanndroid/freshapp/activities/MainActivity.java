@@ -24,7 +24,12 @@ import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +43,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -68,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     String feedback_url = "https://tiny.cc/FRSH-Feedback";
     WebView webView;
     ProgressBar web_progressbar;
+    ProgressBar ota_progressbar;
     private Builder mCompatibilityDialog;
     private Builder mDonateDialog;
     private Builder mPlayStoreDialog;
@@ -77,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MANIFEST_LOADED)) {
                 updateAllLayouts();
+                ota_progressbar.setVisibility(View.GONE);
 
                 if (RomUpdate.getUpdateAvailability(mContext) && !Utils.isUpdateIgnored(mContext)) {
                     Utils.setupNotification(mContext, RomUpdate.getReleaseVersion(mContext), RomUpdate.getReleaseVariant(mContext));
@@ -93,16 +101,23 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
     private boolean updateAllLayouts() {
         try {
-            updateDonateLinkLayout();
+            // updateDonateLinkLayout();
             updateAddonsLayout();
             updateRomInformation();
-            updateRomUpdateLayouts();
-            updateWebsiteLayout();
+            updateRomUpdateLayouts(true);
+            // updateWebsiteLayout();
             return true;
         } catch (Exception e) {
             // Suppress warning
         }
         return false;
+    }
+
+    public static void setLayoutEnabled(LinearLayout view, boolean enable) {
+        view.setEnabled(enable);
+        view.setClickable(enable);
+        view.setFocusable(enable);
+        view.setAlpha(enable? 1f: 0.7f);
     }
 
     @Override
@@ -113,6 +128,9 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
         webView = findViewById(R.id.webview);
         web_progressbar = findViewById(R.id.web_progressbar);
+        ota_progressbar = findViewById(R.id.ota_progressbar);
+        SwitchMaterial notifSwitch = findViewById(R.id.switch_notifications);
+        SwitchMaterial dataSaver = findViewById(R.id.switch_data_saver);
 
         initToolbar();
         initDrawer();
@@ -157,12 +175,15 @@ public class MainActivity extends AppCompatActivity implements Constants,
         Utils.setHasFileDownloaded(mContext);
 
         // Update the layouts
-        updateDonateLinkLayout();
+        //updateDonateLinkLayout();
         updateAddonsLayout();
         updateRomInformation();
-        updateRomUpdateLayouts();
-        updateWebsiteLayout();
+        updateRomUpdateLayouts(false);
+        //updateWebsiteLayout();
         refreshDrawer();
+
+        notifSwitch.setChecked(Preferences.getBackgroundService(mContext));
+        dataSaver.setChecked(Preferences.getBackgroundDownload(mContext));
 
         // But check permissions first - download will be started in the callback
         int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(),
@@ -173,6 +194,57 @@ public class MainActivity extends AppCompatActivity implements Constants,
                     PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
         }
         new checkRoot().execute("");
+
+        LinearLayout background_options_layout = (LinearLayout) findViewById(R.id.background_options);
+        String[] background_options = getResources().getStringArray(R.array.updater_background_frequency_entries);
+        String[] background_values = getResources().getStringArray(R.array.updater_background_frequency_values);
+        TextView background_option_desc = findViewById(R.id.background_options_selected);
+        Spinner background_spinner = findViewById(R.id.background_options_spinner);
+        Integer background_selected = Preferences.getBackgroundFrequencyOption(mContext);
+
+        background_spinner.setAdapter(new ArrayAdapter<String>(mContext, R.layout.spinner_item, background_options));
+        ArrayAdapter background_spinner_adapter = (ArrayAdapter) background_spinner.getAdapter();
+        background_spinner_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        background_spinner_adapter.notifyDataSetChanged();
+
+        background_spinner.setSelection(background_selected);
+        background_option_desc.setText(background_options[background_selected]);
+        final int[] background_spinner_selection = {background_selected};
+
+        setLayoutEnabled(background_options_layout, Preferences.getBackgroundService(mContext));
+
+        background_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int selection, long id) {
+                background_spinner_selection[0] = selection;
+                String backgroundTime = background_values[selection];
+                background_option_desc.setText(background_options[selection]);
+                Preferences.setBackgroundFrequency(mContext, backgroundTime);
+                Preferences.setBackgroundFrequencyOption(mContext, selection);
+                Utils.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        notifSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Preferences.setBackgroundService(mContext, isChecked);
+                Utils.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
+                setLayoutEnabled(background_options_layout, isChecked);
+            }
+        });
+
+        dataSaver.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Preferences.setBackgroundDownload(mContext, isChecked);
+            }
+        });
     }
 
 
@@ -226,6 +298,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             public void onClick(View v) {
                 settilte(getString(R.string.update));
                 ota_content.setVisibility(View.VISIBLE);
+                ota_progressbar.setVisibility(View.VISIBLE);
                 feedback_content.setVisibility(View.GONE);
                 drawerLayout.closeDrawer(drawer, true);
             }
@@ -376,6 +449,11 @@ public class MainActivity extends AppCompatActivity implements Constants,
         collapsed_title.setText(title);
     }
 
+    public void setSubtitle(String subtitle) {
+        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
+        expanded_subtitle.setText(subtitle);
+    }
+
 
     @Override
     public void onStart() {
@@ -391,7 +469,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         switch (requestCode) {
             case PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
@@ -472,7 +550,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     }
 
     @SuppressWarnings("deprecation")
-    private void updateRomUpdateLayouts() {
+    private void updateRomUpdateLayouts(Boolean isLoaded) {
         View updateAvailable;
         View updateNotAvailable;
         updateAvailable = findViewById(R.id.layout_main_update_available);
@@ -487,68 +565,85 @@ public class MainActivity extends AppCompatActivity implements Constants,
         mProgressBar.setVisibility(View.GONE);
 
         // Update is available
-        if (RomUpdate.getUpdateAvailability(mContext) || (!RomUpdate.getUpdateAvailability(mContext)) && Utils.isUpdateIgnored(mContext)) {
-            updateAvailable.setVisibility(View.VISIBLE);
-            TextView updateAvailableTitle = (TextView) findViewById(R.id.main_tv_update_available_title);
+        if (isLoaded) {  
+            if (RomUpdate.getUpdateAvailability(mContext) || (!RomUpdate.getUpdateAvailability(mContext)) && Utils.isUpdateIgnored(mContext)) {
+                updateAvailable.setVisibility(View.VISIBLE);
+                TextView updateAvailableTitle = (TextView) findViewById(R.id.main_tv_update_available_title);
 
-            if (Preferences.getDownloadFinished(mContext)) { //  Update already finished?
-                updateAvailableTitle.setText(getResources().getString(R.string
-                        .main_update_finished));
-                String htmlColorOpen;
-                htmlColorOpen = "<font color='" + getResources().getColor(R.color.item_color) + "'>";
-                String htmlColorClose = "</font>";
-                String updateSummary = RomUpdate.getFilename(mContext)
-                        + "<br />"
-                        + htmlColorOpen
-                        + getResources().getString(R.string.main_download_completed_details)
-                        + htmlColorClose;
-                updateAvailableSummary.setText(Html.fromHtml(updateSummary));
-            } else if (Preferences.getIsDownloadOnGoing(mContext)) {
-                updateAvailableTitle.setText(getResources().getString(R.string
-                        .main_update_progress));
-                mProgressBar.setVisibility(View.VISIBLE);
-                String htmlColorOpen;
-                htmlColorOpen = "<font color='" + getResources().getColor(R.color.item_color) + "'>";
-                String htmlColorClose = "</font>";
-                String updateSummary = htmlColorOpen
-                        + getResources().getString(R.string.main_tap_to_view_progress)
-                        + htmlColorClose;
-                updateAvailableSummary.setText(Html.fromHtml(updateSummary));
+                if (Preferences.getDownloadFinished(mContext)) { //  Update already finished?
+                    updateAvailableTitle.setText(getResources().getString(R.string
+                            .main_update_finished));
+                    String htmlColorOpen;
+                    htmlColorOpen = "<font color='" + getResources().getColor(R.color.item_color) + "'>";
+                    String htmlColorClose = "</font>";
+                    String updateSummary = getResources().getString(R.string.system_name) + " " +
+                            RomUpdate.getReleaseVersion(mContext) + " " + RomUpdate.getReleaseVariant(mContext);
+                    updateAvailableSummary.setText(Html.fromHtml(updateSummary));
+                } else if (Preferences.getIsDownloadOnGoing(mContext)) {
+                    updateAvailableTitle.setText(getResources().getString(R.string
+                            .main_update_progress));
+                    mProgressBar.setVisibility(View.VISIBLE);
+                    String htmlColorOpen;
+                    htmlColorOpen = "<font color='" + getResources().getColor(R.color.item_color) + "'>";
+                    String htmlColorClose = "</font>";
+                    String updateSummary = htmlColorOpen
+                            + getResources().getString(R.string.main_tap_to_view_progress)
+                            + htmlColorClose;
+                    updateAvailableSummary.setText(Html.fromHtml(updateSummary));
+                } else {
+                    updateAvailableTitle.setText(getResources().getString(R.string
+                            .main_update_available));
+                    setSubtitle(getResources().getString(R.string.main_update_available));
+                    String htmlColorOpen;
+                    htmlColorOpen = "<font color='" + getResources().getColor(R.color.item_color) + "'>";
+                    String htmlColorClose = "</font>";
+                    String updateSummary = getResources().getString(R.string.system_name) + " " +
+                            RomUpdate.getReleaseVersion(mContext) + " " + RomUpdate.getReleaseVariant(mContext);
+
+                    updateAvailableSummary.setText(Html.fromHtml(updateSummary));
+                }
             } else {
-                updateAvailableTitle.setText(getResources().getString(R.string
-                        .main_update_available));
-                String htmlColorOpen;
-                htmlColorOpen = "<font color='" + getResources().getColor(R.color.item_color) + "'>";
-                String htmlColorClose = "</font>";
-                String updateSummary = RomUpdate.getFilename(mContext)
-                        + "<br />"
-                        + htmlColorOpen
-                        + getResources().getString(R.string.main_tap_to_download)
-                        + htmlColorClose;
-                updateAvailableSummary.setText(Html.fromHtml(updateSummary));
+                updateNotAvailable.setVisibility(View.VISIBLE);
+                setSubtitle(getResources().getString(R.string.main_no_update_available));
+
+                boolean is24 = DateFormat.is24HourFormat(mContext);
+                Date now = new Date();
+                Locale locale = Locale.getDefault();
+                String time;
+
+                if (is24) {
+                    time = new SimpleDateFormat("MMMM d - HH:mm", locale).format(now);
+                } else {
+                    time = new SimpleDateFormat("MMMM d - hh:mm a", locale).format(now);
+                }
+
+                Preferences.setUpdateLastChecked(this, time);
+                String lastChecked = getString(R.string.main_last_checked) + " ";
+                updateNotAvailableSummary.setText(String.format("%s%s", lastChecked, time));
             }
         } else {
-            updateNotAvailable.setVisibility(View.VISIBLE);
+                updateNotAvailable.setVisibility(View.VISIBLE);
+                setSubtitle(getResources().getString(R.string.main_no_update_available));
 
-            boolean is24 = DateFormat.is24HourFormat(mContext);
-            Date now = new Date();
-            Locale locale = Locale.getDefault();
-            String time;
+                boolean is24 = DateFormat.is24HourFormat(mContext);
+                Date now = new Date();
+                Locale locale = Locale.getDefault();
+                String time;
 
-            if (is24) {
-                time = new SimpleDateFormat("MMMM d - HH:mm", locale).format(now);
-            } else {
-                time = new SimpleDateFormat("MMMM d - hh:mm a", locale).format(now);
+                if (is24) {
+                    time = new SimpleDateFormat("MMMM d - HH:mm", locale).format(now);
+                } else {
+                    time = new SimpleDateFormat("MMMM d - hh:mm a", locale).format(now);
+                }
+
+                Preferences.setUpdateLastChecked(this, time);
+                String lastChecked = getString(R.string.main_last_checked) + " ";
+                updateNotAvailableSummary.setText(String.format("%s%s", lastChecked, time));
             }
-
-            Preferences.setUpdateLastChecked(this, time);
-            String lastChecked = getString(R.string.main_last_checked);
-            updateNotAvailableSummary.setText(String.format("%s%s", lastChecked, time));
-        }
     }
 
     private void updateAddonsLayout() {
-        MaterialCardView addonsLink = (MaterialCardView) findViewById(R.id.layout_main_addons);
+        LinearLayout addonsLink = findViewById(R.id.layout_main_addons);
         addonsLink.setVisibility(View.GONE);
 
         if (RomUpdate.getAddonsCount(mContext) > 0) {
@@ -612,6 +707,21 @@ public class MainActivity extends AppCompatActivity implements Constants,
         String romSplActual = Utils.renderAndroidSpl(Utils.getProp("ro.build.version.security_patch"));
         splVersion.setText(Html.fromHtml(romSplTitle + htmlColorOpen + romSplActual +
                 htmlColorClose));
+    }
+
+    public void toggleNotificationSwitch(View v) {
+        SwitchMaterial notifSwitch = findViewById(R.id.switch_notifications);
+        notifSwitch.toggle();
+    }
+
+    public void toggleAutoUpdateSwitch(View v) {
+        SwitchMaterial dataSaver = findViewById(R.id.switch_data_saver);
+        dataSaver.toggle();
+    }
+
+    public void openNotificationFreqSpinner(View v) {
+        Spinner options_spinner = findViewById(R.id.background_options_spinner);
+        options_spinner.performClick();
     }
 
     public void openCheckForUpdates(View v) {

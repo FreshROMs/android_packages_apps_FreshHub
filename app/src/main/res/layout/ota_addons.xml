@@ -15,6 +15,7 @@
         android:layout_height="match_parent"
         android:foreground="@drawable/rounded_corner_top"
         android:orientation="vertical"
+        android:background="@color/sesl_background_floating"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <ListView
@@ -23,7 +24,8 @@
             android:layout_height="wrap_content"
             android:divider="@null"
             android:dividerHeight="10dp"
-            android:nestedScrollingEnabled="true" />
+            android:nestedScrollingEnabled="true"
+            android:foreground="@drawable/rounded_corner_top" />
 
     </LinearLayout>
 

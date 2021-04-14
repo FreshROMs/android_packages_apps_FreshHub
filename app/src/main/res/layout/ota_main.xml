@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
@@ -7,76 +8,274 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".activities.MainActivity">
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:foreground="@drawable/rounded_corner_bottom">
-
-
         <include layout="@layout/toolbar_layout" />
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:foreground="@drawable/rounded_corner_top"
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-
-                    <LinearLayout
+                    <FrameLayout
                         android:id="@+id/ota_content"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
                         android:orientation="vertical">
-
-                        <include layout="@layout/card_rom_info" />
-
-                        <include
-                            layout="@layout/card_update"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp" />
-
-                        <include
-                            layout="@layout/card_no_update"
-                            android:layout_width="match_parent"
+                            android:orientation="vertical">
+                            <include
+                                layout="@layout/card_update"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <include
+                                layout="@layout/card_no_update"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <com.google.android.material.textview.MaterialTextView
+                                    style="?android:attr/textAppearanceSmall"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="@string/main_header_community"
+                                    android:textStyle="bold" />
+                                <include layout="@layout/card_community"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <com.google.android.material.textview.MaterialTextView
+                                    style="?android:attr/textAppearanceSmall"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="@string/preferences_name"
+                                    android:textStyle="bold" />
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left|center"
+                                        android:orientation="vertical">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="left|center"
+                                            android:orientation="vertical">
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="left|center_vertical"
+                                                android:orientation="horizontal"
+                                                android:background="?selectableItemBackground"
+                                                android:clickable="true"
+                                                android:focusable="true"
+                                                android:onClick="toggleNotificationSwitch">
+                                                <LinearLayout
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginVertical="15dp"
+                                                    android:layout_marginLeft="24dp"
+                                                    android:layout_weight="1"
+                                                    android:gravity="center_vertical|left"
+                                                    android:orientation="horizontal"
+                                                    android:paddingRight="16dp">
+                                                    <LinearLayout
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical"
+                                                        android:paddingEnd="12dp">
+                                                        <com.google.android.material.textview.MaterialTextView
+                                                            style="?textAppearanceBody1"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="@string/setting_notifications"
+                                                            android:textSize="18sp" />
+                                                        <com.google.android.material.textview.MaterialTextView
+                                                            style="?android:attr/textAppearanceSmall"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="@string/setting_notifications_summary" />
+                                                    </LinearLayout>
+                                                </LinearLayout>
+                                                <com.google.android.material.switchmaterial.SwitchMaterial
+                                                    android:id="@+id/switch_notifications"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginRight="32dp"
+                                                    android:paddingLeft="8dp" />
+                                            </LinearLayout>
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="1dp"
+                                                android:layout_marginLeft="24dp"
+                                                android:layout_marginRight="24dp"
+                                                android:background="#4D808080" />
+                                            <LinearLayout
+                                                android:id="@+id/background_options"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center_vertical|left"
+                                                android:background="?selectableItemBackground"
+                                                android:clickable="true"
+                                                android:focusable="true"
+                                                android:onClick="openNotificationFreqSpinner">
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:gravity="center_vertical|left"
+                                                    android:paddingVertical="16dp"
+                                                    android:layout_marginHorizontal="24dp"
+                                                    android:orientation="horizontal"
+                                                    android:duplicateParentState="true">
+                                                    <LinearLayout
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical"
+                                                        android:duplicateParentState="true">
+                                                        <com.google.android.material.textview.MaterialTextView
+                                                            style="?textAppearanceBody1"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="@string/background_frequency"
+                                                            android:textSize="18sp"
+                                                            android:duplicateParentState="true"/>
+                                                        <com.google.android.material.textview.MaterialTextView
+                                                            android:id="@+id/background_options_selected"
+                                                            style="?android:attr/textAppearanceSmall"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="@string/setting_auto_download_summary"
+                                                            android:duplicateParentState="true"/>
+                                                    </LinearLayout>
+                                                    <androidx.appcompat.widget.AppCompatSpinner
+                                                        android:id="@+id/background_options_spinner"
+                                                        style="?textAppearanceBody1"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:paddingLeft="24dp"
+                                                        android:layout_weight="1"
+                                                        android:spinnerMode="dialog"
+                                                        android:background="@null"
+                                                        android:theme="@style/SpinnerStyle"
+                                                        android:prompt="@string/background_frequency"/>
+                                                </LinearLayout>
+                                            </LinearLayout>
+                                        </LinearLayout>
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_marginLeft="24dp"
+                                            android:layout_marginRight="24dp"
+                                            android:background="#4D808080" />
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="left|center_vertical"
+                                            android:orientation="horizontal"
+                                            android:background="?selectableItemBackground"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:onClick="toggleAutoUpdateSwitch">
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginVertical="15dp"
+                                                android:layout_marginLeft="24dp"
+                                                android:layout_weight="1"
+                                                android:gravity="center_vertical|left"
+                                                android:orientation="horizontal"
+                                                android:paddingRight="16dp">
+                                                <LinearLayout
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:orientation="vertical"
+                                                    android:paddingEnd="12dp">
+                                                    <com.google.android.material.textview.MaterialTextView
+                                                        style="?textAppearanceBody1"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="@string/setting_auto_download"
+                                                        android:textSize="18sp" />
+                                                    <com.google.android.material.textview.MaterialTextView
+                                                        style="?android:attr/textAppearanceSmall"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="@string/setting_auto_download_summary" />
+                                                </LinearLayout>
+                                            </LinearLayout>
+                                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                                android:id="@+id/switch_data_saver"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginRight="32dp"
+                                                android:paddingLeft="8dp" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </com.google.android.material.card.MaterialCardView>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <com.google.android.material.textview.MaterialTextView
+                                    style="?android:attr/textAppearanceSmall"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="@string/main_rom_information"
+                                    android:textStyle="bold" />
+                                <include layout="@layout/card_rom_info"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/ota_activity_main"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp" />
-
-                        <include
-                            layout="@layout/card_addons"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp" />
-
-                        <include
-                            layout="@layout/card_website"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp" />
-
-                        <include
-                            layout="@layout/card_donate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp" />
-
-                    </LinearLayout>
-
-
+                            android:layout_marginTop="20dp"
+                            android:elevation="1dp"
+                            android:gravity="center">
+                            <ProgressBar
+                                android:id="@+id/ota_progressbar"
+                                style="@style/ProgressBarStyle.Circle"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="6dp"
+                                android:background="@drawable/sesl_progress_dialog_circle_background_shape"
+                                android:elevation="4dp"
+                                android:padding="5dp" />
+                        </LinearLayout>
+                    </FrameLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/feedback_content"
                         android:layout_width="match_parent"
@@ -84,7 +283,6 @@
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:visibility="gone">
-
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -92,10 +290,7 @@
                             android:elevation="1dp"
                             app:layout_constraintLeft_toLeftOf="@id/feedback_content"
                             app:layout_constraintRight_toRightOf="@id/feedback_content"
-                            app:layout_constraintTop_toTopOf="@id/feedback_content"
-
-                            >
-
+                            app:layout_constraintTop_toTopOf="@id/feedback_content">
                             <ProgressBar
                                 android:id="@+id/web_progressbar"
                                 style="@style/ProgressBarStyle.Circle"
@@ -105,35 +300,20 @@
                                 android:background="@drawable/sesl_progress_dialog_circle_background_shape"
                                 android:elevation="4dp"
                                 android:padding="5dp" />
-
                         </LinearLayout>
-
-
                         <WebView
                             android:id="@+id/webview"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:foreground="@drawable/rounded_corner_bottom" />
-
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
                 </LinearLayout>
-
-
             </androidx.core.widget.NestedScrollView>
         </LinearLayout>
-
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
     <LinearLayout
         android:id="@+id/drawer"
         style="@style/DrawerStyle">
-
         <include layout="@layout/drawer_view" />
     </LinearLayout>
-
-
 </androidx.drawerlayout.widget.DrawerLayout>
