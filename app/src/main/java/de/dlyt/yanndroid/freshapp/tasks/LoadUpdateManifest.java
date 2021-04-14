@@ -1,10 +1,13 @@
 package de.dlyt.yanndroid.freshapp.tasks;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -24,7 +27,7 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
     // Did this come from the BackgroundReceiver class?
     private boolean shouldUpdateForegroundApp;
     private Context mContext;
-    private ProgressDialog mLoadingDialog;
+    private Context context;
 
     public LoadUpdateManifest(Context context, boolean input) {
         mContext = context;
@@ -33,14 +36,6 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
 
     @Override
     protected void onPreExecute() {
-        if (shouldUpdateForegroundApp) {
-            mLoadingDialog = new ProgressDialog(mContext, R.style.AlertDialogStyle);
-            mLoadingDialog.setIndeterminate(true);
-            mLoadingDialog.setCancelable(false);
-            mLoadingDialog.setMessage(mContext.getResources().getString(R.string.loading));
-            mLoadingDialog.show();
-        }
-
         File manifest = new File(mContext.getFilesDir().getPath(), MANIFEST);
         if (manifest.exists()) {
             boolean deleted = manifest.delete();
@@ -92,7 +87,6 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
     protected void onPostExecute(Void result) {
         Intent intent;
         if (shouldUpdateForegroundApp) {
-            mLoadingDialog.cancel();
             intent = new Intent(MANIFEST_LOADED);
         } else {
             intent = new Intent(MANIFEST_CHECK_BACKGROUND);

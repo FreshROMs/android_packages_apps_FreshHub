@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="updater_background_frequency_entries">
-        <item>@string/background_30mins</item>
         <item>@string/background_60mins</item>
-        <item>@string/background_2hours</item>
         <item>@string/background_3hours</item>
         <item>@string/background_6hours</item>
         <item>@string/background_12hours</item>
@@ -12,9 +10,7 @@
         <item>@string/background_7days</item>
     </string-array>
     <string-array name="updater_background_frequency_values" translatable="false">
-        <item>1800</item>
         <item>3600</item>
-        <item>7200</item>
         <item>10800</item>
         <item>21600</item>
         <item>43200</item>

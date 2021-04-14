@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="?textAppearanceBody1"
+    android:drawableStart="@drawable/sesl_btn_radio"
+    android:drawablePadding="8dp"
+    android:singleLine="true"
+    android:layout_width="match_parent"
+    android:ellipsize="none"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:textSize="18sp"
+    android:gravity="center_vertical" />

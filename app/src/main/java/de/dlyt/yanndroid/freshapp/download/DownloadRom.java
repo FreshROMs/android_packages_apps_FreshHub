@@ -36,7 +36,8 @@ public class DownloadRom implements Constants {
     public void startDownload(Context context) {
         String url = RomUpdate.getDirectUrl(context);
         String fileName = RomUpdate.getFilename(context) + ".zip";
-        String description = context.getResources().getString(R.string.downloading);
+        String otaName = context.getString(R.string.system_name) + " " + RomUpdate.getReleaseVersion(context) + " "
+                + RomUpdate.getReleaseVariant(context) + " (" + RomUpdate.getVersionNumber(context) + ")";
         File file = RomUpdate.getFullFile(context);
 
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
@@ -47,8 +48,7 @@ public class DownloadRom implements Constants {
             request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
         }
 
-        request.setTitle(fileName);
-        request.setDescription(description);
+        request.setTitle(otaName);
 
         request.setVisibleInDownloadsUi(true);
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);

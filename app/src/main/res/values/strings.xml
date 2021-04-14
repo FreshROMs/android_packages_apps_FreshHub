@@ -11,21 +11,21 @@
 
     <string name="changelog_url" translatable="false">http://downloads.blissroms.com/Changelog/CHANGELOG-bliss.txt</string>
 
-    <string name="main_update_available">New Update Available!</string>
+    <string name="main_update_available">An update is available</string>
     <string name="main_update_finished">Download complete</string>
-    <string name="main_no_update_available">No Update Available</string>
+    <string name="main_no_update_available">You are up-to-date</string>
     <string name="main_update_filename">Filename</string>
     <string name="main_update_progress">Download Progress</string>
     <string name="main_website">Website</string>
-    <string name="main_website_summary">Visit the official Team Bliss website</string>
+    <string name="main_website_summary">Visit the official Fresh website</string>
     <string name="main_donate">Donate</string>
-    <string name="main_donate_summary">Donate to FreshRom!</string>
+    <string name="main_donate_summary">Help out the developer(s) of this ROM!</string>
     <string name="main_tap_to_download">Tap to download</string>
     <string name="main_download_completed_details">Tap for details</string>
     <string name="main_tap_to_view_progress">Tap to view progress</string>
-    <string name="main_last_checked">Last checked for an update on:\n</string>
+    <string name="main_last_checked">"Last checked"</string>
     <string name="main_addon">Addons</string>
-    <string name="main_addon_summary">Browse and download additional files for this ROM</string>
+    <string name="main_addon_summary">Extend your Fresh experience!</string>
 
     <!-- ROM Information -->
     <string name="main_rom_information">About your device</string>
@@ -197,7 +197,7 @@
     <!--Drawer-->
     <string name="feedback">Feedback</string>
     <string name="omc_request">OMC Request</string>
-    <string name="update">OTA</string>
+    <string name="update">@string/app_name</string>
     <string name="fresh_community">Fresh Community</string>
     <string name="fresh_updates">Fresh Updates</string>
     <string name="reboot">Reboot</string>
@@ -230,5 +230,11 @@
     <string name="system_notification_channel_desc">This notification channel allows the app to notify you about updates available on your device.</string>
     <string name="system_notification_available_title">Software update available</string>
     <string name="system_notification_available_desc">Fresh %1$s %2$s is now available for your device!</string>
-    
+
+    <string name="setting_notifications">Notifications</string>
+    <string name="setting_notifications_summary">Automatically check for updates and show a notification if one is available.</string>
+    <string name="setting_auto_download">Auto download over Wi-Fi</string>
+    <string name="setting_auto_download_summary">Download software updates automatically when connected to a Wi-Fi network.</string>
+    <string name="main_header_community">Join the community!</string>
+
 </resources>

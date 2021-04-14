@@ -8,20 +8,14 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginVertical="10dp"
+        android:paddingVertical="12dp"
         android:clickable="false"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_main_rom_information"
-            style="?android:attr/textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_rom_information" />
-
-        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_main_rom_version"
-            style="?android:attr/textAppearanceSmall"
+            style="?textAppearanceHeadline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/main_rom_version" />
