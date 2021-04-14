@@ -15,10 +15,10 @@
             android:id="@+id/layout_main_forum"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
+            android:gravity="center_vertical"
             android:onClick="openAddons">
 
             <LinearLayout
@@ -30,13 +30,12 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:contentDescription="@string/main_dev_website_icon"
-                    android:src="@drawable/ic_main_forum"
-                    card_view:tint="#f59714" />
+                    android:src="@drawable/ic_main_forum" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -64,7 +63,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="70dp"
             android:layout_marginRight="24dp"
             android:background="#4D808080" />
 
@@ -72,10 +71,10 @@
             android:id="@+id/layout_main_telegram"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
+            android:gravity="center_vertical"
             android:onClick="openAddons">
 
             <LinearLayout
@@ -87,13 +86,12 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:contentDescription="@string/main_dev_website_icon"
-                    android:src="@drawable/ic_paper_plane"
-                    card_view:tint="#0088cc" />
+                    android:src="@drawable/ic_paper_plane" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -121,7 +119,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="70dp"
             android:layout_marginRight="24dp"
             android:background="#4D808080" />
 
@@ -129,10 +127,10 @@
             android:id="@+id/layout_main_website"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
+            android:gravity="center_vertical"
             android:onClick="openWebsitePage">
 
             <LinearLayout
@@ -143,13 +141,12 @@
                 android:gravity="center_vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:contentDescription="@string/main_dev_website_icon"
-                    android:src="@drawable/ic_main_website"
-                    card_view:tint="@color/blue" />
+                    android:src="@drawable/ic_main_website" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -175,7 +172,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="70dp"
             android:layout_marginRight="24dp"
             android:background="#4D808080" />
 
@@ -183,12 +180,11 @@
             android:id="@+id/layout_main_donate"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
+            android:gravity="center_vertical"
             android:onClick="openDonationPage">
-
 
 
             <LinearLayout
@@ -199,13 +195,12 @@
                 android:gravity="center_vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:contentDescription="@string/main_dev_website_icon"
-                    android:src="@drawable/ic_main_donate"
-                    card_view:tint="@color/orange" />
+                    android:src="@drawable/ic_main_donate" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

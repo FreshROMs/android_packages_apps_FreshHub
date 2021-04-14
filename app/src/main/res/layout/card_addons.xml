@@ -19,13 +19,12 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:contentDescription="@string/main_dev_website_icon"
-                    android:src="@drawable/ic_main_addon"
-                    card_view:tint="@color/sesl_default_primary_color" />
+                    android:src="@drawable/ic_main_addon" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
