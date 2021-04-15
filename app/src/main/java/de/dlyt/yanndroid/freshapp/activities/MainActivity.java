@@ -349,14 +349,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         });
 
-        View drawer_community = findViewById(R.id.drawer_community);
-        drawer_community.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/FreshROMsCommunity")));
-            }
-        });
-
         View drawer_discord_group = findViewById(R.id.drawer_discord_group);
         drawer_discord_group.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -622,9 +614,9 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 String time;
 
                 if (is24) {
-                    time = new SimpleDateFormat("MMMM d - HH:mm", locale).format(now);
+                    time = new SimpleDateFormat("MMMM d, YYYY HH:mm", locale).format(now);
                 } else {
-                    time = new SimpleDateFormat("MMMM d - hh:mm a", locale).format(now);
+                    time = new SimpleDateFormat("MMMM d, YYYY hh:mm a", locale).format(now);
                 }
 
                 Preferences.setUpdateLastChecked(this, time);
@@ -641,9 +633,9 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 String time;
 
                 if (is24) {
-                    time = new SimpleDateFormat("MMMM d - HH:mm", locale).format(now);
+                    time = new SimpleDateFormat("MMMM d, YYYY HH:mm", locale).format(now);
                 } else {
-                    time = new SimpleDateFormat("MMMM d - hh:mm a", locale).format(now);
+                    time = new SimpleDateFormat("MMMM d, YYYY hh:mm a", locale).format(now);
                 }
 
                 Preferences.setUpdateLastChecked(this, time);
