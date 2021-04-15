@@ -24,14 +24,13 @@ import java.util.Scanner;
 
 import de.dlyt.yanndroid.freshapp.R;
 
-public class Screen_Resolution extends AppCompatActivity {
+public class ScreenResolutionSettings extends AppCompatActivity {
 
     public static String PREF_NAME = "ScreenResolutionSettings";
     public static String SCREEN_RESOLUTION = "device_screen_resolution";
     public static String RESTRICTED_API = "device_restricted_api";
 
     int resolution;
-    int api_setting;
     int default_api_setting;
     int current_resolution;
 
@@ -57,14 +56,14 @@ public class Screen_Resolution extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
         checkDefaultApiSetting();
 
-        resolution = sharedPreferences.getInt(SCREEN_RESOLUTION, R.id.resolution_high);
-        current_resolution = sharedPreferences.getInt(SCREEN_RESOLUTION, R.id.resolution_high);
-
         RadioGroup resolution_radiogroup = findViewById(R.id.resolution_radiogroup);
         MaterialButton resolution_apply = findViewById(R.id.resolution_apply);
         MaterialRadioButton resolution_low = findViewById(R.id.resolution_low);
         MaterialRadioButton resolution_medium = findViewById(R.id.resolution_medium);
         MaterialRadioButton resolution_high = findViewById(R.id.resolution_high);
+
+        resolution = sharedPreferences.getInt(SCREEN_RESOLUTION, R.id.resolution_high);
+        current_resolution = sharedPreferences.getInt(SCREEN_RESOLUTION, R.id.resolution_high);
 
         TextView resolution_summary = findViewById(R.id.resolution_summary);
 
