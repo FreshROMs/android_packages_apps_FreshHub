@@ -58,6 +58,7 @@ public interface Constants {
     String NOTIFICATIONS_VIBRATE = "notifications_vibrate";
     String IGNORE_RELEASE_VERSION = "ignored_release";
     String FIRST_RUN = "first_run";
+    String APP_ICON_ENABLED = "app_icon_enabled";
     String ABOUT_ACTIVITY_PREF = "about_activity_pref";
 
     // Broadcast intents

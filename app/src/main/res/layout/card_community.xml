@@ -1,228 +1,311 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_main_community"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/layout_main_forum"
+        android:orientation="vertical"
+        android:animateLayoutChanges="true">
+        <LinearLayout android:id="@+id/layout_main_forum"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:onClick="openAddons">
-
+            android:orientation="vertical">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginVertical="14dp"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:contentDescription="@string/main_dev_website_icon"
-                    android:src="@drawable/ic_main_forum" />
-
+                android:onClick="openForum">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="?textAppearanceBody1"
-                        android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:contentDescription="@string/main_dev_website_icon"
+                        android:src="@drawable/ic_main_forum" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="XDA Forum" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Visit the Fresh forum for your device" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?textAppearanceBody1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_community_xda" />
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?android:attr/textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_community_xda_description" />
+                    </LinearLayout>
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="24dp"
-            android:background="#4D808080" />
-
-        <LinearLayout
-            android:id="@+id/layout_main_telegram"
+        <LinearLayout android:id="@+id/layout_main_discord"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:onClick="openAddons">
-
-            <LinearLayout
+            android:orientation="vertical">
+            <View
                 android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="24dp"
+                android:background="#4D808080" />
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginVertical="14dp"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:contentDescription="@string/main_dev_website_icon"
-                    android:src="@drawable/ic_paper_plane" />
-
+                android:onClick="openDiscord">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="?textAppearanceBody1"
-                        android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:contentDescription="@string/main_dev_website_icon"
+                        android:src="@drawable/ic_main_discord" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Telegram Community" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Join the Fresh Telegram community" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?textAppearanceBody1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_community_discord" />
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?android:attr/textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_community_discord_description" />
+                    </LinearLayout>
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="24dp"
-            android:background="#4D808080" />
-
-        <LinearLayout
-            android:id="@+id/layout_main_website"
+        <LinearLayout android:id="@+id/layout_main_telegram"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:onClick="openWebsitePage">
-
-            <LinearLayout
+            android:orientation="vertical">
+            <View
                 android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="24dp"
+                android:background="#4D808080" />
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginVertical="14dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:contentDescription="@string/main_dev_website_icon"
-                    android:src="@drawable/ic_main_website" />
-
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="openTelegram">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="?textAppearanceBody1"
-                        android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:contentDescription="@string/main_dev_website_icon"
+                        android:src="@drawable/ic_main_telegram" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/main_website" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/main_website_summary" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?textAppearanceBody1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_community_telegram" />
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?android:attr/textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_community_telegram_description" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="24dp"
-            android:background="#4D808080" />
-
-        <LinearLayout
-            android:id="@+id/layout_main_donate"
+        <LinearLayout android:id="@+id/layout_main_discussions"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:onClick="openDonationPage">
-
-
-            <LinearLayout
+            android:orientation="vertical">
+            <View
                 android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="24dp"
+                android:background="#4D808080" />
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginVertical="14dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:contentDescription="@string/main_dev_website_icon"
-                    android:src="@drawable/ic_main_donate" />
-
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="openGitDiscussions">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="?textAppearanceBody1"
-                        android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:contentDescription="@string/main_dev_website_icon"
+                        android:src="@drawable/ic_main_discussions" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/main_donate" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/main_donate_summary" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?textAppearanceBody1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_community_discussions" />
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?android:attr/textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_community_discussions_description" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
-
+        <LinearLayout android:id="@+id/layout_main_website"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="24dp"
+                android:background="#4D808080" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="openWebsitePage">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="14dp"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:contentDescription="@string/main_dev_website_icon"
+                        android:src="@drawable/ic_main_website" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?textAppearanceBody1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_website" />
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?android:attr/textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_website_summary" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/layout_main_donate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="24dp"
+                android:background="#4D808080" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="openDonationPage">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="14dp"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:contentDescription="@string/main_dev_website_icon"
+                        android:src="@drawable/ic_main_donate" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?textAppearanceBody1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_donate" />
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?android:attr/textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_donate_summary" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>

@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
     private boolean updateAllLayouts() {
         try {
-            // updateDonateLinkLayout();
+            updateCommunityLinksLayout();
             updateAddonsLayout();
             updateRomInformation();
             updateRomUpdateLayouts(true);
@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         ota_progressbar = findViewById(R.id.ota_progressbar);
         SwitchMaterial notifSwitch = findViewById(R.id.switch_notifications);
         SwitchMaterial dataSaver = findViewById(R.id.switch_data_saver);
+        SwitchMaterial appIcon = findViewById(R.id.switch_app_icon);
 
         initToolbar();
         initDrawer();
@@ -175,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         Utils.setHasFileDownloaded(mContext);
 
         // Update the layouts
-        //updateDonateLinkLayout();
+        updateCommunityLinksLayout();
         updateAddonsLayout();
         updateRomInformation();
         updateRomUpdateLayouts(false);
@@ -184,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
         notifSwitch.setChecked(Preferences.getBackgroundService(mContext));
         dataSaver.setChecked(Preferences.getBackgroundDownload(mContext));
+        appIcon.setChecked(Preferences.getAppIconState(mContext));
 
         // But check permissions first - download will be started in the callback
         int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(),
@@ -243,6 +245,14 @@ public class MainActivity extends AppCompatActivity implements Constants,
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Preferences.setBackgroundDownload(mContext, isChecked);
+            }
+        });
+
+        appIcon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Preferences.setAppIconState(mContext, isChecked);
+                Utils.toggleAppIcon(mContext, isChecked);
             }
         });
     }
@@ -336,14 +346,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/FreshROMs")));
-            }
-        });
-
-        View drawer_community = findViewById(R.id.drawer_community);
-        drawer_community.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/FreshROMsCommunity")));
             }
         });
 
@@ -612,9 +614,9 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 String time;
 
                 if (is24) {
-                    time = new SimpleDateFormat("MMMM d - HH:mm", locale).format(now);
+                    time = new SimpleDateFormat("MMMM d, YYYY HH:mm", locale).format(now);
                 } else {
-                    time = new SimpleDateFormat("MMMM d - hh:mm a", locale).format(now);
+                    time = new SimpleDateFormat("MMMM d, YYYY hh:mm a", locale).format(now);
                 }
 
                 Preferences.setUpdateLastChecked(this, time);
@@ -631,9 +633,9 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 String time;
 
                 if (is24) {
-                    time = new SimpleDateFormat("MMMM d - HH:mm", locale).format(now);
+                    time = new SimpleDateFormat("MMMM d, YYYY HH:mm", locale).format(now);
                 } else {
-                    time = new SimpleDateFormat("MMMM d - hh:mm a", locale).format(now);
+                    time = new SimpleDateFormat("MMMM d, YYYY hh:mm a", locale).format(now);
                 }
 
                 Preferences.setUpdateLastChecked(this, time);
@@ -651,22 +653,74 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
     }
 
-    private void updateDonateLinkLayout() {
-        MaterialCardView donateLink = (MaterialCardView) findViewById(R.id.layout_main_dev_donate_link);
-        donateLink.setVisibility(View.GONE);
+    private void updateCommunityLinksLayout() {
+        LinearLayout linkXdaForum = (LinearLayout) findViewById(R.id.layout_main_forum);
+        LinearLayout linkDiscord = (LinearLayout) findViewById(R.id.layout_main_discord);
+        LinearLayout linkTelegram = (LinearLayout) findViewById(R.id.layout_main_telegram);
+        LinearLayout linkDiscussions = (LinearLayout) findViewById(R.id.layout_main_discussions);
+        LinearLayout linkWebsite = (LinearLayout) findViewById(R.id.layout_main_website);
+        LinearLayout linkDonate = (LinearLayout) findViewById(R.id.layout_main_donate);
+
+        linkXdaForum.setVisibility(View.GONE);
+        linkDiscord.setVisibility(View.GONE);
+        linkTelegram.setVisibility(View.GONE);
+        linkDiscussions.setVisibility(View.GONE);
+        linkWebsite.setVisibility(View.GONE);
+        linkDonate.setVisibility(View.GONE);
+
+        if (!RomUpdate.getForum(mContext).trim().equals("null")) {
+            linkXdaForum.setVisibility(View.VISIBLE);
+            linkXdaForum.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(RomUpdate.getForum(mContext))));
+                }
+            });
+        }
+
+        if (!RomUpdate.getDiscord(mContext).trim().equals("null")) {
+            linkDiscord.setVisibility(View.VISIBLE);
+            linkDiscord.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(RomUpdate.getDiscord(mContext))));
+                }
+            });
+        }
+
+        if (!RomUpdate.getGitIssues(mContext).trim().equals("null")) {
+            linkTelegram.setVisibility(View.VISIBLE);
+            linkTelegram.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(RomUpdate.getDiscord(mContext))));
+                }
+            });
+        }
+
+        if (!RomUpdate.getGitDiscussion(mContext).trim().equals("null")) {
+            linkDiscussions.setVisibility(View.VISIBLE);
+            linkDiscussions.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(RomUpdate.getGitDiscussion(mContext))));
+                }
+            });
+        }
+
+        if (!RomUpdate.getWebsite(mContext).trim().equals("null")) {
+            linkWebsite.setVisibility(View.VISIBLE);
+            linkWebsite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(RomUpdate.getWebsite(mContext))));
+                }
+            });
+        }
 
         if (!(RomUpdate.getDonateLink(mContext).trim().equals("null"))
                 || !(RomUpdate.getBitCoinLink(mContext).trim().equals("null"))) {
-            donateLink.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void updateWebsiteLayout() {
-        MaterialCardView webLink = (MaterialCardView) findViewById(R.id.layout_main_dev_website);
-        webLink.setVisibility(View.GONE);
-
-        if (!RomUpdate.getWebsite(mContext).trim().equals("null")) {
-            webLink.setVisibility(View.VISIBLE);
+            linkDonate.setVisibility(View.VISIBLE);
         }
     }
 
@@ -719,6 +773,11 @@ public class MainActivity extends AppCompatActivity implements Constants,
         dataSaver.toggle();
     }
 
+    public void toggleAppIconSwitch(View v) {
+        SwitchMaterial appIcon = findViewById(R.id.switch_app_icon);
+        appIcon.toggle();
+    }
+
     public void openNotificationFreqSpinner(View v) {
         Spinner options_spinner = findViewById(R.id.background_options_spinner);
         options_spinner.performClick();
@@ -764,9 +823,46 @@ public class MainActivity extends AppCompatActivity implements Constants,
         startActivity(intent);
     }
 
-    public void openSettings(View v) {
-        Intent intent = new Intent(mContext, SettingsActivity.class);
-        startActivityForResult(intent, CHANGE_THEME_REQUEST_CODE);
+    public void openForum(View v) {
+        String url = RomUpdate.getForum(mContext);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    public void openDiscord(View v) {
+        String url = RomUpdate.getDiscord(mContext);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    public void openGitDiscussions(View v) {
+        String url = RomUpdate.getGitDiscussion(mContext);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    public void openTelegram(View v) {
+        String url = "https://t.me/FreshROMsCommunity";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    // There are no request codes
+                    Intent data = result.getData();
+                }
+            });
+
+    public void openAbout(View v) {
+        Intent intent = new Intent(mContext, AboutActivity.class);
+        someActivityResultLauncher.launch(intent);
     }
 
 
