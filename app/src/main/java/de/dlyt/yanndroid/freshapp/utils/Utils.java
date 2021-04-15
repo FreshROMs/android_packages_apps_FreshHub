@@ -26,6 +26,7 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -222,6 +223,14 @@ public class Utils implements Constants {
         } else {
             return null;
         }
+    }
+
+    public static void toggleAppIcon(Context context, boolean enabled) {
+        PackageManager packageManager = context.getPackageManager();
+        ComponentName launcherActivity = new ComponentName(context, de.dlyt.yanndroid.freshapp.activities.SplashActivity.class);
+        packageManager.setComponentEnabledSetting(launcherActivity,
+                enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
     }
 
     public static void setUpdateAvailability(Context context) {

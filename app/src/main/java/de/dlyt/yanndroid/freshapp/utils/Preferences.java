@@ -86,6 +86,13 @@ public class Preferences implements Constants {
         return getPrefs(context).getBoolean(UPDATER_BACK_SERVICE, true);
     }
 
+    public static boolean getAppIconState(Context context) {
+        if (DEBUGGING)
+            Log.d(TAG, "Background Service set to " + getPrefs(context).getBoolean
+                    (APP_ICON_ENABLED, true));
+        return getPrefs(context).getBoolean(APP_ICON_ENABLED, true);
+    }
+
     public static boolean getBackgroundDownload(Context context) {
         if (DEBUGGING)
             Log.d(TAG, "Background Download set to " + getPrefs(context).getBoolean
@@ -135,6 +142,12 @@ public class Preferences implements Constants {
     public static void setBackgroundService(Context context, Boolean toggle) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putBoolean(UPDATER_BACK_SERVICE, toggle);
+        editor.apply();
+    }
+
+    public static void setAppIconState(Context context, Boolean toggle) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putBoolean(APP_ICON_ENABLED, toggle);
         editor.apply();
     }
 

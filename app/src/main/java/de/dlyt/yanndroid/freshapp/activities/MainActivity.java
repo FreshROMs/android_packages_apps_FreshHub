@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         ota_progressbar = findViewById(R.id.ota_progressbar);
         SwitchMaterial notifSwitch = findViewById(R.id.switch_notifications);
         SwitchMaterial dataSaver = findViewById(R.id.switch_data_saver);
+        SwitchMaterial appIcon = findViewById(R.id.switch_app_icon);
 
         initToolbar();
         initDrawer();
@@ -184,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
         notifSwitch.setChecked(Preferences.getBackgroundService(mContext));
         dataSaver.setChecked(Preferences.getBackgroundDownload(mContext));
+        appIcon.setChecked(Preferences.getAppIconState(mContext));
 
         // But check permissions first - download will be started in the callback
         int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(),
@@ -243,6 +245,14 @@ public class MainActivity extends AppCompatActivity implements Constants,
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Preferences.setBackgroundDownload(mContext, isChecked);
+            }
+        });
+
+        appIcon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Preferences.setAppIconState(mContext, isChecked);
+                Utils.toggleAppIcon(mContext, isChecked);
             }
         });
     }
@@ -717,6 +727,11 @@ public class MainActivity extends AppCompatActivity implements Constants,
     public void toggleAutoUpdateSwitch(View v) {
         SwitchMaterial dataSaver = findViewById(R.id.switch_data_saver);
         dataSaver.toggle();
+    }
+
+    public void toggleAppIconSwitch(View v) {
+        SwitchMaterial appIcon = findViewById(R.id.switch_app_icon);
+        appIcon.toggle();
     }
 
     public void openNotificationFreqSpinner(View v) {
