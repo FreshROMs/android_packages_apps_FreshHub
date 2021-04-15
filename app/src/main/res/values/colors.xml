@@ -101,7 +101,7 @@
 
     <!--Others-->
     <color name="button_ripple_color">#e1e1e1</color>
-    <color name="button_background_color">#4dcccccc</color>
+    <color name="button_background_color">#0f000000</color>
     <color name="drawer_dim_color">#33000000</color>
     <color name="item_divider_color">#ff979797</color>
     <color name="drawer_icon_color">#ff676768</color>

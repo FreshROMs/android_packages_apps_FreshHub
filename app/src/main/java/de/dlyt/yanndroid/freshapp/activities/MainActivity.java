@@ -32,6 +32,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,7 +44,6 @@ import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.io.File;
@@ -288,12 +289,11 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
 
         /**Items*/
-        View drawer_settings = findViewById(R.id.drawer_settings);
-        drawer_settings.setOnClickListener(new View.OnClickListener() {
+        View drawer_about = findViewById(R.id.drawer_about);
+        drawer_about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openSettings(null);
-                drawerLayout.closeDrawer(drawer, true);
+                openAbout(null);
             }
         });
 
@@ -373,7 +373,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         drawer_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent().setClass(getApplicationContext(), Screen_Resolution.class));
+                startActivity(new Intent().setClass(getApplicationContext(), ScreenResolutionSettings.class));
             }
         });
 
@@ -461,7 +461,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
     public void onStart() {
         super.onStart();
         this.registerReceiver(mReceiver, new IntentFilter(MANIFEST_LOADED));
-
     }
 
     @Override
@@ -470,6 +469,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         this.unregisterReceiver(mReceiver);
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
