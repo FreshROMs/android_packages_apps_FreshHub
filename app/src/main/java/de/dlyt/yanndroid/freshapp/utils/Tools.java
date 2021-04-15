@@ -53,8 +53,8 @@ public class Tools implements Constants {
     }
 
     private static String getSuBin() {
-        if (new File("/system/xbin", "su").exists()) {
-            return "/system/xbin/su";
+        if (new File("/system/bin", "su").exists()) {
+            return "/system/bin/su";
         }
         if (RootTools.isRootAvailable()) {
             return "su";
