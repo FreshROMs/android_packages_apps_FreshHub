@@ -8,7 +8,7 @@
         android:shortcutShortLabel="@string/system_settings_resolution_plugin_title">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="de.dlyt.yanndroid.freshapp.activities.Screen_Resolution"
+            android:targetClass="de.dlyt.yanndroid.freshapp.activities.ScreenResolutionSettings"
             android:targetPackage="de.dlyt.yanndroid.freshapp" />
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
