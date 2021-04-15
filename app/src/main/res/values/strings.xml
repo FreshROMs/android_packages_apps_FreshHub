@@ -236,6 +236,13 @@
     <string name="setting_auto_download">Auto download over Wi-Fi</string>
     <string name="setting_auto_download_summary">Download software updates automatically when connected to a Wi-Fi network.</string>
     <string name="main_header_community">Join the community!</string>
+    <string name="main_community_discord_description">Join the official Discord server!</string>
+    <string name="main_community_discord">Fresh Community Discord</string>
+    <string name="main_community_telegram">Telegram Community</string>
+    <string name="main_community_telegram_description">Join the Fresh Telegram community</string>
+    <string name="main_community_discussions">GitHub Discussions</string>
+    <string name="main_community_discussions_description">Discuss new features and more</string>
+    <string name="main_community_xda">XDA Forum</string>
     <string name="main_community_xda_description">Visit the Fresh forum for your device</string>
     <string name="setting_app_icon">Add Fresh Hub icon</string>
     <string name="setting_app_icon_summary">Add Fresh Hub to the Apps screen.</string>
