@@ -1,109 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginVertical="10dp"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:id="@+id/addon_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginVertical="10dp"
-        android:padding="24dp">
+        android:clickable="false"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/addon_information"
-            android:layout_width="match_parent"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title"
+            style="?textAppearanceBody1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="false"
-            android:orientation="vertical">
+            android:text="Addon Name"
+            android:textSize="18.0sp" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/title"
-                style="?textAppearanceBody1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18.0sp"
-                android:text="Addon Name"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/description"
-                style="?android:attr/textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Addon Description" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/size"
-                style="?android:attr/textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10.0sp"
-                android:text="100MB"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/updatedOn"
-                style="?android:attr/textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10.0sp"
-                android:text="Last update" />
-
-            <androidx.appcompat.widget.SeslProgressBar
-                android:id="@+id/progress_bar"
-                style="@style/ProgressBarStyle.Horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dip"
-                android:indeterminate="false" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/addon_links_box"
-            android:layout_width="match_parent"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/description"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/addon_information"
-            android:orientation="horizontal">
+            android:text="Addon Description" />
 
-            <include
-                layout="@layout/ota_addon_download_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <!--<View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginVertical="15dp"
-                android:background="@color/divider_color" />-->
-
-            <include
-                layout="@layout/ota_addon_cancel_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <!--<View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginVertical="15dp"
-                android:background="@color/divider_color" />-->
-
-            <include
-                layout="@layout/ota_addon_delete_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/size"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/addon_links_box"
-            android:orientation="horizontal">
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginVertical="5dp"
-                android:background="@color/divider_color" />
-        </LinearLayout>
-    </RelativeLayout>
+            android:text="100MB"
+            android:textSize="10.0sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/updatedOn"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last update"
+            android:textSize="10.0sp" />
+
+        <androidx.appcompat.widget.SeslProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/ProgressBarStyle.Horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dip"
+            android:indeterminate="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/addon_links_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addon_information"
+        android:orientation="horizontal">
+
+        <include
+            layout="@layout/ota_addon_download_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <!--<View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="15dp"
+            android:background="@color/divider_color" />-->
+
+        <include
+            layout="@layout/ota_addon_cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <!--<View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="15dp"
+            android:background="@color/divider_color" />-->
+
+        <include
+            layout="@layout/ota_addon_delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addon_links_box"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="5dp"
+            android:background="@color/divider_color" />
+    </LinearLayout>
+</RelativeLayout>

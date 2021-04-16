@@ -145,8 +145,9 @@
     </style>
 
     <style name="ButtonStyle.Invert.Secondary">
-        <item name="android:backgroundTint">@color/sesl_btn_secondary_color_state</item>
-        <item name="android:textColor">@color/item_color</item>
+        <item name="rippleColor">@color/item_color</item>
+        <item name="android:backgroundTint">@color/raised_button_background_color_selector</item>
+        <item name="android:textColor">@color/raised_button_text_color_selector</item>
     </style>
 
     <style name="ButtonStyle.PreferenceSetting">
@@ -272,7 +273,6 @@
         <item name="android:textColorHint">?android:textColorHint</item>
         <item name="android:textColorLink">?android:textColorLink</item>
     </style>
-
 
 
     <!--Transparent Activity-->

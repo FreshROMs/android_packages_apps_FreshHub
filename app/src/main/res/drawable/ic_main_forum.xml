@@ -14,10 +14,10 @@
             android:strokeColor="#00000000" />
     </group>
     <group
-        android:translateX="70"
-        android:translateY="70"
         android:scaleX="0.7"
-        android:scaleY="0.7">
+        android:scaleY="0.7"
+        android:translateX="70"
+        android:translateY="70">
 
         <path
             android:fillColor="@color/white"

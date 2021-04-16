@@ -47,7 +47,7 @@ public class DownloadAddon implements Constants {
 
         // Because of Scoped Storage, we can only download into public directories.
         // Directory is '/storage/emulated/0/Download/Fresh'
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, OTA_DOWNLOAD_DIR+fileName);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, OTA_DOWNLOAD_DIR + fileName);
 
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context
                 .DOWNLOAD_SERVICE);

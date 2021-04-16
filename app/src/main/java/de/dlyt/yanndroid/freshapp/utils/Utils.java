@@ -18,8 +18,8 @@ package de.dlyt.yanndroid.freshapp.utils;
 
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.NotificationChannelGroup;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
@@ -29,13 +29,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Build;
 import android.text.format.DateFormat;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.NotificationCompat.Builder;
 import androidx.core.app.TaskStackBuilder;
 

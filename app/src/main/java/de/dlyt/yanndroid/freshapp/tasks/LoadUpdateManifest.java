@@ -1,13 +1,9 @@
 package de.dlyt.yanndroid.freshapp.tasks;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
 
 import java.io.BufferedInputStream;
 import java.io.File;

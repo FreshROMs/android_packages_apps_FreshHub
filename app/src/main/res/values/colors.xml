@@ -116,4 +116,8 @@
     <color name="ota_swupdate_new_sub_title_textcolor">#ff686868</color>
     <color name="ota_swupdate_new_title_textcolor">#ff252525</color>
 
+    <color name="raised_button_background_color">#0f000000</color>
+    <color name="raised_button_text_color">#ff252525</color>
+
+
 </resources>

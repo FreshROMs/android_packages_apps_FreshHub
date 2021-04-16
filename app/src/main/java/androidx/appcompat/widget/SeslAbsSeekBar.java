@@ -32,6 +32,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.appcompat.Styleable;
 import androidx.appcompat.animation.SeslAnimationUtils;
 import androidx.appcompat.graphics.drawable.DrawableWrapper;
 import androidx.appcompat.util.SeslMisc;
@@ -48,7 +49,6 @@ import java.util.Collections;
 import java.util.List;
 
 import de.dlyt.yanndroid.freshapp.R;
-import androidx.appcompat.Styleable;
 
 public abstract class SeslAbsSeekBar extends SeslProgressBar {
     static final float SCALE_FACTOR = 1000.0f;

@@ -247,4 +247,8 @@
     <string name="setting_app_icon">Add Fresh Hub icon</string>
     <string name="setting_app_icon_summary">Add Fresh Hub to the Apps screen.</string>
 
+
+    <string name="the_latest_version_is_already_installed">The latest version is already installed.</string>
+    <string name="a_new_version_is_available">A new version is available.</string>
+
 </resources>

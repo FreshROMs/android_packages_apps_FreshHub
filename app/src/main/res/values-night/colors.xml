@@ -47,4 +47,8 @@
     <color name="sec_display_resolution_desc_text_color">#ff7a7a7a</color>
     <color name="sec_display_resolution_help_desc_text_color">#fffafafa</color>
 
+    <color name="raised_button_background_color">#2bfafafa</color>
+    <color name="raised_button_text_color">#fffafafa</color>
+
+
 </resources>

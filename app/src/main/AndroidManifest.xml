@@ -27,6 +27,10 @@
     <uses-permission
         android:name="android.permission.WRITE_SECURE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission
+        android:name="android.permission.INSTALL_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
@@ -36,7 +40,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.AboutActivity"></activity>
+        <activity
+            android:name=".activities.AboutActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".tasks.OtaJobScheduler"
@@ -46,6 +52,7 @@
 
         <activity
             android:name=".activities.ScreenResolutionSettings"
+            android:screenOrientation="portrait"
             android:theme="@style/SystemPreferenceTheme">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
@@ -128,6 +135,15 @@
                 <action android:name="com.ota.update.START_UPDATE_CHECK" />
             </intent-filter>
         </receiver>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
     </application>
 
 </manifest>

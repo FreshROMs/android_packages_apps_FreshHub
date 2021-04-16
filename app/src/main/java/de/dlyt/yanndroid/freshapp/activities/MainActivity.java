@@ -42,11 +42,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -76,6 +76,15 @@ public class MainActivity extends AppCompatActivity implements Constants,
     WebView webView;
     ProgressBar web_progressbar;
     ProgressBar ota_progressbar;
+    SwipeRefreshLayout swipeRefreshLayout;
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    // There are no request codes
+                    Intent data = result.getData();
+                }
+            });
     private Builder mCompatibilityDialog;
     private Builder mDonateDialog;
     private Builder mPlayStoreDialog;
@@ -100,25 +109,24 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
     }
 
+    public static void setLayoutEnabled(LinearLayout view, boolean enable) {
+        view.setEnabled(enable);
+        view.setClickable(enable);
+        view.setFocusable(enable);
+        view.setAlpha(enable ? 1f : 0.7f);
+    }
+
     private boolean updateAllLayouts() {
         try {
             updateCommunityLinksLayout();
             updateAddonsLayout();
             updateRomInformation();
             updateRomUpdateLayouts(true);
-            // updateWebsiteLayout();
             return true;
         } catch (Exception e) {
             // Suppress warning
         }
         return false;
-    }
-
-    public static void setLayoutEnabled(LinearLayout view, boolean enable) {
-        view.setEnabled(enable);
-        view.setClickable(enable);
-        view.setFocusable(enable);
-        view.setAlpha(enable? 1f: 0.7f);
     }
 
     @Override
@@ -148,13 +156,13 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
 
         // Create download directories if needed
-        File installAfterFlashDir = new File(SD_CARD
+        /*File installAfterFlashDir = new File(SD_CARD
                 + File.separator
                 + OTA_DOWNLOAD_DIR
                 + File.separator
                 + INSTALL_AFTER_FLASH_DIR);
         boolean created = installAfterFlashDir.mkdirs();
-        if (!created) Log.e(TAG, "Could not create installAfterFlash directory...");
+        if (!created) Log.e(TAG, "Could not create installAfterFlash directory...");*/
 
         createDialogs();
 
@@ -256,8 +264,27 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 Utils.toggleAppIcon(mContext, isChecked);
             }
         });
-    }
 
+
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ota_progressbar.setVisibility(View.VISIBLE);
+                web_progressbar.setVisibility(View.VISIBLE);
+                if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
+                updateCommunityLinksLayout();
+                updateAddonsLayout();
+                updateRomInformation();
+                updateRomUpdateLayouts(false);
+                refreshDrawer();
+                webView.reload();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+
+    }
 
     public void initDrawer() {
         View content = findViewById(R.id.main_content);
@@ -309,6 +336,12 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 settilte(getString(R.string.update));
                 ota_content.setVisibility(View.VISIBLE);
                 ota_progressbar.setVisibility(View.VISIBLE);
+                if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
+                updateCommunityLinksLayout();
+                updateAddonsLayout();
+                updateRomInformation();
+                updateRomUpdateLayouts(false);
+                refreshDrawer();
                 feedback_content.setVisibility(View.GONE);
                 drawerLayout.closeDrawer(drawer, true);
             }
@@ -323,7 +356,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 feedback_content.setVisibility(View.VISIBLE);
                 web_progressbar.setVisibility(View.VISIBLE);
                 webView.loadUrl(feedback_url);
-                settilte(getString(R.string.feedback));
+                setSubtitle(getString(R.string.feedback));
                 drawerLayout.closeDrawer(drawer, true);
             }
         });
@@ -336,7 +369,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 feedback_content.setVisibility(View.VISIBLE);
                 web_progressbar.setVisibility(View.VISIBLE);
                 webView.loadUrl(omc_url);
-                settilte(getString(R.string.omc_request));
+                setSubtitle(getString(R.string.omc_request));
                 drawerLayout.closeDrawer(drawer, true);
             }
         });
@@ -367,8 +400,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         });
 
 
-
-
         View drawer_test = findViewById(R.id.drawer_resolution);
         drawer_test.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -379,14 +410,13 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
     }
 
-    public void refreshDrawer(){
+    public void refreshDrawer() {
         View drawer_discord_group = findViewById(R.id.drawer_discord_group);
         String discord_url = RomUpdate.getDiscord(mContext);
         if (discord_url.trim().equals("null")) {
             drawer_discord_group.setVisibility(View.GONE);
         }
     }
-
 
     public void initWebView() {
         webView.getSettings().setDomStorageEnabled(true);
@@ -412,7 +442,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         });
         webView.loadUrl(feedback_url);
     }
-
 
     public void initToolbar() {
         /** Def */
@@ -443,7 +472,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
     }
 
-
     public void settilte(String title) {
         TextView expanded_title = findViewById(R.id.expanded_title);
         TextView collapsed_title = findViewById(R.id.collapsed_title);
@@ -455,7 +483,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
         expanded_subtitle.setText(subtitle);
     }
-
 
     @Override
     public void onStart() {
@@ -567,7 +594,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         mProgressBar.setVisibility(View.GONE);
 
         // Update is available
-        if (isLoaded) {  
+        if (isLoaded) {
             if (RomUpdate.getUpdateAvailability(mContext) || (!RomUpdate.getUpdateAvailability(mContext)) && Utils.isUpdateIgnored(mContext)) {
                 updateAvailable.setVisibility(View.VISIBLE);
                 TextView updateAvailableTitle = (TextView) findViewById(R.id.main_tv_update_available_title);
@@ -624,24 +651,24 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 updateNotAvailableSummary.setText(String.format("%s%s", lastChecked, time));
             }
         } else {
-                updateNotAvailable.setVisibility(View.VISIBLE);
-                setSubtitle(getResources().getString(R.string.main_no_update_available));
+            updateNotAvailable.setVisibility(View.VISIBLE);
+            setSubtitle(getResources().getString(R.string.main_no_update_available));
 
-                boolean is24 = DateFormat.is24HourFormat(mContext);
-                Date now = new Date();
-                Locale locale = Locale.getDefault();
-                String time;
+            boolean is24 = DateFormat.is24HourFormat(mContext);
+            Date now = new Date();
+            Locale locale = Locale.getDefault();
+            String time;
 
-                if (is24) {
-                    time = new SimpleDateFormat("MMMM d, YYYY HH:mm", locale).format(now);
-                } else {
-                    time = new SimpleDateFormat("MMMM d, YYYY hh:mm a", locale).format(now);
-                }
-
-                Preferences.setUpdateLastChecked(this, time);
-                String lastChecked = getString(R.string.main_last_checked) + " ";
-                updateNotAvailableSummary.setText(String.format("%s%s", lastChecked, time));
+            if (is24) {
+                time = new SimpleDateFormat("MMMM d, YYYY HH:mm", locale).format(now);
+            } else {
+                time = new SimpleDateFormat("MMMM d, YYYY hh:mm a", locale).format(now);
             }
+
+            Preferences.setUpdateLastChecked(this, time);
+            String lastChecked = getString(R.string.main_last_checked) + " ";
+            updateNotAvailableSummary.setText(String.format("%s%s", lastChecked, time));
+        }
     }
 
     private void updateAddonsLayout() {
@@ -850,15 +877,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         intent.setData(Uri.parse(url));
         startActivity(intent);
     }
-
-    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    // There are no request codes
-                    Intent data = result.getData();
-                }
-            });
 
     public void openAbout(View v) {
         Intent intent = new Intent(mContext, AboutActivity.class);

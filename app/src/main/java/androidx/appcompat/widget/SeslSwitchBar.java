@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.StringRes;
+import androidx.appcompat.Styleable;
 import androidx.appcompat.util.SeslMisc;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.AccessibilityDelegateCompat;
@@ -30,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.dlyt.yanndroid.freshapp.R;
-import androidx.appcompat.Styleable;
 
 public class SeslSwitchBar extends LinearLayout implements CompoundButton.OnCheckedChangeListener {
     private static final int SWITCH_OFF_STRING_RESOURCE_ID = R.string.sesl_switchbar_off_text;

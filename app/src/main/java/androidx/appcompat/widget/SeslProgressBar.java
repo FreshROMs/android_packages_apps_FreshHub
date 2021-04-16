@@ -40,6 +40,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.RestrictTo;
+import androidx.appcompat.Styleable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.util.Pools;
@@ -52,7 +53,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 
 import de.dlyt.yanndroid.freshapp.R;
-import androidx.appcompat.Styleable;
 
 @RemoteViews.RemoteView
 public class SeslProgressBar extends View {
