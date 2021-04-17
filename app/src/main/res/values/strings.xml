@@ -252,5 +252,6 @@
 
     <string name="the_latest_version_is_already_installed">The latest version is already installed.</string>
     <string name="a_new_version_is_available">A new version is available.</string>
+    <string name="main_checking_updates">Checking for updates</string>
 
 </resources>

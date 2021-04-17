@@ -463,7 +463,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             updateRomUpdateLayouts(true);
             findViewById(R.id.swiperefresh).setEnabled(false);
         } else {
-            if (RomUpdate.getUpdateAvailability(mContext)) updateRomUpdateLayouts(true);
+            updateRomUpdateLayouts(false);
             RomUpdate.setUpdateAvailable(mContext, false);
             openCheckForUpdates(null);
             findViewById(R.id.swiperefresh).setEnabled(true);
@@ -575,15 +575,16 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
     @SuppressWarnings("deprecation")
     private void updateRomUpdateLayouts(Boolean isLoaded) {
-        View updateAvailable;
-        View updateNotAvailable;
-        updateAvailable = findViewById(R.id.layout_main_update_available);
-        updateNotAvailable = findViewById(R.id.layout_main_no_update_available);
+        View updateAvailable = findViewById(R.id.layout_main_update_available);
+        View updateNotAvailable = findViewById(R.id.layout_main_no_update_available);
+        View updateChecking = findViewById(R.id.layout_main_checking_update_available);
         updateAvailable.setVisibility(View.GONE);
         updateNotAvailable.setVisibility(View.GONE);
+        updateChecking.setVisibility(View.GONE);
 
         TextView updateAvailableSummary = (TextView) findViewById(R.id.main_tv_update_available_summary);
         TextView updateNotAvailableSummary = (TextView) findViewById(R.id.main_tv_no_update_available_summary);
+        TextView updateCheckingSummary = (TextView) findViewById(R.id.main_tv_checking_update_summary);
 
         mProgressBar = (SeslProgressBar) findViewById(R.id.bar_main_progress_bar);
         mProgressBar.setVisibility(View.GONE);
@@ -646,23 +647,17 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 updateNotAvailableSummary.setText(String.format("%s%s", lastChecked, time));
             }
         } else {
-            updateNotAvailable.setVisibility(View.VISIBLE);
-            setSubtitle(getResources().getString(R.string.main_no_update_available));
+            String romBranchString = Utils.getProp(getResources().getString(R.string.ota_swupdate_prop_branch));
+            String romVersionBranch = !romBranchString.isEmpty() ? romBranchString.substring(0, 1).toUpperCase() + romBranchString.substring(1).toLowerCase() : " ";
 
-            boolean is24 = DateFormat.is24HourFormat(mContext);
-            Date now = new Date();
-            Locale locale = Locale.getDefault();
-            String time;
+            updateChecking.setVisibility(View.VISIBLE);
+            setSubtitle(getResources().getString(R.string.main_checking_updates));
 
-            if (is24) {
-                time = new SimpleDateFormat("MMMM d, YYYY HH:mm", locale).format(now);
-            } else {
-                time = new SimpleDateFormat("MMMM d, YYYY hh:mm a", locale).format(now);
-            }
+            String updateCheckSummary = getResources().getString(R.string.system_name) + " " +
+                    Utils.getProp(getResources().getString(R.string.ota_swupdate_prop_release)) + " " +
+                    romVersionBranch;
 
-            Preferences.setUpdateLastChecked(this, time);
-            String lastChecked = getString(R.string.main_last_checked) + " ";
-            updateNotAvailableSummary.setText(String.format("%s%s", lastChecked, time));
+            updateCheckingSummary.setText(Html.fromHtml(updateCheckSummary));
         }
     }
 
