@@ -215,6 +215,11 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         this.unregisterReceiver(mReceiver);
     }
 
+    public void setSubtitle(String subtitle) {
+        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
+        expanded_subtitle.setText(subtitle);
+    }
+
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -223,7 +228,10 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         setContentView(R.layout.ota_available);
 
         initToolbar();
-        settilte("Update");
+        settilte(getString(R.string.system_settings_plugin_title));
+        setSubtitle(getString(R.string.system_name) + " "
+                    + RomUpdate.getReleaseVersion(mContext) + " "
+                    + RomUpdate.getReleaseVariant(mContext));
 
         mDownloadRom = new DownloadRom();
 
