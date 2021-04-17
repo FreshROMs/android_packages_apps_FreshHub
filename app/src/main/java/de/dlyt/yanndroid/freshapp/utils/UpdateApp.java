@@ -12,6 +12,8 @@ import androidx.core.content.FileProvider;
 
 import java.io.File;
 
+import de.dlyt.yanndroid.freshapp.activities.AboutActivity;
+
 public class UpdateApp {
     public static void DownloadAndInstall(Context context, String url, String fileName, String NotiTitle, String NotiDescription) {
         String destination = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + fileName;
@@ -43,6 +45,8 @@ public class UpdateApp {
                 context.startActivity(install);
 
                 context.unregisterReceiver(this);
+                AboutActivity.reEnableUpdateButton(context);
+
             }
         };
         context.registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
