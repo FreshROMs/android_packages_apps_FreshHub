@@ -37,6 +37,11 @@ public class ScreenResolutionSettings extends AppCompatActivity {
     private Context mContext;
     private SharedPreferences sharedPreferences;
 
+    public void setSubtitle(String subtitle) {
+        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
+        expanded_subtitle.setText(subtitle);
+    }
+
     public static void setBypassBlacklist(Context context, boolean bool) {
         /* List of Global settings that allow blacklisted APIs to be called */
         String[] blacklistGlobalSettings = {
@@ -116,7 +121,8 @@ public class ScreenResolutionSettings extends AppCompatActivity {
         setContentView(R.layout.activity_screen_resolution);
 
         initToolbar();
-        settilte("Screen resolution");
+        settilte(getResources().getString(R.string.system_settings_resolution_plugin_title));
+        setSubtitle(" ");
 
         sharedPreferences = getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
         checkDefaultApiSetting();

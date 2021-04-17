@@ -1,5 +1,6 @@
 package de.dlyt.yanndroid.freshapp.activities;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -75,12 +76,17 @@ public class AboutActivity extends AppCompatActivity {
                     startActivity(new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + getApplicationContext().getPackageName())));
                 }
                 UpdateApp.DownloadAndInstall(getBaseContext(), "https://github.com/Yanndroid/FreshApp2/raw/master/app/release/app-release.apk", "Fresh/FreshHub.apk", "FreshHub Update", "version xyz");
+                updateButton.setEnabled(false);
             }
         });
 
 
     }
 
+    public static void reEnableUpdateButton(Context context) {
+        MaterialButton updateButton = ((Activity) context).findViewById(R.id.update_button);
+        updateButton.setEnabled(true);
+    }
 
     public void initToolbar() {
         /** Def */

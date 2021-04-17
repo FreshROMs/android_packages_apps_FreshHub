@@ -26,7 +26,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -95,10 +94,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             if (intent.getAction().equals(MANIFEST_LOADED)) {
                 updateAllLayouts();
                 ota_progressbar.setVisibility(View.GONE);
-
-                if (RomUpdate.getUpdateAvailability(mContext) && !Utils.isUpdateIgnored(mContext)) {
-                    Utils.setupNotification(mContext, RomUpdate.getReleaseVersion(mContext), RomUpdate.getReleaseVariant(mContext));
-                }
+                findViewById(R.id.swiperefresh).setEnabled(true);
             }
         }
     };
@@ -183,6 +179,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
         // Has the download already completed?
         Utils.setHasFileDownloaded(mContext);
+        findViewById(R.id.swiperefresh).setEnabled(false);
 
         // Update the layouts
         updateCommunityLinksLayout();
@@ -241,49 +238,18 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         });
 
-        notifSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Preferences.setBackgroundService(mContext, isChecked);
-                Utils.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
-                setLayoutEnabled(background_options_layout, isChecked);
-            }
+        notifSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            Preferences.setBackgroundService(mContext, isChecked);
+            Utils.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
+            setLayoutEnabled(background_options_layout, isChecked);
         });
 
-        dataSaver.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Preferences.setBackgroundDownload(mContext, isChecked);
-            }
+        dataSaver.setOnCheckedChangeListener((buttonView, isChecked) -> Preferences.setBackgroundDownload(mContext, isChecked));
+
+        appIcon.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            Preferences.setAppIconState(mContext, isChecked);
+            Utils.toggleAppIcon(mContext, isChecked);
         });
-
-        appIcon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Preferences.setAppIconState(mContext, isChecked);
-                Utils.toggleAppIcon(mContext, isChecked);
-            }
-        });
-
-
-        swipeRefreshLayout = findViewById(R.id.swiperefresh);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                ota_progressbar.setVisibility(View.VISIBLE);
-                web_progressbar.setVisibility(View.VISIBLE);
-                if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
-                updateCommunityLinksLayout();
-                updateAddonsLayout();
-                updateRomInformation();
-                updateRomUpdateLayouts(false);
-                refreshDrawer();
-                webView.reload();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-
-
     }
 
     public void initDrawer() {
@@ -426,12 +392,14 @@ public class MainActivity extends AppCompatActivity implements Constants,
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 web_progressbar.setVisibility(View.VISIBLE);
+                findViewById(R.id.swiperefresh).setEnabled(false);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 web_progressbar.setVisibility(View.GONE);
+                findViewById(R.id.swiperefresh).setEnabled(true);
             }
 
             @Override
@@ -488,6 +456,33 @@ public class MainActivity extends AppCompatActivity implements Constants,
     public void onStart() {
         super.onStart();
         this.registerReceiver(mReceiver, new IntentFilter(MANIFEST_LOADED));
+
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+
+        if (Preferences.getIsDownloadOnGoing(mContext)) {
+            updateRomUpdateLayouts(true);
+            findViewById(R.id.swiperefresh).setEnabled(false);
+        } else {
+            updateRomUpdateLayouts(false);
+            RomUpdate.setUpdateAvailable(mContext, false);
+            openCheckForUpdates(null);
+            findViewById(R.id.swiperefresh).setEnabled(true);
+        }
+
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            ota_progressbar.setVisibility(View.VISIBLE);
+            web_progressbar.setVisibility(View.VISIBLE);
+            if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
+            updateCommunityLinksLayout();
+            updateAddonsLayout();
+            updateRomInformation();
+            updateRomUpdateLayouts(false);
+            refreshDrawer();
+            webView.reload();
+            swipeRefreshLayout.setRefreshing(false);
+            findViewById(R.id.swiperefresh).setEnabled(false);
+        });
+
     }
 
     @Override
@@ -580,15 +575,16 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
     @SuppressWarnings("deprecation")
     private void updateRomUpdateLayouts(Boolean isLoaded) {
-        View updateAvailable;
-        View updateNotAvailable;
-        updateAvailable = findViewById(R.id.layout_main_update_available);
-        updateNotAvailable = findViewById(R.id.layout_main_no_update_available);
+        View updateAvailable = findViewById(R.id.layout_main_update_available);
+        View updateNotAvailable = findViewById(R.id.layout_main_no_update_available);
+        View updateChecking = findViewById(R.id.layout_main_checking_update_available);
         updateAvailable.setVisibility(View.GONE);
         updateNotAvailable.setVisibility(View.GONE);
+        updateChecking.setVisibility(View.GONE);
 
         TextView updateAvailableSummary = (TextView) findViewById(R.id.main_tv_update_available_summary);
         TextView updateNotAvailableSummary = (TextView) findViewById(R.id.main_tv_no_update_available_summary);
+        TextView updateCheckingSummary = (TextView) findViewById(R.id.main_tv_checking_update_summary);
 
         mProgressBar = (SeslProgressBar) findViewById(R.id.bar_main_progress_bar);
         mProgressBar.setVisibility(View.GONE);
@@ -651,23 +647,17 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 updateNotAvailableSummary.setText(String.format("%s%s", lastChecked, time));
             }
         } else {
-            updateNotAvailable.setVisibility(View.VISIBLE);
-            setSubtitle(getResources().getString(R.string.main_no_update_available));
+            String romBranchString = Utils.getProp(getResources().getString(R.string.ota_swupdate_prop_branch));
+            String romVersionBranch = !romBranchString.isEmpty() ? romBranchString.substring(0, 1).toUpperCase() + romBranchString.substring(1).toLowerCase() : " ";
 
-            boolean is24 = DateFormat.is24HourFormat(mContext);
-            Date now = new Date();
-            Locale locale = Locale.getDefault();
-            String time;
+            updateChecking.setVisibility(View.VISIBLE);
+            setSubtitle(getResources().getString(R.string.main_checking_updates));
 
-            if (is24) {
-                time = new SimpleDateFormat("MMMM d, YYYY HH:mm", locale).format(now);
-            } else {
-                time = new SimpleDateFormat("MMMM d, YYYY hh:mm a", locale).format(now);
-            }
+            String updateCheckSummary = getResources().getString(R.string.system_name) + " " +
+                    Utils.getProp(getResources().getString(R.string.ota_swupdate_prop_release)) + " " +
+                    romVersionBranch;
 
-            Preferences.setUpdateLastChecked(this, time);
-            String lastChecked = getString(R.string.main_last_checked) + " ";
-            updateNotAvailableSummary.setText(String.format("%s%s", lastChecked, time));
+            updateCheckingSummary.setText(Html.fromHtml(updateCheckSummary));
         }
     }
 
@@ -811,6 +801,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
     }
 
     public void openCheckForUpdates(View v) {
+        ota_progressbar.setVisibility(View.VISIBLE);
+        findViewById(R.id.swiperefresh).setEnabled(false);
         new LoadUpdateManifest(mContext, true).execute();
     }
 

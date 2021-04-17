@@ -36,10 +36,13 @@ public class DownloadRomProgress extends AsyncTask<Long, Integer, Void> implemen
 
     private Context mContext;
     private DownloadManager mDownloadManager;
+    private static long UPDATE_DELAY = 500;
+    private static long mStartTime;
 
     public DownloadRomProgress(Context context, DownloadManager downloadManager) {
         mContext = context;
         mDownloadManager = downloadManager;
+        mStartTime = System.currentTimeMillis();
     }
 
     @Override
@@ -61,15 +64,30 @@ public class DownloadRomProgress extends AsyncTask<Long, Integer, Void> implemen
                 if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
                         DownloadManager.STATUS_SUCCESSFUL) {
                     Preferences.setIsDownloadRunning(mContext, false);
+                    Preferences.setDownloadFinished(mContext, true);
+                } else if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
+                        DownloadManager.STATUS_FAILED) {
+                    Preferences.setIsDownloadRunning(mContext, false);
+                    Preferences.setDownloadFinished(mContext, false);
+                    return null;
+                } else if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
+                        DownloadManager.STATUS_PAUSED) {
+                    Preferences.setIsDownloadRunning(mContext, false);
+                    Preferences.setDownloadFinished(mContext, false);
+                    return null;
                 }
 
-                final int progressPercent = (int) ((bytesDownloaded * 100L) / bytesInTotal);
+                if (isCancelled())
+                    break;
 
-                if (progressPercent != previousValue) {
-                    // Only publish every 1%, to reduce the amount of work being done.
+                long currentTime = System.currentTimeMillis();
+
+                if ((currentTime - mStartTime > UPDATE_DELAY)) {
+                    final int progressPercent = (int) ((bytesDownloaded * 100L) / bytesInTotal);
                     publishProgress(progressPercent, bytesDownloaded, bytesInTotal);
-                    previousValue = progressPercent;
+                    mStartTime = currentTime;
                 }
+
             } catch (CursorIndexOutOfBoundsException e) {
                 Preferences.setIsDownloadRunning(mContext, false);
             } catch (ArithmeticException e) {
@@ -84,9 +102,8 @@ public class DownloadRomProgress extends AsyncTask<Long, Integer, Void> implemen
     protected void onProgressUpdate(Integer... progress) {
         if (DEBUGGING)
             Log.d(TAG, "Updating Progress - " + progress[0] + "%");
-        if (Preferences.getIsDownloadOnGoing(mContext)) {
-            AvailableActivity.updateProgress(progress[0], progress[1], progress[2]);
-            MainActivity.updateProgress(progress[0]);
-        }
+
+        AvailableActivity.updateProgress(mContext, progress[0], progress[1], progress[2]);
+        MainActivity.updateProgress(progress[0]);
     }
 }

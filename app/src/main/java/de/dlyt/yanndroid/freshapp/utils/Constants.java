@@ -63,6 +63,7 @@ public interface Constants {
 
     // Broadcast intents
     String MANIFEST_LOADED = "com.ota.update.MANIFEST_LOADED";
+    String DOWNLOAD_ROM_COMPLETE = "io.tensevntysevn.TnsOta.DOWNLOAD_ROM_COMPLETE";
     String MANIFEST_CHECK_BACKGROUND = "com.ota.update.MANIFEST_CHECK_BACKGROUND";
     String START_UPDATE_CHECK = "com.ota.update.START_UPDATE_CHECK";
     String IGNORE_RELEASE = "com.ota.update.IGNORE_RELEASE";

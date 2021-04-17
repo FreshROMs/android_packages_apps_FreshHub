@@ -114,6 +114,8 @@
 
     <string name="available_update_name">Update name and file info here</string>
     <string name="available_progress_counter">0MB / 0MB</string>
+    <string name="available_time_remaining">Time Left: %s</string>
+    <string name="available_download_speed">%d kb/s</string>
     <string name="available_changelog_title">Changelog</string>
     <string name="available_changelog_content">Your Changelog goes here</string>
     <string name="available_md5" translatable="false">MD5:</string>
@@ -250,5 +252,6 @@
 
     <string name="the_latest_version_is_already_installed">The latest version is already installed.</string>
     <string name="a_new_version_is_available">A new version is available.</string>
+    <string name="main_checking_updates">Checking for updates</string>
 
 </resources>
