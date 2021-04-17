@@ -6,12 +6,11 @@
     <string name="sesl_switch">"Switch"</string>
     <string name="sesl_switchbar_off_text">"Off"</string>
     <string name="sesl_switchbar_on_text">"On"</string>
-    <string name="sesl_font_family_regular">"sec-roboto-light"</string>
-    <string name="freshrom">"FreshRom"</string>
-    <string name="changelog_url" translatable="false">"http://downloads.blissroms.com/Changelog/CHANGELOG-bliss.txt"</string>
+    <string name="sesl_font_family_regular" translatable="false">"sec-roboto-light"</string>
+    <string name="freshrom" translatable="false">"FreshRom"</string>
     <string name="main_update_available">"An update is available"</string>
     <string name="main_update_finished">"Download complete"</string>
-    <string name="main_no_update_available">"You are up-to-date"</string>
+    <string name="main_no_update_available">"No updates available"</string>
     <string name="main_update_filename">"Filename"</string>
     <string name="main_update_progress">"Download Progress"</string>
     <string name="main_website">"Website"</string>
@@ -195,31 +194,31 @@ You can find it in /sdcard/Downloads"</string>
     <!-- Drawer -->
     <string name="feedback">"Feedback"</string>
     <string name="omc_request">"OMC Request"</string>
-    <string name="update">@string/app_name</string>
+    <string name="update" translatable="false">@string/app_name</string>
     <string name="fresh_community">"Fresh Community"</string>
     <string name="fresh_updates">"Fresh Updates"</string>
     <string name="reboot">"Reboot"</string>
 
     <!-- Resolution -->
     <string name="screen_resolution_desc_summary">"Some apps may close when you change the resolution."</string>
-    <string name="high_resolution">"FHD+"</string>
-    <string name="high_resolution_radio">"FHD+
+    <string name="high_resolution" translatable="false">"FHD+"</string>
+    <string name="high_resolution_radio" translatable="false">"FHD+
 2340 x 1080"</string>
     <string name="high_resolution_summary">"Sharpest visuals, most battery use"</string>
-    <string name="high_resolution_value">"1080x2340"</string>
-    <string name="high_resolution_density">"420"</string>
-    <string name="medium_resolution">"HD+"</string>
-    <string name="medium_resolution_radio">"HD+
+    <string name="high_resolution_value" translatable="false">"1080x2340"</string>
+    <string name="high_resolution_density" translatable="false">"420"</string>
+    <string name="medium_resolution" translatable="false">"HD+"</string>
+    <string name="medium_resolution_radio" translatable="false">"HD+
 1560 x 720"</string>
     <string name="medium_resolution_summary">"Improved visuals, moderate battery use"</string>
-    <string name="medium_resolution_value">"720x1560"</string>
-    <string name="medium_resolution_density">"280"</string>
-    <string name="low_resolution">"qHD+"</string>
-    <string name="low_resolution_radio">"qHD+
+    <string name="medium_resolution_value" translatable="false">"720x1560"</string>
+    <string name="medium_resolution_density" translatable="false">"280"</string>
+    <string name="low_resolution" translatable="false">"qHD+"</string>
+    <string name="low_resolution_radio" translatable="false">"qHD+
 1170 x 540"</string>
     <string name="low_resolution_summary">"Ugly visuals, lowest battery use"</string>
-    <string name="low_resolution_value">"540x1170"</string>
-    <string name="low_resolution_density">"210"</string>
+    <string name="low_resolution_value" translatable="false">"540x1170"</string>
+    <string name="low_resolution_density" translatable="false">"210"</string>
 
     <!-- Notifications -->
     <string name="system_notification_channel_id" translatable="false">"TnsOta"</string>
