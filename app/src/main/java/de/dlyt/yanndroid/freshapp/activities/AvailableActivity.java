@@ -171,7 +171,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         //ROM size
         TextView otaSize = (TextView) findViewById(R.id.tv_update_rom_size);
         String otaSizeTitle = getApplicationContext().getResources().getString(R.string
-                .main_rom_build_date) + " ";
+                .main_ota_size) + " ";
         int otaFileSize = RomUpdate.getFileSize(mContext);
         String otaSizeActual = Utils.formatDataFromBytes(otaFileSize);
         otaSize.setText(Html.fromHtml(otaSizeTitle + otaSizeActual));
