@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             if (intent.getAction().equals(MANIFEST_LOADED)) {
                 updateAllLayouts();
                 ota_progressbar.setVisibility(View.GONE);
+                findViewById(R.id.swiperefresh).setEnabled(true);
             }
         }
     };
@@ -179,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
         // Has the download already completed?
         Utils.setHasFileDownloaded(mContext);
+        findViewById(R.id.swiperefresh).setEnabled(false);
 
         // Update the layouts
         updateCommunityLinksLayout();
@@ -260,26 +262,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 Utils.toggleAppIcon(mContext, isChecked);
             }
         });
-
-
-        swipeRefreshLayout = findViewById(R.id.swiperefresh);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                ota_progressbar.setVisibility(View.VISIBLE);
-                web_progressbar.setVisibility(View.VISIBLE);
-                if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
-                updateCommunityLinksLayout();
-                updateAddonsLayout();
-                updateRomInformation();
-                updateRomUpdateLayouts(false);
-                refreshDrawer();
-                webView.reload();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-
-
     }
 
     public void initDrawer() {
@@ -422,12 +404,14 @@ public class MainActivity extends AppCompatActivity implements Constants,
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 web_progressbar.setVisibility(View.VISIBLE);
+                findViewById(R.id.swiperefresh).setEnabled(false);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 web_progressbar.setVisibility(View.GONE);
+                findViewById(R.id.swiperefresh).setEnabled(true);
             }
 
             @Override
@@ -484,6 +468,22 @@ public class MainActivity extends AppCompatActivity implements Constants,
     public void onStart() {
         super.onStart();
         this.registerReceiver(mReceiver, new IntentFilter(MANIFEST_LOADED));
+
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            ota_progressbar.setVisibility(View.VISIBLE);
+            web_progressbar.setVisibility(View.VISIBLE);
+            if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
+            updateCommunityLinksLayout();
+            updateAddonsLayout();
+            updateRomInformation();
+            updateRomUpdateLayouts(false);
+            refreshDrawer();
+            webView.reload();
+            swipeRefreshLayout.setRefreshing(false);
+            findViewById(R.id.swiperefresh).setEnabled(false);
+        });
+
     }
 
     @Override
@@ -807,6 +807,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
     }
 
     public void openCheckForUpdates(View v) {
+        ota_progressbar.setVisibility(View.VISIBLE);
+        findViewById(R.id.swiperefresh).setEnabled(false);
         new LoadUpdateManifest(mContext, true).execute();
     }
 
