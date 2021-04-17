@@ -95,10 +95,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
             if (intent.getAction().equals(MANIFEST_LOADED)) {
                 updateAllLayouts();
                 ota_progressbar.setVisibility(View.GONE);
-
-                if (RomUpdate.getUpdateAvailability(mContext) && !Utils.isUpdateIgnored(mContext)) {
-                    Utils.setupNotification(mContext, RomUpdate.getReleaseVersion(mContext), RomUpdate.getReleaseVariant(mContext));
-                }
             }
         }
     };
