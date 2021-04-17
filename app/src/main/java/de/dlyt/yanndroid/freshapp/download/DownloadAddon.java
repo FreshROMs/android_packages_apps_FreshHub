@@ -41,13 +41,12 @@ public class DownloadAddon implements Constants {
 
         request.setTitle(fileName);
 
-        request.setVisibleInDownloadsUi(true);
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         fileName = fileName + ".zip";
 
         // Because of Scoped Storage, we can only download into public directories.
         // Directory is '/storage/emulated/0/Download/Fresh'
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, OTA_DOWNLOAD_DIR + fileName);
+        request.setDestinationInExternalFilesDir(context, OTA_DIR_ADDONS, fileName);
 
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context
                 .DOWNLOAD_SERVICE);

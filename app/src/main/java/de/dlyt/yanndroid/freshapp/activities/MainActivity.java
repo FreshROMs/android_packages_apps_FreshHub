@@ -46,6 +46,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -152,13 +153,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
 
         // Create download directories if needed
-        /*File installAfterFlashDir = new File(SD_CARD
-                + File.separator
-                + OTA_DOWNLOAD_DIR
-                + File.separator
-                + INSTALL_AFTER_FLASH_DIR);
-        boolean created = installAfterFlashDir.mkdirs();
-        if (!created) Log.e(TAG, "Could not create installAfterFlash directory...");*/
+        mContext.getExternalFilesDir(OTA_DIR_ROM);
+        mContext.getExternalFilesDir(OTA_DIR_ADDONS);
 
         createDialogs();
 
