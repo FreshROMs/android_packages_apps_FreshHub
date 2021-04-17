@@ -24,10 +24,13 @@ public interface Constants {
     boolean DEBUG_NOTIFICATIONS = false;
 
     // Storage
-    String SD_CARD = Environment.getExternalStorageDirectory().getAbsolutePath();
-    String OTA_DOWNLOAD_DIR = "/Fresh/";
+    String SD_CARD = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+    String OTA_DOWNLOAD_DIR = "/Fresh";
     String INSTALL_AFTER_FLASH_DIR = "InstallAfterFlash";
-    String INSTALL_AFTER_FLASH_DIR_ADDON = "/Updates/InstallAfterFlash";
+    String INSTALL_AFTER_FLASH_DIR_ADDON = "/Addons/";
+
+    String OTA_DIR_ADDONS = "Addons";
+    String OTA_DIR_ROM = "Updates";
 
     // Networks
     String WIFI_ONLY = "2";

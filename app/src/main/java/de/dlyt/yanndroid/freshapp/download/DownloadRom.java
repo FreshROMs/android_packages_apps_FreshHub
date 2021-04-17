@@ -50,12 +50,11 @@ public class DownloadRom implements Constants {
 
         request.setTitle(otaName);
 
-        request.setVisibleInDownloadsUi(true);
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
 
         // Because of Scoped Storage, we can only download into public directories.
         // Directory is '/storage/emulated/0/Download/Fresh'
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, OTA_DOWNLOAD_DIR + fileName);
+        request.setDestinationInExternalFilesDir(context, OTA_DIR_ROM, fileName);
 
         // Delete any existing files
         Utils.deleteFile(file);
