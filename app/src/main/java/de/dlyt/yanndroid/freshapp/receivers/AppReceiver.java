@@ -113,6 +113,9 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
                     return;
                 }
 
+                Intent send = new Intent(DOWNLOAD_ROM_COMPLETE);
+                context.sendBroadcast(send);
+
                 DownloadManager downloadManager = (DownloadManager) context.getSystemService
                         (Context.DOWNLOAD_SERVICE);
                 DownloadManager.Query query = new DownloadManager.Query();
@@ -127,18 +130,16 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
                 }
 
                 int statusIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+
                 if (DownloadManager.STATUS_SUCCESSFUL != cursor.getInt(statusIndex)) {
                     if (DEBUGGING)
                         Log.w(TAG, "Download Failed");
                     Preferences.setDownloadFinished(context, false);
-                    AvailableActivity.setupMenuToolbar(context); // Reset options menu
                     return;
                 } else {
                     if (DEBUGGING)
                         Log.v(TAG, "Download Succeeded");
                     Preferences.setDownloadFinished(context, true);
-                    AvailableActivity.setupProgress(context);
-                    AvailableActivity.setupMenuToolbar(context); // Reset options menu
                     return;
                 }
             }

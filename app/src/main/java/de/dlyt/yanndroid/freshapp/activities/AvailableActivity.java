@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -53,6 +55,19 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
     private Builder mNetworkDialog;
     private DownloadRom mDownloadRom;
     private long mStartDownloadTime;
+
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(DOWNLOAD_ROM_COMPLETE)) {
+                setupProgress(AvailableActivity.this);
+                mDownloadRom.cancelDownload(AvailableActivity.this);
+                setupUpdateNameInfo();
+                setupProgress(AvailableActivity.this);
+                setupMenuToolbar(AvailableActivity.this);
+            }
+        }
+    };
 
     public static void setupProgress(Context context) {
         if (DEBUGGING)
