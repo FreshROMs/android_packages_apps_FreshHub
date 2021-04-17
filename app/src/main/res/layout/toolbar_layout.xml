@@ -59,8 +59,8 @@
             android:layout_gravity="bottom"
             android:layout_marginHorizontal="4dp"
             android:layout_marginTop="2dp"
-            android:layout_marginBottom="4dp"
-            app:contentInsetStartWithNavigation="0dp"
+            android:layout_marginBottom="8dp"
+            app:contentInsetStartWithNavigation="4dp"
             app:layout_collapseMode="pin"
             app:navigationIcon="@drawable/ic_drawer">
 
@@ -68,9 +68,8 @@
                 android:id="@+id/collapsed_title"
                 style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                 android:layout_width="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginStart="-2dp"
-                android:layout_marginBottom="4dp"
+                android:textSize="19sp"
+                android:paddingBottom="2dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:fontFamily="sec-roboto-light"
