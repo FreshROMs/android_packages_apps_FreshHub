@@ -26,7 +26,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -239,28 +238,17 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         });
 
-        notifSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Preferences.setBackgroundService(mContext, isChecked);
-                Utils.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
-                setLayoutEnabled(background_options_layout, isChecked);
-            }
+        notifSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            Preferences.setBackgroundService(mContext, isChecked);
+            Utils.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
+            setLayoutEnabled(background_options_layout, isChecked);
         });
 
-        dataSaver.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Preferences.setBackgroundDownload(mContext, isChecked);
-            }
-        });
+        dataSaver.setOnCheckedChangeListener((buttonView, isChecked) -> Preferences.setBackgroundDownload(mContext, isChecked));
 
-        appIcon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Preferences.setAppIconState(mContext, isChecked);
-                Utils.toggleAppIcon(mContext, isChecked);
-            }
+        appIcon.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            Preferences.setAppIconState(mContext, isChecked);
+            Utils.toggleAppIcon(mContext, isChecked);
         });
     }
 
