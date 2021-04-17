@@ -340,12 +340,8 @@ public class Utils implements Constants {
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(MainActivity.class);
         stackBuilder.addNextIntent(resultIntent);
-        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Intent skipIntent = new Intent(context, AppReceiver.class);
-        skipIntent.setAction(IGNORE_RELEASE);
         Intent downloadIntent = new Intent(context, AvailableActivity.class);
-        PendingIntent skipPendingIntent = PendingIntent.getBroadcast(context, 0, skipIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent downloadPendingIntent = PendingIntent.getActivity(context, 0, downloadIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         mBuilder.setContentTitle(context.getString(R.string.system_notification_available_title))
@@ -358,11 +354,7 @@ public class Utils implements Constants {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setDefaults(NotificationCompat.DEFAULT_LIGHTS)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setCategory(NotificationCompat.CATEGORY_SYSTEM)
-                .addAction(R.drawable.ic_action_download, context.getString(R.string.download),
-                        downloadPendingIntent)
-                .addAction(R.drawable.ic_close, context.getString(R.string.ignore),
-                        skipPendingIntent);
+                .setCategory(NotificationCompat.CATEGORY_SYSTEM);
 
         if (Preferences.getNotificationVibrate(context)) {
             mBuilder.setDefaults(NotificationCompat.DEFAULT_VIBRATE);
