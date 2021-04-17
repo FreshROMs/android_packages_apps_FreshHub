@@ -470,6 +470,17 @@ public class MainActivity extends AppCompatActivity implements Constants,
         this.registerReceiver(mReceiver, new IntentFilter(MANIFEST_LOADED));
 
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
+
+        if (Preferences.getIsDownloadOnGoing(mContext)) {
+            updateRomUpdateLayouts(true);
+            findViewById(R.id.swiperefresh).setEnabled(false);
+        } else {
+            if (RomUpdate.getUpdateAvailability(mContext)) updateRomUpdateLayouts(true);
+            RomUpdate.setUpdateAvailable(mContext, false);
+            openCheckForUpdates(null);
+            findViewById(R.id.swiperefresh).setEnabled(true);
+        }
+
         swipeRefreshLayout.setOnRefreshListener(() -> {
             ota_progressbar.setVisibility(View.VISIBLE);
             web_progressbar.setVisibility(View.VISIBLE);

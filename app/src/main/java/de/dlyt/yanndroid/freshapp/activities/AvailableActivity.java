@@ -40,6 +40,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
     public final static String TAG = "AvailableActivity";
     public static SeslProgressBar mProgressBar;
     public static TextView mProgressCounterText;
+    public static TextView mDownloadSpeedTextView;
     private static Button mCheckMD5Button;
     private static Button mDeleteButton;
     private static Button mInstallButton;
@@ -51,6 +52,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
     private Builder mRebootManualDialog;
     private Builder mNetworkDialog;
     private DownloadRom mDownloadRom;
+    private long mStartDownloadTime;
 
     public static void setupProgress(Context context) {
         if (DEBUGGING)
@@ -67,26 +69,23 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
             if (mProgressBar != null) {
                 mProgressBar.setProgress(100);
             }
-        } else {
-            if (DEBUGGING)
-                Log.d(TAG, "Download not finished/started. Setting Progress Bars to default.");
-            int fileSize = RomUpdate.getFileSize(context);
-            String fileSizeStr = Utils.formatDataFromBytes(fileSize);
-            if (mProgressCounterText != null) {
-                mProgressCounterText.setText(fileSizeStr);
-            }
-            if (mProgressBar != null) {
-                mProgressBar.setProgress(0);
-            }
         }
     }
 
-    public static void updateProgress(int progress, int downloaded, int total) {
+    public static void updateProgress(Context context, int progress, int downloaded, int total) {
+        Long startTime = RomUpdate.getStartTime(context);
+        Long currentTime = System.currentTimeMillis();
+
         mProgressBar.setProgress(progress);
-        mProgressCounterText.setText(
-                Utils.formatDataFromBytes(downloaded) +
-                        "/" +
-                        Utils.formatDataFromBytes(total));
+
+        int downloadSpeed = (downloaded/(int)(currentTime - startTime));
+        long remainingTime = downloadSpeed != 0 ? ((total - downloaded) / downloadSpeed) / 1000 : 0;
+
+        String timeLeft = String.format("%02d:%02d:%02d", remainingTime / 3600,
+                (remainingTime % 3600) / 60, (remainingTime % 60));
+
+        mProgressCounterText.setText(context.getString(R.string.available_time_remaining, timeLeft));
+        mDownloadSpeedTextView.setText(context.getString(R.string.available_download_speed, downloadSpeed));
     }
 
     public static void setupMenuToolbar(Context context) {
@@ -170,6 +169,37 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         otaSplVersion.setText(Html.fromHtml(otaSplTitle + otaSplActual));
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        this.registerReceiver(mReceiver, new IntentFilter(DOWNLOAD_ROM_COMPLETE));
+
+        int downloadSpeed = 0;
+        long remainingTime = 0;
+
+        String timeLeft = String.format("%02d:%02d:%02d", remainingTime / 3600,
+                (remainingTime % 3600) / 60, (remainingTime % 60));
+
+        mProgressCounterText.setText(getString(R.string.available_time_remaining, timeLeft));
+        mDownloadSpeedTextView.setText(getString(R.string.available_download_speed, downloadSpeed));
+
+        if (Preferences.getIsDownloadOnGoing(mContext)) {
+            // If the activity has already been run, and the download started
+            // Then start updating the progress bar again
+            if (DEBUGGING)
+                Log.d(TAG, "Starting progress updater");
+            DownloadManager downloadManager = (DownloadManager) mContext.getSystemService(Context
+                    .DOWNLOAD_SERVICE);
+            new DownloadRomProgress(mContext, downloadManager).execute(Preferences.getDownloadID(mContext));
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        this.unregisterReceiver(mReceiver);
+    }
+
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +214,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
 
         mProgressBar = (SeslProgressBar) findViewById(R.id.bar_available_progress_bar);
         mProgressCounterText = (TextView) findViewById(R.id.tv_available_progress_counter);
+        mDownloadSpeedTextView = (TextView) findViewById(R.id.tv_available_progress_speed);
         mCheckMD5Button = (Button) findViewById(R.id.menu_available_check_md5);
         mDeleteButton = (Button) findViewById(R.id.menu_available_delete);
         mInstallButton = (Button) findViewById(R.id.menu_available_install);
@@ -205,18 +236,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         setupChangeLog();
         updateOtaInformation();
         setupMenuToolbar(mContext);
-
-        if (Preferences.getIsDownloadOnGoing(mContext)) {
-            // If the activity has already been run, and the download started
-            // Then start updating the progress bar again
-            if (DEBUGGING)
-                Log.d(TAG, "Starting progress updater");
-            DownloadManager downloadManager = (DownloadManager) mContext.getSystemService(Context
-                    .DOWNLOAD_SERVICE);
-            new DownloadRomProgress(mContext, downloadManager).execute();
-        }
     }
-
 
     public void initToolbar() {
         /** Def */
@@ -287,10 +307,9 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
                 download();
                 break;
             case R.id.menu_available_cancel:
-                mDownloadRom.cancelDownload(mContext);
-                setupUpdateNameInfo();
-                setupProgress(mContext);
-                setupMenuToolbar(mContext);
+                mDownloadRom.cancelDownload(mContext);;
+                Intent send = new Intent(DOWNLOAD_ROM_COMPLETE);
+                mContext.sendBroadcast(send);
                 break;
             case R.id.menu_available_changelog:
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R
@@ -358,6 +377,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         boolean isDownloadOnGoing = Preferences.getIsDownloadOnGoing(mContext);
         TextView preOtaText = (TextView) findViewById(R.id.tv_available_text_pre_ota);
         TextView progressText = (TextView) findViewById(R.id.tv_available_progress_counter);
+        TextView progressSpeed = (TextView) findViewById(R.id.tv_available_progress_speed);
         TextView updateNameInfoText = (TextView) findViewById(R.id.tv_available_update_name);
         View downloadProgressBar = findViewById(R.id.bar_available_progress_bar);
 
@@ -366,11 +386,13 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
             preOtaText.setVisibility(View.GONE);
             downloadProgressBar.setVisibility(View.VISIBLE);
             progressText.setVisibility(View.VISIBLE);
+            progressSpeed.setVisibility(View.VISIBLE);
         } else {
             updateNameInfoText.setText(getResources().getString(R.string.available_update_install_info));
             preOtaText.setVisibility(View.VISIBLE);
             downloadProgressBar.setVisibility(View.GONE);
             progressText.setVisibility(View.GONE);
+            progressSpeed.setVisibility(View.GONE);
         }
     }
 
@@ -411,6 +433,9 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
                 if (DEBUGGING)
                     Log.d(TAG, "Downloading via DownloadManager");
                 mDownloadRom.startDownload(mContext);
+                mStartDownloadTime = System.currentTimeMillis();
+                RomUpdate.setStartTime(mContext, mStartDownloadTime);
+
                 setupUpdateNameInfo();
                 setupMenuToolbar(mContext); // Reset options menu
             }

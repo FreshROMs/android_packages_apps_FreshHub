@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="11dp"
                     android:indeterminate="false" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -59,18 +59,30 @@
                     android:text="@string/available_update_install_info_desc"
                     android:textColor="#ffee823d"
                     android:textSize="14.0sp"
+                    android:freezesText="true"
                     tools:ignore="SmallSp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_available_progress_counter"
-                    style="?android:attr/textAppearanceSmall"
+                    style="?textAppearanceBody1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:layout_marginTop="10.0dip"
-                    android:layout_marginBottom="6.0dip"
-                    android:text="@string/available_progress_counter"
-                    android:textSize="10sp"
+                    android:layout_marginBottom="0.0dip"
+                    android:textSize="14.0sp"
+                    tools:ignore="SmallSp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_available_progress_speed"
+                    style="?textAppearanceSubtitle2"
+                    android:textColor="?android:textColorSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="2.0dip"
+                    android:layout_marginBottom="8.0dip"
+                    android:textSize="11.0sp"
+                    android:freezesText="true"
                     tools:ignore="SmallSp" />
 
                 <com.google.android.material.textview.MaterialTextView

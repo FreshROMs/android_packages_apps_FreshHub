@@ -51,6 +51,8 @@ public class RomUpdate implements Constants {
     private static String GIT_ISSUES = "rom_git_issues_url";
     private static String GIT_DISCUSSION = "rom_git_discussion_url";
 
+    private static String START_TIME = "ota_start_download_time";
+
     private static String DEF_VALUE = "null";
     public final String TAG = this.getClass().getSimpleName();
 
@@ -76,6 +78,10 @@ public class RomUpdate implements Constants {
 
     public static String getMd5(Context context) {
         return getPrefs(context).getString(MD5, DEF_VALUE);
+    }
+
+    public static Long getStartTime(Context context) {
+        return getPrefs(context).getLong(START_TIME, 0);
     }
 
     public static String getChangelog(Context context) {
@@ -152,6 +158,12 @@ public class RomUpdate implements Constants {
 
     public static boolean getUpdateAvailability(Context context) {
         return getPrefs(context).getBoolean(AVAILABILITY, false);
+    }
+
+    public static void setStartTime(Context context, Long time) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putLong(START_TIME, time);
+        editor.apply();
     }
 
     public static void setRomName(Context context, String name) {
