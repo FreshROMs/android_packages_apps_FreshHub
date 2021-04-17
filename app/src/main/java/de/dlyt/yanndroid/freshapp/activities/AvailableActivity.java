@@ -334,11 +334,6 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
                 Intent send = new Intent(DOWNLOAD_ROM_COMPLETE);
                 mContext.sendBroadcast(send);
                 break;
-            case R.id.menu_available_changelog:
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R
-                        .string.changelog_url)));
-                startActivity(browserIntent);
-                break;
         }
     }
 
