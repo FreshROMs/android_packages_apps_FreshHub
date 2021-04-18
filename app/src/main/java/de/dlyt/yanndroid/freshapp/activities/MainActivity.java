@@ -183,10 +183,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         updateAddonsLayout();
         updateRomInformation();
         updateRomUpdateLayouts(false);
-        //updateWebsiteLayout();
         refreshDrawer();
-
-        checkforAppUpdate();
 
         notifSwitch.setChecked(Preferences.getBackgroundService(mContext));
         dataSaver.setChecked(Preferences.getBackgroundDownload(mContext));
@@ -249,6 +246,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
             Preferences.setAppIconState(mContext, isChecked);
             Utils.toggleAppIcon(mContext, isChecked);
         });
+
+        checkforAppUpdate();
     }
 
 
