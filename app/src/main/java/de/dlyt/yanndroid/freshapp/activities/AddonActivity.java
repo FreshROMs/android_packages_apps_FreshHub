@@ -14,14 +14,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.SeslProgressBar;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -50,6 +55,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
     public final static String TAG = "AddonActivity";
 
     public static Context mContext;
+    public static ImageLoader mImageLoader;
     private static ListView mListview;
     private static DownloadAddon mDownloadAddon;
 
@@ -57,12 +63,16 @@ public class AddonActivity extends AppCompatActivity implements Constants {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         mContext = this;
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(mContext).build();
+        mImageLoader = ImageLoader.getInstance();
+        mImageLoader.init(config);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ota_addons);
 
         initToolbar();
-        settilte("Addons");
+        settilte(getString(R.string.main_addon));
+        setSubtitle(" ");
 
         mListview = (ListView) findViewById(R.id.listview);
         mDownloadAddon = new DownloadAddon();
@@ -103,6 +113,8 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             }
         });
 
+        AppBar.setExpanded(false);
+
         /**Back*/
         toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -122,6 +134,11 @@ public class AddonActivity extends AppCompatActivity implements Constants {
         collapsed_title.setText(title);
     }
 
+    public void setSubtitle(String subtitle) {
+        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
+        expanded_subtitle.setText(subtitle);
+    }
+
 
     public void setupListView(ArrayList<Addon> addonsList) {
         final AddonsArrayAdapter adapter = new AddonsArrayAdapter(mContext, addonsList);
@@ -136,20 +153,28 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             super(context, 0, users);
         }
 
-        public static void updateProgress(int index, int progress, boolean finished) {
+        public static void updateProgress(int index, int progress, boolean finished, int downloaded) {
             View v = mListview.getChildAt((index - 1) -
                     mListview.getFirstVisiblePosition());
+
+            Long currentTime = System.currentTimeMillis();
 
             if (v == null) {
                 return;
             }
 
             SeslProgressBar progressBar = (SeslProgressBar) v.findViewById(R.id.progress_bar);
+            TextView downloadSpeed = (TextView) v.findViewById(R.id.download_speed);
+            TextView startTimeText = (TextView) v.findViewById(R.id.start_time);
+            Long startTime = Long.parseLong(String.valueOf(startTimeText.getText()));
+            int addonDownloadSpeed = (downloaded/(int)(currentTime - startTime));
+            String localizedSpeed = Utils.formatDataFromBytes(addonDownloadSpeed*1000);
 
             if (finished) {
                 progressBar.setProgress(0);
             } else {
                 progressBar.setProgress(progress);
+                downloadSpeed.setText(localizedSpeed + "/s");
             }
         }
 
@@ -161,19 +186,24 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 return;
             }
 
-            final Button download = (Button) v.findViewById(R.id.download_button);
-            final Button cancel = (Button) v.findViewById(R.id.cancel_button);
-            final Button delete = (Button) v.findViewById(R.id.delete_button);
+            final LinearLayout download = (LinearLayout) v.findViewById(R.id.download_button);
+            final LinearLayout cancel = (LinearLayout) v.findViewById(R.id.cancel_button);
+            final LinearLayout delete = (LinearLayout) v.findViewById(R.id.delete_button);
+            final LinearLayout progressContainer = (LinearLayout) v.findViewById(R.id.download_progress_container);
+            final LinearLayout infoContainer = (LinearLayout) v.findViewById(R.id.addon_info_container);
 
             if (finished) {
-                download.setVisibility(View.VISIBLE);
-                download.setText(mContext.getResources().getString(R.string.finished));
+                download.setVisibility(View.GONE);
+                //download.setText(mContext.getResources().getString(R.string.finished));
+                progressContainer.setVisibility(View.GONE);
                 download.setClickable(false);
                 delete.setVisibility(View.VISIBLE);
                 cancel.setVisibility(View.GONE);
+                infoContainer.setVisibility(View.VISIBLE);
             } else {
+                infoContainer.setVisibility(View.VISIBLE);
                 download.setVisibility(View.VISIBLE);
-                download.setText(mContext.getResources().getString(R.string.download));
+                //download.setText(mContext.getResources().getString(R.string.download));
                 download.setClickable(true);
                 cancel.setVisibility(View.GONE);
                 delete.setVisibility(View.GONE);
@@ -218,15 +248,21 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             }
 
             TextView title = (TextView) convertView.findViewById(R.id.title);
+            TextView progress_title = (TextView) convertView.findViewById(R.id.progress_title);
             TextView desc = (TextView) convertView.findViewById(R.id.description);
             TextView updatedOn = (TextView) convertView.findViewById(R.id.updatedOn);
             TextView filesize = (TextView) convertView.findViewById(R.id.size);
-            final Button download = (Button) convertView.findViewById(R.id.download_button);
-            final Button cancel = (Button) convertView.findViewById(R.id.cancel_button);
-            final Button delete = (Button) convertView.findViewById(R.id.delete_button);
+            final LinearLayout download = (LinearLayout) convertView.findViewById(R.id.download_button);
+            final LinearLayout cancel = (LinearLayout) convertView.findViewById(R.id.cancel_button);
+            final LinearLayout delete = (LinearLayout) convertView.findViewById(R.id.delete_button);
+            final LinearLayout progressContainer = (LinearLayout) convertView.findViewById(R.id.download_progress_container);
+            final LinearLayout infoContainer = (LinearLayout) convertView.findViewById(R.id.addon_info_container);
+            final TextView startTime = (TextView) convertView.findViewById(R.id.start_time);
+            final ImageView addonThumbnail = (ImageView) convertView.findViewById(R.id.addon_info_thumbnail);
 
             assert item != null;
             title.setText(item.getTitle());
+            progress_title.setText(item.getTitle());
 
             Bypass byPass = new Bypass(mContext);
             String descriptionStr = item.getDesc();
@@ -234,20 +270,10 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             desc.setText(string);
             desc.setMovementMethod(LinkMovementMethod.getInstance());
 
-            String UpdatedOnStr = convertView.getResources().getString(R.string.addons_updated_on);
-            String date = item.getUpdatedOn();
+            mImageLoader.displayImage(item.getImageUrl(), addonThumbnail);
 
-            Locale locale = Locale.getDefault();
-            DateFormat fromDate = new SimpleDateFormat("yyyy-MM-dd", locale);
-            DateFormat toDate = new SimpleDateFormat("dd, MMMM yyyy", locale);
-
-            try {
-                date = toDate.format(fromDate.parse(date));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            updatedOn.setText(UpdatedOnStr + " " + date);
+            String versionName = item.getVersionName();
+            updatedOn.setText(versionName);
 
             filesize.setText(Utils.formatDataFromBytes(item.getFilesize()));
             final File file = new File(mContext.getExternalFilesDir(OTA_DIR_ADDONS),
@@ -257,20 +283,35 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 Log.d(TAG, "file path " + file.getAbsolutePath());
                 Log.d(TAG, "file length " + file.length() + " remoteLength " + item.getFilesize());
             }
+
             boolean finished = file.length() >= item.getFilesize();
-            if (finished) {
-                download.setVisibility(View.VISIBLE);
-                download.setText(mContext.getResources().getString(R.string.finished));
-                download.setClickable(false);
-                delete.setVisibility(View.VISIBLE);
+            boolean installed = Utils.isAddonInstalled(item.getPackageName());
+            boolean updated = Utils.getInstalledAddonVersion(item.getPackageName()) >= item.getVersionNumber();
+
+            if (installed) {
+                if (updated) {
+                    download.setVisibility(View.GONE);
+                    delete.setVisibility(View.GONE);
+                    cancel.setVisibility(View.GONE);
+                } else {
+                    download.setVisibility(View.VISIBLE);
+                    download.setClickable(true);
+                    cancel.setVisibility(View.GONE);
+                    delete.setVisibility(View.GONE);
+                }
+            } else if (finished) {
+                download.setVisibility(View.GONE);
+                download.setClickable(true);
                 cancel.setVisibility(View.GONE);
+                delete.setVisibility(View.VISIBLE);
             } else {
                 download.setVisibility(View.VISIBLE);
-                download.setText(mContext.getResources().getString(R.string.download));
-                download.setClickable(true);
                 cancel.setVisibility(View.GONE);
                 delete.setVisibility(View.GONE);
             }
+
+            progressContainer.setVisibility(View.GONE);
+            startTime.setText(String.valueOf(System.currentTimeMillis()));
 
             download.setOnClickListener(v -> {
                 boolean isMobile = Utils.isMobileNetwork(mContext);
@@ -280,20 +321,40 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 if (isMobile && isSettingWiFiOnly) {
                     showNetworkDialog();
                 } else {
+                    download.setVisibility(View.GONE);
+                    startTime.setText(String.valueOf(System.currentTimeMillis()));
+                    progressContainer.setVisibility(View.VISIBLE);
+                    infoContainer.setVisibility(View.GONE);
+                    cancel.setVisibility(View.VISIBLE);
                     mDownloadAddon.startDownload(mContext, item.getDownloadLink(), item
                             .getTitle(), item.getId());
-                    download.setVisibility(View.GONE);
-                    cancel.setVisibility(View.VISIBLE);
                 }
             });
 
             cancel.setOnClickListener(v -> {
-                mDownloadAddon.cancelDownload(mContext, item.getId());
                 download.setVisibility(View.VISIBLE);
+                progressContainer.setVisibility(View.GONE);
+                infoContainer.setVisibility(View.VISIBLE);
                 cancel.setVisibility(View.GONE);
-                updateProgress(item.getId(), 0, true);
+                updateProgress(item.getId(), 0, true, 1);
+                mDownloadAddon.cancelDownload(mContext, item.getId());
             });
             delete.setOnClickListener(v -> deleteConfirm(file, item));
+
+            convertView.setOnClickListener(v -> {
+                Intent i = new Intent(mContext, AddonInfoActivity.class);
+                i.putExtra("id", item.getId());
+                i.putExtra("name", item.getTitle());
+                i.putExtra("packageName", item.getPackageName());
+                i.putExtra("downloadUrl", item.getDownloadLink());
+                i.putExtra("totalSize", item.getFilesize());
+                i.putExtra("versionName", item.getVersionName());
+                i.putExtra("fullInfo", item.getFullInfo());
+                i.putExtra("versionNumber", item.getVersionNumber());
+                i.putExtra("thumbnailUrl", item.getImageUrl());
+                mContext.startActivity(i);
+            });
+
             return convertView;
         }
     }

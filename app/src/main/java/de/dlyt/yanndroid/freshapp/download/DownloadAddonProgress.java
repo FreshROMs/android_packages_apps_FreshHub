@@ -31,10 +31,13 @@ class DownloadAddonProgress extends AsyncTask<Long, Integer, Void> implements Co
     private DownloadManager mDownloadManager;
     private int mViewId;
     private boolean mIsRunning = true;
+    private static long UPDATE_DELAY = 500;
+    private static long mStartTime;
 
     DownloadAddonProgress(DownloadManager downloadManager, int id) {
         mDownloadManager = downloadManager;
         mViewId = id;
+        mStartTime = System.currentTimeMillis();
     }
 
     @Override
@@ -65,12 +68,15 @@ class DownloadAddonProgress extends AsyncTask<Long, Integer, Void> implements Co
                 final int bytesInTotal = cursor.getInt(cursor
                         .getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
 
-                final int progressPercent = (int) ((bytesDownloaded * 100L) / bytesInTotal);
+                if (isCancelled())
+                    break;
 
-                if (progressPercent != previousValue) {
-                    // Only publish every 1%, to reduce the amount of work being done.
+                long currentTime = System.currentTimeMillis();
+
+                if ((currentTime - mStartTime > UPDATE_DELAY)) {
+                    final int progressPercent = (int) ((bytesDownloaded * 100L) / bytesInTotal);
                     publishProgress(progressPercent, bytesDownloaded, bytesInTotal);
-                    previousValue = progressPercent;
+                    mStartTime = currentTime;
                 }
             } catch (CursorIndexOutOfBoundsException | ArithmeticException e) {
                 Log.e(TAG, " " + e.getMessage());
@@ -85,9 +91,9 @@ class DownloadAddonProgress extends AsyncTask<Long, Integer, Void> implements Co
         if (DEBUGGING)
             Log.d(TAG, "Updating Progress - " + progress[0] + "%");
         if (mIsRunning) {
-            AddonActivity.AddonsArrayAdapter.updateProgress(mViewId, progress[0], false);
+            AddonActivity.AddonsArrayAdapter.updateProgress(mViewId, progress[0], false, progress[1]);
         } else {
-            AddonActivity.AddonsArrayAdapter.updateProgress(mViewId, 0, true);
+            AddonActivity.AddonsArrayAdapter.updateProgress(mViewId, 0, true, progress[1]);
         }
     }
 }

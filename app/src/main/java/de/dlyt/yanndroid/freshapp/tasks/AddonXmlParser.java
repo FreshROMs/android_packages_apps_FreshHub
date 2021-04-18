@@ -40,9 +40,14 @@ public class AddonXmlParser extends DefaultHandler implements Constants {
     private boolean tagId = false;
     private boolean tagTitle = false;
     private boolean tagDesc = false;
-    private boolean tagUpdatedAt = false;
     private boolean tagSize = false;
+    private boolean tagVersionName = false;
+    private boolean tagFullInfo = false;
+    private boolean tagVersionNumber = false;
+    private boolean tagImage = false;
+    private boolean tagPackageName = false;
     private boolean tagDownloadLink = false;
+
     private ArrayList<Addon> mAddons = new ArrayList<>();
     private Addon mAddon;
     private StringBuffer value = new StringBuffer();
@@ -80,6 +85,10 @@ public class AddonXmlParser extends DefaultHandler implements Constants {
             tagId = true;
         }
 
+        if (qName.equalsIgnoreCase("thumbnail")) {
+            tagImage = true;
+        }
+
         if (qName.equalsIgnoreCase("name")) {
             tagTitle = true;
         }
@@ -88,15 +97,27 @@ public class AddonXmlParser extends DefaultHandler implements Constants {
             tagDesc = true;
         }
 
-        if (qName.equalsIgnoreCase("updated-at")) {
-            tagUpdatedAt = true;
+        if (qName.equalsIgnoreCase("versionname")) {
+            tagVersionName = true;
         }
 
-        if (qName.equalsIgnoreCase("size")) {
+        if (qName.equalsIgnoreCase("versionnumber")) {
+            tagVersionNumber = true;
+        }
+
+        if (qName.equalsIgnoreCase("fullinfo")) {
+            tagFullInfo = true;
+        }
+
+        if (qName.equalsIgnoreCase("filesize")) {
             tagSize = true;
         }
 
-        if (qName.equalsIgnoreCase("download-link")) {
+        if (qName.equalsIgnoreCase("packagename")) {
+            tagPackageName = true;
+        }
+
+        if (qName.equalsIgnoreCase("directurl")) {
             tagDownloadLink = true;
         }
     }
@@ -141,13 +162,29 @@ public class AddonXmlParser extends DefaultHandler implements Constants {
                     Log.d(TAG, "Description = " + input);
             }
 
-            if (tagUpdatedAt) {
-                String[] splitInput = input.split("T");
-                mAddon.setUpdatedOn(splitInput[0]);
-                tagUpdatedAt = false;
-                if (DEBUGGING) {
-                    Log.d(TAG, "Updated Date = " + splitInput[0]);
-                }
+            if (tagVersionNumber) {
+                mAddon.setVersionNumber(Integer.parseInt(input));
+                tagVersionNumber = false;
+            }
+
+            if (tagImage) {
+                mAddon.setImageUrl(input);
+                tagImage = false;
+            }
+
+            if (tagPackageName) {
+                mAddon.setPackageName(input);
+                tagPackageName = false;
+            }
+
+            if (tagVersionName) {
+                mAddon.setVersionName(input);
+                tagVersionName = false;
+            }
+
+            if (tagFullInfo) {
+                mAddon.setFullInfo(input);
+                tagFullInfo = false;
             }
 
             if (tagSize) {

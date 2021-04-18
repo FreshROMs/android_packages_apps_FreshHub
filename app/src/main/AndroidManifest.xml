@@ -41,6 +41,7 @@
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.AddonInfoActivity"></activity>
         <activity
             android:name=".activities.AboutActivity"
             android:screenOrientation="portrait" />

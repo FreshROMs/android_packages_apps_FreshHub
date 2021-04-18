@@ -287,4 +287,15 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="addon_list_btn">
+        <item name="android:background">@drawable/addons_small_btn</item>
+        <item name="android:padding">4.5dip</item>
+        <item name="android:layout_width">24.0dip</item>
+        <item name="android:layout_height">24.0dip</item>
+        <item name="android:src">@drawable/ic_addons_list_btn_cancel</item>
+        <item name="android:tint">@color/raised_button_text_color</item>
+    </style>
+    <style name="addon_detail_progressbar" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/addons_detail_progressbar</item>
+    </style>
 </resources>

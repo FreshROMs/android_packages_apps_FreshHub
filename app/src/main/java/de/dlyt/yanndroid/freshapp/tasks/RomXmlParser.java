@@ -62,6 +62,8 @@ class RomXmlParser extends DefaultHandler implements Constants {
     private boolean tagDiscordUrl = false;
     private boolean tagGitIssues = false;
     private boolean tagGitDiscussion = false;
+    private boolean tagAppVersion = false;
+    private boolean tagAppUrl = false;
 
     private StringBuffer value = new StringBuffer();
     private Context mContext;
@@ -152,6 +154,14 @@ class RomXmlParser extends DefaultHandler implements Constants {
 
         if (qName.equalsIgnoreCase("spl")) {
             tagSpl = true;
+        }
+
+        if (qName.equalsIgnoreCase("appversion")) {
+            tagAppVersion = true;
+        }
+
+        if (qName.equalsIgnoreCase("appurl")) {
+            tagAppUrl = true;
         }
 
         if (qName.equalsIgnoreCase("release")) {
@@ -417,6 +427,16 @@ class RomXmlParser extends DefaultHandler implements Constants {
             tagAddonUrl = false;
             if (DEBUGGING)
                 Log.d(TAG, "Addons URL = " + input);
+        }
+
+        if (tagAppUrl) {
+            RomUpdate.setAppUrl(mContext, input);
+            tagAppUrl = false;
+        }
+
+        if (tagAppVersion) {
+            RomUpdate.setAppVersion(mContext, Integer.parseInt(input));
+            tagAppVersion = false;
         }
 
         if (tagRomHut) {
