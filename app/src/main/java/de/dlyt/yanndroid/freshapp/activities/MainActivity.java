@@ -48,7 +48,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -253,14 +252,14 @@ public class MainActivity extends AppCompatActivity implements Constants,
     }
 
 
-    public void checkforAppUpdate(){
+    public void checkforAppUpdate() {
         View navigationIcon_Badge = findViewById(R.id.navigationIcon_new_badge);
         View drawer_about_new_badge = findViewById(R.id.drawer_about_new_badge);
         try {
             PackageInfo packageInfo = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
             int appServerVersion = RomUpdate.getAppVersion(mContext);
             int appLocalVersion = packageInfo.versionCode;
-            if (appLocalVersion < appServerVersion){
+            if (appLocalVersion < appServerVersion) {
                 navigationIcon_Badge.setVisibility(View.VISIBLE);
                 drawer_about_new_badge.setVisibility(View.VISIBLE);
             } else {

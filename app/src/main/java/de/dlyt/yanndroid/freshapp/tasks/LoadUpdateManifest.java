@@ -51,7 +51,9 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
                             + Utils.getProp(mContext.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
                             + Utils.getProp(mContext.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
 
-            //URL url = new URL("https://ota.tensevntysevn.cf/fresh/a50xx/beta/21032202/");
+
+            url = new URL("https://ota.tensevntysevn.cf/fresh/a50xx/beta/21040501/"); //todo: remove at release
+
             URLConnection connection = url.openConnection();
             connection.connect();
             // download the file
