@@ -22,6 +22,8 @@ import android.content.SharedPreferences;
 
 import java.io.File;
 
+import de.dlyt.yanndroid.freshapp.R;
+
 public class RomUpdate implements Constants {
 
     private static final String PREF_NAME = "ROMUpdate";
@@ -50,6 +52,9 @@ public class RomUpdate implements Constants {
     private static String FORUM_URL = "rom_forum_url";
     private static String GIT_ISSUES = "rom_git_issues_url";
     private static String GIT_DISCUSSION = "rom_git_discussion_url";
+
+    private static String APP_VERSION = "app_update_version";
+    private static String APP_URL = "app_update_url";
 
     private static String START_TIME = "ota_start_download_time";
 
@@ -154,6 +159,14 @@ public class RomUpdate implements Constants {
 
     public static String getRomHut(Context context) {
         return getPrefs(context).getString(SPONSORED_ROMHUT, DEF_VALUE);
+    }
+
+    public static Integer getAppVersion(Context context) {
+        return getPrefs(context).getInt(APP_VERSION, 0);
+    }
+
+    public static String getAppUrl(Context context) {
+        return getPrefs(context).getString(APP_URL, DEF_VALUE);
     }
 
     public static boolean getUpdateAvailability(Context context) {
@@ -325,11 +338,25 @@ public class RomUpdate implements Constants {
         editor.apply();
     }
 
+    public static void setAppVersion(Context context, int appVersion) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putInt(APP_VERSION, appVersion);
+        editor.apply();
+    }
+
+    public static void setAppUrl(Context context, String appUrl) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(APP_URL, appUrl);
+        editor.apply();
+    }
+
     public static String getFilename(Context context) {
 
         String result = getVersionName(context);
 
-        return result.replace(" ", "");
+        return context.getResources().getString(R.string.system_name) + "_"
+                + getReleaseVersion(context) + "-" + getVersionNumber(context) + "_"
+                + getReleaseVariant(context) + "_" + getReleaseType(context);
     }
 
     public static File getFullFile(Context context) {

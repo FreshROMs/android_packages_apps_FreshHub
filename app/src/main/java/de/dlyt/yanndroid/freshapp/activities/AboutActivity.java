@@ -22,6 +22,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.button.MaterialButton;
 
 import de.dlyt.yanndroid.freshapp.R;
+import de.dlyt.yanndroid.freshapp.utils.RomUpdate;
 import de.dlyt.yanndroid.freshapp.utils.UpdateApp;
 
 public class AboutActivity extends AppCompatActivity {
@@ -51,21 +52,22 @@ public class AboutActivity extends AppCompatActivity {
         settilte("");
         expanded_subtitle.setText("");
 
+        Boolean updateAvailable = false;
+
+        try {
+            PackageInfo packageInfo = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
+            int appServerVersion = RomUpdate.getAppVersion(mContext);
+            int appLocalVersion = packageInfo.versionCode;
+            if (appLocalVersion < appServerVersion) updateAvailable = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            updateAvailable = false;
+        }
 
         TextView statusText = findViewById(R.id.status_text);
         ProgressBar loadingBar = findViewById(R.id.loading_bar);
         MaterialButton updateButton = findViewById(R.id.update_button);
 
-        /*todo: need to check if there is a newer version...
-           - download and install is working
-           - didn't tried it if its a system app
-           - maybe we can add the app version in the manifest which is downloaded*/
-
-        /**when done checking*/
         loadingBar.setVisibility(View.GONE);
-        Boolean updateAvailable = true;
-        /***/
-
 
         statusText.setText(updateAvailable ? getResources().getString(R.string.a_new_version_is_available) : getResources().getString(R.string.the_latest_version_is_already_installed));
         updateButton.setVisibility(updateAvailable ? View.VISIBLE : View.GONE);
@@ -75,7 +77,7 @@ public class AboutActivity extends AppCompatActivity {
                 if (!getPackageManager().canRequestPackageInstalls()) {
                     startActivity(new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + getApplicationContext().getPackageName())));
                 }
-                UpdateApp.DownloadAndInstall(getBaseContext(), "https://github.com/Yanndroid/FreshApp2/raw/master/app/release/app-release.apk", "Fresh/FreshHub.apk", "FreshHub Update", "version xyz");
+                UpdateApp.DownloadAndInstall(mContext, RomUpdate.getAppUrl(mContext));
                 updateButton.setEnabled(false);
             }
         });
