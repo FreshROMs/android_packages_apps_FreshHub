@@ -94,13 +94,14 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         mProgressBar.setProgress(progress);
 
         int downloadSpeed = (downloaded/(int)(currentTime - startTime));
+        String localizedSpeed = Utils.formatDataFromBytes(downloadSpeed*1000);
         long remainingTime = downloadSpeed != 0 ? ((total - downloaded) / downloadSpeed) / 1000 : 0;
 
         String timeLeft = String.format("%02d:%02d:%02d", remainingTime / 3600,
                 (remainingTime % 3600) / 60, (remainingTime % 60));
 
         mProgressCounterText.setText(context.getString(R.string.available_time_remaining, timeLeft));
-        mDownloadSpeedTextView.setText(context.getString(R.string.available_download_speed, downloadSpeed));
+        mDownloadSpeedTextView.setText(context.getString(R.string.available_download_speed, localizedSpeed));
     }
 
     public static void setupMenuToolbar(Context context) {
@@ -189,7 +190,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         super.onStart();
         this.registerReceiver(mReceiver, new IntentFilter(DOWNLOAD_ROM_COMPLETE));
 
-        int downloadSpeed = 0;
+        String downloadSpeed = "0B";
         long remainingTime = 0;
 
         String timeLeft = String.format("%02d:%02d:%02d", remainingTime / 3600,
@@ -360,7 +361,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
                     if (DEBUGGING) Log.d(TAG, "ORS is " + Preferences.getORSEnabled(mContext));
                     if (Preferences.getORSEnabled(mContext)) {
-                        new GenerateRecoveryScript(mContext).execute();
+                        new GenerateRecoveryScript(mContext, false).execute();
                     } else {
                         Tools.recovery(mContext);
                     }
@@ -460,7 +461,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         }
     }
 
-    private class MD5Check extends AsyncTask<Object, Boolean, Boolean> {
+    private static class MD5Check extends AsyncTask<Object, Boolean, Boolean> {
 
         public final String TAG = this.getClass().getSimpleName();
 
