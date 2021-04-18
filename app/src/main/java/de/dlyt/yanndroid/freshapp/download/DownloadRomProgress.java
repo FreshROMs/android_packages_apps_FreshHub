@@ -18,6 +18,7 @@ package de.dlyt.yanndroid.freshapp.download;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.os.AsyncTask;
@@ -69,11 +70,17 @@ public class DownloadRomProgress extends AsyncTask<Long, Integer, Void> implemen
                         DownloadManager.STATUS_FAILED) {
                     Preferences.setIsDownloadRunning(mContext, false);
                     Preferences.setDownloadFinished(mContext, false);
+
+                    Intent send = new Intent(DOWNLOAD_ROM_COMPLETE);
+                    mContext.sendBroadcast(send);
                     return null;
                 } else if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
                         DownloadManager.STATUS_PAUSED) {
                     Preferences.setIsDownloadRunning(mContext, false);
                     Preferences.setDownloadFinished(mContext, false);
+
+                    Intent send = new Intent(DOWNLOAD_ROM_COMPLETE);
+                    mContext.sendBroadcast(send);
                     return null;
                 }
 
