@@ -19,6 +19,7 @@ package de.dlyt.yanndroid.freshapp.tasks;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -35,14 +36,17 @@ public class GenerateRecoveryScript extends AsyncTask<Void, String, Boolean> imp
     private static final String SCRIPT_FILE = "/cache/recovery/openrecoveryscript";
     private static final String NEW_LINE = "\n";
     public final String TAG = this.getClass().getSimpleName();
-    private Context mContext;
+    @SuppressLint("StaticFieldLeak")
+    private final Context mContext;
     private ProgressDialog mLoadingDialog;
-    private StringBuilder mScript = new StringBuilder();
-    private String mFilename;
+    private final StringBuilder mScript = new StringBuilder();
+    private final String mFilename;
     private String mScriptOutput;
+    private final Boolean mBoolAddon;
 
-    public GenerateRecoveryScript(Context context) {
+    public GenerateRecoveryScript(Context context, Boolean isAddon) {
         mContext = context;
+        mBoolAddon = isAddon;
         mFilename = RomUpdate.getFilename(mContext) + ".zip";
     }
 
@@ -55,45 +59,62 @@ public class GenerateRecoveryScript extends AsyncTask<Void, String, Boolean> imp
         mLoadingDialog.setMessage(mContext.getString(R.string.rebooting));
         mLoadingDialog.show();
 
-        if (Preferences.getWipeData(mContext)) {
-            mScript.append("wipe data" + NEW_LINE);
-        }
-        if (Preferences.getWipeCache(mContext)) {
-            mScript.append("wipe cache" + NEW_LINE);
-        }
-        if (Preferences.getWipeDalvik(mContext)) {
-            mScript.append("wipe dalvik" + NEW_LINE);
-        }
+        if (mBoolAddon) {
+            File addonDir = new File("/sdcard/Android/data"
+                    + File.separator
+                    + mContext.getPackageName()
+                    + File.separator
+                    + OTA_DIR_ADDONS);
+            File[] filesArr = addonDir.listFiles();
 
-        mScript.append("install /sdcard").append(File.separator).append(OTA_DOWNLOAD_DIR).append
-                (File.separator).append(mFilename).append(NEW_LINE);
+            if (filesArr != null && filesArr.length > 0) {
+                for (File aFilesArr : filesArr) {
+                    mScript.append(NEW_LINE).append("install /sdcard/Android/data/")
+                            .append(mContext.getPackageName())
+                            .append(File.separator)
+                            .append(OTA_DIR_ADDONS)
+                            .append(File.separator)
+                            .append(aFilesArr.getName())
+                            .append(NEW_LINE);
 
-        File installAfterFlashDir = new File("/sdcard"
-                + File.separator
-                + OTA_DOWNLOAD_DIR
-                + File.separator
-                + INSTALL_AFTER_FLASH_DIR);
-        File[] filesArr = installAfterFlashDir.listFiles();
-        if (filesArr != null && filesArr.length > 0) {
-            for (File aFilesArr : filesArr) {
-                mScript.append(NEW_LINE).append("install /sdcard").append(File.separator).append
-                        (OTA_DOWNLOAD_DIR).append(File.separator).append(INSTALL_AFTER_FLASH_DIR)
-                        .append(File.separator).append(aFilesArr.getName());
-                if (DEBUGGING)
-                    Log.d(TAG, "install "
-                            + "/sdcard"
-                            + File.separator
-                            + OTA_DOWNLOAD_DIR
-                            + File.separator
-                            + INSTALL_AFTER_FLASH_DIR
-                            + File.separator
-                            + aFilesArr.getName());
+                    // Delete addons after install
+                    mScript.append(NEW_LINE).append("cmd rm -rf ")
+                            .append("/sdcard/Android/data/")
+                            .append(mContext.getPackageName())
+                            .append(File.separator)
+                            .append(OTA_DIR_ADDONS)
+                            .append(File.separator)
+                            .append(aFilesArr.getName())
+                            .append(NEW_LINE);
+
+                    if (DEBUGGING)
+                        Log.d(TAG, "install "
+                                + "/sdcard"
+                                + File.separator
+                                + OTA_DOWNLOAD_DIR
+                                + File.separator
+                                + INSTALL_AFTER_FLASH_DIR
+                                + File.separator
+                                + aFilesArr.getName());
+                }
             }
-        }
+        } else {
+            mScript.append("install /sdcard/Android/data/")
+                    .append(mContext.getPackageName())
+                    .append(File.separator)
+                    .append(OTA_DIR_ROM)
+                    .append(File.separator)
+                    .append(mFilename)
+                    .append(NEW_LINE);
 
-        if (Preferences.getDeleteAfterInstall(mContext)) {
-            mScript.append(NEW_LINE).append("cmd rm -rf ").append("/sdcard").append(File
-                    .separator).append(OTA_DOWNLOAD_DIR).append(File.separator).append(mFilename)
+            // Delete OTA after install
+            mScript.append(NEW_LINE).append("cmd rm -rf ")
+                    .append("/sdcard/Android/data/")
+                    .append(mContext.getPackageName())
+                    .append(File.separator)
+                    .append(OTA_DIR_ROM)
+                    .append(File.separator)
+                    .append(mFilename)
                     .append(NEW_LINE);
         }
 
@@ -109,8 +130,8 @@ public class GenerateRecoveryScript extends AsyncTask<Void, String, Boolean> imp
         // If not 0, then permission was denied
         if (!check.equals("0")) {
             // Run as root
-            Tools.shell("mkdir -p /cache/recovery/; echo $?", true);
-            Tools.shell("echo \"" + mScriptOutput + "\" > " + SCRIPT_FILE + "\n", true);
+            Tools.shell("su -c mkdir -p /cache/recovery/; echo $?", true);
+            Tools.shell("su -c echo \"" + mScriptOutput + "\" > " + SCRIPT_FILE + "\n", true);
         } else {
             // Permission was enabled, run without root
             Tools.shell("echo \"" + mScriptOutput + "\" > " + SCRIPT_FILE + "\n", false);
