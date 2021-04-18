@@ -498,6 +498,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             updateRomInformation();
             updateRomUpdateLayouts(false);
             refreshDrawer();
+            checkforAppUpdate();
             webView.reload();
             swipeRefreshLayout.setRefreshing(false);
             findViewById(R.id.swiperefresh).setEnabled(false);
