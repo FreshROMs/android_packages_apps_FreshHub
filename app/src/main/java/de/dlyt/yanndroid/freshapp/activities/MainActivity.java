@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -26,6 +27,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -185,6 +187,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
         //updateWebsiteLayout();
         refreshDrawer();
 
+        checkforAppUpdate();
+
         notifSwitch.setChecked(Preferences.getBackgroundService(mContext));
         dataSaver.setChecked(Preferences.getBackgroundDownload(mContext));
         appIcon.setChecked(Preferences.getAppIconState(mContext));
@@ -248,12 +252,32 @@ public class MainActivity extends AppCompatActivity implements Constants,
         });
     }
 
+
+    public void checkforAppUpdate(){
+        View navigationIcon_Badge = findViewById(R.id.navigationIcon_new_badge);
+        View drawer_about_new_badge = findViewById(R.id.drawer_about_new_badge);
+        try {
+            PackageInfo packageInfo = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
+            int appServerVersion = RomUpdate.getAppVersion(mContext);
+            int appLocalVersion = packageInfo.versionCode;
+            if (appLocalVersion < appServerVersion){
+                navigationIcon_Badge.setVisibility(View.VISIBLE);
+                drawer_about_new_badge.setVisibility(View.VISIBLE);
+            } else {
+                navigationIcon_Badge.setVisibility(View.GONE);
+                drawer_about_new_badge.setVisibility(View.GONE);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+    }
+
     public void initDrawer() {
         View content = findViewById(R.id.main_content);
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         View drawer = findViewById(R.id.drawer);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        ImageView navigationIcon = findViewById(R.id.navigationIcon);
+        View navigationIcon_Badge = findViewById(R.id.navigationIcon_new_badge);
+        navigationIcon_Badge.setVisibility(View.GONE);
 
         ViewGroup.LayoutParams layoutParams = drawer.getLayoutParams();
         layoutParams.width = (int) ((double) this.getResources().getDisplayMetrics().widthPixels / 1.19);
@@ -269,7 +293,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         };
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+        navigationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(drawer, true);

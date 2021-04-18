@@ -13,16 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.SeslProgressBar;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -34,11 +32,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import de.dlyt.yanndroid.freshapp.R;
 import de.dlyt.yanndroid.freshapp.download.DownloadAddon;
@@ -116,14 +110,16 @@ public class AddonActivity extends AppCompatActivity implements Constants {
         AppBar.setExpanded(false);
 
         /**Back*/
-        toolbar.setNavigationIcon(R.drawable.ic_back);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        ImageView navigationIcon = findViewById(R.id.navigationIcon);
+        View navigationIcon_Badge = findViewById(R.id.navigationIcon_new_badge);
+        navigationIcon_Badge.setVisibility(View.GONE);
+        navigationIcon.setImageResource(R.drawable.ic_back);
+        navigationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-
 
     }
 
@@ -163,7 +159,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 return;
             }
 
-            SeslProgressBar progressBar = (SeslProgressBar) v.findViewById(R.id.progress_bar);
+            ProgressBar progressBar = v.findViewById(R.id.progress_bar);
             TextView downloadSpeed = (TextView) v.findViewById(R.id.download_speed);
             TextView startTimeText = (TextView) v.findViewById(R.id.start_time);
             Long startTime = Long.parseLong(String.valueOf(startTimeText.getText()));

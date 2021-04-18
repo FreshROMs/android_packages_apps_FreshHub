@@ -119,5 +119,8 @@
     <color name="raised_button_background_color">#0f000000</color>
     <color name="raised_button_text_color">#ff252525</color>
 
+    <color name="badge_background_color">#fff56a0d</color>
+
+
 
 </resources>

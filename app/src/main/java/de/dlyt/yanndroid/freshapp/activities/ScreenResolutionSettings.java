@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -241,8 +242,11 @@ public class ScreenResolutionSettings extends AppCompatActivity {
         AppBar.setExpanded(false);
 
         /**Back*/
-        toolbar.setNavigationIcon(R.drawable.ic_back);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        ImageView navigationIcon = findViewById(R.id.navigationIcon);
+        View navigationIcon_Badge = findViewById(R.id.navigationIcon_new_badge);
+        navigationIcon_Badge.setVisibility(View.GONE);
+        navigationIcon.setImageResource(R.drawable.ic_back);
+        navigationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();

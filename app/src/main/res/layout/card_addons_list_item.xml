@@ -156,11 +156,11 @@
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
-                            <androidx.appcompat.widget.SeslProgressBar
+                            <ProgressBar
                                 android:id="@+id/progress_bar"
-                                style="@style/ProgressBarStyle.Horizontal.Large"
-                                android:layout_width="0.0dip"
-                                android:layout_height="2dip"
+                                style="@style/ProgressBarStyle.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_marginTop="8dip"
                                 android:layout_marginEnd="12dp"
                                 android:layout_weight="1.0"
