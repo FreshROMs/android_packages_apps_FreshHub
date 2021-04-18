@@ -23,6 +23,7 @@
 
 
             <ScrollView
+                android:id="@+id/content_scroll"
                 android:nestedScrollingEnabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"

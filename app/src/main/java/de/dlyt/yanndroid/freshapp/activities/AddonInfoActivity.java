@@ -9,7 +9,9 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -59,7 +61,18 @@ public class AddonInfoActivity extends AppCompatActivity {
         addonPackageName.setText(packageName);
         addonTotalSize.setText(totalSize);
         addonName.setText(name);
-        settilte(" ");
+        settilte("");
+
+
+        ScrollView content_scroll = findViewById(R.id.content_scroll);
+        content_scroll.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                settilte(scrollY >= 80 ? name : "");
+            }
+        });
+
+
 
         Bypass byPass = new Bypass(mContext);
         CharSequence string = byPass.markdownToSpannable(fullInfo);
