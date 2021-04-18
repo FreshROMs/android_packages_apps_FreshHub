@@ -6,6 +6,7 @@
     android:background="?selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
+    android:foreground="@drawable/rounded_corner"
     android:paddingVertical="8dp">
 
     <RelativeLayout
@@ -43,7 +44,7 @@
                         android:layout_height="60.0dip"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@color/sesl_control_normal_color" />
                 </com.google.android.material.card.MaterialCardView>
             </FrameLayout>
         </FrameLayout>

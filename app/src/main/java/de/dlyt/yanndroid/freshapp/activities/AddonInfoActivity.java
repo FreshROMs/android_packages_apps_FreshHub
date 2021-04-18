@@ -1,7 +1,5 @@
 package de.dlyt.yanndroid.freshapp.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -63,15 +62,17 @@ public class AddonInfoActivity extends AppCompatActivity {
         addonName.setText(name);
         settilte("");
 
+        TextView collapsed_title = findViewById(R.id.collapsed_title);
+        collapsed_title.setText(name);
+        collapsed_title.setAlpha(0);
 
         ScrollView content_scroll = findViewById(R.id.content_scroll);
         content_scroll.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                settilte(scrollY >= 80 ? name : "");
+                collapsed_title.setAlpha((float) (scrollY) / 120);
             }
         });
-
 
 
         Bypass byPass = new Bypass(mContext);
@@ -86,25 +87,10 @@ public class AddonInfoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         AppBarLayout AppBar = findViewById(R.id.app_bar);
 
-        TextView expanded_title = findViewById(R.id.expanded_title);
-        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
-        TextView collapsed_title = findViewById(R.id.collapsed_title);
 
         /** 1/3 of the Screen */
         ViewGroup.LayoutParams layoutParams = AppBar.getLayoutParams();
         layoutParams.height = (int) ((double) this.getResources().getDisplayMetrics().heightPixels / 2.6);
-
-
-        /** Collapsing */
-        AppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                float percentage = (AppBar.getY() / AppBar.getTotalScrollRange());
-                expanded_title.setAlpha(1 - (percentage * 2 * -1));
-                expanded_subtitle.setAlpha(1 - (percentage * 2 * -1));
-                collapsed_title.setAlpha(percentage * -1);
-            }
-        });
 
         AppBar.setExpanded(false);
 
