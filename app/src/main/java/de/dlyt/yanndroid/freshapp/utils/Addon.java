@@ -24,6 +24,12 @@ public class Addon {
     private String mDownloadLink;
     private int mId;
 
+    private String mVersionName;
+    private String mFullInfo;
+    private int mVersionNumber;
+    private String mImageUrl;
+    private String mPackageName;
+
     public String getTitle() {
         return mTitle;
     }
@@ -44,8 +50,48 @@ public class Addon {
         return mUpdatedOn;
     }
 
+    public String getFullInfo() {
+        return mFullInfo;
+    }
+
+    public Integer getVersionNumber() {
+        return mVersionNumber;
+    }
+
+    public String getVersionName() {
+        return mVersionName;
+    }
+
     public void setUpdatedOn(String input) {
         mUpdatedOn = input;
+    }
+
+    public void setVersionNumber(Integer input) {
+        mVersionNumber = input;
+    }
+
+    public void setFullInfo(String input) {
+        mFullInfo = input;
+    }
+
+    public void setImageUrl(String input) {
+        mImageUrl = input;
+    }
+
+    public String getImageUrl() {
+        return mImageUrl;
+    }
+
+    public void setPackageName(String input) {
+        mPackageName = input;
+    }
+
+    public String getPackageName() {
+        return mPackageName;
+    }
+
+    public void setVersionName(String input) {
+        mVersionName = input;
     }
 
     public String getDownloadLink() {

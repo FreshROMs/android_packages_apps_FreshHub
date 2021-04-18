@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/button_background_color" />
+        </shape>
+    </item>
+    <item android:state_enabled="true" android:state_pressed="true">
+        <shape android:shape="oval">
+            <solid android:color="#1f000000" />
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape android:shape="oval">
+            <solid android:color="#4df3f3f3" />
+        </shape>
+    </item>
+</layer-list>

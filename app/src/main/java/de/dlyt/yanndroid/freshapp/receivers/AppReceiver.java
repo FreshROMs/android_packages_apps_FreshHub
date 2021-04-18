@@ -92,7 +92,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
                         Log.w(TAG, "Download Failed");
                     Log.d(TAG, "Removing Addon download with id " + keyForAddonDownload);
                     OtaUpdates.removeAddonDownload(keyForAddonDownload);
-                    AddonActivity.AddonsArrayAdapter.updateProgress(keyForAddonDownload, 0, true);
+                    AddonActivity.AddonsArrayAdapter.updateProgress(keyForAddonDownload, 0, true, 1);
                     AddonActivity.AddonsArrayAdapter.updateButtons(keyForAddonDownload, false);
                     return;
                 } else {
