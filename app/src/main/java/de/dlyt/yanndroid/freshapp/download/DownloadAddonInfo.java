@@ -21,12 +21,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
-import de.dlyt.yanndroid.freshapp.activities.AddonActivity;
 import de.dlyt.yanndroid.freshapp.utils.Constants;
 import de.dlyt.yanndroid.freshapp.utils.AddonDownloadDB;
 import de.dlyt.yanndroid.freshapp.utils.Preferences;
 
-public class DownloadAddon implements Constants {
+public class DownloadAddonInfo implements Constants {
 
     public final static String TAG = "DownloadAddon";
 
@@ -52,6 +51,7 @@ public class DownloadAddon implements Constants {
                 .DOWNLOAD_SERVICE);
         long mDownloadID = downloadManager.enqueue(request);
         AddonDownloadDB.putAddonDownload(context, id, mDownloadID);
+        new DownloadAddonInfoProgress(context, downloadManager, id, mDownloadID);
         if (DEBUGGING) {
             Log.d(TAG, "Starting download with manager ID " + mDownloadID + " and item id of " + id);
         }
@@ -66,7 +66,6 @@ public class DownloadAddon implements Constants {
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context
                 .DOWNLOAD_SERVICE);
         downloadManager.remove(mDownloadID);
-        AddonActivity.AddonsArrayAdapter.updateProgress(id, 0, true, 0, false);
         AddonDownloadDB.removeAddonDownload(context, id);
     }
 }

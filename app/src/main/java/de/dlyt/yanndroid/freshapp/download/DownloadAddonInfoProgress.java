@@ -20,29 +20,27 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import de.dlyt.yanndroid.freshapp.activities.AddonActivity;
 import de.dlyt.yanndroid.freshapp.activities.AddonInfoActivity;
 import de.dlyt.yanndroid.freshapp.utils.AddonDownloadDB;
 import de.dlyt.yanndroid.freshapp.utils.Constants;
 
-public class DownloadAddonProgress implements Constants {
+public class DownloadAddonInfoProgress implements Constants {
+    public final String TAG = this.getClass().getSimpleName();
+
     private static final long UPDATE_DELAY = 500;
     private static long mStartTime;
     private static int mBytesDownloaded = 0;
     private static int mProgressPercent = 0;
-    public final String TAG = this.getClass().getSimpleName();
 
-    public DownloadAddonProgress(Context context, DownloadManager downloadManager, int id, long downloadId) {
+    public DownloadAddonInfoProgress(Context context, DownloadManager downloadManager, int id, long downloadId) {
         mStartTime = System.currentTimeMillis();
 
-        ExecutorService executor = Executors.newWorkStealingPool();
+        ExecutorService executor = Executors.newSingleThreadExecutor();
 
         executor.execute(() -> {
             while (AddonDownloadDB.getAddonDownloading(context, id)) {
@@ -52,16 +50,18 @@ public class DownloadAddonProgress implements Constants {
                 try {
                     if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
                             DownloadManager.STATUS_SUCCESSFUL) {
+
                         AddonDownloadDB.removeAddonDownloading(context, id);
-                        AddonActivity.runOnUI(() -> AddonActivity.AddonsArrayAdapter.updateProgress
-                                (id, mProgressPercent, true, mBytesDownloaded, true));
+                        AddonDownloadDB.removeAddonDownload(context, id);
+                        AddonInfoActivity.runOnUI(() -> AddonInfoActivity.updateProgress(mProgressPercent, true, mBytesDownloaded, true));
                     } else if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
-                                    DownloadManager.STATUS_FAILED ||
+                            DownloadManager.STATUS_PAUSED ||
                             cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
-                                    DownloadManager.STATUS_PAUSED ) {
+                                    DownloadManager.STATUS_FAILED) {
+
                         AddonDownloadDB.removeAddonDownloading(context, id);
-                        AddonActivity.runOnUI(() -> AddonActivity.AddonsArrayAdapter.updateProgress
-                                (id, mProgressPercent, true, mBytesDownloaded, false));
+                        AddonDownloadDB.removeAddonDownload(context, id);
+                        AddonInfoActivity.runOnUI(() -> AddonInfoActivity.updateProgress(mProgressPercent, true, mBytesDownloaded, false));
                     }
 
                     final int bytesDownloaded = cursor.getInt(cursor
@@ -75,12 +75,7 @@ public class DownloadAddonProgress implements Constants {
                         mProgressPercent = (int) ((bytesDownloaded * 100L) / bytesInTotal);
                         mBytesDownloaded = bytesDownloaded;
 
-                        AddonActivity.runOnUI(new Runnable() {
-                            @Override
-                            public void run() {
-                                AddonActivity.AddonsArrayAdapter.updateProgress(id, mProgressPercent, false, mBytesDownloaded, false);
-                            }
-                        });
+                        AddonInfoActivity.runOnUI(() -> AddonInfoActivity.updateProgress(mProgressPercent, false, mBytesDownloaded, false));
 
                         mStartTime = currentTime;
                     }
