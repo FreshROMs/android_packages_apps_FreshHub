@@ -2,11 +2,13 @@ package de.dlyt.yanndroid.freshapp.activities;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog.Builder;
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,12 +35,16 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import de.dlyt.yanndroid.freshapp.R;
 import de.dlyt.yanndroid.freshapp.download.DownloadAddon;
+import de.dlyt.yanndroid.freshapp.download.DownloadAddonProgress;
 import de.dlyt.yanndroid.freshapp.tasks.AddonXmlParser;
 import de.dlyt.yanndroid.freshapp.utils.Addon;
 import de.dlyt.yanndroid.freshapp.utils.Constants;
+import de.dlyt.yanndroid.freshapp.utils.AddonDownloadDB;
 import de.dlyt.yanndroid.freshapp.utils.Preferences;
 import de.dlyt.yanndroid.freshapp.utils.RomUpdate;
 import de.dlyt.yanndroid.freshapp.utils.Utils;
@@ -52,6 +58,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
     public static ImageLoader mImageLoader;
     private static ListView mListview;
     private static DownloadAddon mDownloadAddon;
+    public static Handler UIHandler;
 
     @SuppressLint("NewApi")
     @Override
@@ -62,7 +69,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
         mImageLoader.init(config);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ota_addons);
+        setContentView(R.layout.activity_addons);
 
         initToolbar();
         settilte(getString(R.string.main_addon));
@@ -76,10 +83,24 @@ public class AddonActivity extends AppCompatActivity implements Constants {
         if (!RomUpdate.getRomHut(mContext).equals("null")) {
             isRomhut = "?order_by=name&order_direction=asc";
         }
-
-        new LoadAddonManifest(mContext).execute(RomUpdate.getAddonsUrl(mContext) + isRomhut);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        UIHandler = new Handler(Looper.getMainLooper());
+        mImageLoader = ImageLoader.getInstance();
+        new LoadAddonManifest(mContext);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    public static void runOnUI(Runnable runnable) {
+        UIHandler.post(runnable);
+    }
 
     public void initToolbar() {
         /** Def */
@@ -138,9 +159,8 @@ public class AddonActivity extends AppCompatActivity implements Constants {
 
     public void setupListView(ArrayList<Addon> addonsList) {
         final AddonsArrayAdapter adapter = new AddonsArrayAdapter(mContext, addonsList);
-        if (mListview != null) {
-            mListview.setAdapter(adapter);
-        }
+        mListview.removeAllViewsInLayout();
+        mListview.setAdapter(adapter);
     }
 
     public static class AddonsArrayAdapter extends ArrayAdapter<Addon> {
@@ -149,25 +169,33 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             super(context, 0, users);
         }
 
-        public static void updateProgress(int index, int progress, boolean finished, int downloaded) {
-            View v = mListview.getChildAt((index - 1) -
+        public static void updateProgress(int index, int progress, boolean finished, int downloaded, boolean successful) {
+            View view = mListview.getChildAt((index - 1) -
                     mListview.getFirstVisiblePosition());
 
             Long currentTime = System.currentTimeMillis();
 
-            if (v == null) {
+            if (view == null) {
                 return;
             }
 
-            ProgressBar progressBar = v.findViewById(R.id.progress_bar);
-            TextView downloadSpeed = (TextView) v.findViewById(R.id.download_speed);
-            TextView startTimeText = (TextView) v.findViewById(R.id.start_time);
+            ProgressBar progressBar = view.findViewById(R.id.progress_bar);
+            TextView downloadSpeed = (TextView) view.findViewById(R.id.download_speed);
+            TextView startTimeText = (TextView) view.findViewById(R.id.start_time);
             Long startTime = Long.parseLong(String.valueOf(startTimeText.getText()));
             int addonDownloadSpeed = (downloaded/(int)(currentTime - startTime));
             String localizedSpeed = Utils.formatDataFromBytes(addonDownloadSpeed*1000);
 
             if (finished) {
-                progressBar.setProgress(0);
+                AddonDownloadDB.removeAddonDownload(mContext, index);
+
+                if (successful) {
+                    progressBar.setProgress(0);
+                    updateButtons(index, true);
+                } else {
+                    progressBar.setProgress(0);
+                    updateButtons(index, false);
+                }
             } else {
                 progressBar.setProgress(progress);
                 downloadSpeed.setText(localizedSpeed + "/s");
@@ -175,31 +203,29 @@ public class AddonActivity extends AppCompatActivity implements Constants {
         }
 
         public static void updateButtons(int index, boolean finished) {
-            View v = mListview.getChildAt((index - 1) -
+            View view = mListview.getChildAt((index - 1) -
                     mListview.getFirstVisiblePosition());
 
-            if (v == null) {
+            if (view == null) {
                 return;
             }
 
-            final LinearLayout download = (LinearLayout) v.findViewById(R.id.download_button);
-            final LinearLayout cancel = (LinearLayout) v.findViewById(R.id.cancel_button);
-            final LinearLayout delete = (LinearLayout) v.findViewById(R.id.delete_button);
-            final LinearLayout progressContainer = (LinearLayout) v.findViewById(R.id.download_progress_container);
-            final LinearLayout infoContainer = (LinearLayout) v.findViewById(R.id.addon_info_container);
+            final LinearLayout download = (LinearLayout) view.findViewById(R.id.download_button);
+            final LinearLayout cancel = (LinearLayout) view.findViewById(R.id.cancel_button);
+            final LinearLayout delete = (LinearLayout) view.findViewById(R.id.delete_button);
+            final LinearLayout progressContainer = (LinearLayout) view.findViewById(R.id.download_progress_container);
+            final LinearLayout infoContainer = (LinearLayout) view.findViewById(R.id.addon_info_container);
+
+            progressContainer.setVisibility(View.GONE);
+            infoContainer.setVisibility(View.VISIBLE);
 
             if (finished) {
                 download.setVisibility(View.GONE);
-                //download.setText(mContext.getResources().getString(R.string.finished));
-                progressContainer.setVisibility(View.GONE);
                 download.setClickable(false);
                 delete.setVisibility(View.VISIBLE);
                 cancel.setVisibility(View.GONE);
-                infoContainer.setVisibility(View.VISIBLE);
             } else {
-                infoContainer.setVisibility(View.VISIBLE);
                 download.setVisibility(View.VISIBLE);
-                //download.setText(mContext.getResources().getString(R.string.download));
                 download.setClickable(true);
                 cancel.setVisibility(View.GONE);
                 delete.setVisibility(View.GONE);
@@ -280,11 +306,23 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 Log.d(TAG, "file length " + file.length() + " remoteLength " + item.getFilesize());
             }
 
+            DownloadManager downloadManager = (DownloadManager) mContext.getSystemService(Context
+                    .DOWNLOAD_SERVICE);
+
             boolean finished = file.length() >= item.getFilesize();
             boolean installed = Utils.isAddonInstalled(item.getPackageName());
             boolean updated = Utils.getInstalledAddonVersion(item.getPackageName()) >= item.getVersionNumber();
 
+            boolean downloading = false;
+            long downloadId = AddonDownloadDB.getAddonDownload(mContext, item.getId());
+
+            if (downloadId != 0) {
+                downloading = true;
+            }
+
             if (installed) {
+                infoContainer.setVisibility(View.VISIBLE);
+                progressContainer.setVisibility(View.GONE);
                 if (updated) {
                     download.setVisibility(View.GONE);
                     delete.setVisibility(View.GONE);
@@ -295,24 +333,34 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                     cancel.setVisibility(View.GONE);
                     delete.setVisibility(View.GONE);
                 }
+            } else if (downloading) {
+                download.setVisibility(View.GONE);
+                progressContainer.setVisibility(View.VISIBLE);
+                infoContainer.setVisibility(View.GONE);
+                cancel.setVisibility(View.VISIBLE);
+                startTime.setText(String.valueOf(System.currentTimeMillis()-1000));
+                delete.setVisibility(View.GONE);
+                new DownloadAddonProgress(mContext, downloadManager, item.getId(), downloadId);
             } else if (finished) {
+                infoContainer.setVisibility(View.VISIBLE);
+                progressContainer.setVisibility(View.GONE);
                 download.setVisibility(View.GONE);
                 download.setClickable(true);
                 cancel.setVisibility(View.GONE);
                 delete.setVisibility(View.VISIBLE);
             } else {
+                progressContainer.setVisibility(View.GONE);
                 download.setVisibility(View.VISIBLE);
                 cancel.setVisibility(View.GONE);
                 delete.setVisibility(View.GONE);
+                infoContainer.setVisibility(View.VISIBLE);
             }
-
-            progressContainer.setVisibility(View.GONE);
-            startTime.setText(String.valueOf(System.currentTimeMillis()));
 
             download.setOnClickListener(v -> {
                 boolean isMobile = Utils.isMobileNetwork(mContext);
                 boolean isSettingWiFiOnly = Preferences.getNetworkType(mContext).equals
                         (WIFI_ONLY);
+                long downloadIdNew = AddonDownloadDB.getAddonDownload(mContext, item.getId());
 
                 if (isMobile && isSettingWiFiOnly) {
                     showNetworkDialog();
@@ -324,6 +372,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                     cancel.setVisibility(View.VISIBLE);
                     mDownloadAddon.startDownload(mContext, item.getDownloadLink(), item
                             .getTitle(), item.getId());
+                    new DownloadAddonProgress(mContext, downloadManager, item.getId(), downloadIdNew);
                 }
             });
 
@@ -332,8 +381,8 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 progressContainer.setVisibility(View.GONE);
                 infoContainer.setVisibility(View.VISIBLE);
                 cancel.setVisibility(View.GONE);
-                updateProgress(item.getId(), 0, true, 1);
                 mDownloadAddon.cancelDownload(mContext, item.getId());
+                updateProgress(item.getId(), 0, true, 1, false);
             });
             delete.setOnClickListener(v -> deleteConfirm(file, item));
 
@@ -355,20 +404,20 @@ public class AddonActivity extends AppCompatActivity implements Constants {
         }
     }
 
-    private class LoadAddonManifest extends AsyncTask<Object, Void, ArrayList<Addon>> {
+    private class LoadAddonManifest extends ArrayList<Addon> {
 
         private static final String MANIFEST = "addon_manifest.xml";
         public final String TAG = this.getClass().getSimpleName();
-        private ProgressDialog mLoadingDialog;
+        private final ProgressDialog mLoadingDialog;
+        private ArrayList<Addon> mResult;
 
-        private Context mContext;
+        private final Context mContext;
 
         LoadAddonManifest(Context context) {
             mContext = context;
-        }
 
-        @Override
-        protected void onPreExecute() {
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            Handler handler = new Handler(Looper.getMainLooper());
 
             // Show a loading/progress dialog while the search is being performed
             mLoadingDialog = new ProgressDialog(mContext, R.style.AlertDialogStyle);
@@ -377,30 +426,45 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             mLoadingDialog.setMessage(mContext.getResources().getString(R.string.loading));
             mLoadingDialog.show();
 
-            // Delete any existing manifest file before we attempt to download a new one
-            File manifest = new File(mContext.getFilesDir().getPath(), MANIFEST);
-            if (manifest.exists()) {
-                boolean deleted = manifest.delete();
-                if (!deleted) Log.e(TAG, "Unable to delete manifest file...");
-            }
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    File manifest = new File(mContext.getFilesDir().getPath(), MANIFEST);
+                    if (manifest.exists()) {
+                        boolean deleted = manifest.delete();
+                        if (!deleted) Log.e(TAG, "Unable to delete manifest file...");
+                    }
+
+                    mResult = getAddonData(mContext);
+
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mLoadingDialog.cancel();
+                            if (mResult != null) {
+                                setupListView(mResult);
+                            }
+                        }
+                    });
+                }
+            });
         }
 
-        @Override
-        protected ArrayList<Addon> doInBackground(Object... param) {
+        private ArrayList<Addon> getAddonData(Context context) {
 
             try {
                 InputStream input;
 
-                URL url = new URL((String) param[0]);
+                URL url = new URL(RomUpdate.getAddonsUrl(context));
                 URLConnection connection = url.openConnection();
                 connection.connect();
                 // download the file
                 input = new BufferedInputStream(url.openStream());
 
-                OutputStream output = mContext.openFileOutput(
+                OutputStream output = context.openFileOutput(
                         MANIFEST, Context.MODE_PRIVATE);
 
-                byte data[] = new byte[1024];
+                byte[] data = new byte[1024];
                 int count;
                 while ((count = input.read(data)) != -1) {
                     output.write(data, 0, count);
@@ -412,20 +476,11 @@ public class AddonActivity extends AppCompatActivity implements Constants {
 
                 // file finished downloading, parse it!
                 AddonXmlParser parser = new AddonXmlParser();
-                return parser.parse(new File(mContext.getFilesDir(), MANIFEST));
+                return parser.parse(new File(context.getFilesDir(), MANIFEST));
             } catch (Exception e) {
                 Log.d(TAG, "Exception: " + e.getMessage());
             }
             return null;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Addon> result) {
-            mLoadingDialog.cancel();
-            if (result != null) {
-                setupListView(result);
-            }
-            super.onPostExecute(result);
         }
     }
 }

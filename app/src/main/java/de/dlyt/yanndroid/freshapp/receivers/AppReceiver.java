@@ -38,7 +38,7 @@ import de.dlyt.yanndroid.freshapp.activities.AddonActivity;
 import de.dlyt.yanndroid.freshapp.activities.AvailableActivity;
 import de.dlyt.yanndroid.freshapp.tasks.LoadUpdateManifest;
 import de.dlyt.yanndroid.freshapp.utils.Constants;
-import de.dlyt.yanndroid.freshapp.utils.OtaUpdates;
+import de.dlyt.yanndroid.freshapp.utils.AddonDownloadDB;
 import de.dlyt.yanndroid.freshapp.utils.Preferences;
 import de.dlyt.yanndroid.freshapp.utils.RomUpdate;
 import de.dlyt.yanndroid.freshapp.utils.Utils;
@@ -58,20 +58,6 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
             boolean isAddonDownload = false;
             int keyForAddonDownload = 0;
 
-            Set<Integer> set = OtaUpdates.getAddonDownloadKeySet();
-            Iterator<Integer> iterator = set.iterator();
-
-            while (iterator.hasNext() && !isAddonDownload) {
-                int nextValue = iterator.next();
-                if (id == OtaUpdates.getAddonDownload(nextValue)) {
-                    isAddonDownload = true;
-                    keyForAddonDownload = nextValue;
-                    if (DEBUGGING) {
-                        Log.d(TAG, "Checking ID " + nextValue);
-                    }
-                }
-            }
-
             if (isAddonDownload) {
                 DownloadManager downloadManager = (DownloadManager) context.getSystemService
                         (Context.DOWNLOAD_SERVICE);
@@ -83,24 +69,6 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
                 if (!cursor.moveToFirst()) {
                     if (DEBUGGING)
                         Log.e(TAG, "Addon Download Empty row");
-                    return;
-                }
-
-                int statusIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
-                if (DownloadManager.STATUS_SUCCESSFUL != cursor.getInt(statusIndex)) {
-                    if (DEBUGGING)
-                        Log.w(TAG, "Download Failed");
-                    Log.d(TAG, "Removing Addon download with id " + keyForAddonDownload);
-                    OtaUpdates.removeAddonDownload(keyForAddonDownload);
-                    AddonActivity.AddonsArrayAdapter.updateProgress(keyForAddonDownload, 0, true, 1);
-                    AddonActivity.AddonsArrayAdapter.updateButtons(keyForAddonDownload, false);
-                    return;
-                } else {
-                    if (DEBUGGING)
-                        Log.v(TAG, "Download Succeeded");
-                    Log.d(TAG, "Removing Addon download with id " + keyForAddonDownload);
-                    OtaUpdates.removeAddonDownload(keyForAddonDownload);
-                    AddonActivity.AddonsArrayAdapter.updateButtons(keyForAddonDownload, true);
                     return;
                 }
             } else {
@@ -180,7 +148,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
         if (action.equals(START_UPDATE_CHECK)) {
             if (DEBUGGING)
                 Log.d(TAG, "Update check started");
-            new LoadUpdateManifest(context, false).execute();
+            new LoadUpdateManifest(context, false);
         }
 
         if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {

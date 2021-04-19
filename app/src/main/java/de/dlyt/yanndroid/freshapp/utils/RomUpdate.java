@@ -145,8 +145,8 @@ public class RomUpdate implements Constants {
         return getPrefs(context).getString(BTC_LINK, DEF_VALUE);
     }
 
-    public static int getFileSize(Context context) {
-        return getPrefs(context).getInt(FILESIZE, 0);
+    public static long getFileSize(Context context) {
+        return getPrefs(context).getLong(FILESIZE, 0);
     }
 
     public static int getAddonsCount(Context context) {
@@ -301,9 +301,9 @@ public class RomUpdate implements Constants {
         editor.apply();
     }
 
-    public static void setFileSize(Context context, int size) {
+    public static void setFileSize(Context context, long size) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
-        editor.putInt(FILESIZE, size);
+        editor.putLong(FILESIZE, size);
         editor.apply();
     }
 

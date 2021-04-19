@@ -15,6 +15,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -90,12 +92,14 @@ public class MainActivity extends AppCompatActivity implements Constants,
     private Builder mDonateDialog;
     private Builder mPlayStoreDialog;
     private Builder mRebootDialog;
+    public static Handler UIHandler;
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MANIFEST_LOADED)) {
                 updateAllLayouts();
                 ota_progressbar.setVisibility(View.GONE);
+                checkforAppUpdate();
                 findViewById(R.id.swiperefresh).setEnabled(true);
             }
         }
@@ -127,11 +131,15 @@ public class MainActivity extends AppCompatActivity implements Constants,
         return false;
     }
 
+    public static void runOnUI(Runnable runnable) {
+        UIHandler.post(runnable);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         mContext = this;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ota_main);
+        setContentView(R.layout.activity_hub_main);
 
         webView = findViewById(R.id.webview);
         web_progressbar = findViewById(R.id.web_progressbar);
@@ -197,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                     new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
         }
-        new checkRoot().execute("");
+        new checkRoot().execute("su");
 
         LinearLayout background_options_layout = (LinearLayout) findViewById(R.id.background_options);
         String[] background_options = getResources().getStringArray(R.array.updater_background_frequency_entries);
@@ -246,8 +254,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
             Preferences.setAppIconState(mContext, isChecked);
             Utils.toggleAppIcon(mContext, isChecked);
         });
-
-        checkforAppUpdate();
     }
 
 
@@ -474,6 +480,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     @Override
     public void onStart() {
         super.onStart();
+        UIHandler = new Handler(Looper.getMainLooper());
         this.registerReceiver(mReceiver, new IntentFilter(MANIFEST_LOADED));
 
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
@@ -497,7 +504,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
             updateRomInformation();
             updateRomUpdateLayouts(false);
             refreshDrawer();
-            checkforAppUpdate();
             webView.reload();
             swipeRefreshLayout.setRefreshing(false);
             findViewById(R.id.swiperefresh).setEnabled(false);
@@ -823,7 +829,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     public void openCheckForUpdates(View v) {
         ota_progressbar.setVisibility(View.VISIBLE);
         findViewById(R.id.swiperefresh).setEnabled(false);
-        new LoadUpdateManifest(mContext, true).execute();
+        new LoadUpdateManifest(mContext, true);
     }
 
     public void openDownload(View v) {
@@ -935,7 +941,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             if (result) {
                 if (DEBUGGING)
                     Log.d(TAG, "Prop found");
-                new LoadUpdateManifest(mContext, true).execute();
+                new LoadUpdateManifest(mContext, true);
             } else {
                 if (DEBUGGING)
                     Log.d(TAG, "Prop not found");

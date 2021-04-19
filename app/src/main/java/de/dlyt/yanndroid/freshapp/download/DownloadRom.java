@@ -71,7 +71,7 @@ public class DownloadRom implements Constants {
         Preferences.setIsDownloadRunning(context, true);
 
         // Start updating the progress
-        new DownloadRomProgress(context, downloadManager).execute(mDownloadID);
+        new DownloadRomProgress(context, downloadManager);
 
         // MD5 checker has not been run, nor passed
         Preferences.setMD5Passed(context, false);

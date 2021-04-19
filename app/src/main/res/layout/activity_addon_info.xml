@@ -186,6 +186,27 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/addon_info_download_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:onClick="startAddonDownload">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="?textAppearanceHeadline6"
+                android:layout_width="match_parent"
+                android:layout_height="54.0dip"
+                android:gravity="center"
+                android:singleLine="false"
+                android:text="@string/download"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/addon_info_install_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -193,7 +214,8 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:onClick="startAddonDownload">
 
             <com.google.android.material.textview.MaterialTextView
                 style="?textAppearanceHeadline6"
@@ -202,6 +224,48 @@
                 android:gravity="center"
                 android:singleLine="false"
                 android:text="@string/install"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/addon_info_uninstall_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:onClick="startAddonDownload">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="?textAppearanceHeadline6"
+                android:layout_width="match_parent"
+                android:layout_height="54.0dip"
+                android:gravity="center"
+                android:singleLine="false"
+                android:text="@string/update"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/addon_info_update_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:onClick="startAddonDownload">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="?textAppearanceHeadline6"
+                android:layout_width="match_parent"
+                android:layout_height="54.0dip"
+                android:gravity="center"
+                android:singleLine="false"
+                android:text="@string/update"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -217,8 +281,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/sesl_primary_dark_color"
                 android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <FrameLayout
                     android:layout_width="fill_parent"
@@ -236,7 +299,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="18.0dip"
+                        android:layout_marginStart="24.0dip"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
 
@@ -262,7 +325,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="0MB"
-                                android:textColor="@color/sesl_secondary_color"
+                                android:textColor="@color/white"
                                 android:textDirection="locale"
                                 android:textSize="12sp" />
 
@@ -271,7 +334,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=" / "
-                                android:textColor="@color/sesl_secondary_color"
+                                android:layout_marginHorizontal="4dp"
+                                android:textColor="@color/white"
                                 android:textDirection="locale"
                                 android:textSize="12sp" />
 
@@ -281,7 +345,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0MB"
-                                android:textColor="@color/sesl_secondary_color"
+                                android:textColor="@color/white"
                                 android:textDirection="locale"
                                 android:textSize="12sp" />
 
@@ -292,7 +356,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
-                        android:layout_marginEnd="18.0dip">
+                        android:layout_marginEnd="24.0dip">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -300,7 +364,8 @@
                             android:layout_gravity="end"
                             android:background="?selectableItemBackground"
                             android:clickable="true"
-                            android:focusable="true">
+                            android:focusable="true"
+                            android:onClick="cancelAddonDownload">
 
                             <ImageView
                                 android:layout_width="wrap_content"
