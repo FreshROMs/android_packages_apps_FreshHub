@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,7 +35,7 @@ public class AboutActivity extends AppCompatActivity {
         mContext = this;
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ota_about);
+        setContentView(R.layout.activity_about);
 
         initToolbar();
 
