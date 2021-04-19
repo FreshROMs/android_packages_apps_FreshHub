@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     public void onCreate(Bundle savedInstanceState) {
         mContext = this;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ota_main);
+        setContentView(R.layout.activity_hub_main);
 
         webView = findViewById(R.id.webview);
         web_progressbar = findViewById(R.id.web_progressbar);
@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                     new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
         }
-        new checkRoot().execute("");
+        new checkRoot().execute("su");
 
         LinearLayout background_options_layout = (LinearLayout) findViewById(R.id.background_options);
         String[] background_options = getResources().getStringArray(R.array.updater_background_frequency_entries);
