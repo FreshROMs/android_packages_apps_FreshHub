@@ -21,96 +21,84 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import de.dlyt.yanndroid.freshapp.activities.AvailableActivity;
 import de.dlyt.yanndroid.freshapp.activities.MainActivity;
 import de.dlyt.yanndroid.freshapp.utils.Constants;
 import de.dlyt.yanndroid.freshapp.utils.Preferences;
 
-public class DownloadRomProgress extends AsyncTask<Long, Integer, Void> implements Constants {
+public class DownloadRomProgress implements Constants {
 
     public final String TAG = this.getClass().getSimpleName();
 
-    private Context mContext;
-    private DownloadManager mDownloadManager;
-    private static long UPDATE_DELAY = 500;
+    private static final long UPDATE_DELAY = 500;
     private static long mStartTime;
 
     public DownloadRomProgress(Context context, DownloadManager downloadManager) {
-        mContext = context;
-        mDownloadManager = downloadManager;
         mStartTime = System.currentTimeMillis();
-    }
+        ExecutorService executor = Executors.newSingleThreadExecutor();
 
-    @Override
-    protected Void doInBackground(Long... params) {
-        int previousValue = 0;
-        while (Preferences.getIsDownloadOnGoing(mContext)) {
-            long mDownloadID = Preferences.getDownloadID(mContext);
-            DownloadManager.Query q = new DownloadManager.Query();
-            q.setFilterById(mDownloadID);
+        executor.execute(() -> {
+            while (Preferences.getIsDownloadOnGoing(context)) {
+                long mDownloadID = Preferences.getDownloadID(context);
+                DownloadManager.Query q = new DownloadManager.Query().setFilterById(mDownloadID);
+                Cursor cursor = downloadManager.query(q);
+                cursor.moveToFirst();
+                try {
+                    final int bytesDownloaded = cursor.getInt(cursor
+                            .getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+                    final int bytesInTotal = cursor.getInt(cursor
+                            .getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
 
-            Cursor cursor = mDownloadManager.query(q);
-            cursor.moveToFirst();
-            try {
-                final int bytesDownloaded = cursor.getInt(cursor
-                        .getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
-                final int bytesInTotal = cursor.getInt(cursor
-                        .getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+                    if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
+                            DownloadManager.STATUS_SUCCESSFUL) {
+                        Preferences.setIsDownloadRunning(context, false);
+                        Preferences.setDownloadFinished(context, true);
+                    } else if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
+                            DownloadManager.STATUS_FAILED ||
+                            cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
+                                    DownloadManager.STATUS_PAUSED ) {
+                        Preferences.setIsDownloadRunning(context, false);
+                        Preferences.setDownloadFinished(context, false);
 
-                if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
-                        DownloadManager.STATUS_SUCCESSFUL) {
-                    Preferences.setIsDownloadRunning(mContext, false);
-                    Preferences.setDownloadFinished(mContext, true);
-                } else if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
-                        DownloadManager.STATUS_FAILED) {
-                    Preferences.setIsDownloadRunning(mContext, false);
-                    Preferences.setDownloadFinished(mContext, false);
+                        Intent send = new Intent(DOWNLOAD_ROM_COMPLETE);
+                        context.sendBroadcast(send);
+                    }
 
-                    Intent send = new Intent(DOWNLOAD_ROM_COMPLETE);
-                    mContext.sendBroadcast(send);
-                    return null;
-                } else if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) ==
-                        DownloadManager.STATUS_PAUSED) {
-                    Preferences.setIsDownloadRunning(mContext, false);
-                    Preferences.setDownloadFinished(mContext, false);
+                    long currentTime = System.currentTimeMillis();
 
-                    Intent send = new Intent(DOWNLOAD_ROM_COMPLETE);
-                    mContext.sendBroadcast(send);
-                    return null;
+                    if ((currentTime - mStartTime > UPDATE_DELAY)) {
+                        final int progressPercent = (int) ((bytesDownloaded * 100L) / bytesInTotal);
+
+                        AvailableActivity.runOnUI(new Runnable() {
+                            @Override
+                            public void run() {
+                                AvailableActivity.updateProgress(context, progressPercent, bytesDownloaded, bytesInTotal);
+                            }
+                        });
+
+                        MainActivity.runOnUI(new Runnable() {
+                            @Override
+                            public void run() {
+                                MainActivity.updateProgress(progressPercent);
+                            }
+                        });
+
+                        mStartTime = currentTime;
+                    }
+                } catch (CursorIndexOutOfBoundsException e) {
+                    Preferences.setIsDownloadRunning(context, false);
+                } catch (ArithmeticException e) {
+                    Preferences.setIsDownloadRunning(context, false);
+                    Log.e(TAG, Arrays.toString(e.getStackTrace()));
                 }
-
-                if (isCancelled())
-                    break;
-
-                long currentTime = System.currentTimeMillis();
-
-                if ((currentTime - mStartTime > UPDATE_DELAY)) {
-                    final int progressPercent = (int) ((bytesDownloaded * 100L) / bytesInTotal);
-                    publishProgress(progressPercent, bytesDownloaded, bytesInTotal);
-                    mStartTime = currentTime;
-                }
-
-            } catch (CursorIndexOutOfBoundsException e) {
-                Preferences.setIsDownloadRunning(mContext, false);
-            } catch (ArithmeticException e) {
-                Preferences.setIsDownloadRunning(mContext, false);
-                Log.e(TAG, Arrays.toString(e.getStackTrace()));
+                cursor.close();
             }
-            cursor.close();
-        }
-        return null;
-    }
-
-    protected void onProgressUpdate(Integer... progress) {
-        if (DEBUGGING)
-            Log.d(TAG, "Updating Progress - " + progress[0] + "%");
-
-        AvailableActivity.updateProgress(mContext, progress[0], progress[1], progress[2]);
-        MainActivity.updateProgress(progress[0]);
+        });
     }
 }

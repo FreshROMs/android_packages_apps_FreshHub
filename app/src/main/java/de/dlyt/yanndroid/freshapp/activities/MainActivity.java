@@ -15,6 +15,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     private Builder mDonateDialog;
     private Builder mPlayStoreDialog;
     private Builder mRebootDialog;
+    public static Handler UIHandler;
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -125,6 +128,10 @@ public class MainActivity extends AppCompatActivity implements Constants,
             // Suppress warning
         }
         return false;
+    }
+
+    public static void runOnUI(Runnable runnable) {
+        UIHandler.post(runnable);
     }
 
     @Override
@@ -474,6 +481,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     @Override
     public void onStart() {
         super.onStart();
+        UIHandler = new Handler(Looper.getMainLooper());
         this.registerReceiver(mReceiver, new IntentFilter(MANIFEST_LOADED));
 
         swipeRefreshLayout = findViewById(R.id.swiperefresh);

@@ -12,6 +12,8 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -54,6 +56,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
     private Builder mRebootDialog;
     private Builder mRebootManualDialog;
     private Builder mNetworkDialog;
+    public static Handler UIHandler;
     private DownloadRom mDownloadRom;
     private long mStartDownloadTime;
 
@@ -174,7 +177,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         TextView otaSize = (TextView) findViewById(R.id.tv_update_rom_size);
         String otaSizeTitle = getApplicationContext().getResources().getString(R.string
                 .main_ota_size) + " ";
-        int otaFileSize = RomUpdate.getFileSize(mContext);
+        long otaFileSize = RomUpdate.getFileSize(mContext);
         String otaSizeActual = Utils.formatDataFromBytes(otaFileSize);
         otaSize.setText(Html.fromHtml(otaSizeTitle + otaSizeActual));
 
@@ -189,6 +192,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
     @Override
     public void onStart() {
         super.onStart();
+        UIHandler = new Handler(Looper.getMainLooper());
         this.registerReceiver(mReceiver, new IntentFilter(DOWNLOAD_ROM_COMPLETE));
 
         String downloadSpeed = "0B";
@@ -207,7 +211,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
                 Log.d(TAG, "Starting progress updater");
             DownloadManager downloadManager = (DownloadManager) mContext.getSystemService(Context
                     .DOWNLOAD_SERVICE);
-            new DownloadRomProgress(mContext, downloadManager).execute(Preferences.getDownloadID(mContext));
+            new DownloadRomProgress(mContext, downloadManager);
         }
     }
 
@@ -215,6 +219,10 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
     public void onStop() {
         super.onStop();
         this.unregisterReceiver(mReceiver);
+    }
+
+    public static void runOnUI(Runnable runnable) {
+        UIHandler.post(runnable);
     }
 
     public void setSubtitle(String subtitle) {
