@@ -167,7 +167,7 @@ public class Utils implements Constants {
 
     public static void setHasFileDownloaded(Context context) {
         File file = RomUpdate.getFullFile(context);
-        int filesize = RomUpdate.getFileSize(context);
+        long filesize = RomUpdate.getFileSize(context);
         boolean downloadIsRunning = Preferences.getIsDownloadOnGoing(context);
 
         boolean status = false;

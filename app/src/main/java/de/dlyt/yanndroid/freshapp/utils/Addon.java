@@ -20,7 +20,7 @@ public class Addon {
     private String mTitle;
     private String mDesc;
     private String mUpdatedOn;
-    private int mFilesize;
+    private long mFilesize;
     private String mDownloadLink;
     private int mId;
 
@@ -102,11 +102,11 @@ public class Addon {
         mDownloadLink = input;
     }
 
-    public int getFilesize() {
+    public long getFilesize() {
         return mFilesize;
     }
 
-    public void setFilesize(int input) {
+    public void setFilesize(long input) {
         mFilesize = input;
     }
 
