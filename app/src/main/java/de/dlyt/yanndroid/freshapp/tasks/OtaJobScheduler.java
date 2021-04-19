@@ -22,7 +22,7 @@ public class OtaJobScheduler extends JobService implements Constants {
     }
 
     private void doCheckOta(final JobParameters params) {
-        new LoadUpdateManifest(this, false).execute();
+        new LoadUpdateManifest(this, false);
         new Thread(new Runnable() {
             final Context context = OtaJobScheduler.this;
 

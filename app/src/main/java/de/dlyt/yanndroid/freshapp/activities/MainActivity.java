@@ -831,7 +831,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     public void openCheckForUpdates(View v) {
         ota_progressbar.setVisibility(View.VISIBLE);
         findViewById(R.id.swiperefresh).setEnabled(false);
-        new LoadUpdateManifest(mContext, true).execute();
+        new LoadUpdateManifest(mContext, true);
     }
 
     public void openDownload(View v) {
@@ -943,7 +943,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             if (result) {
                 if (DEBUGGING)
                     Log.d(TAG, "Prop found");
-                new LoadUpdateManifest(mContext, true).execute();
+                new LoadUpdateManifest(mContext, true);
             } else {
                 if (DEBUGGING)
                     Log.d(TAG, "Prop not found");
