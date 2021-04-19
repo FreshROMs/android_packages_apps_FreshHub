@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             if (intent.getAction().equals(MANIFEST_LOADED)) {
                 updateAllLayouts();
                 ota_progressbar.setVisibility(View.GONE);
+                checkforAppUpdate();
                 findViewById(R.id.swiperefresh).setEnabled(true);
             }
         }
@@ -253,8 +254,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
             Preferences.setAppIconState(mContext, isChecked);
             Utils.toggleAppIcon(mContext, isChecked);
         });
-
-        checkforAppUpdate();
     }
 
 
@@ -505,7 +504,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
             updateRomInformation();
             updateRomUpdateLayouts(false);
             refreshDrawer();
-            checkforAppUpdate();
             webView.reload();
             swipeRefreshLayout.setRefreshing(false);
             findViewById(R.id.swiperefresh).setEnabled(false);
