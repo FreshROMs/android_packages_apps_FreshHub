@@ -117,7 +117,7 @@ Due to Android's new rules for Scoped Storage, you can find the update in /sdcar
     <string name="omc_request">"OMC Request"</string>
     <string name="update" translatable="false">@string/app_name</string>
     <string name="fresh_updates">"Fresh Updates"</string>
-    <string name="reboot">"Reboot"</string>
+    <string name="reboot">"Reboot to Recovery"</string>
 
     <!-- Resolution -->
     <string name="screen_resolution_desc_summary">"Some apps may close when you change the resolution."</string>
