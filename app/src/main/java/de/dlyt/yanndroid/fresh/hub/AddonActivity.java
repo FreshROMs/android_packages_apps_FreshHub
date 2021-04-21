@@ -267,6 +267,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             deleteConfirm.setMessage(mContext.getResources().getString(R.string.delete_addon_confirm, item.getTitle()));
             deleteConfirm.setPositiveButton(R.string.ok, (dialog, which) -> {
                 if (file.exists()) {
+                    mLoadingDialog.show();
                     updateButtons(item.getId(), false);
                     TnsAddonDownload.setIsUninstallingAddon(mContext, item.getTitle());
                     new RecoveryInstall(mContext, true, item.getTitle()+".zip");
