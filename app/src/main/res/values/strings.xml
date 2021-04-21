@@ -85,7 +85,7 @@ Would you like to search the Google Play Store to find one?"</string>
     <string name="available_reboot_manual_title">"Please reboot now"</string>
     <string name="available_reboot_manual_message">"Please reboot to recovery and flash your ROM.
 
-You can find it in /sdcard/Downloads"</string>
+Due to Android's new rules for Scoped Storage, you can find the update in /sdcard/Android/data/de.dlyt.yanndroid.fresh/Updates"</string>
 
     <!-- Preferences -->
     <string name="preferences_name">"Settings"</string>
