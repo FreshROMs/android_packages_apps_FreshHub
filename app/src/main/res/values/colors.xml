@@ -24,18 +24,9 @@
 
 
     <!--Colors-->
-    <color name="red">#ffD50000</color>
-    <color name="yellow">#ffFFD600</color>
-    <color name="green">#ff009808</color>
     <color name="blue">#ff304FFE</color>
-    <color name="purple">#ffAA00FF</color>
     <color name="orange">#ffFF6D00</color>
-    <color name="cyan">#ff00BFA5</color>
-    <color name="magenta">#ffC51162</color>
-    <color name="light_green">#ff64DD17</color>
-    <color name="black">#ff000000</color>
     <color name="white">#ffffffff</color>
-    <color name="transparent">#00000000</color>
 
 
     <!--Sesl-->
@@ -45,14 +36,9 @@
     <color name="divider_color">#8a979797</color>
     <color name="sesl_thumb_control_color_activated">@color/sesl_primary_color</color>
 
-    <color name="sesl_btn_background_color">#0f000000</color>
-
     <!--ProgressBar-->
     <color name="sesl_loading_progress_color1">#ff06b485</color>
     <color name="sesl_loading_progress_color2">#ff0381fe</color>
-
-    <color name="sesl_progress_control_color_activated">@color/sesl_primary_color</color>
-    <color name="sesl_progress_control_color_normal">@color/sesl_control_color_normal</color>
 
     <color name="progress_bar_background_color">#4d9c9c9c</color>
     <color name="progress_bar_progress_color">#ff3e91ff</color>
@@ -77,10 +63,7 @@
 
     <!--SwitchBar-->
     <color name="sesl_switchbar_off_background_color">#fffafafa</color>
-    <color name="sesl_switchbar_off_background_color_dark">#2bfafafa</color>
     <color name="sesl_switchbar_off_background_color_light">#fffafafa</color>
-    <color name="sesl_switchbar_off_text_color_dark">#fffafafa</color>
-    <color name="sesl_switchbar_off_text_color_light">#ff252525</color>
     <color name="sesl_switchbar_off_text_color">#ff252525</color>
     <color name="sesl_switchbar_on_background_color_dark">#52f3a425</color>
     <color name="sesl_switchbar_on_background_color_light">#fff5d99a</color>
@@ -107,7 +90,6 @@
     <color name="drawer_icon_color">#ff676768</color>
     <color name="ota_changelog_text_color">@color/sesl_black</color>
     <color name="system_settings_plugin_icon_bg_color">#ff7882ff</color>
-    <color name="system_notification_color">#fff3a425</color>
 
     <color name="sec_display_resolution_desc_text_color">#ff7a7a7a</color>
     <color name="sec_display_resolution_help_desc_text_color">#ff252525</color>

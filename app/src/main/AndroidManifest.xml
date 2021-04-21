@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="de.dlyt.yanndroid.freshapp">
+    package="de.dlyt.yanndroid.fresh">
 
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
@@ -41,19 +41,24 @@
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.AddonInfoActivity"></activity>
+
+        <activity android:name=".hub.AddonInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".hub.OpenSourceActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.AboutActivity"
+            android:name=".hub.AboutActivity"
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".tasks.OtaJobScheduler"
+            android:name=".services.UpdateCheckService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <activity
-            android:name=".activities.ScreenResolutionSettings"
+            android:name=".settings.ScreenResolutionActivity"
+            android:label="@string/system_settings_resolution_plugin_title"
             android:screenOrientation="portrait"
             android:theme="@style/SystemPreferenceTheme">
             <intent-filter>
@@ -71,8 +76,9 @@
                 android:resource="@string/system_settings_resolution_plugin_summary" />
         </activity>
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".hub.SplashActivity"
             android:noHistory="true"
+            android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -85,7 +91,7 @@
                 android:resource="@xml/shortcuts" />
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".hub.MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
@@ -107,22 +113,17 @@
                 android:resource="@drawable/system_settings_plugin_icon" />
         </activity>
         <activity
-            android:name=".activities.AvailableActivity"
+            android:name=".hub.AvailableActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.AddonActivity"
+            android:name=".hub.AddonActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SettingsActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:label="@string/preferences_name"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".utils.ShortcutRebootDialog"
+            android:name=".hub.shortcuts.ShortcutRebootDialog"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Transparent.NoActionBar" />
 

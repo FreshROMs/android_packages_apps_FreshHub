@@ -215,7 +215,7 @@
             android:focusable="true"
             android:gravity="center"
             android:orientation="vertical"
-            android:onClick="startAddonDownload">
+            android:onClick="addonRecovery">
 
             <com.google.android.material.textview.MaterialTextView
                 style="?textAppearanceHeadline6"
@@ -236,7 +236,7 @@
             android:focusable="true"
             android:gravity="center"
             android:orientation="vertical"
-            android:onClick="startAddonDownload">
+            android:onClick="deleteConfirmAddonInfo">
 
             <com.google.android.material.textview.MaterialTextView
                 style="?textAppearanceHeadline6"
@@ -244,7 +244,7 @@
                 android:layout_height="54.0dip"
                 android:gravity="center"
                 android:singleLine="false"
-                android:text="@string/update"
+                android:text="@string/addon_uninstall"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -265,7 +265,7 @@
                 android:layout_height="54.0dip"
                 android:gravity="center"
                 android:singleLine="false"
-                android:text="@string/update"
+                android:text="@string/addon_update"
                 android:textColor="@color/white" />
         </LinearLayout>
 

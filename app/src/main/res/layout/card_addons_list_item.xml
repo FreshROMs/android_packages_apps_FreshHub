@@ -44,7 +44,7 @@
                         android:layout_height="60.0dip"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@color/sesl_control_normal_color" />
+                        android:src="@color/divider_color" />
                 </com.google.android.material.card.MaterialCardView>
             </FrameLayout>
         </FrameLayout>
@@ -178,6 +178,7 @@
                                 <ImageView
                                     style="@style/addon_list_btn"
                                     android:layout_marginStart="8.0dip"
+                                    app:tint="@color/ota_changelog_text_color"
                                     android:src="@drawable/ic_addons_list_btn_cancel" />
                             </LinearLayout>
                         </LinearLayout>
@@ -229,7 +230,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="16dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_addon_download" />
+                    android:src="@drawable/ic_addon_download"
+                    app:tint="@color/ota_changelog_text_color" />
 
             </LinearLayout>
 
@@ -247,7 +249,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="16dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_addon_cancel" />
+                    android:src="@drawable/ic_addon_cancel"
+                    app:tint="@color/ota_changelog_text_color" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/install_button"
+                android:layout_width="wrap_content"
+                android:layout_height="26.0dip"
+                android:background="@drawable/drawable_download_btnview_outline_effect"
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:paddingStart="8.0dip"
+                android:paddingEnd="8.0dip">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_addon_update"
+                    app:tint="@color/ota_changelog_text_color" />
 
             </LinearLayout>
         </RelativeLayout>

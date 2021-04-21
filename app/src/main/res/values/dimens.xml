@@ -4,10 +4,6 @@
     <item name="sesl_disabled_color_alpha" type="dimen">0.4</item>
     <dimen name="download_btn_outline_size">1.0px</dimen>
     <dimen name="sesl_progress_circle_size">60.0dip</dimen>
-    <dimen name="sesl_progress_bar_size_large">60.0dip</dimen>
-    <dimen name="sesl_progress_bar_size_small">24.0dip</dimen>
-    <dimen name="sesl_progress_bar_height">3.0dip</dimen>
-    <dimen name="sesl_progress_bar_size_small_title">16.0dip</dimen>
     <dimen name="sesl_switchbar_height">64.0dip</dimen>
     <dimen name="sesl_switchbar_margin_end">24.0dip</dimen>
     <dimen name="sesl_switchbar_margin_start">24.0dip</dimen>

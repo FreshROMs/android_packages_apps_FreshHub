@@ -48,7 +48,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import de.dlyt.yanndroid.freshapp.R;
+import de.dlyt.yanndroid.fresh.R;
 
 public abstract class SeslAbsSeekBar extends SeslProgressBar {
     static final float SCALE_FACTOR = 1000.0f;

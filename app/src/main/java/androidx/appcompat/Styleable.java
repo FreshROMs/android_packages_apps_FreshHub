@@ -4,7 +4,7 @@ public final class Styleable {
 
     public static final class styleable {
 
-        public static final int[] SeslSwitchBar = {de.dlyt.yanndroid.freshapp.R.attr.seslSwitchBarBackgroundActivatedColor, de.dlyt.yanndroid.freshapp.R.attr.seslSwitchBarBackgroundColor, de.dlyt.yanndroid.freshapp.R.attr.seslSwitchBarTextActivatedColor, de.dlyt.yanndroid.freshapp.R.attr.seslSwitchBarTextColor};
+        public static final int[] SeslSwitchBar = {de.dlyt.yanndroid.fresh.R.attr.seslSwitchBarBackgroundActivatedColor, de.dlyt.yanndroid.fresh.R.attr.seslSwitchBarBackgroundColor, de.dlyt.yanndroid.fresh.R.attr.seslSwitchBarTextActivatedColor, de.dlyt.yanndroid.fresh.R.attr.seslSwitchBarTextColor};
         public static final int SeslSwitchBar_seslSwitchBarBackgroundActivatedColor = 0;
         public static final int SeslSwitchBar_seslSwitchBarBackgroundColor = 1;
         public static final int SeslSwitchBar_seslSwitchBarTextActivatedColor = 2;
@@ -39,7 +39,7 @@ public final class Styleable {
         public static final int ProgressBar_android_secondaryProgressTint = 20;
         public static final int ProgressBar_android_secondaryProgressTintMode = 21;
 
-        public static final int[] AppCompatSeekBar = {16843074, 16843075, 16843852, 16843889, 16843890, de.dlyt.yanndroid.freshapp.R.attr.seslSeekBarMode, de.dlyt.yanndroid.freshapp.R.attr.seslThumbRadius, de.dlyt.yanndroid.freshapp.R.attr.seslTrackMaxWidth, de.dlyt.yanndroid.freshapp.R.attr.seslTrackMinWidth, de.dlyt.yanndroid.freshapp.R.attr.tickMark, de.dlyt.yanndroid.freshapp.R.attr.tickMarkTint, de.dlyt.yanndroid.freshapp.R.attr.tickMarkTintMode, de.dlyt.yanndroid.freshapp.R.attr.useDisabledAlpha};
+        public static final int[] AppCompatSeekBar = {16843074, 16843075, 16843852, 16843889, 16843890, de.dlyt.yanndroid.fresh.R.attr.seslSeekBarMode, de.dlyt.yanndroid.fresh.R.attr.seslThumbRadius, de.dlyt.yanndroid.fresh.R.attr.seslTrackMaxWidth, de.dlyt.yanndroid.fresh.R.attr.seslTrackMinWidth, de.dlyt.yanndroid.fresh.R.attr.tickMark, de.dlyt.yanndroid.fresh.R.attr.tickMarkTint, de.dlyt.yanndroid.fresh.R.attr.tickMarkTintMode, de.dlyt.yanndroid.fresh.R.attr.useDisabledAlpha};
         public static final int AppCompatSeekBar_android_splitTrack = 2;
         public static final int AppCompatSeekBar_android_thumb = 0;
         public static final int AppCompatSeekBar_android_thumbOffset = 1;
