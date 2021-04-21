@@ -277,6 +277,8 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+
+    <!--Progress Bar Button-->
     <style name="addon_list_btn">
         <item name="android:background">@drawable/addons_small_btn</item>
         <item name="android:padding">4.5dip</item>
@@ -288,4 +290,6 @@
     <style name="addon_detail_progressbar" parent="@android:style/Widget.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/addons_detail_progressbar</item>
     </style>
+
+
 </resources>
