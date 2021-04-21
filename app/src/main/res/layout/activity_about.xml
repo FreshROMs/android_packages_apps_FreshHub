@@ -64,7 +64,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8.0dip"
                                 android:gravity="center"
-                                android:text="Version"
+                                android:text="@string/about_version_title"
                                 android:textColor="@color/sesl_radiobutton_text_color"
                                 android:textSize="16.0sp"
                                 android:textStyle="normal" />
@@ -109,7 +109,19 @@
                                     android:layout_width="250dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="12.0dip"
-                                    android:text="Open source licenses" />
+                                    android:text="@string/about_open_source_button"
+                                    android:onClick="openOpenSource" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    style="?android:attr/textAppearanceSmall"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="24dp"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginBottom="12dp"
+                                    android:textAlignment="center"
+                                    android:text="@string/about_bottom_byline"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
                         </LinearLayout>

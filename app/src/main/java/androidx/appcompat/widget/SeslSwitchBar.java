@@ -30,7 +30,7 @@ import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.dlyt.yanndroid.freshapp.R;
+import de.dlyt.yanndroid.fresh.R;
 
 public class SeslSwitchBar extends LinearLayout implements CompoundButton.OnCheckedChangeListener {
     private static final int SWITCH_OFF_STRING_RESOURCE_ID = R.string.sesl_switchbar_off_text;

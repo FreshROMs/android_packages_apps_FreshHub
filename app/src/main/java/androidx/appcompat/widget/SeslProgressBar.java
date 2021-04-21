@@ -52,7 +52,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 
-import de.dlyt.yanndroid.freshapp.R;
+import de.dlyt.yanndroid.fresh.R;
 
 @RemoteViews.RemoteView
 public class SeslProgressBar extends View {

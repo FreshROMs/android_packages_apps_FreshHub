@@ -17,8 +17,6 @@
     <!--Sesl-->
     <color name="divider_color">#2afafafa</color>
 
-    <color name="sesl_btn_background_color">#2bfafafa</color>
-
     <!--Switch-->
     <color name="sesl_switch_thumb_off_disabled_color">#ff828282</color>
     <color name="sesl_switch_thumb_off_disabled_stroke_color">#ff3b3b3b</color>
