@@ -205,10 +205,11 @@
                 android:paddingVertical="12dp">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_telegram" />
+                    android:src="@drawable/ic_drawer_telegram"
+                    app:tint="@color/drawer_icon_color" />
 
                 <com.google.android.material.textview.MaterialTextView
                     style="?android:attr/textAppearanceLarge"
@@ -223,7 +224,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/drawer_discord_group"
+                android:id="@+id/drawer_github_issues"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?selectableItemBackground"
@@ -237,10 +238,11 @@
                 android:paddingVertical="12dp">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_discord" />
+                    android:src="@drawable/ic_drawer_github"
+                    app:tint="@color/drawer_icon_color" />
 
                 <com.google.android.material.textview.MaterialTextView
                     style="?android:attr/textAppearanceLarge"
@@ -250,7 +252,7 @@
                     android:textAlignment="viewStart"
                     android:ellipsize="marquee"
                     android:singleLine="true"
-                    android:text="@string/fresh_updates"
+                    android:text="@string/drawer_github_link"
                     android:textSize="18dp" />
             </LinearLayout>
 
@@ -286,39 +288,6 @@
                     android:textAlignment="viewStart"
                     android:singleLine="true"
                     android:text="@string/reboot"
-                    android:textSize="18dp" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/drawer_resolution"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="@drawable/rounded_corner"
-                android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|start"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="14dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_crop"
-                    app:tint="@color/drawer_icon_color" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="?android:attr/textAppearanceLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:textAlignment="viewStart"
-                    android:ellipsize="marquee"
-                    android:singleLine="true"
-                    android:text="@string/system_settings_resolution_plugin_title"
                     android:textSize="18dp" />
             </LinearLayout>
 

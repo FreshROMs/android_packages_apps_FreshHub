@@ -62,7 +62,6 @@ import de.dlyt.yanndroid.fresh.services.TnsOtaApiService;
 import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.database.TnsOta;
 import de.dlyt.yanndroid.fresh.utils.Tools;
-import de.dlyt.yanndroid.fresh.settings.ScreenResolutionActivity;
 
 public class MainActivity extends AppCompatActivity implements Constants,
         ActivityCompat.OnRequestPermissionsResultCallback {
@@ -399,11 +398,11 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         });
 
-        View drawer_discord_group = findViewById(R.id.drawer_discord_group);
+        View drawer_discord_group = findViewById(R.id.drawer_github_issues);
         drawer_discord_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(TnsOta.getDiscord(mContext))));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(TnsOta.getGitIssues(mContext))));
             }
         });
 
@@ -415,23 +414,13 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 mRebootDialog.show();
             }
         });
-
-
-        View drawer_test = findViewById(R.id.drawer_resolution);
-        drawer_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent().setClass(getApplicationContext(), ScreenResolutionActivity.class));
-            }
-        });
-
     }
 
     public void refreshDrawer() {
-        View drawer_discord_group = findViewById(R.id.drawer_discord_group);
-        String discord_url = TnsOta.getDiscord(mContext);
-        if (discord_url.trim().equals("null")) {
-            drawer_discord_group.setVisibility(View.GONE);
+        View drawer_github_issues = findViewById(R.id.drawer_github_issues);
+        String github_issues_url = TnsOta.getGitIssues(mContext);
+        if (github_issues_url.trim().equals("null")) {
+            drawer_github_issues.setVisibility(View.GONE);
         }
     }
 
