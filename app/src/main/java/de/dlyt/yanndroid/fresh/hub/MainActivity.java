@@ -210,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         new checkRoot().execute("su");
 
         LinearLayout background_options_layout = (LinearLayout) findViewById(R.id.background_options);
+        LinearLayout data_saver_layout = (LinearLayout) findViewById(R.id.data_saver_layout);
         String[] background_options = getResources().getStringArray(R.array.updater_background_frequency_entries);
         String[] background_values = getResources().getStringArray(R.array.updater_background_frequency_values);
         TextView background_option_desc = findViewById(R.id.background_options_selected);
@@ -226,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         final int[] background_spinner_selection = {background_selected};
 
         setLayoutEnabled(background_options_layout, Preferences.getBackgroundService(mContext));
+        setLayoutEnabled(data_saver_layout, Preferences.getBackgroundService(mContext));
 
         background_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -248,6 +250,13 @@ public class MainActivity extends AppCompatActivity implements Constants,
             Preferences.setBackgroundService(mContext, isChecked);
             JobScheduler.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
             setLayoutEnabled(background_options_layout, isChecked);
+            setLayoutEnabled(data_saver_layout, isChecked);
+
+            if (Preferences.getBackgroundDownload(mContext)) {
+                dataSaver.setChecked(isChecked);
+            }
+
+            dataSaver.setEnabled(isChecked);
         });
 
         dataSaver.setOnCheckedChangeListener((buttonView, isChecked) -> Preferences.setBackgroundDownload(mContext, isChecked));
@@ -628,6 +637,9 @@ public class MainActivity extends AppCompatActivity implements Constants,
         mProgressBar = (SeslProgressBar) findViewById(R.id.bar_main_progress_bar);
         mProgressBar.setVisibility(View.GONE);
 
+        Long currentTimeMillis = System.currentTimeMillis();
+        Long lastCheckedTimeMillis = TnsOtaDownload.getUpdateLastChecked(mContext);
+
         // Update is available
         if (isLoaded) {
             if (TnsOta.getUpdateAvailability(mContext)) {
@@ -670,8 +682,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 updateNotAvailable.setVisibility(View.VISIBLE);
                 setSubtitle(getResources().getString(R.string.main_no_update_available));
 
-                Long currentTimeMillis = System.currentTimeMillis();
-                Long lastCheckedTimeMillis = TnsOtaDownload.getUpdateLastChecked(mContext);
                 CharSequence localizedTime = DateUtils.getRelativeTimeSpanString(lastCheckedTimeMillis, currentTimeMillis, DateUtils.DAY_IN_MILLIS);
 
                 TnsOtaDownload.setUpdateLastChecked(this, currentTimeMillis);
