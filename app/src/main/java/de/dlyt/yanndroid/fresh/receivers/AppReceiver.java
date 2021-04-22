@@ -49,6 +49,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
         if (action.equals(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) {
             long id = extras.getLong(DownloadManager.EXTRA_DOWNLOAD_ID);
             boolean isAddonDownload = !(TnsAddonDownload.getAddonDownloadId(context, id) == 0);
+            boolean isRomDownload = (TnsOtaDownload.getDownloadID(context) == id);
 
             if (isAddonDownload) {
                 int addonId = TnsAddonDownload.getAddonDownloadId(context, id);
@@ -59,7 +60,6 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
                 Intent send = new Intent(DOWNLOAD_ADDON_DONE);
                 context.sendBroadcast(send);
 
-                return;
             } else {
                 if (DEBUGGING)
                     Log.v(TAG, "Receiving " + mRomDownloadID);
@@ -69,6 +69,13 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
                         Log.v(TAG, "Ignoring unrelated non-ROM download " + id);
                     return;
                 }
+
+                TnsOtaDownload.setIsDownloadRunning(context, false);
+                Intent send = new Intent(DOWNLOAD_ROM_COMPLETE);
+                context.sendBroadcast(send);
+
+                Intent hub_main = new Intent(MANIFEST_LOADED);
+                context.sendBroadcast(hub_main);
 
                 DownloadManager downloadManager = (DownloadManager) context.getSystemService
                         (Context.DOWNLOAD_SERVICE);
@@ -93,9 +100,8 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
                         Log.v(TAG, "Download Succeeded");
                     TnsOtaDownload.setDownloadFinished(context, true);
                 }
-
-                return;
             }
+            return;
         }
 
         if (action.equals(DownloadManager.ACTION_NOTIFICATION_CLICKED)) {
