@@ -315,7 +315,10 @@ public class MainActivity extends AppCompatActivity implements Constants,
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
+                Boolean isRtl = getResources().getBoolean(R.bool.tns_is_layout_rtl);
                 float slideX = drawerView.getWidth() * slideOffset;
+                if (isRtl) slideX = -(drawerView.getWidth() * slideOffset);
+
                 content.setTranslationX(slideX);
             }
         };

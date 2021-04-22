@@ -10,7 +10,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:foreground="@drawable/rounded_corner_bottom">
 
@@ -38,6 +38,7 @@
                     style="?textAppearanceBody1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
                     android:text="@string/available_update_install_info"
                     android:textSize="22sp" />
 
@@ -55,6 +56,7 @@
                     style="?textAppearanceBody2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
                     android:layout_gravity="start"
                     android:layout_marginVertical="12.0dip"
                     android:freezesText="true"
@@ -68,6 +70,7 @@
                     style="?textAppearanceBody1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
                     android:layout_gravity="start"
                     android:layout_marginBottom="0.0dip"
                     android:freezesText="true"
@@ -79,6 +82,7 @@
                     style="?textAppearanceSubtitle2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
                     android:layout_gravity="start"
                     android:layout_marginTop="2.0dip"
                     android:layout_marginBottom="8.0dip"
@@ -131,6 +135,7 @@
                                         android:layout_height="wrap_content"
                                         android:fontFamily="sans-serif-medium"
                                         android:text="What's new"
+                                        android:textAlignment="viewStart"
                                         android:textColor="@color/ota_swupdate_new_title_textcolor"
                                         android:textSize="26.0sp"
                                         android:textStyle="bold" />
@@ -140,6 +145,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="sec-roboto-light"
+                                        android:textAlignment="viewStart"
                                         android:text="Find out what's included in this Fresh update."
                                         android:textColor="@color/ota_swupdate_new_sub_title_textcolor"
                                         android:textSize="13.0sp" />
@@ -179,6 +185,7 @@
                                     style="?android:attr/textAppearanceSmall"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:textAlignment="viewStart"
                                     android:singleLine="false"
                                     android:text="@string/available_changelog_content" />
 
@@ -204,6 +211,7 @@
                                     android:id="@+id/tv_main_rom_information"
                                     style="?android:attr/textAppearanceSmall"
                                     android:layout_width="wrap_content"
+                                    android:textAlignment="viewStart"
                                     android:layout_height="wrap_content"
                                     android:text="@string/main_ota_information" />
 
@@ -211,6 +219,7 @@
                                     android:id="@+id/tv_update_rom_version"
                                     style="?android:attr/textAppearanceSmall"
                                     android:layout_width="wrap_content"
+                                    android:textAlignment="viewStart"
                                     android:layout_height="wrap_content"
                                     android:text="@string/main_ota_version" />
 
@@ -218,12 +227,14 @@
                                     android:id="@+id/tv_update_rom_size"
                                     style="?android:attr/textAppearanceSmall"
                                     android:layout_width="wrap_content"
+                                    android:textAlignment="viewStart"
                                     android:layout_height="wrap_content"
                                     android:text="@string/main_ota_size" />
 
                                 <com.google.android.material.textview.MaterialTextView
                                     android:id="@+id/tv_ota_android_spl"
                                     style="?android:attr/textAppearanceSmall"
+                                    android:textAlignment="viewStart"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/main_rom_spl" />

@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24.5dp"
         android:layout_marginVertical="24dp"
-        android:gravity="right|center_vertical"
+        android:gravity="end|center_vertical"
         android:orientation="horizontal">
 
-        <RelativeLayout
+        <FrameLayout
             android:id="@+id/drawer_about_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:textSize="11dp"
                 android:textStyle="bold"
                 android:visibility="gone" />
-        </RelativeLayout>
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -96,7 +96,7 @@
                 android:focusable="true"
                 android:foreground="@drawable/rounded_corner"
                 android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|start"
                 android:orientation="horizontal"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="14dp">
@@ -111,7 +111,8 @@
                     style="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:textAlignment="viewStart"
                     android:ellipsize="marquee"
                     android:singleLine="true"
                     android:text="@string/update"
@@ -131,7 +132,7 @@
                 android:focusable="true"
                 android:foreground="@drawable/rounded_corner"
                 android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|start"
                 android:orientation="horizontal"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="14dp">
@@ -146,8 +147,9 @@
                     style="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:ellipsize="marquee"
+                    android:textAlignment="viewStart"
                     android:singleLine="true"
                     android:text="@string/feedback"
                     android:textSize="18dp" />
@@ -163,7 +165,7 @@
                 android:focusable="true"
                 android:foreground="@drawable/rounded_corner"
                 android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|start"
                 android:orientation="horizontal"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="14dp">
@@ -178,7 +180,8 @@
                     style="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:textAlignment="viewStart"
                     android:ellipsize="marquee"
                     android:singleLine="true"
                     android:text="@string/omc_request"
@@ -196,7 +199,7 @@
                 android:focusable="true"
                 android:foreground="@drawable/rounded_corner"
                 android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|start"
                 android:orientation="horizontal"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="12dp">
@@ -211,7 +214,8 @@
                     style="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:textAlignment="viewStart"
+                    android:layout_marginStart="15dp"
                     android:ellipsize="marquee"
                     android:singleLine="true"
                     android:text="@string/fresh_updates"
@@ -227,7 +231,7 @@
                 android:focusable="true"
                 android:foreground="@drawable/rounded_corner"
                 android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|start"
                 android:orientation="horizontal"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="12dp">
@@ -242,7 +246,8 @@
                     style="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:textAlignment="viewStart"
                     android:ellipsize="marquee"
                     android:singleLine="true"
                     android:text="@string/fresh_updates"
@@ -261,7 +266,7 @@
                 android:focusable="true"
                 android:foreground="@drawable/rounded_corner"
                 android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|start"
                 android:orientation="horizontal"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="14dp">
@@ -276,8 +281,9 @@
                     style="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:ellipsize="marquee"
+                    android:textAlignment="viewStart"
                     android:singleLine="true"
                     android:text="@string/reboot"
                     android:textSize="18dp" />
@@ -293,7 +299,7 @@
                 android:focusable="true"
                 android:foreground="@drawable/rounded_corner"
                 android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|start"
                 android:orientation="horizontal"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="14dp">
@@ -308,7 +314,8 @@
                     style="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:textAlignment="viewStart"
                     android:ellipsize="marquee"
                     android:singleLine="true"
                     android:text="@string/system_settings_resolution_plugin_title"

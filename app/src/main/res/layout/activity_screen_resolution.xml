@@ -97,9 +97,7 @@
                                         android:adjustViewBounds="true"
                                         android:gravity="center"
                                         android:scaleType="fitXY"
-                                        android:src="@drawable/screen_resolution_preview"
-
-                                        />
+                                        android:src="@drawable/screen_resolution_preview" />
                                 </LinearLayout>
 
 
@@ -118,6 +116,7 @@
                                 android:layout_marginTop="@dimen/sec_widget_preference_unclickable_margin_top"
                                 android:layout_marginBottom="10.0dip"
                                 android:fontFamily="sec-roboto-light"
+                                android:textAlignment="viewStart"
                                 android:lineSpacingExtra="4.0sp"
                                 android:text="@string/screen_resolution_desc_summary"
                                 android:textColor="@color/sec_display_resolution_help_desc_text_color"
@@ -203,6 +202,7 @@
                                 android:layout_marginHorizontal="@dimen/sec_widget_body_text_padding_start_end"
                                 android:layout_marginTop="@dimen/sec_widget_preference_unclickable_margin_top"
                                 android:fontFamily="sec-roboto-light"
+                                android:textAlignment="viewStart"
                                 android:text="summary"
                                 android:textColor="@color/sec_display_resolution_desc_text_color"
                                 android:textSize="15.0dip"

@@ -23,7 +23,7 @@
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/swiperefresh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -60,7 +60,7 @@
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
+                                            android:layout_height="0dp"
                                             android:orientation="vertical"
                                             android:animateLayoutChanges="true"
                                             android:layout_weight="1">
@@ -112,8 +112,9 @@
                                         style="?android:attr/textAppearanceSmall"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="24dp"
+                                        android:layout_marginStart="24dp"
                                         android:layout_marginTop="15dp"
+                                        android:textAlignment="viewStart"
                                         android:layout_marginBottom="2dp"
                                         android:text="@string/main_header_community"
                                         android:textStyle="bold" />
@@ -133,8 +134,9 @@
                                         style="?android:attr/textAppearanceSmall"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="24dp"
+                                        android:layout_marginStart="24dp"
                                         android:layout_marginTop="15dp"
+                                        android:textAlignment="viewStart"
                                         android:layout_marginBottom="2dp"
                                         android:text="@string/preferences_name"
                                         android:textStyle="bold" />
@@ -154,8 +156,9 @@
                                         style="?android:attr/textAppearanceSmall"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="24dp"
+                                        android:layout_marginStart="24dp"
                                         android:layout_marginTop="15dp"
+                                        android:textAlignment="viewStart"
                                         android:layout_marginBottom="2dp"
                                         android:text="@string/main_rom_information"
                                         android:textStyle="bold" />
