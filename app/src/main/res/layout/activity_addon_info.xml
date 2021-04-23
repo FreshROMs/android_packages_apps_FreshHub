@@ -38,8 +38,7 @@
                     <RelativeLayout
                         android:id="@+id/addon_list_item"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layoutDirection="locale">
+                        android:layout_height="wrap_content">
 
                         <FrameLayout
                             android:id="@+id/addon_list_item_image"
@@ -159,6 +158,7 @@
                             android:layout_marginHorizontal="24dp"
                             android:singleLine="false"
                             android:text="Description"
+                            android:textAlignment="viewStart"
                             android:textSize="18.0sp" />
 
                         <com.google.android.material.textview.MaterialTextView
@@ -169,6 +169,7 @@
                             android:layout_marginHorizontal="24dp"
                             android:layout_marginTop="12.0dip"
                             android:singleLine="false"
+                            android:textAlignment="viewStart"
                             android:text="@string/available_changelog_content"
                             android:textColor="@color/ota_changelog_text_color" />
 
@@ -298,7 +299,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="start|center_vertical"
                         android:layout_marginStart="24.0dip"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
@@ -307,10 +308,10 @@
                             style="?textAppearanceHeadline6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
+                            android:layout_gravity="start|center_vertical"
                             android:text="@string/downloading"
                             android:textColor="@color/white"
-                            android:textDirection="locale"
+                            android:textAlignment="viewStart"
                             android:textSize="18sp" />
 
                         <LinearLayout
@@ -323,10 +324,10 @@
                                 style="?android:attr/textAppearanceSmall"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
+                                android:layout_gravity="start|center_vertical"
                                 android:text="0MB"
                                 android:textColor="@color/white"
-                                android:textDirection="locale"
+                                android:textAlignment="viewStart"
                                 android:textSize="12sp" />
 
                             <com.google.android.material.textview.MaterialTextView
@@ -336,7 +337,7 @@
                                 android:text=" / "
                                 android:layout_marginHorizontal="4dp"
                                 android:textColor="@color/white"
-                                android:textDirection="locale"
+                                android:textAlignment="viewStart"
                                 android:textSize="12sp" />
 
                             <com.google.android.material.textview.MaterialTextView
@@ -346,7 +347,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="0MB"
                                 android:textColor="@color/white"
-                                android:textDirection="locale"
+                                android:textAlignment="viewStart"
                                 android:textSize="12sp" />
 
                         </LinearLayout>

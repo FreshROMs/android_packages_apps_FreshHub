@@ -48,7 +48,7 @@ public class Notifications implements Constants {
                 .setContentIntent(hubPendingIntent)
                 .setAutoCancel(true)
                 .setShowWhen(false)
-                .setPriority(NotificationCompat.PRIORITY_MIN)
+                .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setDefaults(NotificationCompat.DEFAULT_LIGHTS)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCategory(NotificationCompat.CATEGORY_SYSTEM);
@@ -137,22 +137,14 @@ public class Notifications implements Constants {
 
         NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
-        Intent resultIntent = new Intent(context, MainActivity.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-        stackBuilder.addParentStack(MainActivity.class);
-        stackBuilder.addNextIntent(resultIntent);
-
-        Intent downloadIntent = new Intent(context, AvailableActivity.class);
-        PendingIntent downloadPendingIntent = PendingIntent.getActivity(context, 0, downloadIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         mBuilder.setContentTitle(context.getString(R.string.system_settings_plugin_title))
                 .setContentText(context.getString(R.string.main_checking_updates))
                 .setSmallIcon(R.drawable.ic_notif)
                 .setColor(notificationColor)
-                .setContentIntent(downloadPendingIntent)
                 .setAutoCancel(false)
                 .setShowWhen(false)
-                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setPriority(NotificationCompat.PRIORITY_MIN)
                 .setDefaults(NotificationCompat.DEFAULT_LIGHTS)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCategory(NotificationCompat.CATEGORY_SYSTEM);

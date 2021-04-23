@@ -47,12 +47,14 @@ public class SystemProperties {
     }
 
     public static String getDeviceCodename() {
-        String codename = Build.DEVICE;
-        return codename;
+        return Build.DEVICE;
     }
 
     public static String getDeviceProduct() {
-        String product = Build.PRODUCT;
-        return product;
+        if (!(getProp("ro.fresh.device.product").equals(""))) {
+            return getProp("ro.fresh.device.product");
+        } else {
+            return Build.PRODUCT;
+        }
     }
 }

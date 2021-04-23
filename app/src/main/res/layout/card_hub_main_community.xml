@@ -38,7 +38,6 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
                         android:contentDescription="@string/main_dev_website_icon"
                         android:src="@drawable/ic_main_forum" />
 
@@ -73,8 +72,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="24dp"
                 android:background="#4D808080" />
 
             <LinearLayout
@@ -98,7 +97,6 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
                         android:contentDescription="@string/main_dev_website_icon"
                         android:src="@drawable/ic_main_discord" />
 
@@ -133,8 +131,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="24dp"
                 android:background="#4D808080" />
 
             <LinearLayout
@@ -158,7 +156,6 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
                         android:contentDescription="@string/main_dev_website_icon"
                         android:src="@drawable/ic_main_telegram" />
 
@@ -193,8 +190,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="24dp"
                 android:background="#4D808080" />
 
             <LinearLayout
@@ -218,7 +215,6 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
                         android:contentDescription="@string/main_dev_website_icon"
                         android:src="@drawable/ic_main_discussions" />
 
@@ -253,8 +249,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="24dp"
                 android:background="#4D808080" />
 
             <LinearLayout
@@ -277,7 +273,6 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
                         android:contentDescription="@string/main_dev_website_icon"
                         android:src="@drawable/ic_main_website" />
 
@@ -311,8 +306,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="24dp"
                 android:background="#4D808080" />
 
             <LinearLayout
@@ -335,7 +330,6 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
                         android:contentDescription="@string/main_dev_website_icon"
                         android:src="@drawable/ic_main_donate" />
 

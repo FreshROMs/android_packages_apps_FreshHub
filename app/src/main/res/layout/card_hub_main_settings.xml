@@ -6,13 +6,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left|center"
+        android:gravity="start|center"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left|center"
+            android:gravity="start|center"
             android:orientation="vertical">
 
             <LinearLayout
@@ -21,7 +21,7 @@
                 android:background="?selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:gravity="left|center_vertical"
+                android:gravity="start|center_vertical"
                 android:onClick="toggleNotificationSwitch"
                 android:orientation="horizontal">
 
@@ -29,11 +29,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="15dp"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="24dp"
                     android:layout_weight="1"
-                    android:gravity="center_vertical|left"
+                    android:gravity="center_vertical|start"
                     android:orientation="horizontal"
-                    android:paddingRight="16dp">
+                    android:paddingEnd="16dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -45,6 +45,7 @@
                             style="?textAppearanceBody1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textAlignment="viewStart"
                             android:text="@string/setting_notifications"
                             android:textSize="18sp" />
 
@@ -52,6 +53,7 @@
                             style="?android:attr/textAppearanceSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textAlignment="viewStart"
                             android:text="@string/setting_notifications_summary" />
                     </LinearLayout>
                 </LinearLayout>
@@ -60,15 +62,15 @@
                     android:id="@+id/switch_notifications"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="32dp"
-                    android:paddingLeft="8dp" />
+                    android:layout_marginEnd="32dp"
+                    android:paddingStart="8dp" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:background="#4D808080" />
 
             <LinearLayout
@@ -78,7 +80,7 @@
                 android:background="?selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|start"
                 android:onClick="openNotificationFreqSpinner">
 
                 <LinearLayout
@@ -86,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:duplicateParentState="true"
-                    android:gravity="center_vertical|left"
+                    android:gravity="center_vertical|start"
                     android:orientation="horizontal"
                     android:paddingVertical="16dp">
 
@@ -101,6 +103,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="true"
+                            android:textAlignment="viewStart"
                             android:text="@string/background_frequency"
                             android:textSize="18sp" />
 
@@ -109,6 +112,7 @@
                             style="?android:attr/textAppearanceSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textAlignment="viewStart"
                             android:duplicateParentState="true"
                             android:text="Single line" />
                     </LinearLayout>
@@ -120,75 +124,78 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:paddingLeft="24dp"
+                        android:paddingStart="24dp"
                         android:prompt="@string/background_frequency"
                         android:spinnerMode="dialog"
                         android:theme="@style/SpinnerStyle" />
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:background="#4D808080" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="left|center_vertical"
-            android:onClick="toggleAutoUpdateSwitch"
-            android:orientation="horizontal">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="#4D808080" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="15dp"
-                android:layout_marginLeft="24dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical|left"
-                android:orientation="horizontal"
-                android:paddingRight="16dp">
+                android:id="@+id/data_saver_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="start|center_vertical"
+                android:onClick="toggleAutoUpdateSwitch"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingEnd="12dp">
+                    android:layout_marginVertical="15dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|start"
+                    android:orientation="horizontal"
+                    android:paddingEnd="16dp">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        style="?textAppearanceBody1"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/setting_auto_download"
-                        android:textSize="18sp" />
+                        android:orientation="vertical"
+                        android:paddingEnd="12dp">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/setting_auto_download_summary" />
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?textAppearanceBody1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="viewStart"
+                            android:text="@string/setting_auto_download"
+                            android:textSize="18sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="?android:attr/textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="viewStart"
+                            android:text="@string/setting_auto_download_summary" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switch_data_saver"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="32dp"
-                android:paddingLeft="8dp" />
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_data_saver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:paddingStart="8dp" />
+            </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:background="#4D808080" />
 
         <LinearLayout
@@ -197,7 +204,7 @@
             android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:gravity="left|center_vertical"
+            android:gravity="start|center_vertical"
             android:onClick="toggleAppIconSwitch"
             android:orientation="horizontal">
 
@@ -205,11 +212,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="15dp"
-                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_weight="1"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|start"
                 android:orientation="horizontal"
-                android:paddingRight="16dp">
+                android:paddingEnd="16dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -221,6 +228,7 @@
                         style="?textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textAlignment="viewStart"
                         android:text="@string/setting_app_icon"
                         android:textSize="18sp" />
 
@@ -228,6 +236,7 @@
                         style="?android:attr/textAppearanceSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textAlignment="viewStart"
                         android:text="@string/setting_app_icon_summary" />
                 </LinearLayout>
             </LinearLayout>
@@ -236,8 +245,8 @@
                 android:id="@+id/switch_app_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="32dp"
-                android:paddingLeft="8dp" />
+                android:layout_marginEnd="32dp"
+                android:paddingStart="8dp" />
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

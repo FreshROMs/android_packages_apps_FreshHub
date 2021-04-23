@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <bool name="tns_is_layout_rtl">true</bool>
+
+</resources>

@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "de.dlyt.yanndroid.freshapp"
+        applicationId "de.dlyt.yanndroid.fresh"
         minSdkVersion 30
         targetSdkVersion 30
         versionCode 1

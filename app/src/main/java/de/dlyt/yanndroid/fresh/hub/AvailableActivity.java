@@ -73,7 +73,6 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
                 Notifications.cancelUpdateNotification(context);
 
                 setupProgress(context);
-                setupProgress(context);
                 setupMenuToolbar(context);
                 setupUpdateNameInfo(context);
             }

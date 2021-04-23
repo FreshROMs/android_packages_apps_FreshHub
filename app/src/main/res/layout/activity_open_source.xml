@@ -35,8 +35,9 @@
                         style="?android:attr/textAppearanceSmall"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
                         android:layout_marginTop="15dp"
+                        android:textAlignment="viewStart"
                         android:layout_marginBottom="2dp"
                         android:text="@string/about_open_source_fork"
                         android:textStyle="bold" />
@@ -57,9 +58,10 @@
                         style="?android:attr/textAppearanceSmall"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="2dp"
+                        android:textAlignment="viewStart"
                         android:text="@string/about_open_source_used"
                         android:textStyle="bold" />
 
