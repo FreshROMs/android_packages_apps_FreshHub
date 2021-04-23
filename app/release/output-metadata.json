@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "de.dlyt.yanndroid.freshapp",
+  "applicationId": "de.dlyt.yanndroid.fresh",
   "variantName": "processReleaseResources",
   "elements": [
     {
