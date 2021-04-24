@@ -24,6 +24,18 @@ public class AddonProperties {
         return meta.exists() && fileList.exists();
     }
 
+    public static Boolean isAddonNonUninstall(String packageName) {
+        File noUninstall;
+
+        try {
+            noUninstall = new File("/system/etc/fresh/addons/"+packageName+".keep");
+        } catch (Exception e) {
+            return false;
+        }
+
+        return noUninstall.exists();
+    }
+
     public static Integer getInstalledAddonVersion(String packageName) {
         Process p;
         int result = 0;
