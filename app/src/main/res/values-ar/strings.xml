@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name">"Fresh Hub"</string>
+    <string name="sesl_switchbar_off_text">"إيقاف"</string>
+    <string name="sesl_switchbar_on_text">"تشغيل"</string>
+    <string name="main_update_available">"يوجد تحديث جديد"</string>
+    <string name="main_update_finished">"تمّ التنزيل بنجاح"</string>
+    <string name="main_no_update_available">"لا يوجد تحديث جديد"</string>
+    <string name="main_update_progress">"حالة التحميل"</string>
+    <string name="main_website">"موقع ويب"</string>
+    <string name="main_website_summary">"قم بزيارتنا على موقع Fresh الرسمي"</string>
+    <string name="main_donate">"تبرع"</string>
+    <string name="main_donate_summary">"قم بمساعدة المطور الخاص بهذا الروم"</string>
+    <string name="main_tap_to_view_progress">"اضغط لمشاهدة نسبة التقدم"</string>
+    <string name="main_last_checked">"آخر فحص"</string>
+    <string name="main_addon">"الإضافات"</string>
+    <string name="main_addon_summary">"طور تجربتك مع Fresh!"</string>
+    <!-- ROM Information -->
+    <string name="main_rom_information">"حول الجهاز"</string>
+    <string name="main_rom_version">"رقم الإصدار"</string>
+    <string name="main_rom_build_date">"تاريخ البناء:"</string>
+    <!-- Dialogs -->
+    <string name="main_not_compatible_title">"توقف!"</string>
+    <string name="main_not_compatible_message">"برنامج الجهاز غير متوافق مع FreshApp. الرجاء التواصل مع المشرف لتصحيح الخطأ."</string>
+    <string name="main_not_connected_title">"غير متصل!"</string>
+    <string name="main_not_connected_message">"أنت غير متصل ب أي شبكة. من فضلك قم بفتح بيانات الهاتف أو WiFi وكرر المحاولة."</string>
+    <string name="main_playstore_title">"بيتكوين"</string>
+    <string name="main_playstore_message">"لا يوجد أيّ تطبيق في هاتفك للتعامل مع \"bitcoin:\" mime-type."</string>
+    <!-- Content Descriptions -->
+    <string name="main_button_icon">"رمز الزر"</string>
+    <string name="main_dev_website_icon">"رمز موقع المطوّر"</string>
+    <!-- Toast -->
+    <string name="main_release_ignored">"تم تخطي الإصدار."</string>
+    <!-- Generic strings -->
+    <string name="cancel">"إلغاء"</string>
+    <string name="ok">"موافق"</string>
+    <string name="delete">"حذف"</string>
+    <string name="download">"تحميل"</string>
+    <string name="install">"تثبيت"</string>
+    <string name="downloading">"جاري التحميل..."</string>
+    <string name="donate">"تبرع"</string>
+    <string name="delete_confirm">"هل أنت متأكد أنك تريد حذف هذا الملف؟"</string>
+    <string name="permission_not_granted_dialog_title">"لم يتم منح أذونات التخزين"</string>
+    <string name="permission_not_granted_dialog_message">"من فضلك قم بتفعيل اذونات الوصول إلى ذاكرة الهاتف؛ حتى تتمكن من استقبال التحديثات وتحميل الإضافات."</string>
+    <string name="dialog_ok">"موافق"</string>
+    <!-- About Strings -->
+    <string name="about_version_title">"إصدار"</string>
+    <string name="available_changelog_content">"قائمة التغييرات"</string>
+    <string name="available_ready_to_install">"جاهز للتسطيب"</string>
+    <string name="available_md5_ok">"نجاح MD5."</string>
+    <string name="available_md5_failed">"فشل MD5."</string>
+    <string name="are_you_sure">"هل أنت متأكد ؟"</string>
+    <string name="available_delete_confirm_message">"هل أنت متأكد من حذف الملف ؟"</string>
+    <string name="available_reboot_confirm">"هل تريد إعادة التشغيل الآن؟"</string>
+    <string name="available_url_error">"خطأ URL : الرجاء التواصل مع المطوّر"</string>
+    <string name="available_reboot_manual_title">"رجاءًا قم بإعادة التشغيل"</string>
+    <string name="available_reboot_manual_message">"الرجاء قم بإعادة التشغيل إلى Recovery و قم بتسطيب البرنامج.
+بسبب قوانين Android الجديدة لنطاق التخزين، التحديث موجود في /sdcard/Android/data/de.dlyt.yanndroid.fresh/Updates"</string>
+    <!-- Preferences -->
+    <string name="preferences_name">"الإعدادات"</string>
+    <string name="background_frequency">"تكرار التّحقق من وجود تحديث "</string>
+    <string name="background_60mins">"60 دقيقة"</string>
+    <string name="background_3hours">"3 ساعات"</string>
+    <string name="background_6hours">"6 ساعات"</string>
+    <string name="background_12hours">"12 ساعة"</string>
+    <string name="background_24hours">"مرة واحدة في اليوم"</string>
+    <string name="background_3days">"كل ثلاثة أيام"</string>
+    <string name="background_7days">"مرة واحدة فس الأسبوع"</string>
+    <!-- Drawer -->
+    <string name="feedback">"التقييم"</string>
+    <string name="omc_request">"طلب OMC"</string>
+    <string name="fresh_updates">"تحديثات Fresh"</string>
+    <string name="reboot">"إعادة تشغيل إلى Recovery"</string>
+    <string name="main_ota_information">"معلومات تحديث البرنامج"</string>
+    <string name="main_rom_spl">"مستوى تصحيح الأمان:"</string>
+    <string name="main_ota_version">"الإصدار:"</string>
+    <string name="main_ota_size">"الحجم:"</string>
+    <string name="delete_addon_confirm">"هل أنت متأكد أنك تريد إلغاء تثبيت ٪ 1 $ s؟"</string>
+    <!-- Available Strings -->
+    <string name="available_update_downloading">"جار تنزيل التحديث..."</string>
+    <string name="available_update_install_info">"قم بتحديث جهازك و تمتع بميزات جديدة"</string>
+    <string name="available_update_install_info_desc">"إستعمال باقة البيانات لتنزيل التحديث قد يؤدي إلى فرض رسوم إضافية. يوصى بإستخدام Wi-Fi"</string>
+    <string name="available_update_install_ready">"Fresh %1$s %2$ جاهز للتثبيت"</string>
+    <string name="available_time_remaining">"الوقت المتبقي: %s"</string>
+    <string name="available_download_speed">"%s/s"</string>
+    <string name="system_name">"Fresh"</string>
+    <!-- System settings plugin -->
+    <string name="system_settings_plugin_title">"تحديث البرنامج"</string>
+    <string name="system_settings_plugin_summary">"تحديثات الجهاز • تنزيل الإضافات"</string>
+    <string name="system_settings_resolution_plugin_title">"دقة عرض الشّاشة"</string>
+    <string name="system_settings_resolution_plugin_summary">"تغيير دقة عرض الشّاشة و الكثافة"</string>
+    <!-- Resolution -->
+    <string name="screen_resolution_desc_summary">"يمكن أن تنغلق بعض التطبيقات عند تغيير دقة عرض الشّاشة"</string>
+    <string name="high_resolution_summary">"أنقى عرض، إستعمال كبير للبطّارية"</string>
+    <string name="medium_resolution_summary">"عرض محسّن، إستعمال متوسط للبطّارية"</string>
+    <string name="low_resolution_summary">"عرض سيء ، إستهلاك ضعيف للبطارية"</string>
+    <string name="system_notification_group_title">"Fresh OTA"</string>
+    <string name="system_notification_channel_title">"تحديث متاح"</string>
+    <string name="system_notification_channel_desc">"تمكّن قناة الإشعار التّطبيق من إشعارك بوجود تحديثات جديدة لجهازك."</string>
+    <string name="system_notification_available_title">"تحديث جديد متاح"</string>
+    <string name="system_notification_available_desc">"Fresh %1$s %2$s متاح الآن لجهازك"</string>
+    <string name="system_notification_finish_title">"تم تحديث جهازك بنجاح"</string>
+    <string name="system_notification_finish_desc">"تم تحديث جهازك بنجاح لFresh %1$s %2$s .استمتع بهاتف اكثر إنتعاشا!"</string>
+    <string name="system_notification_failed_title">"فشل في التحديث"</string>
+    <string name="system_notification_failed_desc">"فشل جهازك في التحديث . لم يتم تحديث Fresh إلى %1$ %2$s."</string>
+    <string name="setting_notifications">"الإشعارات"</string>
+    <string name="setting_notifications_summary">"البحث عن التحديثات تلقائيا و الإشعار إذا كان متاحا."</string>
+    <string name="setting_auto_download">"التنزيل تلقائيا إذا كنت متصلا عبر Wi-Fi"</string>
+    <string name="setting_auto_download_summary">"تنزيل تحديثات البرنامج تلقائيا إذا كنت متصلا عبر Wi-Fi."</string>
+    <string name="main_header_community">"إنضم لنا !"</string>
+    <string name="main_community_discord_description">"إنضم لسيرفر Discord الرّسمي."</string>
+    <string name="main_community_discord">"مجموعة Fresh على Discord"</string>
+    <string name="main_community_telegram">"المجموعة على Telegram"</string>
+    <string name="main_community_telegram_description">"إنضم ل مجموعة Fresh على Telegram"</string>
+    <string name="main_community_discussions">"نقاش على GitHub"</string>
+    <string name="main_community_discussions_description">"نقاش حول الميزات الجديدة و المزيد"</string>
+    <string name="main_community_xda">"منتدى XDA"</string>
+    <string name="main_community_xda_description">"قم بزيارة منتدى Fresh المخصص لجهازك"</string>
+    <string name="setting_app_icon">"اضف أيقونة ل Fresh Hub ."</string>
+    <string name="setting_app_icon_summary">"أضف Fredh Hub لشاشة التطبيقات."</string>
+    <string name="the_latest_version_is_already_installed">"آخر إصدار مثبت."</string>
+    <string name="a_new_version_is_available">"إصدار جديد متاح."</string>
+    <string name="main_checking_updates">"التحقّق من وجود تحديثات"</string>
+    <string name="about_bottom_byline">"طوّرت بواسطة Yanndroid لمشروع Fresh"</string>
+    <string name="about_open_source_fork">"مبني على Bkiss OTA"</string>
+    <string name="about_open_source_used">"مكونات مفتوحة المصدر"</string>
+    <string name="about_open_source_button">"تراخيص مفتوحة المصدر"</string>
+    <string name="available_preinstall_notice">"لن تستطيع استعمال هاتفك اثناء التحديث ،و حتى مكالمة الطوارئ."</string>
+    <string name="available_preinstall_notice_nohash">"فشل التحقق من البرنامج، أكمل التحديث على مسؤوليّتك.لن تستطيع استعمال هاتفك اثناء التحديث."</string>
+    <string name="addon_uninstall">"حذف"</string>
+    <string name="addon_update">"تحديث"</string>
+    <string name="drawer_github_link">"التبليغ عن خطأ"</string>
+</resources>

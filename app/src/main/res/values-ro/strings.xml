@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name">"Centrul Fresh"</string>
+    <string name="sesl_switchbar_off_text">"Oprit"</string>
+    <string name="sesl_switchbar_on_text">"Pornit"</string>
+    <string name="main_update_available">"O actualizare este disponibilă"</string>
+    <string name="main_update_finished">"Descărcare completă"</string>
+    <string name="main_no_update_available">"Nu sunt actualizări disponibile"</string>
+    <string name="main_update_progress">"Progresul descărcării"</string>
+    <string name="main_website">"Site Web"</string>
+    <string name="main_website_summary">"Vizitează site-ul oficial Fresh"</string>
+    <string name="main_donate">"Donează"</string>
+    <string name="main_donate_summary">"Ajută dezvoltatorii acestui ROM!"</string>
+    <string name="main_tap_to_view_progress">"Apasă pentru a vedea progresul"</string>
+    <string name="main_last_checked">"Ultima verificare"</string>
+    <string name="main_addon">"Aplicații suplimentare"</string>
+    <string name="main_addon_summary">"Extinde-ți experiența ta Fresh!"</string>
+    <!-- ROM Information -->
+    <string name="main_rom_information">"Despre dispozitivul tău"</string>
+    <string name="main_rom_version">"Versiunea de release:"</string>
+    <string name="main_rom_build_date">"Data build-ului:"</string>
+    <!-- Dialogs -->
+    <string name="main_not_compatible_title">"Stai așa!"</string>
+    <string name="main_not_compatible_message">"Configurația curentă a ROM-ului tău nu este compatibilă cu FreshApp. Te rog contactează întreținătorul ROM-ului pentru a rezolva această problemă."</string>
+    <string name="main_not_connected_title">"Nu ești conectat"</string>
+    <string name="main_not_connected_message">"Nu ești conectat la nicio rețea. Te rog activează Datele Mobile sau Wi-Fi-ul și încearcă din nou."</string>
+    <string name="main_playstore_title">"BitCoin"</string>
+    <string name="main_playstore_message">"Nu ai nicio aplicație care ar putea manipula datele de tipul \"bitcoin:\".
+
+Dorești să cauți una in Magazinul Google Play?"</string>
+    <!-- Content Descriptions -->
+    <string name="main_button_icon">"Iconiță buton "</string>
+    <string name="main_dev_website_icon">"Pictogramă Site Web Developer"</string>
+    <!-- Toast -->
+    <string name="main_release_ignored">"Lansare ocolită."</string>
+    <!-- Generic strings -->
+    <string name="cancel">"Anulează"</string>
+    <string name="ok">"OK"</string>
+    <string name="delete">"Șterge"</string>
+    <string name="download">"Descarcă"</string>
+    <string name="install">"Instalează"</string>
+    <string name="downloading">"Se descarcă..."</string>
+    <string name="donate">"Donează"</string>
+    <string name="delete_confirm">"Ești sigur că dorești să ștergi acest fișier?"</string>
+    <string name="permission_not_granted_dialog_title">"Nu sunt acordate permisiunile de stocare"</string>
+    <string name="permission_not_granted_dialog_message">"Te rog acordează-i Centrului Fresh permisiuni de stocare pentru a putea primi actualizări de software și descărca programe suplimentare."</string>
+    <string name="dialog_ok">"OK"</string>
+    <!-- About Strings -->
+    <string name="about_version_title">"Versiune"</string>
+    <string name="available_changelog_content">"Jurnalul de schimbări vine aici"</string>
+    <string name="available_ready_to_install">"Gata de instalare"</string>
+    <string name="available_md5_ok">"MD5 Potrivit"</string>
+    <string name="available_md5_failed">"MD5 Eșuat"</string>
+    <string name="are_you_sure">"Ești sigur?"</string>
+    <string name="available_delete_confirm_message">"Ești sigur că dorești să ștergi fișierul descărcat?"</string>
+    <string name="available_reboot_confirm">"Dorești să repornești acum?"</string>
+    <string name="available_url_error">"Eroare URL: Te rog consultă-ți dezvoltatorul ROM-ului"</string>
+    <string name="available_reboot_manual_title">"Te rog repornește acum"</string>
+    <string name="available_reboot_manual_message">"Te rog repornește in modul Recovery și actualizează-ți ROM-ul.
+
+Datorită noilor reguli Android pentru spațiul de stocare extins, puteți găsi actualizarea în /sdcard/Android/data/de.dlyt.android.fresh/Updates"</string>
+    <!-- Preferences -->
+    <string name="preferences_name">"Setări"</string>
+    <string name="background_frequency">"Frecvența verificării pentru actualizări"</string>
+    <string name="background_60mins">"60 de minute"</string>
+    <string name="background_3hours">"3 ore"</string>
+    <string name="background_6hours">"6 ore"</string>
+    <string name="background_12hours">"12 ore"</string>
+    <string name="background_24hours">"Zilnic"</string>
+    <string name="background_3days">"O dată la 3 zile"</string>
+    <string name="background_7days">"Săptămânal"</string>
+    <!-- Drawer -->
+    <string name="feedback">"Păreri"</string>
+    <string name="omc_request">"Cereri OMC"</string>
+    <string name="fresh_updates">"Actualizări Fresh"</string>
+    <string name="reboot">"Repornește in modul Recovery"</string>
+    <string name="main_ota_information">"Informați actualizare software"</string>
+    <string name="main_rom_spl">"Nivelul patch-ului de securitate"</string>
+    <string name="main_ota_version">"Versiune:"</string>
+    <string name="main_ota_size">"Mărime:"</string>
+    <string name="delete_addon_confirm">"Ești sigur că dorești să dezinstalezi %1$s?"</string>
+    <!-- Available Strings -->
+    <string name="available_update_downloading">"Se descarcă actualizarea..."</string>
+    <string name="available_update_install_info">"Actualizează-ți telefonul și obține caracteristici noi"</string>
+    <string name="available_update_install_info_desc">"Utilizarea datelor mobile pentru descărcare poate duce la costuri suplimentare.  Se recomandă utilizarea Wi-Fi."</string>
+    <string name="available_update_install_ready">"Fresh %1$s %2$s este gata de instalare"</string>
+    <string name="available_time_remaining">"Timp rămas: %s"</string>
+    <string name="available_download_speed">"%s/s"</string>
+    <string name="system_name">"Fresh"</string>
+    <!-- System settings plugin -->
+    <string name="system_settings_plugin_title">"Actualizare software"</string>
+    <string name="system_settings_plugin_summary">"Actualizări dispozitiv • Descarcă aplicații sumplimentare"</string>
+    <string name="system_settings_resolution_plugin_title">"Rezoluția ecranului"</string>
+    <string name="system_settings_resolution_plugin_summary">"Schimbă rezoluția si densitatea dispozitivului"</string>
+    <!-- Resolution -->
+    <string name="screen_resolution_desc_summary">"Unele aplicații vor fii închise atunci când schimbi rezoluția."</string>
+    <string name="high_resolution_summary">"Cea mai clară imagine, cea mai mare utilizare a bateriei"</string>
+    <string name="medium_resolution_summary">"Imagine clară, utilizare a bateriei moderată"</string>
+    <string name="low_resolution_summary">"Imagine neclară, cea mai mică utilizare a bateriei"</string>
+    <string name="system_notification_group_title">"OTA Fresh"</string>
+    <string name="system_notification_channel_title">"Actualizări disponibile"</string>
+    <string name="system_notification_channel_desc">"Acest canal de notificare permite aplicației să te anunțe despre actualizările disponibile pe dispozitivul tău."</string>
+    <string name="system_notification_available_title">"Actualizare software disponibilă"</string>
+    <string name="system_notification_available_desc">"Fresh %1$s %2$s este disponibil pentru dispozitivul tău!"</string>
+    <string name="system_notification_finish_title">"Telefonul tău a fosr actualizat cu succes"</string>
+    <string name="system_notification_finish_desc">"Dispozitivul tău a fost actualizat cu succes la Fresh %1$s %2$s. Bucură-te de un telefon mai Fresh!"</string>
+    <string name="system_notification_failed_title">"Actualizare software eșuată"</string>
+    <string name="system_notification_failed_desc">"Actualizarea dispozitivului tău a eșuat. Fresh nu a fost actualizat la %1$s %2$s."</string>
+    <string name="setting_notifications">"Notificări"</string>
+    <string name="setting_notifications_summary">"Verifică automat dacă există actualizări și afișează o notificare dacă este disponibilă."</string>
+    <string name="setting_auto_download">"Descarcă automat prin Wi-Fi."</string>
+    <string name="setting_auto_download_summary">"Descarcă automat actualizările de software atunci când ești conectat la o rețea Wi-Fi."</string>
+    <string name="main_header_community">"Alatură-te comunității!"</string>
+    <string name="main_community_discord_description">"Alatură-te serverului oficial de Discord!"</string>
+    <string name="main_community_discord">"Comunitatea Discord Fresh"</string>
+    <string name="main_community_telegram">"Comunitatea Telegram"</string>
+    <string name="main_community_telegram_description">"Alatură-te comunității Fresh de Telegram"</string>
+    <string name="main_community_discussions">"Discuții GitHub"</string>
+    <string name="main_community_discussions_description">"Discută despre noi caracteristici și altele"</string>
+    <string name="main_community_xda">"Forum XDA"</string>
+    <string name="main_community_xda_description">"Vizitează forumul Fresh pentru dispozitivul tău"</string>
+    <string name="setting_app_icon">"Adaugă pictograma Centrului Fresh"</string>
+    <string name="setting_app_icon_summary">"Adaugă pictograma Centrului Fresh la ecranul de Aplicații."</string>
+    <string name="the_latest_version_is_already_installed">"Cea mai recentă versiune este deja instalată."</string>
+    <string name="a_new_version_is_available">"O nouă versiune este disponibilă."</string>
+    <string name="main_checking_updates">"Se verifică pentru actualizări"</string>
+    <string name="about_bottom_byline">"Dezvoltat de către Yanndroid pentru Proiectul Fresh"</string>
+    <string name="about_open_source_fork">"Bazat pe OTA-ul Bliss"</string>
+    <string name="about_open_source_used">"Componente Open-source"</string>
+    <string name="about_open_source_button">"Licențe Open-source"</string>
+    <string name="available_preinstall_notice">"Nu-ți vei putea folosi telefonul pentru apeluri de orice fel in timpul actualizării."</string>
+    <string name="available_preinstall_notice_nohash">"Verificarea hashului pachetului a eșuat, continuă actualizarea pe propriul risc.  Nu iți vei putea folosi telefonul în timpul actualizării."</string>
+    <string name="addon_uninstall">"Dezinstalează"</string>
+    <string name="addon_update">"Actualizează"</string>
+    <string name="drawer_github_link">"Depune o Problemă"</string>
+</resources>

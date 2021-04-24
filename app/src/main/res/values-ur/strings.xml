@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name"/>
+    <string name="sesl_switchbar_off_text"/>
+    <string name="sesl_switchbar_on_text"/>
+    <string name="main_update_available"/>
+    <string name="main_update_finished"/>
+    <string name="main_no_update_available"/>
+    <string name="main_update_progress"/>
+    <string name="main_website"/>
+    <string name="main_website_summary"/>
+    <string name="main_donate"/>
+    <string name="main_donate_summary"/>
+    <string name="main_tap_to_view_progress"/>
+    <string name="main_last_checked"/>
+    <string name="main_addon"/>
+    <string name="main_addon_summary"/>
+    <!-- ROM Information -->
+    <string name="main_rom_information"/>
+    <string name="main_rom_version"/>
+    <string name="main_rom_build_date"/>
+    <!-- Dialogs -->
+    <string name="main_not_compatible_title"/>
+    <string name="main_not_compatible_message"/>
+    <string name="main_not_connected_title"/>
+    <string name="main_not_connected_message"/>
+    <string name="main_playstore_title"/>
+    <string name="main_playstore_message"/>
+    <!-- Content Descriptions -->
+    <string name="main_button_icon"/>
+    <string name="main_dev_website_icon"/>
+    <!-- Toast -->
+    <string name="main_release_ignored"/>
+    <!-- Generic strings -->
+    <string name="cancel"/>
+    <string name="ok"/>
+    <string name="delete"/>
+    <string name="download"/>
+    <string name="install"/>
+    <string name="downloading"/>
+    <string name="donate"/>
+    <string name="delete_confirm"/>
+    <string name="permission_not_granted_dialog_title"/>
+    <string name="permission_not_granted_dialog_message"/>
+    <string name="dialog_ok"/>
+    <!-- About Strings -->
+    <string name="about_version_title"/>
+    <string name="available_changelog_content"/>
+    <string name="available_ready_to_install"/>
+    <string name="available_md5_ok"/>
+    <string name="available_md5_failed"/>
+    <string name="are_you_sure"/>
+    <string name="available_delete_confirm_message"/>
+    <string name="available_reboot_confirm"/>
+    <string name="available_url_error"/>
+    <string name="available_reboot_manual_title"/>
+    <string name="available_reboot_manual_message"/>
+    <!-- Preferences -->
+    <string name="preferences_name"/>
+    <string name="background_frequency"/>
+    <string name="background_60mins"/>
+    <string name="background_3hours"/>
+    <string name="background_6hours"/>
+    <string name="background_12hours"/>
+    <string name="background_24hours"/>
+    <string name="background_3days"/>
+    <string name="background_7days"/>
+    <!-- Drawer -->
+    <string name="feedback"/>
+    <string name="omc_request"/>
+    <string name="fresh_updates"/>
+    <string name="reboot"/>
+    <string name="main_ota_information"/>
+    <string name="main_rom_spl"/>
+    <string name="main_ota_version"/>
+    <string name="main_ota_size"/>
+    <string name="delete_addon_confirm"/>
+    <!-- Available Strings -->
+    <string name="available_update_downloading"/>
+    <string name="available_update_install_info"/>
+    <string name="available_update_install_info_desc"/>
+    <string name="available_update_install_ready"/>
+    <string name="available_time_remaining"/>
+    <string name="available_download_speed"/>
+    <string name="system_name"/>
+    <!-- System settings plugin -->
+    <string name="system_settings_plugin_title"/>
+    <string name="system_settings_plugin_summary"/>
+    <string name="system_settings_resolution_plugin_title"/>
+    <string name="system_settings_resolution_plugin_summary"/>
+    <!-- Resolution -->
+    <string name="screen_resolution_desc_summary"/>
+    <string name="high_resolution_summary"/>
+    <string name="medium_resolution_summary"/>
+    <string name="low_resolution_summary"/>
+    <string name="system_notification_group_title"/>
+    <string name="system_notification_channel_title"/>
+    <string name="system_notification_channel_desc"/>
+    <string name="system_notification_available_title"/>
+    <string name="system_notification_available_desc"/>
+    <string name="system_notification_finish_title"/>
+    <string name="system_notification_finish_desc"/>
+    <string name="system_notification_failed_title"/>
+    <string name="system_notification_failed_desc"/>
+    <string name="setting_notifications"/>
+    <string name="setting_notifications_summary"/>
+    <string name="setting_auto_download"/>
+    <string name="setting_auto_download_summary"/>
+    <string name="main_header_community"/>
+    <string name="main_community_discord_description"/>
+    <string name="main_community_discord"/>
+    <string name="main_community_telegram"/>
+    <string name="main_community_telegram_description"/>
+    <string name="main_community_discussions"/>
+    <string name="main_community_discussions_description"/>
+    <string name="main_community_xda"/>
+    <string name="main_community_xda_description"/>
+    <string name="setting_app_icon"/>
+    <string name="setting_app_icon_summary"/>
+    <string name="the_latest_version_is_already_installed"/>
+    <string name="a_new_version_is_available"/>
+    <string name="main_checking_updates"/>
+    <string name="about_bottom_byline"/>
+    <string name="about_open_source_fork"/>
+    <string name="about_open_source_used"/>
+    <string name="about_open_source_button"/>
+    <string name="available_preinstall_notice"/>
+    <string name="available_preinstall_notice_nohash"/>
+    <string name="addon_uninstall"/>
+    <string name="addon_update"/>
+    <string name="drawer_github_link"/>
+</resources>
