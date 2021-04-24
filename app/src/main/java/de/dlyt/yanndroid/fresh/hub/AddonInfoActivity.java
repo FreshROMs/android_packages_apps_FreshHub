@@ -56,6 +56,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     private static Integer mAddonId;
     private static Long mFileSize;
     private static Integer mVersionNumber;
+    private static Integer mOldVersion;
 
     public static void runOnUI(Runnable runnable) {
         UIHandler.post(runnable);
@@ -126,6 +127,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         mFileSize = intent.getLongExtra("totalSize", 0);
         mPackageName = intent.getStringExtra("packageName");
         mVersionNumber = intent.getIntExtra("versionNumber", 0);
+        mOldVersion = intent.getIntExtra("oldVersionNumber", 0);
 
         String versionName = intent.getStringExtra("versionName");
         String fullInfo = intent.getStringExtra("fullInfo");
@@ -182,7 +184,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         deleteConfirm.setMessage(mContext.getResources().getString(R.string.delete_addon_confirm, mTitle));
         deleteConfirm.setPositiveButton(R.string.ok, (dialog, which) -> {
             mLoadingDialog.show();
-            TnsAddonDownload.setIsUninstallingAddon(mContext, mTitle);
+            TnsAddonDownload.setIsUninstallingAddon(mContext, mTitle+"_"+mVersionNumber);
             new RecoveryInstall(mContext, true, mTitle+".zip");
         });
         deleteConfirm.setNegativeButton(R.string.cancel, null);
@@ -193,7 +195,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         mDownloadButton.setVisibility(View.GONE);
         mInstallButton.setVisibility(View.GONE);
         mDownloadProgressLayout.setVisibility(View.VISIBLE);
-        mDownloadAddon.startDownload(mContext, mDownloadUrl, mTitle, mAddonId);
+        mDownloadAddon.startDownload(mContext, mDownloadUrl, mTitle, mAddonId, mVersionNumber, mOldVersion);
     }
 
     private void getDownloadStatus() {
@@ -201,10 +203,11 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
                 .DOWNLOAD_SERVICE);
 
         final File file = new File(mContext.getExternalFilesDir(OTA_DIR_ADDONS),
-                mTitle + ".zip");
+                mTitle + "_" + mVersionNumber + ".zip");
 
-        boolean finished = file.length() >= mFileSize;
+        boolean finished = (file.exists() && file.length() >= mFileSize);
         boolean installed = AddonProperties.isAddonInstalled(mPackageName);
+        boolean noUninstall = AddonProperties.isAddonNonUninstall(mPackageName);
         boolean updated = AddonProperties.getInstalledAddonVersion(mPackageName) >= mVersionNumber;
 
         mDownloadButton.setVisibility(View.GONE);
@@ -221,10 +224,12 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         }
 
         if (installed) {
-            if (updated) {
-                mUninstallButton.setVisibility(!finished ? View.GONE : View.VISIBLE);
-                mDownloadButton.setVisibility(!finished ? View.VISIBLE : View.GONE);
-                setLayoutEnabled(mDownloadButton, false);
+            if (updated && noUninstall) {
+                mUninstallButton.setVisibility(View.VISIBLE);
+                setLayoutEnabled(mUninstallButton, false);
+            } else if (updated) {
+                mUninstallButton.setVisibility(View.VISIBLE);
+                setLayoutEnabled(mUninstallButton, finished);
             } else if (finished) {
                 mInstallButton.setVisibility(View.VISIBLE);
             } else {
@@ -247,7 +252,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
 
     public void addonRecovery(View v) {
         mLoadingDialog.show();
-        new RecoveryInstall(mContext, true, mTitle+".zip");
+        new RecoveryInstall(mContext, true, mTitle+"_"+mVersionNumber+".zip");
     }
 
     public void initToolbar() {
