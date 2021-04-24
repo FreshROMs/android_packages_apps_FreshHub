@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <!-- Fuzzy -->
+    <string name="app_name">"FreshHub"</string>
+    <string name="sesl_switchbar_off_text">"Aus"</string>
+    <string name="sesl_switchbar_on_text">"An"</string>
+    <!-- Fuzzy -->
+    <string name="main_update_available">"Ein update ist verfügbar"</string>
+    <string name="main_update_finished">"Download fertig"</string>
+    <!-- Fuzzy -->
+    <string name="main_no_update_available">"System ist aktuell"</string>
+    <string name="main_update_progress">"Download Fortschritt"</string>
+    <string name="main_website">"Webseite"</string>
+    <!-- Fuzzy -->
+    <string name="main_website_summary">"Die offizielle Fresh-Seite öffnen"</string>
+    <string name="main_donate">"Spenden"</string>
+    <!-- Fuzzy -->
+    <string name="main_donate_summary">"Unterstützen sie den/die Entwickler der Rom!"</string>
+    <string name="main_tap_to_view_progress">"Klicken um den Fortschritt zu sehen"</string>
+    <!-- Fuzzy -->
+    <string name="main_last_checked">"Zuletzt überprüft"</string>
+    <string name="main_addon">"Erweiterungen"</string>
+    <!-- Fuzzy -->
+    <string name="main_addon_summary">"Erweitern sie ihre Fresh Erlebnis!"</string>
+    <!-- ROM Information -->
+    <string name="main_rom_information">"Über das Gerät"</string>
+    <string name="main_rom_version">"Veröffentlichungsversion"</string>
+    <string name="main_rom_build_date">"Erstellungsdatum"</string>
+    <!-- Dialogs -->
+    <string name="main_not_compatible_title">"Warnung!"</string>
+    <string name="main_not_compatible_message">"Die installierte Rom ist nicht kompatibel mit der FreshApp. Bitte kontaktieren sie den Rom Entwickler um diesen Fehler zu beheben."</string>
+    <string name="main_not_connected_title">"Nicht verbunden"</string>
+    <string name="main_not_connected_message">"Sie sind mit keinem Netzwerk verbunden. Bitte schalten sie das Mobile Netzwerk oder Wlan an und versuchen sie es erneut."</string>
+    <string name="main_playstore_title">"BitCoin"</string>
+    <string name="main_playstore_message">"Sie haben keine installierten Apps um \"bitcoin:\" mime-type auszuführen.
+
+Wollen sie im Google Play Sore danach suche?"</string>
+    <!-- Content Descriptions -->
+    <string name="main_button_icon">"Knopf Icon"</string>
+    <string name="main_dev_website_icon">"Entwickler Webseite Icon"</string>
+    <!-- Toast -->
+    <string name="main_release_ignored">"Veröffentlichung übersprungen."</string>
+    <!-- Generic strings -->
+    <string name="cancel">"Abbrechen"</string>
+    <string name="ok">"OK"</string>
+    <string name="delete">"Löschen"</string>
+    <string name="download">"Herunterladen"</string>
+    <string name="install">"Installieren"</string>
+    <string name="downloading">"Läd herunter"</string>
+    <string name="donate">"Spenden"</string>
+    <string name="delete_confirm">"Sind sie sicher, diese Datei löschen zu wollen?"</string>
+    <!-- Fuzzy -->
+    <string name="permission_not_granted_dialog_title">"Berechtigung nicht gewährt"</string>
+    <!-- Fuzzy -->
+    <string name="permission_not_granted_dialog_message">"Bitte gewähren sie der FreshApp Speicher Berechtigungen, ohne diese kann die App nicht funktionieren!"</string>
+    <string name="dialog_ok">"OK"</string>
+    <!-- About Strings -->
+    <string name="about_version_title">"Version"</string>
+    <string name="available_changelog_content">"Ihr Changlog kommt hier hin"</string>
+    <string name="available_ready_to_install">"Bereit zur Installation"</string>
+    <string name="available_md5_ok">"MD5 stimmt überein"</string>
+    <string name="available_md5_failed">"MD5 Fehler"</string>
+    <string name="are_you_sure">"Sind sie sicher?"</string>
+    <string name="available_delete_confirm_message">"Sind sie sicher das sie die heruntergeladenen Datei löschen möchten?"</string>
+    <string name="available_reboot_confirm">"Möchten sie jetzt neustarten?"</string>
+    <string name="available_url_error">"URL Fehler: Bitte kontaktieren sie ihren ROM Entwickler"</string>
+    <string name="available_reboot_manual_title">"Bitte jetzt neustarten"</string>
+    <!-- Fuzzy -->
+    <string name="available_reboot_manual_message">"Führen sie ein Neustart in das Recovery durch und flashen sie die Rom.
+
+Sie können die Datei in /sdcard/Downloads finden"</string>
+    <!-- Preferences -->
+    <string name="preferences_name">"Einstellungen"</string>
+    <string name="background_frequency">"Update Suche häufigkeit"</string>
+    <string name="background_60mins">"60 Minuten"</string>
+    <string name="background_3hours">"3 Stunden"</string>
+    <string name="background_6hours">"6 Stunden"</string>
+    <string name="background_12hours">"12 Stunden"</string>
+    <string name="background_24hours">"Einmal pro Tag"</string>
+    <string name="background_3days">"Alle drei Tage"</string>
+    <string name="background_7days">"Einmal pro Woche"</string>
+    <!-- Drawer -->
+    <string name="feedback">"Feedback"</string>
+    <string name="omc_request">"OMC Anfrage"</string>
+    <string name="fresh_updates">"Fresh Updates"</string>
+    <!-- Fuzzy -->
+    <string name="reboot">"Neustart"</string>
+    <string name="main_ota_information">"Software Update Information"</string>
+    <string name="main_rom_spl">"Sicherheitspatch Level:"</string>
+    <string name="main_ota_version">"Version:"</string>
+    <string name="main_ota_size">"Größe:"</string>
+    <string name="delete_addon_confirm">"Sind sie sicher, dass sie %1$s deinstallieren wollen?"</string>
+    <!-- Available Strings -->
+    <string name="available_update_downloading">"Update läd herunter..."</string>
+    <string name="available_update_install_info">"Aktualisieren sie ihr Gerät und erhalten sie neue Funktionen"</string>
+    <string name="available_update_install_info_desc">"Bei Verwendung von Mobilen Daten können zusätzliche Kosten anfallen. Das benutzen von Wi-Fi ist empfohlen."</string>
+    <string name="available_update_install_ready">"Fresh %1$s %2$s ist bereit zur Installation"</string>
+    <string name="available_time_remaining">"Zeit verbleibend: "</string>
+    <string name="available_download_speed">"%s/s"</string>
+    <string name="system_name">"Fresh"</string>
+    <!-- System settings plugin -->
+    <string name="system_settings_plugin_title">"Software Update"</string>
+    <string name="system_settings_plugin_summary">"Gerät Updates  •  Erweiterungen herunterladen"</string>
+    <string name="system_settings_resolution_plugin_title">"Bildschirm Auflösung"</string>
+    <string name="system_settings_resolution_plugin_summary">"Bildschirmauflösung und Dichte ändern"</string>
+    <!-- Resolution -->
+    <string name="screen_resolution_desc_summary">"Manche Apps werden möglicherweise geschlossen wenn sie die Auflösung ändern."</string>
+    <string name="high_resolution_summary">"Schärfste Optik, höchster Akkuverbrauch"</string>
+    <string name="medium_resolution_summary">"Verbesserte Optik, mittlerer Akkuverbrauch"</string>
+    <string name="low_resolution_summary">"Verstörende Optik, niedrigster Akkuverbrauch"</string>
+    <string name="system_notification_group_title">"Fresh OTA"</string>
+    <string name="system_notification_channel_title">"Verfügbare Updates"</string>
+    <string name="system_notification_channel_desc">"Dieser Benachrichtigungkanal erlaubt der App sie bei neuen Updates zu benachrichtigen."</string>
+    <string name="system_notification_available_title">"Software Update verfügbar"</string>
+    <string name="system_notification_available_desc">"Fresh %1$s %2$s ist jetzt für ihr Gerät verfügbar!"</string>
+    <string name="system_notification_finish_title">"Ihr Gerät wurde erfolgreich aktualisiert"</string>
+    <string name="system_notification_finish_desc">"Ihr Gerät wurde erfolgreich aktualisiert zu Fresh %1$s %2$s. Genießen sie ein fresheres Gerät!"</string>
+    <string name="system_notification_failed_title">"Software Update fehlgeschlagen"</string>
+    <string name="system_notification_failed_desc">"Das Update ist fehlgeschlagen. Fresh wurde nicht zu %1$s %2$s aktualisiert."</string>
+    <string name="setting_notifications">"Benachrichtigung"</string>
+    <string name="setting_notifications_summary">"Automatisch nach Updates suchen, und benachrichtigt wenn eins verfügbar ist."</string>
+    <string name="setting_auto_download">"Automatisch runterladen über Wi-Fi"</string>
+    <string name="setting_auto_download_summary">"Software Updates automatisch runterladen wenn mit dem Wi-Fi verbunden."</string>
+    <string name="main_header_community">"Trete der Gemeinschaft bei!"</string>
+    <string name="main_community_discord_description">"Trete dem offiziellen Discord Server bei!"</string>
+    <string name="main_community_discord">"Discord Fresh Gemeinschaft"</string>
+    <string name="main_community_telegram">"Telegram Gemeinschaft"</string>
+    <string name="main_community_telegram_description">"Trete der Telegram Gemeinschaft bei"</string>
+    <string name="main_community_discussions">"Github Diskussionen"</string>
+    <string name="main_community_discussions_description">"Besprechen sie neue Funktionen und mehr"</string>
+    <string name="main_community_xda">"XDA Forum"</string>
+    <string name="main_community_xda_description">"Erforschen sie das Fresh Forum für ihr Gerät"</string>
+    <string name="setting_app_icon">"Fresh Hub Icon hinzufügen"</string>
+    <string name="setting_app_icon_summary">"Fresh Hub Icon zum Startbildschirm hinzufügen"</string>
+    <string name="the_latest_version_is_already_installed">"Die neuste Version ist bereits installiert"</string>
+    <string name="a_new_version_is_available">"Eine neue Version ist verfügbar"</string>
+    <string name="main_checking_updates">"Suche nach Updates"</string>
+    <string name="about_bottom_byline">"Erstellt von Yanndroid für das Fresh Projekt"</string>
+    <string name="about_open_source_fork">"Basiert auf Bliss OTA"</string>
+    <string name="about_open_source_used">"Open-source Komponente"</string>
+    <string name="about_open_source_button">"Open source Lizenzen"</string>
+    <string name="available_preinstall_notice">"Während dem Update, wird es nicht möglich sein das Gerät zu benutzen, auch nicht für Notanrufe."</string>
+    <string name="available_preinstall_notice_nohash">"Hash Überprüfung war nicht erfolgreich, aktualisieren auf eigene Gefahr. Während dem Update, wird es nicht möglich sein das Gerät zu benutzen."</string>
+    <string name="addon_uninstall">"Deinstallieren"</string>
+    <string name="addon_update">"Aktualisieren"</string>
+    <string name="drawer_github_link">"Ein Problem einreichen"</string>
+</resources>

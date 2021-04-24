@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name">"Fresh Hub"</string>
+    <string name="sesl_switchbar_off_text">"Off"</string>
+    <string name="sesl_switchbar_on_text">"On"</string>
+    <string name="main_update_available">"May bagong update na available"</string>
+    <string name="main_update_finished">"Tapos na ang download"</string>
+    <string name="main_no_update_available">"Walang update na available"</string>
+    <string name="main_update_progress">"Progreso ng Download"</string>
+    <string name="main_website">"Website"</string>
+    <string name="main_website_summary">"Bisitahin ang opisyal na website ng Fresh"</string>
+    <string name="main_donate">"Mag-donate"</string>
+    <string name="main_donate_summary">"Tulungan ang (mga) developer ng ROM na ito!"</string>
+    <string name="main_tap_to_view_progress">"I-tap upang makita ang progreso"</string>
+    <string name="main_last_checked">"Huling check"</string>
+    <string name="main_addon">"Addons"</string>
+    <string name="main_addon_summary">"I-extend ang Fresh experience!"</string>
+    <!-- ROM Information -->
+    <string name="main_rom_information">"About sa iyong device"</string>
+    <string name="main_rom_version">"Bersyon ng release:"</string>
+    <string name="main_rom_build_date">"Araw ng build:"</string>
+    <!-- Dialogs -->
+    <string name="main_not_compatible_title">"Teka lang!"</string>
+    <string name="main_not_compatible_message">"Ang ROM na ito ay hindi naka-configure upang magamit ang FreshApp. Makipag-ugnay sa ROM maintainer upang maayos ang isyu na ito."</string>
+    <string name="main_not_connected_title">"Hindi connected"</string>
+    <string name="main_not_connected_message">"Hindi ka naka-connect sa anumang network. Buksan ang Mobile data o Wi-Fi at subukang muli."</string>
+    <string name="main_playstore_title">"Bitcoin"</string>
+    <string name="main_playstore_message">"Wala kang available na app upang buksan ang \"bitcoin:\" mime-type.
+
+Nais mo bang pumunta sa Google Play Store upang mag-hanap?"</string>
+    <!-- Content Descriptions -->
+    <string name="main_button_icon">"Button icon"</string>
+    <string name="main_dev_website_icon">"Developer website icon"</string>
+    <!-- Toast -->
+    <string name="main_release_ignored">"Release skipped."</string>
+    <!-- Generic strings -->
+    <string name="cancel">"Cancel"</string>
+    <string name="ok">"OK"</string>
+    <string name="delete">"I-delete"</string>
+    <string name="download">"I-download"</string>
+    <string name="install">"I-install"</string>
+    <string name="downloading">"Dina-download…"</string>
+    <string name="donate">"Mag-donate"</string>
+    <string name="delete_confirm">"Nais mo bang i-delete ang file na ito?"</string>
+    <string name="permission_not_granted_dialog_title">"Hindi ipinagkaloob ang storage permissions"</string>
+    <string name="permission_not_granted_dialog_message">"Bigyan ng storage permissions ang Fresh Hub upang makakuha ng software updates at addons."</string>
+    <string name="dialog_ok">"OK"</string>
+    <!-- About Strings -->
+    <string name="about_version_title">"Bersyon"</string>
+    <string name="available_changelog_content">"Ang changelog ay nandito"</string>
+    <string name="available_ready_to_install">"Handang i-install"</string>
+    <string name="available_md5_ok">"Nag-match ang MD5"</string>
+    <string name="available_md5_failed">"Hindi nag-match ang MD5"</string>
+    <string name="are_you_sure">"Sigurado ka ba?"</string>
+    <string name="available_delete_confirm_message">"Nais mo bang i-delete ang na-download na file?"</string>
+    <string name="available_reboot_confirm">"Nais mo bang mag-reboot ngayon?"</string>
+    <string name="available_url_error">"URL Error: Makipag-ugnayan sa iyong ROM developer"</string>
+    <string name="available_reboot_manual_title">"Mag-reboot na ngayon"</string>
+    <string name="available_reboot_manual_message">"Mag-reboot sa recovery at i-flash ang iyong ROM.
+
+Dahil sa mga bagong patakaran ng Android tungkol sa Scoped Storage, makikita ang update sa /sdcard/Android/data/de.dlyt.yanndroid.fresh/Updates"</string>
+    <!-- Preferences -->
+    <string name="preferences_name">"Settings"</string>
+    <string name="background_frequency">"Dalas ng pag-check ng updates"</string>
+    <string name="background_60mins">"60 minuto"</string>
+    <string name="background_3hours">"3 oras"</string>
+    <string name="background_6hours">"6 oras"</string>
+    <string name="background_12hours">"12 oras"</string>
+    <string name="background_24hours">"Kada araw"</string>
+    <string name="background_3days">"Kada tatlong araw"</string>
+    <string name="background_7days">"Kada linggo"</string>
+    <!-- Drawer -->
+    <string name="feedback">"Feedback"</string>
+    <string name="omc_request">"Request ng OMC"</string>
+    <string name="fresh_updates">"Fresh Updates"</string>
+    <string name="reboot">"Mag-reboot sa Recovery"</string>
+    <string name="main_ota_information">"Impormasyon ng software update"</string>
+    <string name="main_rom_spl">"Lebel ng security patch:"</string>
+    <string name="main_ota_version">"Bersyon:"</string>
+    <string name="main_ota_size">"Laki ng download:"</string>
+    <string name="delete_addon_confirm">"Nais mo bang i-uninstall ang %1$s?"</string>
+    <!-- Available Strings -->
+    <string name="available_update_downloading">"Dina-download ang update…"</string>
+    <string name="available_update_install_info">"I-update ang iyong phone at makakuha ng bagong features"</string>
+    <string name="available_update_install_info_desc">"Ang paggamit ng mobile data ay magre-resulta sa karagdagang charges. Ang paggamit ng Wi-Fi ay inirerekomenda."</string>
+    <string name="available_update_install_ready">"Handa nang i-install ang Fresh %1$s %2$s"</string>
+    <string name="available_time_remaining">"Natitirang Oras: %s"</string>
+    <string name="available_download_speed">"%s/s"</string>
+    <string name="system_name">"Fresh"</string>
+    <!-- System settings plugin -->
+    <string name="system_settings_plugin_title">"Software update"</string>
+    <string name="system_settings_plugin_summary">"Mga updates  •  Mag-download ng addons"</string>
+    <string name="system_settings_resolution_plugin_title">"Resolusyon ng screen"</string>
+    <string name="system_settings_resolution_plugin_summary">"Palitan ang resolusyon at densidad ng screen"</string>
+    <!-- Resolution -->
+    <string name="screen_resolution_desc_summary">"Maaaring mag-sara ang ibang apps kapag pinalitan ang resolusyon"</string>
+    <string name="high_resolution_summary">"Pinaka-malinaw na visual, mas malaking battery use"</string>
+    <string name="medium_resolution_summary">"Mas magandang visual, katamtamanag battery use"</string>
+    <string name="low_resolution_summary">"Hindi kagandahang visual, mas mababang battery use"</string>
+    <string name="system_notification_group_title">"OTA ng Fresh"</string>
+    <string name="system_notification_channel_title">"Mga available na update"</string>
+    <string name="system_notification_channel_desc">"Ang notification channel na ito ay naga-allow sa app na ma-notify ka sa mga update na available sa iyong device."</string>
+    <string name="system_notification_available_title">"May available na software update"</string>
+    <string name="system_notification_available_desc">"Ang Fresh %1$s %2$s ay available na para sa iyong device!"</string>
+    <string name="system_notification_finish_title">"Ang iyong phone ay matagumpay na na-update"</string>
+    <string name="system_notification_finish_desc">"Ang iyong device ay matagumpay na na-update sa Fresh %1$s %2$s!"</string>
+    <string name="system_notification_failed_title">"Hindi matagumpay na na-update ang software"</string>
+    <string name="system_notification_failed_desc">"Ang iyong device ay hindi matagumpay na na-update. Ang Fresh ay hindi na-update sa %1$s %2$s."</string>
+    <string name="setting_notifications">"Mga notification"</string>
+    <string name="setting_notifications_summary">"Automatically mag-check ng updates at magpakita ng notification kapag may isang available."</string>
+    <string name="setting_auto_download">"Auto download sa Wi-Fi"</string>
+    <string name="setting_auto_download_summary">"I-download ang mga software update automatically kapag ikaw ay connected sa isang Wi-Fi network."</string>
+    <string name="main_header_community">"Sumali sa kommunidad!"</string>
+    <string name="main_community_discord_description">"Sumali sa opisyal na Discord server!"</string>
+    <string name="main_community_discord">"Discord ng Fresh Community"</string>
+    <string name="main_community_telegram">"Telegram Community"</string>
+    <string name="main_community_telegram_description">"Sumali sa Fresh Telegram community"</string>
+    <string name="main_community_discussions">"GitHub Discussions"</string>
+    <string name="main_community_discussions_description">"I-discuss ang mga bagong feature at iba pa"</string>
+    <string name="main_community_xda">"XDA Forum"</string>
+    <string name="main_community_xda_description">"Bisitahin ang forum ng Fresh para sa iyong device"</string>
+    <string name="setting_app_icon">"Ilagay ang icon ng Fresh Hub"</string>
+    <string name="setting_app_icon_summary">"Ilagay ang Fresh Hub sa Apps screen."</string>
+    <string name="the_latest_version_is_already_installed">"Ang pinaka-bagong bersyon ay naka-install na."</string>
+    <string name="a_new_version_is_available">"May bagong bersyon na available."</string>
+    <string name="main_checking_updates">"Nagche-check ng updates"</string>
+    <string name="about_bottom_byline">"Dinivelop ni Yanndroid para sa Fresh Project"</string>
+    <string name="about_open_source_fork">"Base sa Bliss OTA"</string>
+    <string name="about_open_source_used">"Mga open-source components"</string>
+    <string name="about_open_source_button">"Mga open source license"</string>
+    <string name="available_preinstall_notice">"Hindi mo magagamit ang iyong device habang ito'y nagu-update, maging sa emergency calls."</string>
+    <string name="available_preinstall_notice_nohash">"Hindi matagumpay ang pagche-check ng package hash, magpatuloy sa update ng may ingat. Hindi mo magagamit ang iyong device habang ito'y nagu-update."</string>
+    <string name="addon_uninstall">"I-uninstall"</string>
+    <string name="addon_update">"I-update"</string>
+    <string name="drawer_github_link">"Mag-file ng Issue"</string>
+</resources>
