@@ -13,6 +13,8 @@
     <color name="background_color">#ff000000</color>
     <color name="item_background_color">#ff171717</color>
     <color name="item_color">#fff2f2f2</color>
+    <color name="splash_background">#ff000000</color>
+
 
     <!--Sesl-->
     <color name="divider_color">#2afafafa</color>

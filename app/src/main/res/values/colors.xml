@@ -21,6 +21,7 @@
     <color name="background_color">#fff2f2f2</color>
     <color name="item_background_color">#ffffffff</color>
     <color name="item_color">#ff000000</color>
+    <color name="splash_background">#ffffffff</color>
 
 
     <!--Colors-->
