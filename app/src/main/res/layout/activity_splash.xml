@@ -17,12 +17,12 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <ImageView
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="150dp"
         android:layout_width="115dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/freshhub_textlogo" />
+        android:layout_marginBottom="150dp"
+        android:src="@drawable/freshhub_textlogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
