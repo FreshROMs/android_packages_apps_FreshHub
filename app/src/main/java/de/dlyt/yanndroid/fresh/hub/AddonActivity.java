@@ -269,8 +269,8 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 if (file.exists()) {
                     mLoadingDialog.show();
                     updateButtons(item.getId(), false);
-                    TnsAddonDownload.setIsUninstallingAddon(mContext, item.getTitle());
-                    new RecoveryInstall(mContext, true, item.getTitle()+".zip");
+                    TnsAddonDownload.setIsUninstallingAddon(mContext, item.getTitle()+"_"+item.getVersionNumber());
+                    new RecoveryInstall(mContext, true, item.getTitle()+"_"+item.getVersionNumber()+".zip");
                 }
             });
             deleteConfirm.setNegativeButton(R.string.cancel, null);
@@ -316,7 +316,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
 
             filesize.setText(de.dlyt.yanndroid.fresh.utils.File.formatDataFromBytes(item.getFilesize()));
             final File file = new File(mContext.getExternalFilesDir(OTA_DIR_ADDONS),
-                    item.getTitle() + ".zip");
+                    item.getTitle() + "_" + item.getVersionNumber() + ".zip");
 
             if (DEBUGGING) {
                 Log.d(TAG, "file path " + file.getAbsolutePath());
@@ -326,8 +326,9 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             DownloadManager downloadManager = (DownloadManager) mContext.getSystemService(Context
                     .DOWNLOAD_SERVICE);
 
-            boolean finished = file.length() >= item.getFilesize();
+            boolean finished = (file.exists() && file.length() >= item.getFilesize());
             boolean installed = AddonProperties.isAddonInstalled(item.getPackageName());
+            boolean noUninstall = AddonProperties.isAddonNonUninstall(item.getPackageName());
             boolean updated = AddonProperties.getInstalledAddonVersion(item.getPackageName()) >= item.getVersionNumber();
 
             boolean downloading = false;
@@ -342,7 +343,12 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             if (installed) {
                 infoContainer.setVisibility(View.VISIBLE);
                 progressContainer.setVisibility(View.GONE);
-                if (updated) {
+                if (updated && noUninstall) {
+                    download.setVisibility(View.GONE);
+                    install.setVisibility(View.GONE);
+                    cancel.setVisibility(View.GONE);
+                    delete.setVisibility(View.GONE);
+                } else if (updated) {
                     delete.setVisibility(!finished ? View.GONE : View.VISIBLE);
                     download.setVisibility(View.GONE);
                     cancel.setVisibility(View.GONE);
@@ -382,7 +388,6 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             }
 
             download.setOnClickListener(v -> {
-                long downloadIdNew = TnsAddonDownload.getAddonDownload(mContext, item.getId());
 
                 download.setVisibility(View.GONE);
                 startTime.setText(String.valueOf(System.currentTimeMillis()));
@@ -390,13 +395,15 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 infoContainer.setVisibility(View.GONE);
                 cancel.setVisibility(View.VISIBLE);
                 mDownloadAddon.startDownload(mContext, item.getDownloadLink(), item
-                        .getTitle(), item.getId());
+                        .getTitle(), item.getId(), item.getVersionNumber(), AddonProperties.getInstalledAddonVersion(item.getPackageName()));
+
+                long downloadIdNew = TnsAddonDownload.getAddonDownload(mContext, item.getId());
                 new DownloadAddonProgress(mContext, downloadManager, item.getId(), downloadIdNew);
             });
 
             install.setOnClickListener(v -> {
                 mLoadingDialog.show();
-                new RecoveryInstall(mContext, true, item.getTitle()+".zip");
+                new RecoveryInstall(mContext, true, item.getTitle()+"_"+item.getVersionNumber()+".zip");
             });
 
             cancel.setOnClickListener(v -> {
@@ -419,6 +426,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 i.putExtra("versionName", item.getVersionName());
                 i.putExtra("fullInfo", item.getFullInfo());
                 i.putExtra("versionNumber", item.getVersionNumber());
+                i.putExtra("oldVersionNumber", AddonProperties.getInstalledAddonVersion(item.getPackageName()));
                 i.putExtra("thumbnailUrl", item.getImageUrl());
                 mContext.startActivity(i);
             });
