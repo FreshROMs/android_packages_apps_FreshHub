@@ -196,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
         notifSwitch.setChecked(Preferences.getBackgroundService(mContext));
         dataSaver.setChecked(Preferences.getBackgroundDownload(mContext));
+        dataSaver.setEnabled(Preferences.getBackgroundService(mContext));
         appIcon.setChecked(Preferences.getAppIconState(mContext));
 
         // But check permissions first - download will be started in the callback
