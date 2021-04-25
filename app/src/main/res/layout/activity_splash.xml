@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_bg" />
+        app:srcCompat="@mipmap/ic_launcher_new_bg" />
 
     <ImageView
         android:id="@+id/splash_image_foreground"
