@@ -20,13 +20,11 @@ public class SplashActivity extends AppCompatActivity {
 
         ImageView fresh_fg = findViewById(R.id.splash_image_foreground);
 
-        Animation splash_anim;
-        splash_anim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.splash_animation);
+        Animation splash_anim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.splash_animation);
 
         splash_anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
             }
 
             @Override
@@ -37,7 +35,6 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationRepeat(Animation animation) {
-
             }
         });
 
