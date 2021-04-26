@@ -20,7 +20,7 @@
         android:id="@+id/splash_image_foreground"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:src="@mipmap/ic_launcher_new_foreground"
         app:layout_constraintBottom_toBottomOf="@id/splash_image_background"
         app:layout_constraintEnd_toEndOf="@id/splash_image_background"
         app:layout_constraintStart_toStartOf="@id/splash_image_background"
