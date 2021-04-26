@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><resources>
     <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
-    <string name="app_name">"Fresh Hub"</string>
+    <string name="app_name">"FreshRom"</string>
     <string name="sesl_switchbar_off_text">"Выключить"</string>
     <string name="sesl_switchbar_on_text">"Включить"</string>
     <string name="main_update_available">"Доступно обновление"</string>
