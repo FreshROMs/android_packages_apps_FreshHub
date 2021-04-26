@@ -5,20 +5,20 @@
     <string name="sesl_switchbar_on_text">"Açık"</string>
     <string name="main_update_available">"Bir güncelleme mevcut"</string>
     <string name="main_update_finished">"İndirme tamamlandı"</string>
-    <string name="main_no_update_available">"Güncelleme bulunmuyor"</string>
+    <string name="main_no_update_available">"Güncelleme Bulunmuyor"</string>
     <string name="main_update_progress">"İndirme İlerlemesi"</string>
-    <string name="main_website">"İnternet sitesi"</string>
+    <string name="main_website">"İnternet Sitesi"</string>
     <string name="main_website_summary">"Resmi Fresh internet sitesini ziyaret et"</string>
     <string name="main_donate">"Bağış Yap"</string>
     <string name="main_donate_summary">"Bu ROM'un geliştirici(ler)ine yardım et!"</string>
     <string name="main_tap_to_view_progress">"İlerlemeyi görmek için dokun"</string>
-    <string name="main_last_checked">"Son kontrol"</string>
+    <string name="main_last_checked">"Son Kontrol:"</string>
     <string name="main_addon">"Eklentiler"</string>
     <string name="main_addon_summary">"Fresh deneyimini genişlet!"</string>
     <!-- ROM Information -->
     <string name="main_rom_information">"Cihazın hakkında"</string>
     <string name="main_rom_version">"Yayın versiyonu:"</string>
-    <string name="main_rom_build_date">"Yapım tarihi:"</string>
+    <string name="main_rom_build_date">"Yapım Tarihi:"</string>
     <!-- Dialogs -->
     <string name="main_not_compatible_title">"Dur!"</string>
     <string name="main_not_compatible_message">"Mevcut ROM'un FreshApp ile çalışmaya konfigre edilmemiş. Lütfen sorunu çözmesi için ROM sağlayıcın ile iletişime geç."</string>
@@ -63,11 +63,11 @@ Android'in yeni kapsamlı depolama kurallarına göre güncellemeyi /sdcard/Andr
     <string name="preferences_name">"Ayarlar"</string>
     <string name="background_frequency">"Güncelleme kontrol sıklığı"</string>
     <string name="background_60mins">"60 dakika"</string>
-    <string name="background_3hours">"3 saat"</string>
-    <string name="background_6hours">"6 saat"</string>
-    <string name="background_12hours">"12 saat"</string>
+    <string name="background_3hours">"3 saatte bir"</string>
+    <string name="background_6hours">"6 saatte bir"</string>
+    <string name="background_12hours">"12 saat bir"</string>
     <string name="background_24hours">"Günde bir"</string>
-    <string name="background_3days">"Her 3 gün"</string>
+    <string name="background_3days">"Her 3 günde bir"</string>
     <string name="background_7days">"Haftada bir"</string>
     <!-- Drawer -->
     <string name="feedback">"Geri bildiri"</string>
@@ -75,7 +75,7 @@ Android'in yeni kapsamlı depolama kurallarına göre güncellemeyi /sdcard/Andr
     <string name="fresh_updates">"Fresh Güncellemeleri"</string>
     <string name="reboot">"Kurtarmaya Yeniden Başlat"</string>
     <string name="main_ota_information">"Yazılım güncellemesi bilgisi"</string>
-    <string name="main_rom_spl">"Güvenlik yaması düzeyi:"</string>
+    <string name="main_rom_spl">"Güvenlik Yaması Düzeyi:"</string>
     <string name="main_ota_version">"Sürüm:"</string>
     <string name="main_ota_size">"Boyut:"</string>
     <string name="delete_addon_confirm">"%1$s'i kaldırmak istediğine emin misin?"</string>
@@ -109,16 +109,16 @@ Android'in yeni kapsamlı depolama kurallarına göre güncellemeyi /sdcard/Andr
     <string name="setting_notifications">"Bildirimler"</string>
     <string name="setting_notifications_summary">"Otomatik olarak güncellemeleri kontrol et ve eğer varsa bildirim göster."</string>
     <string name="setting_auto_download">"WiFi üzerinden otomatik indir"</string>
-    <string name="setting_auto_download_summary">"WiFi ağına bağlandığında otomatik olarak güncellemeleri indir."</string>
+    <string name="setting_auto_download_summary">"WiFi ağına bağlandığında güncellemeleri otomatik olarak indirir."</string>
     <string name="main_header_community">"Topluluğa katıl!"</string>
     <string name="main_community_discord_description">"Resmi Discord sunucusuna katıl!"</string>
     <string name="main_community_discord">"Fresh Discord Topluluğu"</string>
     <string name="main_community_telegram">"Telegram Topluluğu"</string>
-    <string name="main_community_telegram_description">"Fresh Telegram topluluğuna katıl"</string>
+    <string name="main_community_telegram_description">"Fresh Telegram topluluğuna katıl!"</string>
     <string name="main_community_discussions">"GitHub Tartışmaları"</string>
-    <string name="main_community_discussions_description">"Yeni özellikler hakkında konuş ve daha fazlası"</string>
+    <string name="main_community_discussions_description">"Yeni özellikler hakkında konuş ve dahası!"</string>
     <string name="main_community_xda">"XDA Forum"</string>
-    <string name="main_community_xda_description">"Cihazınız için olan Fresh forumunu ziyaret edin"</string>
+    <string name="main_community_xda_description">"Cihazınızın Fresh forumunu ziyaret edin!"</string>
     <string name="setting_app_icon">"Fresh Hub ikonunu ekle"</string>
     <string name="setting_app_icon_summary">"Fresh Hub ikonunu uygulamalar ekranına ekle."</string>
     <string name="the_latest_version_is_already_installed">"Son sürüm hâlihazırda indirilmiş."</string>
@@ -127,7 +127,7 @@ Android'in yeni kapsamlı depolama kurallarına göre güncellemeyi /sdcard/Andr
     <string name="about_bottom_byline">"Yanndroid tarafından \"The Fresh Project\" için geliştirilmiştir"</string>
     <string name="about_open_source_fork">"Bliss OTA tabanlıdır"</string>
     <string name="about_open_source_used">"Açık-kaynak Bileşenler"</string>
-    <string name="about_open_source_button">"Açık kaynak lisansları"</string>
+    <string name="about_open_source_button">"Açık Kaynak Lisansları"</string>
     <string name="available_preinstall_notice">"Güncelleme sırasında telefonunuzu kullanamayacaksınız, acil durum aramaları için bile"</string>
     <string name="available_preinstall_notice_nohash">"Paketin hash doğrulaması başarısız oldu, güncellemeye kendi riskiniz ile devam edin. Güncelleme sırasında telefonunuzu kullanamayacaksınız."</string>
     <string name="addon_uninstall">"Kaldır"</string>

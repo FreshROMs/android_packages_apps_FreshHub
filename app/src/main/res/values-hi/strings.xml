@@ -3,8 +3,7 @@
     <string name="app_name">"फ़्रेश हब"</string>
     <string name="sesl_switchbar_off_text">"बंद"</string>
     <string name="sesl_switchbar_on_text">"चालू"</string>
-    <string name="main_update_available">"एक अपडेट उपलब्ध है
-"</string>
+    <string name="main_update_available">"एक अपडेट उपलब्ध है"</string>
     <string name="main_update_finished">"डाउनलोड सम्पन्न हुआ"</string>
     <string name="main_no_update_available">"कोई अपडेट उपलब्ध नहीं"</string>
     <string name="main_update_progress">"डाउनलोड प्रगति"</string>
@@ -14,7 +13,7 @@
     <string name="main_donate_summary">"इस रोम के डेवेलपर्स की मदद करें"</string>
     <string name="main_tap_to_view_progress">"प्रगति देखने के लिए टैप करें"</string>
     <string name="main_last_checked">"अंतिम बार जाँच"</string>
-    <string name="main_addon">"एडऑन"</string>
+    <string name="main_addon">"एडऑनस"</string>
     <string name="main_addon_summary">"अपने फ़्रेश अनुभव को बढ़ाएँ!"</string>
     <!-- ROM Information -->
     <string name="main_rom_information">"आपके डिवाइस के बारे में"</string>
@@ -28,7 +27,7 @@
     <string name="main_playstore_title">"बिटकॉइन"</string>
     <string name="main_playstore_message">"आपके पास \"बिटकॉइन:\" माइम-प्रकार को संभालने के लिए कोई भी उपलब्ध एप्लिकेशन नहीं है।
 
-क्या आप एक खोजने के लिए गुगल प्ले Store खोजना चाहेंगे?"</string>
+क्या आप एक खोजने के लिए गुगल प्ले स्टोर खोलना चाहेंगे?"</string>
     <!-- Content Descriptions -->
     <string name="main_button_icon">"बटन आइकन"</string>
     <string name="main_dev_website_icon">"डेवलपर वेबसाइट आइकन"</string>
@@ -40,10 +39,10 @@
     <string name="delete">"निकल दे"</string>
     <string name="download">"डाउनलोड"</string>
     <string name="install">"इंस्टॉल"</string>
-    <string name="downloading">"दोव्न्लौदिङ्"</string>
+    <string name="downloading">"दोव्न्लौदिङ हो राहा है"</string>
     <string name="donate">"दान करे"</string>
     <string name="delete_confirm">"क्या आप द्वारा इस फाइल को हटाया जाना सुनिश्चित है?"</string>
-    <string name="permission_not_granted_dialog_title">"भंडारण की अनुमति नहीं दी गई"</string>
+    <string name="permission_not_granted_dialog_title">"स्टोरेज की अनुमति नहीं दी गई"</string>
     <string name="permission_not_granted_dialog_message">"कृपया सॉफ़्टवेयर अपडेट प्राप्त करने और ऐड-ऑन डाउनलोड करने में सक्षम होने के लिए फ़्रेश हब स्टोरेज की अनुमति दें।"</string>
     <string name="dialog_ok">"ठीक है"</string>
     <!-- About Strings -->
@@ -57,9 +56,9 @@
     <string name="available_reboot_confirm">"क्या आप अभी रिबूट करना चाहेंगे?"</string>
     <string name="available_url_error">"युआरएल त्रुटि: कृपया इसे अपने रोम डेवलपर को रिपोर्ट करें"</string>
     <string name="available_reboot_manual_title">"कृपया अब रिबूट करें"</string>
-    <string name="available_reboot_manual_message">"कृपया पुनर्प्राप्त करें और अपने ROM को फ्लैश करें।
+    <string name="available_reboot_manual_message">"कृपया पुनर्प्राप्त करें और अपने रोम को फ्लैश करें।
 
-स्कोप स्टोरेज के लिए Android के नए नियमों के कारण, आप /एसदि कार्ड/एनड्रोइड/डाटा/de.dlyt.yanndroid.fresh/Updates में अपडेट पा सकते हैं"</string>
+स्कोप स्टोरेज के लिए एनड्रोइड के नए नियमों के कारण, आप /sdcard/Android/data/de.dlyt.yanndroid.fresh/Updates में अपडेट पा सकते हैं"</string>
     <!-- Preferences -->
     <string name="preferences_name">"सेटींग्स"</string>
     <string name="background_frequency">"अद्यतन जाँच आवृत्ति"</string>
@@ -74,64 +73,64 @@
     <string name="feedback">"प्रतिपुष्टि"</string>
     <string name="omc_request">"औएमसी निवेदन"</string>
     <string name="fresh_updates">"फ़्रेश अपडेट"</string>
-    <string name="reboot"/>
-    <string name="main_ota_information"/>
-    <string name="main_rom_spl"/>
-    <string name="main_ota_version"/>
-    <string name="main_ota_size"/>
-    <string name="delete_addon_confirm"/>
+    <string name="reboot">"रिकवरी में रिबूट"</string>
+    <string name="main_ota_information">"सॉफ़्टवेयर अद्यतन जानकारी"</string>
+    <string name="main_rom_spl">"सुरक्षा पैच स्तर:"</string>
+    <string name="main_ota_version">"संस्करण:"</string>
+    <string name="main_ota_size">"आकार:"</string>
+    <string name="delete_addon_confirm">"क्या आप वाकई %1$s की स्थापना रद्द करना चाहते हैं?"</string>
     <!-- Available Strings -->
-    <string name="available_update_downloading"/>
-    <string name="available_update_install_info"/>
-    <string name="available_update_install_info_desc"/>
-    <string name="available_update_install_ready"/>
-    <string name="available_time_remaining"/>
-    <string name="available_download_speed"/>
-    <string name="system_name"/>
+    <string name="available_update_downloading">"अद्यतन स्थिति डाउनलोड हो रही है…"</string>
+    <string name="available_update_install_info">"अपने फ़ोन को अपडेट करें और नई सुविधाएँ प्राप्त करें"</string>
+    <string name="available_update_install_info_desc">"डाउनलोड करने के लिए मोबाइल डेटा का उपयोग करने से अतिरिक्त शुल्क लग सकते हैं। वाई-फाई का उपयोग करने की सिफारिश की जाती है।"</string>
+    <string name="available_update_install_ready">"फ़्रेश %1$s %2$s स्थापित करने के लिए तैयार है"</string>
+    <string name="available_time_remaining">"समय बचा: %s"</string>
+    <string name="available_download_speed">"%s/s"</string>
+    <string name="system_name">"फ़्रेश"</string>
     <!-- System settings plugin -->
-    <string name="system_settings_plugin_title"/>
-    <string name="system_settings_plugin_summary"/>
-    <string name="system_settings_resolution_plugin_title"/>
-    <string name="system_settings_resolution_plugin_summary"/>
+    <string name="system_settings_plugin_title">"सॉफ्टवेयर अपडेट"</string>
+    <string name="system_settings_plugin_summary">"डिवाइस अपडेट • ऐडऑन डाउनलोड करें"</string>
+    <string name="system_settings_resolution_plugin_title">"स्क्रीन रिज़ॉल्यूशन"</string>
+    <string name="system_settings_resolution_plugin_summary">"डिवाइस रिज़ॉल्यूशन और घनत्व बदलें"</string>
     <!-- Resolution -->
-    <string name="screen_resolution_desc_summary"/>
-    <string name="high_resolution_summary"/>
-    <string name="medium_resolution_summary"/>
-    <string name="low_resolution_summary"/>
-    <string name="system_notification_group_title"/>
-    <string name="system_notification_channel_title"/>
-    <string name="system_notification_channel_desc"/>
-    <string name="system_notification_available_title"/>
-    <string name="system_notification_available_desc"/>
-    <string name="system_notification_finish_title"/>
-    <string name="system_notification_finish_desc"/>
-    <string name="system_notification_failed_title"/>
-    <string name="system_notification_failed_desc"/>
-    <string name="setting_notifications"/>
-    <string name="setting_notifications_summary"/>
-    <string name="setting_auto_download"/>
-    <string name="setting_auto_download_summary"/>
-    <string name="main_header_community"/>
-    <string name="main_community_discord_description"/>
-    <string name="main_community_discord"/>
-    <string name="main_community_telegram"/>
-    <string name="main_community_telegram_description"/>
-    <string name="main_community_discussions"/>
-    <string name="main_community_discussions_description"/>
-    <string name="main_community_xda"/>
-    <string name="main_community_xda_description"/>
-    <string name="setting_app_icon"/>
-    <string name="setting_app_icon_summary"/>
-    <string name="the_latest_version_is_already_installed"/>
-    <string name="a_new_version_is_available"/>
-    <string name="main_checking_updates"/>
-    <string name="about_bottom_byline"/>
-    <string name="about_open_source_fork"/>
-    <string name="about_open_source_used"/>
-    <string name="about_open_source_button"/>
-    <string name="available_preinstall_notice"/>
-    <string name="available_preinstall_notice_nohash"/>
-    <string name="addon_uninstall"/>
-    <string name="addon_update"/>
-    <string name="drawer_github_link"/>
+    <string name="screen_resolution_desc_summary">"रिज़ॉल्यूशन बदलने पर कुछ ऐप्स बंद हो सकते हैं।"</string>
+    <string name="high_resolution_summary">"सबसे तेज दृश्य, अधिकांश बैटरी उपयोग"</string>
+    <string name="medium_resolution_summary">"बेहतर दृश्य, मध्यम बैटरी का उपयोग"</string>
+    <string name="low_resolution_summary">"बदसूरत दृश्य, सबसे कम बैटरी का उपयोग"</string>
+    <string name="system_notification_group_title">"फ़्रेश ओटीए"</string>
+    <string name="system_notification_channel_title">"उपलब्ध अद्यतन"</string>
+    <string name="system_notification_channel_desc">"यह सूचना चैनल आपको एप्लिकेशन को आपके डिवाइस पर उपलब्ध अपडेट के बारे में सूचित करने की अनुमति देता है।"</string>
+    <string name="system_notification_available_title">"सॉफ्टवेयर अपडेट उपलब्ध है"</string>
+    <string name="system_notification_available_desc">"फ़्रेश %1$s %2$s अब आपके डिवाइस के लिए उपलब्ध है!"</string>
+    <string name="system_notification_finish_title">"आपका फ़ोन सफलतापूर्वक अपडेट कर दिया गया है"</string>
+    <string name="system_notification_finish_desc">"आपका उपकरण सफलतापूर्वक फ़्रेश %1$s %2$s में अपडेट किया गया है। एक नए सिरे से फोन का आनंद लें!"</string>
+    <string name="system_notification_failed_title">"सॉफ़्टवेयर अपडेट करने में विफल"</string>
+    <string name="system_notification_failed_desc">"आपका उपकरण अपडेट करने में विफल रहा है। फ़्रेश %1$s %2$s में अपडेट नहीं किया गया है।"</string>
+    <string name="setting_notifications">"सूचनाएं"</string>
+    <string name="setting_notifications_summary">"अपडेट के लिए स्वचालित रूप से जांचें और यदि कोई उपलब्ध है तो एक अधिसूचना दिखाएं।"</string>
+    <string name="setting_auto_download">"वाई-फाई पर ऑटो डाउनलोड"</string>
+    <string name="setting_auto_download_summary">"वाई-फाई नेटवर्क से कनेक्ट होने पर स्वचालित रूप से सॉफ़्टवेयर अपडेट डाउनलोड करें।"</string>
+    <string name="main_header_community">"समुदाय में शामिल हों!"</string>
+    <string name="main_community_discord_description">"आधिकारिक डीसकोर्ड सर्वर से जुड़ें!"</string>
+    <string name="main_community_discord">"फ़्रेश डीसकोर्ड सामुदायिक"</string>
+    <string name="main_community_telegram">"टेलीग्राम समुदाय"</string>
+    <string name="main_community_telegram_description">"फ़्रेश टेलीग्राम समुदाय में शामिल हों"</string>
+    <string name="main_community_discussions">"गिटहब चर्चा"</string>
+    <string name="main_community_discussions_description">"नई सुविधाओं और अधिक पर चर्चा करें"</string>
+    <string name="main_community_xda">"एक्सडीए फोरम"</string>
+    <string name="main_community_xda_description">"अपने डिवाइस के लिए फ्रेश फोरम पर जाएं"</string>
+    <string name="setting_app_icon">"फ़्रेश हब आइकन जोड़ें"</string>
+    <string name="setting_app_icon_summary">"ऐप्स स्क्रीन में फ्रेश हब जोड़ें।"</string>
+    <string name="the_latest_version_is_already_installed">"नवीनतम संस्करण पहले से ही स्थापित है।"</string>
+    <string name="a_new_version_is_available">"एक नया संस्करण उपलब्ध है।"</string>
+    <string name="main_checking_updates">"अपडेट्स के लिए जांच हो रही है"</string>
+    <string name="about_bottom_byline">"फ्रेश प्रोजेक्ट के लिए यानड्रोइड द्वारा विकसित"</string>
+    <string name="about_open_source_fork">"ब्लीस ओटीए पर आधारित है"</string>
+    <string name="about_open_source_used">"ओपन-सोर्स घटक"</string>
+    <string name="about_open_source_button">"ओपन सोर्स लाइसेंस"</string>
+    <string name="available_preinstall_notice">"आपातकालीन कॉल के लिए भी आप अपडेट के दौरान अपने फोन का उपयोग नहीं कर पाएंगे।"</string>
+    <string name="available_preinstall_notice_nohash">"पैकेज हैश की जाँच करना विफल रहा, अपने जोखिम पर अपडेट जारी रखें। आप अपडेट के दौरान अपने फ़ोन का उपयोग नहीं कर पाएंगे।"</string>
+    <string name="addon_uninstall">"स्थापना रद्द करें"</string>
+    <string name="addon_update">"अपडेट करें"</string>
+    <string name="drawer_github_link">"एक संकट दर्ज करें"</string>
 </resources>
