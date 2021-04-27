@@ -934,14 +934,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
     }
 
-    static class checkRoot extends AsyncTask<String, Integer, String> {
-        @Override
-        protected String doInBackground(String... sUrl) {
-            hasRoot = Tools.isRootAvailable();
-            return null;
-        }
-    }
-
     private class CompatibilityTask extends AsyncTask<Void, Boolean, Boolean> implements Constants {
 
         public final String TAG = this.getClass().getSimpleName();
