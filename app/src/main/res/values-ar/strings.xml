@@ -75,12 +75,12 @@
     <string name="main_rom_spl">"مستوى تصحيح الأمان:"</string>
     <string name="main_ota_version">"الإصدار:"</string>
     <string name="main_ota_size">"الحجم:"</string>
-    <string name="delete_addon_confirm">"هل أنت متأكد أنك تريد إلغاء تثبيت ٪ 1 $ s؟"</string>
+    <string name="delete_addon_confirm">"هل أنت متأكد أنك تريد إلغاء تثبيت %1$s؟"</string>
     <!-- Available Strings -->
     <string name="available_update_downloading">"جار تنزيل التحديث..."</string>
     <string name="available_update_install_info">"قم بتحديث جهازك و تمتع بميزات جديدة"</string>
     <string name="available_update_install_info_desc">"إستعمال باقة البيانات لتنزيل التحديث قد يؤدي إلى فرض رسوم إضافية. يوصى بإستخدام Wi-Fi"</string>
-    <string name="available_update_install_ready">"Fresh %1$s %2$ جاهز للتثبيت"</string>
+    <string name="available_update_install_ready">"Fresh %1$s %2$s جاهز للتثبيت"</string>
     <string name="available_time_remaining">"الوقت المتبقي: %s"</string>
     <string name="available_download_speed">"%s/s"</string>
     <string name="system_name">"Fresh"</string>
@@ -102,7 +102,7 @@
     <string name="system_notification_finish_title">"تم تحديث جهازك بنجاح"</string>
     <string name="system_notification_finish_desc">"تم تحديث جهازك بنجاح لFresh %1$s %2$s .استمتع بهاتف اكثر إنتعاشا!"</string>
     <string name="system_notification_failed_title">"فشل في التحديث"</string>
-    <string name="system_notification_failed_desc">"فشل جهازك في التحديث . لم يتم تحديث Fresh إلى %1$ %2$s."</string>
+    <string name="system_notification_failed_desc">"فشل جهازك في التحديث . لم يتم تحديث Fresh إلى  %1$s %2$s."</string>
     <string name="setting_notifications">"الإشعارات"</string>
     <string name="setting_notifications_summary">"البحث عن التحديثات تلقائيا و الإشعار إذا كان متاحا."</string>
     <string name="setting_auto_download">"التنزيل تلقائيا إذا كنت متصلا عبر Wi-Fi"</string>

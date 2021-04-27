@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name">"Pusat Fresh"</string>
+    <string name="sesl_switchbar_off_text">"Mati"</string>
+    <string name="sesl_switchbar_on_text">"Hidup"</string>
+    <!-- ain't really sure if there's a direct translation to "update" in my language -->
+    <string name="main_update_available">"Pembaruan tersedia"</string>
+    <string name="main_update_finished">"Unduhan selesai"</string>
+    <string name="main_no_update_available">"Tidak ada pembaruan yang tersedia"</string>
+    <string name="main_update_progress">"Kemajuan Unduhan"</string>
+    <!-- Capital letter edit -->
+    <string name="main_website">"Situs web"</string>
+    <string name="main_website_summary">"Kunjungi situs resmi Fresh"</string>
+    <string name="main_donate">"Donasi"</string>
+    <string name="main_donate_summary">"Bantu para pengembang ROM ini!"</string>
+    <string name="main_tap_to_view_progress">"Ketuk untuk melihat kemajuan"</string>
+    <string name="main_last_checked">"Terakhir diperiksa"</string>
+    <string name="main_addon">"Add-on (opsional)"</string>
+    <string name="main_addon_summary">"Perluas pengalaman Fresh Anda!"</string>
+    <!-- ROM Information -->
+    <string name="main_rom_information">"Tentang perangkat anda"</string>
+    <string name="main_rom_version">"Versi rilis:"</string>
+    <string name="main_rom_build_date">"Tanggal build:"</string>
+    <!-- Dialogs -->
+    <string name="main_not_compatible_title">"Tunggu!"</string>
+    <string name="main_not_compatible_message">"ROM yang Anda gunakan saat ini tidak dikonfigurasi untuk menjalankan FreshApp. Silakan hubungi pengelola/pengembang ROM untuk mengatasi masalah ini."</string>
+    <string name="main_not_connected_title">"Tidak terhubung"</string>
+    <string name="main_not_connected_message">"Anda tidak terhubung ke jaringan apa pun. Harap aktifkan Jaringan Seluler atau WiFi dan coba lagi."</string>
+    <string name="main_playstore_title">"BitCoin"</string>
+    <string name="main_playstore_message">"Anda tidak memiliki aplikasi yang tersedia untuk menangani alamat \"bitcoin:\"
+
+Apakah Anda ingin mencari di Google Play Store untuk menemukannya?"</string>
+    <!-- Content Descriptions -->
+    <string name="main_button_icon">"Ikon tombol"</string>
+    <string name="main_dev_website_icon">"Ikon Situs Web Pengembang"</string>
+    <!-- Toast -->
+    <string name="main_release_ignored">"Rilis dilewati."</string>
+    <!-- Generic strings -->
+    <string name="cancel">"Batal"</string>
+    <string name="ok">"OK"</string>
+    <string name="delete">"Hapus"</string>
+    <string name="download">"Unduh"</string>
+    <string name="install">"Pasang"</string>
+    <string name="downloading">"Mengunduh…"</string>
+    <string name="donate">"Donasi"</string>
+    <string name="delete_confirm">"Anda yakin ingin menghapus berkas ini?"</string>
+    <string name="permission_not_granted_dialog_title">"Izin akses penyimpanan belum diberikan"</string>
+    <string name="permission_not_granted_dialog_message">"Izinkan Pusat Fresh mengakses penyimpanan agar dapat menerima pembaruan perangkat lunak dan mengunduh add-on."</string>
+    <string name="dialog_ok">"OK"</string>
+    <!-- About Strings -->
+    <string name="about_version_title">"Versi"</string>
+    <string name="available_changelog_content">"Catatan perubahan Anda ada di sini"</string>
+    <string name="available_ready_to_install">"Siap dipasang"</string>
+    <string name="available_md5_ok">"MD5 Cocok"</string>
+    <string name="available_md5_failed">"MD5 Gagal"</string>
+    <string name="are_you_sure">"Apakah Anda yakin?"</string>
+    <string name="available_delete_confirm_message">"Anda yakin ingin menghapus file yang telah diunduh?"</string>
+    <string name="available_reboot_confirm">"Apakah Anda ingin menghidupkan ulang perangkat sekarang?"</string>
+    <string name="available_url_error">"Kesalahan URL: Silakan lihat pengembang ROM Anda"</string>
+    <string name="available_reboot_manual_title">"Harap hidupkan ulang perangkat Anda sekarang"</string>
+    <string name="available_reboot_manual_message">"Harap hidupkan ulang perangkat ke recovery dan flash ROM Anda.
+
+Karena aturan baru Android untuk Scoped Storage, Anda dapat menemukan berkas pembaruannya di /sdcard/Android/data/de.dlyt.yanndroid.fresh/Updates"</string>
+    <!-- Preferences -->
+    <string name="preferences_name">"Setelan"</string>
+    <string name="background_frequency">"Penjadwalan pemeriksaan pembaruan"</string>
+    <string name="background_60mins">"60 menit"</string>
+    <string name="background_3hours">"3 jam"</string>
+    <string name="background_6hours">"6 jam"</string>
+    <string name="background_12hours">"12 jam"</string>
+    <string name="background_24hours">"Sehari sekali"</string>
+    <string name="background_3days">"Setiap tiga hari"</string>
+    <string name="background_7days">"Seminggu sekali"</string>
+    <!-- Drawer -->
+    <string name="feedback">"Umpan balik"</string>
+    <string name="omc_request">"Permintaan OMC"</string>
+    <string name="fresh_updates">"Pembaruan Fresh"</string>
+    <string name="reboot">"Hidupkan ulang ke Recovery"</string>
+    <string name="main_ota_information">"Informasi pembaruan perangkat lunak"</string>
+    <string name="main_rom_spl">"Tingkat patch keamanan:"</string>
+    <string name="main_ota_version">"Versi:"</string>
+    <string name="main_ota_size">"Ukuran:"</string>
+    <string name="delete_addon_confirm">"Apakah Anda yakin ingin mencopot pemasangan %1$s?"</string>
+    <!-- Available Strings -->
+    <string name="available_update_downloading">"Mengunduh pembaruan…"</string>
+    <string name="available_update_install_info">"Perbarui ponsel Anda dan dapatkan fitur baru"</string>
+    <string name="available_update_install_info_desc">"Menggunakan data seluler untuk mengunduh dapat mengakibatkan biaya tambahan. Disarankan menggunakan Wi-Fi."</string>
+    <string name="available_update_install_ready">"Fresh %1$s %2$s siap dipasang"</string>
+    <string name="available_time_remaining">"Waktu Tersisa: %s"</string>
+    <string name="available_download_speed">"%s/s"</string>
+    <string name="system_name">"Fresh"</string>
+    <!-- System settings plugin -->
+    <string name="system_settings_plugin_title">"Pembaruan perangkat lunak"</string>
+    <string name="system_settings_plugin_summary">"Pembaruan perangkat  •  Unduh add-on"</string>
+    <string name="system_settings_resolution_plugin_title">"Resolusi layar"</string>
+    <string name="system_settings_resolution_plugin_summary">"Mengubah resolusi dan kerapatan perangkat"</string>
+    <!-- Resolution -->
+    <string name="screen_resolution_desc_summary">"Beberapa aplikasi dapat berhenti saat Anda mengubah resolusi."</string>
+    <string name="high_resolution_summary">"Visual paling tajam, penggunaan baterai tertinggi"</string>
+    <string name="medium_resolution_summary">"Ketajaman visual yang ditingkatkan, penggunaan baterai sedang"</string>
+    <string name="low_resolution_summary">"Ketajaman visual buruk, penggunaan baterai terendah"</string>
+    <string name="system_notification_group_title">"Fresh OTA"</string>
+    <string name="system_notification_channel_title">"Pembaruan yang tersedia"</string>
+    <string name="system_notification_channel_desc">"Saluran notifikasi ini memungkinkan aplikasi memberi tahu Anda tentang pembaruan yang tersedia di perangkat Anda."</string>
+    <string name="system_notification_available_title">"Pembaruan perangkat lunak tersedia"</string>
+    <string name="system_notification_available_desc">"Fresh %1$s %2$s sekarang tersedia untuk perangkat Anda!"</string>
+    <string name="system_notification_finish_title">"Ponsel Anda telah berhasil diperbarui"</string>
+    <string name="system_notification_finish_desc">"Perangkat Anda berhasil diperbarui ke Fresh %1$s %2$s. Nikmati ponsel yang lebih Fresh!"</string>
+    <string name="system_notification_failed_title">"Gagal memperbarui perangkat lunak"</string>
+    <string name="system_notification_failed_desc">"Perangkat Anda gagal diperbarui. Fresh belum diperbarui ke %1$s %2$s."</string>
+    <string name="setting_notifications">"Notifikasi"</string>
+    <string name="setting_notifications_summary">"Secara otomatis memeriksa pembaruan dan menampilkan pemberitahuan jika tersedia."</string>
+    <string name="setting_auto_download">"Unduh otomatis melalui Wi-Fi"</string>
+    <string name="setting_auto_download_summary">"Unduh pembaruan perangkat lunak secara otomatis saat terhubung ke jaringan Wi-Fi."</string>
+    <string name="main_header_community">"Bergabunglah dengan komunitas kita!"</string>
+    <string name="main_community_discord_description">"Bergabunglah dengan server resmi Discord kita!"</string>
+    <string name="main_community_discord">"Komunitas Discord Fresh"</string>
+    <string name="main_community_telegram">"Komunitas Telegram"</string>
+    <string name="main_community_telegram_description">"Bergabunglah dengan komunitas Telegram Fresh"</string>
+    <string name="main_community_discussions">"Forum diskusi GitHub"</string>
+    <string name="main_community_discussions_description">"Diskusikan fitur baru dan banyak lagi"</string>
+    <string name="main_community_xda">"Forum XDA"</string>
+    <string name="main_community_xda_description">"Kunjungi forum Fresh untuk perangkat Anda"</string>
+    <string name="setting_app_icon">"Tambahkan ikon Pusat Fresh"</string>
+    <string name="setting_app_icon_summary">"Tambahkan Pusat Fresh ke layar aplikasi."</string>
+    <string name="the_latest_version_is_already_installed">"Versi terbaru sudah terpasang."</string>
+    <string name="a_new_version_is_available">"Versi baru telah tersedia."</string>
+    <string name="main_checking_updates">"Memeriksa pembaruan"</string>
+    <string name="about_bottom_byline">"Dikembangkan oleh Yanndroid untuk The Fresh Project"</string>
+    <string name="about_open_source_fork">"Berbasiskan Bliss OTA"</string>
+    <string name="about_open_source_used">"Komponen Sumber Terbuka"</string>
+    <string name="about_open_source_button">"Lisensi open source"</string>
+    <string name="available_preinstall_notice">"Anda tidak akan dapat menggunakan ponsel Anda selama pembaruan, bahkan untuk panggilan darurat."</string>
+    <string name="available_preinstall_notice_nohash">"Gagal memeriksa hash paket, lanjutkan pembaruan dengan risiko Anda sendiri. Anda tidak akan dapat menggunakan ponsel Anda selama pembaruan."</string>
+    <string name="addon_uninstall">"Copot pemasangan"</string>
+    <string name="addon_update">"Perbarui"</string>
+    <string name="drawer_github_link">"Ajukan Masalah"</string>
+</resources>

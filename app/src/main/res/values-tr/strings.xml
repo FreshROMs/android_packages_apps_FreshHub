@@ -8,7 +8,7 @@
     <string name="main_no_update_available">"Güncelleme Bulunmuyor"</string>
     <string name="main_update_progress">"İndirme İlerlemesi"</string>
     <string name="main_website">"İnternet Sitesi"</string>
-    <string name="main_website_summary">"Resmi Fresh internet sitesini ziyaret et"</string>
+    <string name="main_website_summary">"Resmi Fresh internet sitesini ziyaret et!"</string>
     <string name="main_donate">"Bağış Yap"</string>
     <string name="main_donate_summary">"Bu ROM'un geliştirici(ler)ine yardım et!"</string>
     <string name="main_tap_to_view_progress">"İlerlemeyi görmek için dokun"</string>
@@ -62,7 +62,7 @@ Android'in yeni kapsamlı depolama kurallarına göre güncellemeyi /sdcard/Andr
     <!-- Preferences -->
     <string name="preferences_name">"Ayarlar"</string>
     <string name="background_frequency">"Güncelleme kontrol sıklığı"</string>
-    <string name="background_60mins">"60 dakika"</string>
+    <string name="background_60mins">"60 dakikada bir"</string>
     <string name="background_3hours">"3 saatte bir"</string>
     <string name="background_6hours">"6 saatte bir"</string>
     <string name="background_12hours">"12 saat bir"</string>
