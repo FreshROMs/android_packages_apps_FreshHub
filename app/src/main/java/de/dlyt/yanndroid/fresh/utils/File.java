@@ -37,7 +37,7 @@ public class File {
     }
 
     public static void deleteFile(java.io.File file) {
-        Tools.shell("rm -f " + file.getAbsolutePath(), false);
+        if (file.exists()) Tools.shell("rm -f " + file.getAbsolutePath(), false);
     }
 
     public static void setHasFileDownloaded(Context context) {
