@@ -13,7 +13,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -49,6 +48,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
 import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
@@ -343,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 settilte(getString(R.string.update));
                 ota_content.setVisibility(View.VISIBLE);
                 ota_progressbar.setVisibility(View.VISIBLE);
-                if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
+                if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext);
                 updateCommunityLinksLayout();
                 updateAddonsLayout();
                 updateRomInformation();
@@ -503,7 +505,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                             .finish())
                     .show();
         } else {
-            if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
+            if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext);
         }
 
         // Has the download already completed?
@@ -528,7 +530,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         swipeRefreshLayout.setOnRefreshListener(() -> {
             ota_progressbar.setVisibility(View.VISIBLE);
             web_progressbar.setVisibility(View.VISIBLE);
-            if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
+            if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext);
             updateCommunityLinksLayout();
             updateAddonsLayout();
             updateRomInformation();
@@ -934,40 +936,33 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
     }
 
-    private class CompatibilityTask extends AsyncTask<Void, Boolean, Boolean> implements Constants {
+    private class CompatibilityTask implements Constants {
 
         public final String TAG = this.getClass().getSimpleName();
 
-        private Context mContext;
-        private String mPropName;
-
         CompatibilityTask(Context context) {
-            mContext = context;
-            mPropName = mContext.getResources().getString(R.string.ota_swupdate_prop_api_url);
-        }
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            String propName = mContext.getResources().getString(R.string.ota_swupdate_prop_api_url);
 
-        @Override
-        protected Boolean doInBackground(Void... v) {
-            return SystemProperties.doesPropExist(mPropName);
-        }
+            executor.execute(() -> {
+                boolean isCompatible = SystemProperties.doesPropExist(propName);
 
-        @Override
-        protected void onPostExecute(Boolean result) {
-
-            if (result) {
-                if (DEBUGGING)
-                    Log.d(TAG, "Prop found");
-                new TnsOtaApiService(mContext, true);
-            } else {
-                if (DEBUGGING)
-                    Log.d(TAG, "Prop not found");
-                try {
-                    mCompatibilityDialog.show();
-                } catch (WindowManager.BadTokenException ex) {
-                    Log.e(TAG, ex.getMessage());
-                }
-            }
-            super.onPostExecute(result);
+                MainActivity.runOnUI(() -> {
+                    if (isCompatible) {
+                        if (DEBUGGING)
+                            Log.d(TAG, "Prop found");
+                        new TnsOtaApiService(context, true);
+                    } else {
+                        if (DEBUGGING)
+                            Log.d(TAG, "Prop not found");
+                        try {
+                            mCompatibilityDialog.show();
+                        } catch (WindowManager.BadTokenException ex) {
+                            Log.e(TAG, ex.getMessage());
+                        }
+                    }
+                });
+            });
         }
     }
 }
