@@ -221,6 +221,13 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         mProgressBar.setProgress(0);
         Notifications.cancelUpdateNotification(mContext);
 
+        setupDialogs();
+        setupProgress(mContext);
+        setupChangeLog();
+        updateOtaInformation();
+        setupMenuToolbar(mContext);
+        setupUpdateNameInfo(mContext);
+
         if (TnsOtaDownload.getIsDownloadOnGoing(mContext)) {
             // If the activity has already been run, and the download started
             // Then start updating the progress bar again
@@ -258,15 +265,15 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
 
         mDownloadRom = new DownloadRom();
 
-        mPreOtaText = (TextView) findViewById(R.id.tv_available_text_pre_ota);
-        mProgressBar = (SeslProgressBar) findViewById(R.id.bar_available_progress_bar);
-        mProgressCounterText = (TextView) findViewById(R.id.tv_available_progress_counter);
-        mDownloadSpeedTextView = (TextView) findViewById(R.id.tv_available_progress_speed);
-        mDeleteButton = (Button) findViewById(R.id.menu_available_delete);
-        mInstallButton = (Button) findViewById(R.id.menu_available_install);
-        mDownloadButton = (Button) findViewById(R.id.menu_available_download);
-        mCancelButton = (Button) findViewById(R.id.menu_available_cancel);
-        mMainUpdateHeader = (TextView) findViewById(R.id.tv_available_update_name);
+        mPreOtaText = findViewById(R.id.tv_available_text_pre_ota);
+        mProgressBar = findViewById(R.id.bar_available_progress_bar);
+        mProgressCounterText = findViewById(R.id.tv_available_progress_counter);
+        mDownloadSpeedTextView = findViewById(R.id.tv_available_progress_speed);
+        mDeleteButton = findViewById(R.id.menu_available_delete);
+        mInstallButton = findViewById(R.id.menu_available_install);
+        mDownloadButton = findViewById(R.id.menu_available_download);
+        mCancelButton = findViewById(R.id.menu_available_cancel);
+        mMainUpdateHeader = findViewById(R.id.tv_available_update_name);
 
         mDeleteButton.setOnClickListener(this);
         mInstallButton.setOnClickListener(this);
@@ -278,13 +285,6 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         mLoadingDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         mLoadingDialog.setCancelable(false);
         mLoadingDialog.setContentView(loadingLayout);
-
-        setupDialogs();
-        setupProgress(mContext);
-        setupChangeLog();
-        updateOtaInformation();
-        setupMenuToolbar(mContext);
-        setupUpdateNameInfo(mContext);
     }
 
     public void initToolbar() {
@@ -357,6 +357,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
                 break;
             case R.id.menu_available_cancel:
                 mDownloadRom.cancelDownload(mContext);
+                mProgressBar.setProgress(0);
                 Intent send = new Intent(DOWNLOAD_ROM_COMPLETE);
                 mContext.sendBroadcast(send);
                 break;
