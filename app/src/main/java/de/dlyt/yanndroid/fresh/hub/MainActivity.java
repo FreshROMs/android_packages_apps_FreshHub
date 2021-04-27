@@ -819,7 +819,13 @@ public class MainActivity extends AppCompatActivity implements Constants,
         TextView romDate = (TextView) findViewById(R.id.tv_main_rom_date);
         String romDateTitle = getApplicationContext().getResources().getString(R.string
                 .main_rom_build_date) + " ";
+
         String romDateActual = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date));
+
+        if (!(SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual))).equals("")) {
+            romDateActual = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual));
+        }
+
         romDate.setText(Html.fromHtml(romDateTitle + htmlColorOpen + romDateActual +
                 htmlColorClose));
 
