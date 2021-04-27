@@ -3,6 +3,7 @@ package de.dlyt.yanndroid.fresh.hub;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.io.File;
 
 import de.dlyt.yanndroid.fresh.database.TnsAddon;
+import de.dlyt.yanndroid.fresh.services.TnsAddonApiService;
 import de.dlyt.yanndroid.fresh.utils.AddonProperties;
 import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.services.download.DownloadAddonInfo;
@@ -56,7 +58,14 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     private static Integer mAddonId;
     private static Long mFileSize;
     private static Integer mVersionNumber;
-    private static Integer mOldVersion;
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(DOWNLOAD_ADDON_DONE)) {
+                mLoadingDialog.show();
+            }
+        }
+    };
 
     public static void runOnUI(Runnable runnable) {
         UIHandler.post(runnable);
@@ -127,7 +136,6 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         mFileSize = intent.getLongExtra("totalSize", 0);
         mPackageName = intent.getStringExtra("packageName");
         mVersionNumber = intent.getIntExtra("versionNumber", 0);
-        mOldVersion = intent.getIntExtra("oldVersionNumber", 0);
 
         String versionName = intent.getStringExtra("versionName");
         String fullInfo = intent.getStringExtra("fullInfo");
@@ -181,7 +189,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     public void deleteConfirmAddonInfo(View v) {
         AlertDialog.Builder deleteConfirm = new AlertDialog.Builder(mContext, R.style.AlertDialogStyle);
         deleteConfirm.setTitle(R.string.delete);
-        deleteConfirm.setMessage(mContext.getResources().getString(R.string.delete_addon_confirm, mTitle));
+        deleteConfirm.setMessage(mContext.getString(R.string.delete_addon_confirm, mTitle));
         deleteConfirm.setPositiveButton(R.string.ok, (dialog, which) -> {
             mLoadingDialog.show();
             TnsAddonDownload.setIsUninstallingAddon(mContext, mTitle+"_"+mVersionNumber);
@@ -195,7 +203,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         mDownloadButton.setVisibility(View.GONE);
         mInstallButton.setVisibility(View.GONE);
         mDownloadProgressLayout.setVisibility(View.VISIBLE);
-        mDownloadAddon.startDownload(mContext, mDownloadUrl, mTitle, mAddonId, mVersionNumber, mOldVersion);
+        mDownloadAddon.startDownload(mContext, mDownloadUrl, mTitle, mAddonId, mVersionNumber);
     }
 
     private void getDownloadStatus() {

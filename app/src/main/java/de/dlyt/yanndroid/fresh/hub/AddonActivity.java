@@ -395,7 +395,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 infoContainer.setVisibility(View.GONE);
                 cancel.setVisibility(View.VISIBLE);
                 mDownloadAddon.startDownload(mContext, item.getDownloadLink(), item
-                        .getTitle(), item.getId(), item.getVersionNumber(), AddonProperties.getInstalledAddonVersion(item.getPackageName()));
+                        .getTitle(), item.getId(), item.getVersionNumber());
 
                 long downloadIdNew = TnsAddonDownload.getAddonDownload(mContext, item.getId());
                 new DownloadAddonProgress(mContext, downloadManager, item.getId(), downloadIdNew);
@@ -426,7 +426,6 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 i.putExtra("versionName", item.getVersionName());
                 i.putExtra("fullInfo", item.getFullInfo());
                 i.putExtra("versionNumber", item.getVersionNumber());
-                i.putExtra("oldVersionNumber", AddonProperties.getInstalledAddonVersion(item.getPackageName()));
                 i.putExtra("thumbnailUrl", item.getImageUrl());
                 mContext.startActivity(i);
             });
