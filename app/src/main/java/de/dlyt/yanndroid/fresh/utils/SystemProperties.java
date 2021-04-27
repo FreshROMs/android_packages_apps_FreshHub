@@ -53,6 +53,10 @@ public class SystemProperties {
     public static String getDeviceProduct() {
         if (!(getProp("ro.fresh.device.product").equals(""))) {
             return getProp("ro.fresh.device.product");
+        } else if (!(getProp("ro.product.vendor.name").equals(""))) {
+            return getProp("ro.product.vendor.name");
+        } else if (!(getProp("ro.product.odm.name").equals(""))) {
+            return getProp("ro.product.odm.name");
         } else {
             return Build.PRODUCT;
         }
