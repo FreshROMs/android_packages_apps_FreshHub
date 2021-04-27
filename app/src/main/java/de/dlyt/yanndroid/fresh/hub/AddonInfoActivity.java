@@ -44,7 +44,6 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     public static TextView mDownloadedSize;
     public static LinearLayout mDownloadButton;
     public static LinearLayout mInstallButton;
-    private static Dialog mLoadingDialog;
     public static LinearLayout mUpdateButton;
     public static LinearLayout mUninstallButton;
     public static LinearLayout mDownloadProgressLayout;
@@ -113,13 +112,6 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
 
         TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
         expanded_subtitle.setText("");
-
-        final View loadingLayout = getLayoutInflater().inflate(R.layout.dialog_full_loading, null);
-
-        mLoadingDialog = new Dialog(mContext, R.style.LargeProgressDialog);
-        mLoadingDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mLoadingDialog.setCancelable(false);
-        mLoadingDialog.setContentView(loadingLayout);
 
         final ImageView addonThumbnail = (ImageView) findViewById(R.id.addon_info_thumbnail);
         final TextView addonVersion = (TextView) findViewById(R.id.version_number);
@@ -259,7 +251,6 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     }
 
     public void addonRecovery(View v) {
-        mLoadingDialog.show();
         new RecoveryInstall(mContext, true, mTitle+"_"+mVersionNumber+".zip");
     }
 

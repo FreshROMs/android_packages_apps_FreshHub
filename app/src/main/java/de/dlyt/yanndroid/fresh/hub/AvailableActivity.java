@@ -57,8 +57,6 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
     private static Button mCancelButton;
     private Context mContext;
     private Builder mDeleteDialog;
-    private Builder mRebootDialog;
-    private Builder mRebootManualDialog;
     private static Dialog mLoadingDialog;
     private DownloadRom mDownloadRom;
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -343,12 +341,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
                 mDeleteDialog.show();
                 break;
             case R.id.menu_available_install:
-                if (!Tools.isRootAvailable()) {
-                    mRebootManualDialog.show();
-                } else {
-                    mLoadingDialog.show();
-                    new RecoveryInstall(mContext, false);
-                }
+                new RecoveryInstall(mContext, false);
                 break;
             case R.id.menu_available_download:
                 mCancelButton.setEnabled(true);
@@ -379,18 +372,6 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
                     setupMenuToolbar(mContext); // Reset options menu
                     setupUpdateNameInfo(mContext); // Update name info
                 }).setNegativeButton(R.string.cancel, null);
-
-        mRebootDialog = new Builder(mContext, R.style.AlertDialogStyle);
-        mRebootDialog.setTitle(R.string.are_you_sure)
-                .setMessage(R.string.available_reboot_confirm)
-                .setPositiveButton(R.string.ok, (dialog, which) -> {
-                    new RecoveryInstall(mContext, false);
-                }).setNegativeButton(R.string.cancel, null);
-
-        mRebootManualDialog = new Builder(mContext, R.style.AlertDialogStyle);
-        mRebootManualDialog.setTitle(R.string.available_reboot_manual_title)
-                .setMessage(R.string.available_reboot_manual_message)
-                .setPositiveButton(R.string.cancel, null);
     }
 
     private void setupChangeLog() {
