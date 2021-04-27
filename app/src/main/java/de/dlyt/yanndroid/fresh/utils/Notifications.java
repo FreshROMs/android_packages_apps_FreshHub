@@ -132,7 +132,7 @@ public class Notifications implements Constants {
     public static void sendOngoingCheckNotification(Context context) {
         if (DEBUGGING) Log.d(Tools.TAG, "Showing notification");
 
-        String CHANNEL_ID = context.getString(R.string.system_notification_channel_id);
+        String CHANNEL_ID = context.getString(R.string.system_notification_ongoing_channel_id);
         int notificationColor = context.getResources().getColor(R.color.sesl_primary_color);
 
         NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -143,6 +143,7 @@ public class Notifications implements Constants {
                 .setSmallIcon(R.drawable.ic_notif)
                 .setColor(notificationColor)
                 .setAutoCancel(false)
+                .setOngoing(true)
                 .setShowWhen(false)
                 .setPriority(NotificationCompat.PRIORITY_MIN)
                 .setDefaults(NotificationCompat.DEFAULT_LIGHTS)
@@ -173,6 +174,24 @@ public class Notifications implements Constants {
         CharSequence name = context.getString(R.string.system_notification_channel_title);
         String CHANNEL_ID = context.getString(R.string.system_notification_channel_id);
         int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+        channel.setGroup(GROUP_ID);
+        channel.setDescription(description);
+        mNotifyManager.createNotificationChannelGroup(notificationGroup);
+        mNotifyManager.createNotificationChannel(channel);
+    }
+
+    public static void setupOngoingNotificationChannel(Context context) {
+        NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        String GROUP_ID = "tns_ota_group";
+        CharSequence groupName = context.getString(R.string.system_notification_group_title);
+        String description = context.getString(R.string.system_notification_channel_desc);
+        NotificationChannelGroup notificationGroup = new NotificationChannelGroup(GROUP_ID, groupName);
+
+        CharSequence name = context.getString(R.string.system_notification_channel_ongoing_title);
+        String CHANNEL_ID = context.getString(R.string.system_notification_ongoing_channel_id);
+        int importance = NotificationManager.IMPORTANCE_MIN;
         NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
         channel.setGroup(GROUP_ID);
         channel.setDescription(description);
