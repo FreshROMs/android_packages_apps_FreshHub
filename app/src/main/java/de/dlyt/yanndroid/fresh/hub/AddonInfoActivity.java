@@ -6,6 +6,7 @@ import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -61,7 +62,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(DOWNLOAD_ADDON_DONE)) {
-                mLoadingDialog.show();
+                getDownloadStatus();
             }
         }
     };
@@ -174,8 +175,16 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     @Override
     public void onStart() {
         super.onStart();
+        this.registerReceiver(mReceiver, new IntentFilter(DOWNLOAD_ADDON_DONE));
+
         UIHandler = new Handler(Looper.getMainLooper());
         mImageLoader = ImageLoader.getInstance();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        this.unregisterReceiver(mReceiver);
     }
 
     public void deleteConfirmAddonInfo(View v) {
@@ -183,9 +192,8 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         deleteConfirm.setTitle(R.string.delete);
         deleteConfirm.setMessage(mContext.getString(R.string.delete_addon_confirm, mTitle));
         deleteConfirm.setPositiveButton(R.string.ok, (dialog, which) -> {
-            mLoadingDialog.show();
             TnsAddonDownload.setIsUninstallingAddon(mContext, mTitle+"_"+mVersionNumber);
-            new RecoveryInstall(mContext, true, mTitle+".zip");
+            new RecoveryInstall(mContext, true, mTitle+"_"+mVersionNumber+".zip");
         });
         deleteConfirm.setNegativeButton(R.string.cancel, null);
         deleteConfirm.show();
