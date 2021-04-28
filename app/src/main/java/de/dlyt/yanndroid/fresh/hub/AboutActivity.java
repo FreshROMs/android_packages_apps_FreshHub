@@ -22,9 +22,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.button.MaterialButton;
 
-import de.dlyt.yanndroid.fresh.hub.utils.UpdateApp;
 import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.database.TnsOta;
+import de.dlyt.yanndroid.fresh.hub.utils.UpdateApp;
 
 public class AboutActivity extends AppCompatActivity {
 
