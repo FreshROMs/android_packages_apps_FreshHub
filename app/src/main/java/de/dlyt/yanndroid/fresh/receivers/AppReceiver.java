@@ -175,23 +175,20 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
                     boolean deleted = updateFile.delete();
                     if (!deleted) Log.e(TAG, "Could not delete update file...");
                 }
+            } else if (backgroundCheck) {
+                if (DEBUGGING)
+                    Log.d(TAG, "Starting background check alarm");
+                new TnsOtaApiService(context, false);
 
-                if (backgroundCheck && !isDeviceUpdating) {
-                    if (DEBUGGING)
-                        Log.d(TAG, "Starting background check alarm");
-                    new TnsOtaApiService(context, false);
+                boolean updateAvailable = TnsOta.getUpdateAvailability(context);
+                String relversion = TnsOta.getReleaseVersion(context);
+                String relvariant = TnsOta.getReleaseVariant(context);
 
-                    boolean updateAvailable = TnsOta.getUpdateAvailability(context);
-                    String relversion = TnsOta.getReleaseVersion(context);
-                    String relvariant = TnsOta.getReleaseVariant(context);
-
-                    if (updateAvailable) {
-                        Notifications.sendUpdateNotification(context, relversion, relvariant);
-                    }
-
-                    JobScheduler.setupJobScheduler(context, !Preferences.getBackgroundService(context));
+                if (updateAvailable) {
+                    Notifications.sendUpdateNotification(context, relversion, relvariant);
                 }
 
+                JobScheduler.setupJobScheduler(context, !Preferences.getBackgroundService(context));
             }
         }
     }

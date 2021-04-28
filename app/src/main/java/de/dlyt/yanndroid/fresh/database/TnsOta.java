@@ -366,13 +366,17 @@ public class TnsOta implements Constants {
     private static boolean versionBiggerThan(String current, String manifest) {
         // returns true if current > manifest, false otherwise
         if (current.length() > manifest.length()) {
-            for (int i = 0; i < current.length() - manifest.length(); i++) {
-                manifest += "0";
+            StringBuilder manifestBuilder = new StringBuilder(manifest);
+            for (int i = 0; i < current.length() - manifestBuilder.length(); i++) {
+                manifestBuilder.append("0");
             }
+            manifest = manifestBuilder.toString();
         } else if (manifest.length() > current.length()) {
-            for (int i = 0; i < manifest.length() - current.length(); i++) {
-                current += "0";
+            StringBuilder currentBuilder = new StringBuilder(current);
+            for (int i = 0; i < manifest.length() - currentBuilder.length(); i++) {
+                currentBuilder.append("0");
             }
+            current = currentBuilder.toString();
         }
 
         if (DEBUGGING) Log.d(Tools.TAG, "Current: " + current + " Manifest: " + manifest);

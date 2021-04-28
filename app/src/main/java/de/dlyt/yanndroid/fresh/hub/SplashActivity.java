@@ -3,6 +3,7 @@ package de.dlyt.yanndroid.fresh.hub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -19,10 +20,10 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         ImageView fresh_fg = findViewById(R.id.splash_image_foreground);
-
         Animation splash_anim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.splash_animation);
-
+        Handler handler = new Handler(Looper.getMainLooper());
         splash_anim.setAnimationListener(new Animation.AnimationListener() {
+
             @Override
             public void onAnimationStart(Animation animation) {
             }
@@ -38,12 +39,8 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                fresh_fg.startAnimation(splash_anim);
-            }
-        }, getResources().getInteger(R.integer.splash_time));
-
+        handler.postDelayed(() -> {
+            fresh_fg.startAnimation(splash_anim);
+        }, 500);
     }
 }

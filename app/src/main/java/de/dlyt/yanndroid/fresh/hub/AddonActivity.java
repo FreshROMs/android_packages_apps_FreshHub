@@ -267,7 +267,6 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             deleteConfirm.setMessage(mContext.getResources().getString(R.string.delete_addon_confirm, item.getTitle()));
             deleteConfirm.setPositiveButton(R.string.ok, (dialog, which) -> {
                 if (file.exists()) {
-                    mLoadingDialog.show();
                     updateButtons(item.getId(), false);
                     TnsAddonDownload.setIsUninstallingAddon(mContext, item.getTitle()+"_"+item.getVersionNumber());
                     new RecoveryInstall(mContext, true, item.getTitle()+"_"+item.getVersionNumber()+".zip");
@@ -395,14 +394,13 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 infoContainer.setVisibility(View.GONE);
                 cancel.setVisibility(View.VISIBLE);
                 mDownloadAddon.startDownload(mContext, item.getDownloadLink(), item
-                        .getTitle(), item.getId(), item.getVersionNumber(), AddonProperties.getInstalledAddonVersion(item.getPackageName()));
+                        .getTitle(), item.getId(), item.getVersionNumber());
 
                 long downloadIdNew = TnsAddonDownload.getAddonDownload(mContext, item.getId());
                 new DownloadAddonProgress(mContext, downloadManager, item.getId(), downloadIdNew);
             });
 
             install.setOnClickListener(v -> {
-                mLoadingDialog.show();
                 new RecoveryInstall(mContext, true, item.getTitle()+"_"+item.getVersionNumber()+".zip");
             });
 
@@ -426,7 +424,6 @@ public class AddonActivity extends AppCompatActivity implements Constants {
                 i.putExtra("versionName", item.getVersionName());
                 i.putExtra("fullInfo", item.getFullInfo());
                 i.putExtra("versionNumber", item.getVersionNumber());
-                i.putExtra("oldVersionNumber", AddonProperties.getInstalledAddonVersion(item.getPackageName()));
                 i.putExtra("thumbnailUrl", item.getImageUrl());
                 mContext.startActivity(i);
             });

@@ -101,11 +101,11 @@
     <string name="system_notification_channel_title">"التحديثات المتوفرة"</string>
     <string name="system_notification_channel_desc">"تسمح قناة الإشعارات هذه للتطبيق بإعلامك بالتحديثات المتوفرة على جهازك"</string>
     <string name="system_notification_available_title">"يتوفر تحديث للبرنامج"</string>
-    <string name="system_notification_available_desc">"إصدار جديد من Fresh متوفر لجهازك "</string>
+    <string name="system_notification_available_desc">"%1$s %2$s Fresh متوفر لجهازك"</string>
     <string name="system_notification_finish_title">"تم تحديث هاتفك بنجاح"</string>
     <string name="system_notification_finish_desc">"تم تحديث هاتفك بنجاح الى Fresh %1$s %2$s"</string>
     <string name="system_notification_failed_title">"فشل تحديث البرنامج"</string>
-    <string name="system_notification_failed_desc">"فشل تحديث الجهاز. لم يتم تحديث Fresh الى اخر إصدار"</string>
+    <string name="system_notification_failed_desc">"فشل تحديث الجهاز. لم يتم تحديث Fresh الى اخر %1$s %2$s."</string>
     <string name="setting_notifications">"الأشعارات"</string>
     <string name="setting_notifications_summary">"التحقق تلقائياً من وجود تحديثات واظهار اشعار عند توفر تحديث"</string>
     <string name="setting_auto_download">"التنزيل التلقائي عند استخدام الواي-فاي"</string>

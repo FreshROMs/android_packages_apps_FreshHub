@@ -3,8 +3,10 @@ package de.dlyt.yanndroid.fresh.hub;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -27,6 +29,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.io.File;
 
 import de.dlyt.yanndroid.fresh.database.TnsAddon;
+import de.dlyt.yanndroid.fresh.services.TnsAddonApiService;
 import de.dlyt.yanndroid.fresh.utils.AddonProperties;
 import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.services.download.DownloadAddonInfo;
@@ -42,7 +45,6 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     public static TextView mDownloadedSize;
     public static LinearLayout mDownloadButton;
     public static LinearLayout mInstallButton;
-    private static Dialog mLoadingDialog;
     public static LinearLayout mUpdateButton;
     public static LinearLayout mUninstallButton;
     public static LinearLayout mDownloadProgressLayout;
@@ -56,7 +58,14 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     private static Integer mAddonId;
     private static Long mFileSize;
     private static Integer mVersionNumber;
-    private static Integer mOldVersion;
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(DOWNLOAD_ADDON_DONE)) {
+                getDownloadStatus();
+            }
+        }
+    };
 
     public static void runOnUI(Runnable runnable) {
         UIHandler.post(runnable);
@@ -105,13 +114,6 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
         expanded_subtitle.setText("");
 
-        final View loadingLayout = getLayoutInflater().inflate(R.layout.dialog_full_loading, null);
-
-        mLoadingDialog = new Dialog(mContext, R.style.LargeProgressDialog);
-        mLoadingDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mLoadingDialog.setCancelable(false);
-        mLoadingDialog.setContentView(loadingLayout);
-
         final ImageView addonThumbnail = (ImageView) findViewById(R.id.addon_info_thumbnail);
         final TextView addonVersion = (TextView) findViewById(R.id.version_number);
         final TextView addonPackageName = (TextView) findViewById(R.id.package_name);
@@ -127,7 +129,6 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         mFileSize = intent.getLongExtra("totalSize", 0);
         mPackageName = intent.getStringExtra("packageName");
         mVersionNumber = intent.getIntExtra("versionNumber", 0);
-        mOldVersion = intent.getIntExtra("oldVersionNumber", 0);
 
         String versionName = intent.getStringExtra("versionName");
         String fullInfo = intent.getStringExtra("fullInfo");
@@ -174,18 +175,25 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     @Override
     public void onStart() {
         super.onStart();
+        this.registerReceiver(mReceiver, new IntentFilter(DOWNLOAD_ADDON_DONE));
+
         UIHandler = new Handler(Looper.getMainLooper());
         mImageLoader = ImageLoader.getInstance();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        this.unregisterReceiver(mReceiver);
     }
 
     public void deleteConfirmAddonInfo(View v) {
         AlertDialog.Builder deleteConfirm = new AlertDialog.Builder(mContext, R.style.AlertDialogStyle);
         deleteConfirm.setTitle(R.string.delete);
-        deleteConfirm.setMessage(mContext.getResources().getString(R.string.delete_addon_confirm, mTitle));
+        deleteConfirm.setMessage(mContext.getString(R.string.delete_addon_confirm, mTitle));
         deleteConfirm.setPositiveButton(R.string.ok, (dialog, which) -> {
-            mLoadingDialog.show();
             TnsAddonDownload.setIsUninstallingAddon(mContext, mTitle+"_"+mVersionNumber);
-            new RecoveryInstall(mContext, true, mTitle+".zip");
+            new RecoveryInstall(mContext, true, mTitle+"_"+mVersionNumber+".zip");
         });
         deleteConfirm.setNegativeButton(R.string.cancel, null);
         deleteConfirm.show();
@@ -195,7 +203,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         mDownloadButton.setVisibility(View.GONE);
         mInstallButton.setVisibility(View.GONE);
         mDownloadProgressLayout.setVisibility(View.VISIBLE);
-        mDownloadAddon.startDownload(mContext, mDownloadUrl, mTitle, mAddonId, mVersionNumber, mOldVersion);
+        mDownloadAddon.startDownload(mContext, mDownloadUrl, mTitle, mAddonId, mVersionNumber);
     }
 
     private void getDownloadStatus() {
@@ -251,7 +259,6 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     }
 
     public void addonRecovery(View v) {
-        mLoadingDialog.show();
         new RecoveryInstall(mContext, true, mTitle+"_"+mVersionNumber+".zip");
     }
 

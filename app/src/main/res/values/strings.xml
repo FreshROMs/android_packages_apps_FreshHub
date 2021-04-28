@@ -95,6 +95,7 @@ Due to Android's new rules for Scoped Storage, you can find the update in /sdcar
     <!-- Props -->
     <string name="ota_swupdate_prop_api_url" translatable="false">"ro.fresh.ota.api"</string>
     <string name="ota_swupdate_prop_date" translatable="false">"ro.system.build.date"</string>
+    <string name="ota_swupdate_prop_date_actual" translatable="false">"ro.fresh.build.date"</string>
     <string name="ota_swupdate_prop_release" translatable="false">"ro.fresh.version"</string>
     <string name="ota_swupdate_prop_version" translatable="false">"ro.fresh.build.version"</string>
     <string name="ota_swupdate_prop_branch" translatable="false">"ro.fresh.build.branch"</string>
@@ -123,8 +124,10 @@ Due to Android's new rules for Scoped Storage, you can find the update in /sdcar
     <string name="low_resolution_density" translatable="false">"210"</string>
     <!-- Notifications -->
     <string name="system_notification_channel_id" translatable="false">"TnsOta"</string>
+    <string name="system_notification_ongoing_channel_id" translatable="false">"TnsOtaOngoingNotif"</string>
     <string name="system_notification_group_title">"Fresh OTA"</string>
     <string name="system_notification_channel_title">"Available updates"</string>
+    <string name="system_notification_channel_ongoing_title">"Ongoing notifications"</string>
     <string name="system_notification_channel_desc">"This notification channel allows the app to notify you about updates available on your device."</string>
     <string name="system_notification_available_title">"Software update available"</string>
     <string name="system_notification_available_desc">"Fresh %1$s %2$s is now available for your device!"</string>

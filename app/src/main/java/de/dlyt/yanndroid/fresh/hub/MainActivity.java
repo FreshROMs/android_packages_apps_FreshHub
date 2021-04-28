@@ -13,7 +13,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -49,6 +48,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
 import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     private Builder mPlayStoreDialog;
     private Builder mRebootDialog;
     public static Handler UIHandler;
-    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MANIFEST_LOADED)) {
@@ -119,17 +121,15 @@ public class MainActivity extends AppCompatActivity implements Constants,
         view.setAlpha(enable ? 1f : 0.7f);
     }
 
-    private boolean updateAllLayouts() {
+    private void updateAllLayouts() {
         try {
             updateCommunityLinksLayout();
             updateAddonsLayout();
             updateRomInformation();
             updateRomUpdateLayouts(true);
-            return true;
         } catch (Exception e) {
             // Suppress warning
         }
-        return false;
     }
 
     public static void runOnUI(Runnable runnable) {
@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         initWebView();
 
         Notifications.setupNotificationChannel(mContext);
+        Notifications.setupOngoingNotificationChannel(mContext);
         JobScheduler.setupJobScheduler(mContext, !Preferences.getBackgroundService(mContext));
 
         boolean firstRun = Preferences.getFirstRun(mContext);
@@ -167,32 +168,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         mContext.getExternalFilesDir(OTA_DIR_ADDONS);
 
         createDialogs();
-
-        // Check the correct build prop values are installed
-        // Also executes the manifest/update check
-
-        if (!Tools.isDeviceOnline(mContext)) {
-            Builder notConnectedDialog = new Builder(mContext, R.style.AlertDialogStyle);
-            notConnectedDialog.setTitle(R.string.main_not_connected_title)
-                    .setMessage(R.string.main_not_connected_message)
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.ok, (dialog, which) -> ((Activity) mContext)
-                            .finish())
-                    .show();
-        } else {
-            if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
-        }
-
-        // Has the download already completed?
-        File.setHasFileDownloaded(mContext);
-        findViewById(R.id.swiperefresh).setEnabled(false);
-
-        // Update the layouts
-        updateCommunityLinksLayout();
-        updateAddonsLayout();
-        updateRomInformation();
-        updateRomUpdateLayouts(false);
-        refreshDrawer();
 
         notifSwitch.setChecked(Preferences.getBackgroundService(mContext));
         dataSaver.setChecked(Preferences.getBackgroundDownload(mContext));
@@ -207,10 +182,9 @@ public class MainActivity extends AppCompatActivity implements Constants,
                     new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
         }
-        new checkRoot().execute("su");
 
-        LinearLayout background_options_layout = (LinearLayout) findViewById(R.id.background_options);
-        LinearLayout data_saver_layout = (LinearLayout) findViewById(R.id.data_saver_layout);
+        LinearLayout background_options_layout = findViewById(R.id.background_options);
+        LinearLayout data_saver_layout = findViewById(R.id.data_saver_layout);
         String[] background_options = getResources().getStringArray(R.array.updater_background_frequency_entries);
         String[] background_values = getResources().getStringArray(R.array.updater_background_frequency_values);
         TextView background_option_desc = findViewById(R.id.background_options_selected);
@@ -266,6 +240,24 @@ public class MainActivity extends AppCompatActivity implements Constants,
             Preferences.toggleAppIcon(mContext, isChecked);
         });
 
+        // Delete OTA on App open
+        Boolean isDeviceUpdating = TnsOtaDownload.getIsDeviceUpdating(mContext);
+        if (isDeviceUpdating) {
+            TnsOta.setUpdateAvailability(mContext);
+            boolean isUpdateSuccessful = !(TnsOta.getUpdateAvailability(mContext));
+            String updateVersion = TnsOta.getReleaseVersion(mContext);
+            Notifications.sendPostUpdateNotification(mContext, updateVersion, isUpdateSuccessful);
+
+            TnsOtaDownload.setIsDeviceUpdating(mContext, false);
+
+            java.io.File updateFile = TnsOta.getFullFile(mContext);
+
+            if (updateFile.exists()) {
+                boolean deleted = updateFile.delete();
+                if (!deleted) Log.e(TAG, "Could not delete update file...");
+            }
+        }
+
         String isUninstallingAddon = TnsAddonDownload.getIsUninstallingAddon(mContext);
 
         if (isUninstallingAddon != null) {
@@ -294,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 navigationIcon_Badge.setVisibility(View.GONE);
                 drawer_about_new_badge.setVisibility(View.GONE);
             }
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException ignored) {
         }
     }
 
@@ -353,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 settilte(getString(R.string.update));
                 ota_content.setVisibility(View.VISIBLE);
                 ota_progressbar.setVisibility(View.VISIBLE);
-                if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
+                if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext);
                 updateCommunityLinksLayout();
                 updateAddonsLayout();
                 updateRomInformation();
@@ -501,6 +493,25 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
 
+        // Check the correct build prop values are installed
+        // Also executes the manifest/update check
+
+        if (!Tools.isDeviceOnline(mContext)) {
+            Builder notConnectedDialog = new Builder(mContext, R.style.AlertDialogStyle);
+            notConnectedDialog.setTitle(R.string.main_not_connected_title)
+                    .setMessage(R.string.main_not_connected_message)
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.ok, (dialog, which) -> ((Activity) mContext)
+                            .finish())
+                    .show();
+        } else {
+            if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext);
+        }
+
+        // Has the download already completed?
+        File.setHasFileDownloaded(mContext);
+        findViewById(R.id.swiperefresh).setEnabled(false);
+
         if (TnsOtaDownload.getIsDownloadOnGoing(mContext)) {
             updateRomUpdateLayouts(true);
             findViewById(R.id.swiperefresh).setEnabled(false);
@@ -510,10 +521,16 @@ public class MainActivity extends AppCompatActivity implements Constants,
             findViewById(R.id.swiperefresh).setEnabled(true);
         }
 
+        // Update the layouts
+        updateCommunityLinksLayout();
+        updateAddonsLayout();
+        updateRomInformation();
+        refreshDrawer();
+
         swipeRefreshLayout.setOnRefreshListener(() -> {
             ota_progressbar.setVisibility(View.VISIBLE);
             web_progressbar.setVisibility(View.VISIBLE);
-            if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext).execute();
+            if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext);
             updateCommunityLinksLayout();
             updateAddonsLayout();
             updateRomInformation();
@@ -802,7 +819,13 @@ public class MainActivity extends AppCompatActivity implements Constants,
         TextView romDate = (TextView) findViewById(R.id.tv_main_rom_date);
         String romDateTitle = getApplicationContext().getResources().getString(R.string
                 .main_rom_build_date) + " ";
+
         String romDateActual = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date));
+
+        if (!(SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual))).equals("")) {
+            romDateActual = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual));
+        }
+
         romDate.setText(Html.fromHtml(romDateTitle + htmlColorOpen + romDateActual +
                 htmlColorClose));
 
@@ -919,48 +942,33 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
     }
 
-    static class checkRoot extends AsyncTask<String, Integer, String> {
-        @Override
-        protected String doInBackground(String... sUrl) {
-            hasRoot = Tools.isRootAvailable();
-            return null;
-        }
-    }
-
-    private class CompatibilityTask extends AsyncTask<Void, Boolean, Boolean> implements Constants {
+    private class CompatibilityTask implements Constants {
 
         public final String TAG = this.getClass().getSimpleName();
 
-        private Context mContext;
-        private String mPropName;
-
         CompatibilityTask(Context context) {
-            mContext = context;
-            mPropName = mContext.getResources().getString(R.string.ota_swupdate_prop_api_url);
-        }
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            String propName = mContext.getResources().getString(R.string.ota_swupdate_prop_api_url);
 
-        @Override
-        protected Boolean doInBackground(Void... v) {
-            return SystemProperties.doesPropExist(mPropName);
-        }
+            executor.execute(() -> {
+                boolean isCompatible = SystemProperties.doesPropExist(propName);
 
-        @Override
-        protected void onPostExecute(Boolean result) {
-
-            if (result) {
-                if (DEBUGGING)
-                    Log.d(TAG, "Prop found");
-                new TnsOtaApiService(mContext, true);
-            } else {
-                if (DEBUGGING)
-                    Log.d(TAG, "Prop not found");
-                try {
-                    mCompatibilityDialog.show();
-                } catch (WindowManager.BadTokenException ex) {
-                    Log.e(TAG, ex.getMessage());
-                }
-            }
-            super.onPostExecute(result);
+                MainActivity.runOnUI(() -> {
+                    if (isCompatible) {
+                        if (DEBUGGING)
+                            Log.d(TAG, "Prop found");
+                        new TnsOtaApiService(context, true);
+                    } else {
+                        if (DEBUGGING)
+                            Log.d(TAG, "Prop not found");
+                        try {
+                            mCompatibilityDialog.show();
+                        } catch (WindowManager.BadTokenException ex) {
+                            Log.e(TAG, ex.getMessage());
+                        }
+                    }
+                });
+            });
         }
     }
 }

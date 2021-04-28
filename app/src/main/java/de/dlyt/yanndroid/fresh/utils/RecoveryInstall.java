@@ -18,10 +18,10 @@ package de.dlyt.yanndroid.fresh.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
+import android.os.RecoverySystem;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -36,67 +36,32 @@ public class RecoveryInstall implements Constants {
     public final String TAG = this.getClass().getSimpleName();
     @SuppressLint("StaticFieldLeak")
     private final StringBuilder mScript = new StringBuilder();
-    private final String mFilename;
+    private File mFilename;
     private String mScriptOutput;
 
     @SuppressLint("SdCardPath")
     public RecoveryInstall(Context context, Boolean isAddon, String addonName) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        Handler handler = new Handler(Looper.getMainLooper());
-
-        mFilename = TnsOta.getFilename(context) + ".zip";
 
         executor.execute(() -> {
             if (isAddon) {
-                mScript.append("install \"/sdcard/Android/data/")
-                        .append(context.getPackageName())
-                        .append(File.separator)
-                        .append("files")
-                        .append(File.separator)
-                        .append(OTA_DIR_ADDONS)
-                        .append(File.separator)
-                        .append(addonName)
-                        .append("\"")
-                        .append(NEW_LINE);
+                mFilename =  new File(context.getExternalFilesDir(OTA_DIR_ADDONS), addonName);
             } else {
                 TnsOtaDownload.setIsDeviceUpdating(context, true);
-
-                mScript.append("install /sdcard/Android/data/")
-                        .append(context.getPackageName())
-                        .append(File.separator)
-                        .append("files")
-                        .append(File.separator)
-                        .append(OTA_DIR_ROM)
-                        .append(File.separator)
-                        .append(mFilename)
-                        .append(NEW_LINE);
+                mFilename = TnsOta.getFullFile(context);
             }
 
-            mScriptOutput = mScript.toString();
-
-            // Try create a dir in the cache folder
-            // Without root
-            String check = Tools.shell("mkdir -p /cache/recovery/; echo $?", false);
-
-            // If not 0, then permission was denied
-            if (!check.equals("0")) {
-                // Run as root
-                Tools.shell("su -c mkdir -p /cache/recovery/; echo $?", true);
-                Tools.shell("su -c echo \"" + mScriptOutput + "\" > " + SCRIPT_FILE + "\n", true);
-            } else {
-                // Permission was enabled, run without root
-                Tools.shell("echo \"" + mScriptOutput + "\" > " + SCRIPT_FILE + "\n", false);
+            try {
+                RecoverySystem.installPackage(context, mFilename);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            handler.postDelayed(() -> {
-                Tools.rebootUpdate(context);
-            }, 2000);
         });
     }
 
     // For OTA Updates - since they don't have an addon name
     public RecoveryInstall(Context context, Boolean isAddon) {
-        mFilename = TnsOta.getFilename(context) + ".zip";
+        mFilename = TnsOta.getFullFile(context);
         new RecoveryInstall(context, isAddon, null);
     }
 }

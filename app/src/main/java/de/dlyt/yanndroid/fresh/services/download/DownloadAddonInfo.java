@@ -30,20 +30,25 @@ public class DownloadAddonInfo implements Constants {
 
     public final static String TAG = "DownloadAddon";
 
-    public void startDownload(Context context, String url, String fileName, int id, int versionNumber, int oldVersion) {
+    public void startDownload(Context context, String url, String fileName, int id, int versionNumber) {
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
 
         request.setTitle(fileName);
 
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         String newFileName = fileName + "_" + versionNumber + ".zip";
-        String oldFileName = fileName + "_" + oldVersion + ".zip";
 
-        File file = new File(context.getExternalFilesDir(OTA_DIR_ADDONS), oldFileName);
+        File folder = new File(context.getExternalFilesDir(OTA_DIR_ADDONS).getAbsolutePath());
+        try {
+            File[] addonFiles = folder.listFiles();
 
-        if (file.exists()) {
-            boolean deleted = file.delete();
-            if (!deleted) Log.e(TAG, "Unable to delete file...");
+            for (File addonFile : addonFiles != null ? addonFiles : new File[0]) {
+                if (addonFile.getAbsolutePath().startsWith(fileName) && addonFile.getAbsolutePath().endsWith(".zip"))
+                    if (!addonFile.delete()) Log.e(TAG, "Unable to delete file...");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         // Because of Scoped Storage, we can only download into public directories.
