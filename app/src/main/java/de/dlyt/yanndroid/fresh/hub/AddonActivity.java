@@ -37,16 +37,14 @@ import com.nostra13.universalimageloader.utils.StorageUtils;
 import java.io.File;
 import java.util.ArrayList;
 
-import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
-import de.dlyt.yanndroid.fresh.utils.AddonProperties;
+import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.R;
+import de.dlyt.yanndroid.fresh.database.TnsAddon;
+import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
+import de.dlyt.yanndroid.fresh.services.TnsAddonApiService;
 import de.dlyt.yanndroid.fresh.services.download.DownloadAddon;
 import de.dlyt.yanndroid.fresh.services.download.DownloadAddonProgress;
-import de.dlyt.yanndroid.fresh.services.TnsAddonApiService;
-import de.dlyt.yanndroid.fresh.database.TnsAddon;
-import de.dlyt.yanndroid.fresh.Constants;
-import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
-import de.dlyt.yanndroid.fresh.utils.Notifications;
+import de.dlyt.yanndroid.fresh.utils.AddonProperties;
 import de.dlyt.yanndroid.fresh.utils.RecoveryInstall;
 import in.uncod.android.bypass.Bypass;
 
@@ -268,8 +266,8 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             deleteConfirm.setPositiveButton(R.string.ok, (dialog, which) -> {
                 if (file.exists()) {
                     updateButtons(item.getId(), false);
-                    TnsAddonDownload.setIsUninstallingAddon(mContext, item.getTitle()+"_"+item.getVersionNumber());
-                    new RecoveryInstall(mContext, true, item.getTitle()+"_"+item.getVersionNumber()+".zip");
+                    TnsAddonDownload.setIsUninstallingAddon(mContext, item.getTitle() + "_" + item.getVersionNumber());
+                    new RecoveryInstall(mContext, true, item.getTitle() + "_" + item.getVersionNumber() + ".zip");
                 }
             });
             deleteConfirm.setNegativeButton(R.string.cancel, null);
@@ -401,7 +399,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             });
 
             install.setOnClickListener(v -> {
-                new RecoveryInstall(mContext, true, item.getTitle()+"_"+item.getVersionNumber()+".zip");
+                new RecoveryInstall(mContext, true, item.getTitle() + "_" + item.getVersionNumber() + ".zip");
             });
 
             cancel.setOnClickListener(v -> {

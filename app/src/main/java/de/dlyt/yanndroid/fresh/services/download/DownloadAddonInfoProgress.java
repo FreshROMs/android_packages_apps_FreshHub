@@ -25,17 +25,16 @@ import android.util.Log;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import de.dlyt.yanndroid.fresh.hub.AddonInfoActivity;
-import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
 import de.dlyt.yanndroid.fresh.Constants;
+import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
+import de.dlyt.yanndroid.fresh.hub.AddonInfoActivity;
 
 public class DownloadAddonInfoProgress implements Constants {
-    public final String TAG = this.getClass().getSimpleName();
-
     private static final long UPDATE_DELAY = 500;
     private static long mStartTime;
     private static int mBytesDownloaded = 0;
     private static int mProgressPercent = 0;
+    public final String TAG = this.getClass().getSimpleName();
 
     public DownloadAddonInfoProgress(Context context, DownloadManager downloadManager, int id, long downloadId) {
         mStartTime = System.currentTimeMillis();

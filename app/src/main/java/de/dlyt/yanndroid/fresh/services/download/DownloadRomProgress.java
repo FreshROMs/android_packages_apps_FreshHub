@@ -27,18 +27,17 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
 import de.dlyt.yanndroid.fresh.hub.AvailableActivity;
 import de.dlyt.yanndroid.fresh.hub.MainActivity;
-import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
 
 public class DownloadRomProgress implements Constants {
 
-    public final String TAG = this.getClass().getSimpleName();
-
     private static final long UPDATE_DELAY = 500;
     private static long mStartTime;
+    public final String TAG = this.getClass().getSimpleName();
 
     public DownloadRomProgress(Context context, DownloadManager downloadManager) {
         mStartTime = System.currentTimeMillis();

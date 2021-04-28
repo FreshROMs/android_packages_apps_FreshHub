@@ -61,9 +61,9 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="0dp"
-                                            android:orientation="vertical"
+                                            android:layout_weight="1"
                                             android:animateLayoutChanges="true"
-                                            android:layout_weight="1">
+                                            android:orientation="vertical">
 
                                             <include
                                                 layout="@layout/card_hub_ota_available"
@@ -83,10 +83,11 @@
                                         </LinearLayout>
 
                                         <LinearLayout
+                                            android:id="@+id/layout_main_addons"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:orientation="vertical"
-                                            android:id="@+id/layout_main_addons">
+                                            android:orientation="vertical">
+
                                             <View
                                                 android:layout_width="match_parent"
                                                 android:layout_height="1dp"
@@ -114,9 +115,9 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="24dp"
                                         android:layout_marginTop="15dp"
-                                        android:textAlignment="viewStart"
                                         android:layout_marginBottom="2dp"
                                         android:text="@string/main_header_community"
+                                        android:textAlignment="viewStart"
                                         android:textStyle="bold" />
 
                                     <include
@@ -136,9 +137,9 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="24dp"
                                         android:layout_marginTop="15dp"
-                                        android:textAlignment="viewStart"
                                         android:layout_marginBottom="2dp"
                                         android:text="@string/preferences_name"
+                                        android:textAlignment="viewStart"
                                         android:textStyle="bold" />
 
                                     <include
@@ -158,9 +159,9 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="24dp"
                                         android:layout_marginTop="15dp"
-                                        android:textAlignment="viewStart"
                                         android:layout_marginBottom="2dp"
                                         android:text="@string/main_rom_information"
+                                        android:textAlignment="viewStart"
                                         android:textStyle="bold" />
 
                                     <include

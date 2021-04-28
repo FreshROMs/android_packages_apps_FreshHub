@@ -22,10 +22,10 @@ import android.net.Uri;
 
 import java.io.File;
 
-import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
-import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.Constants;
+import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.database.TnsOta;
+import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
 
 public class DownloadRom implements Constants {
 

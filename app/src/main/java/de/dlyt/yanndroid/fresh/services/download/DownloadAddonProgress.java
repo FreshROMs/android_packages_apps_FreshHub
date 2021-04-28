@@ -18,7 +18,6 @@ package de.dlyt.yanndroid.fresh.services.download;
 
 import android.app.DownloadManager;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.util.Log;
@@ -26,9 +25,9 @@ import android.util.Log;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import de.dlyt.yanndroid.fresh.hub.AddonActivity;
-import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
 import de.dlyt.yanndroid.fresh.Constants;
+import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
+import de.dlyt.yanndroid.fresh.hub.AddonActivity;
 
 public class DownloadAddonProgress implements Constants {
     private static final long UPDATE_DELAY = 500;

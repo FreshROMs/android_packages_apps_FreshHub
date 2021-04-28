@@ -25,10 +25,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import de.dlyt.yanndroid.fresh.hub.AddonActivity;
 import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.database.TnsAddon;
 import de.dlyt.yanndroid.fresh.database.TnsOta;
+import de.dlyt.yanndroid.fresh.hub.AddonActivity;
 
 public class TnsAddonApiService extends ArrayList<TnsAddon> {
 

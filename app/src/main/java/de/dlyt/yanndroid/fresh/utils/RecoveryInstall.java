@@ -25,9 +25,9 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
 import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.database.TnsOta;
+import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
 
 public class RecoveryInstall implements Constants {
 
@@ -45,7 +45,7 @@ public class RecoveryInstall implements Constants {
 
         executor.execute(() -> {
             if (isAddon) {
-                mFilename =  new File(context.getExternalFilesDir(OTA_DIR_ADDONS), addonName);
+                mFilename = new File(context.getExternalFilesDir(OTA_DIR_ADDONS), addonName);
             } else {
                 TnsOtaDownload.setIsDeviceUpdating(context, true);
                 mFilename = TnsOta.getFullFile(context);

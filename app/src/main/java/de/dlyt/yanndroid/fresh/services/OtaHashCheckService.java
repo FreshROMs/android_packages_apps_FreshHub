@@ -17,10 +17,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
 import de.dlyt.yanndroid.fresh.R;
-import de.dlyt.yanndroid.fresh.hub.AvailableActivity;
 import de.dlyt.yanndroid.fresh.database.TnsOta;
+import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
+import de.dlyt.yanndroid.fresh.hub.AvailableActivity;
 
 public class OtaHashCheckService {
     public static final String TAG = "OtaHashCheckService";

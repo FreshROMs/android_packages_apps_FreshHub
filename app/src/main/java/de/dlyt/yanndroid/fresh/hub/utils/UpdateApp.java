@@ -12,8 +12,8 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 
 import de.dlyt.yanndroid.fresh.Constants;
-import de.dlyt.yanndroid.fresh.hub.AboutActivity;
 import de.dlyt.yanndroid.fresh.R;
+import de.dlyt.yanndroid.fresh.hub.AboutActivity;
 
 public class UpdateApp implements Constants {
     public static void DownloadAndInstall(Context context, String url) {

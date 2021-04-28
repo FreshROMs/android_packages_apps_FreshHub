@@ -29,10 +29,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import de.dlyt.yanndroid.fresh.Constants;
+import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.utils.SystemProperties;
 import de.dlyt.yanndroid.fresh.utils.Tools;
-import de.dlyt.yanndroid.fresh.R;
-import de.dlyt.yanndroid.fresh.Constants;
 
 public class TnsOta implements Constants {
 

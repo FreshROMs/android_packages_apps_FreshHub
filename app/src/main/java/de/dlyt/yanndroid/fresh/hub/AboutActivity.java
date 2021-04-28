@@ -30,6 +30,11 @@ public class AboutActivity extends AppCompatActivity {
 
     public static Context mContext;
 
+    public static void reEnableUpdateButton(Context context) {
+        MaterialButton updateButton = ((Activity) context).findViewById(R.id.update_button);
+        updateButton.setEnabled(true);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mContext = this;
@@ -84,11 +89,6 @@ public class AboutActivity extends AppCompatActivity {
         });
 
 
-    }
-
-    public static void reEnableUpdateButton(Context context) {
-        MaterialButton updateButton = ((Activity) context).findViewById(R.id.update_button);
-        updateButton.setEnabled(true);
     }
 
     public void initToolbar() {

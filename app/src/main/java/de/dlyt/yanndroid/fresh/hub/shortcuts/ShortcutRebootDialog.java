@@ -7,8 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import de.dlyt.yanndroid.fresh.utils.Tools;
 import de.dlyt.yanndroid.fresh.R;
+import de.dlyt.yanndroid.fresh.utils.Tools;
 
 
 public class ShortcutRebootDialog extends AppCompatActivity {

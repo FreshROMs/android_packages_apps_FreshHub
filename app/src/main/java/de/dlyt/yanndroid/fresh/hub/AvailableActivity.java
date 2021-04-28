@@ -28,17 +28,16 @@ import androidx.appcompat.widget.SeslProgressBar;
 
 import com.google.android.material.appbar.AppBarLayout;
 
-import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
-import de.dlyt.yanndroid.fresh.utils.File;
-import de.dlyt.yanndroid.fresh.utils.Notifications;
+import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.R;
+import de.dlyt.yanndroid.fresh.database.TnsOta;
+import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
+import de.dlyt.yanndroid.fresh.services.OtaHashCheckService;
 import de.dlyt.yanndroid.fresh.services.download.DownloadRom;
 import de.dlyt.yanndroid.fresh.services.download.DownloadRomProgress;
+import de.dlyt.yanndroid.fresh.utils.File;
+import de.dlyt.yanndroid.fresh.utils.Notifications;
 import de.dlyt.yanndroid.fresh.utils.RecoveryInstall;
-import de.dlyt.yanndroid.fresh.services.OtaHashCheckService;
-import de.dlyt.yanndroid.fresh.Constants;
-import de.dlyt.yanndroid.fresh.database.TnsOta;
-import de.dlyt.yanndroid.fresh.utils.Tools;
 import in.uncod.android.bypass.Bypass;
 
 @SuppressLint("StaticFieldLeak")
@@ -55,9 +54,9 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
     private static Button mInstallButton;
     private static Button mDownloadButton;
     private static Button mCancelButton;
+    private static Dialog mLoadingDialog;
     private Context mContext;
     private Builder mDeleteDialog;
-    private static Dialog mLoadingDialog;
     private DownloadRom mDownloadRom;
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -167,6 +166,54 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
 
     public static void runOnUI(Runnable runnable) {
         UIHandler.post(runnable);
+    }
+
+    private static void setupUpdateNameInfo(Context context) {
+        boolean downloadFinished = TnsOtaDownload.getDownloadFinished(context);
+        boolean downloadIsRunning = TnsOtaDownload.getIsDownloadOnGoing(context);
+
+        if (!downloadFinished) {
+            if (downloadIsRunning) {
+                mMainUpdateHeader.setText(R.string.available_update_downloading);
+                mPreOtaText.setVisibility(View.GONE);
+                mProgressBar.setVisibility(View.VISIBLE);
+                mProgressCounterText.setVisibility(View.VISIBLE);
+                mDownloadSpeedTextView.setVisibility(View.VISIBLE);
+            } else {
+                mMainUpdateHeader.setText(R.string.available_update_install_info);
+                mPreOtaText.setText(R.string.available_update_install_info_desc);
+                mPreOtaText.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.GONE);
+                mProgressCounterText.setVisibility(View.GONE);
+                mDownloadSpeedTextView.setVisibility(View.GONE);
+            }
+        } else { // Download has finished
+            String md5 = TnsOta.getMd5(context);
+            boolean md5HasRun = TnsOtaDownload.getHasMD5Run(context);
+            boolean md5Passed = TnsOtaDownload.getMD5Passed(context);
+
+            mProgressBar.setVisibility(View.GONE);
+            mProgressCounterText.setVisibility(View.GONE);
+            mDownloadSpeedTextView.setVisibility(View.GONE);
+
+            mPreOtaText.setText(R.string.available_preinstall_notice);
+            mPreOtaText.setVisibility(View.VISIBLE);
+            mMainUpdateHeader.setText(context.getResources().getString(R.string.available_update_install_ready,
+                    TnsOta.getReleaseVersion(context), TnsOta.getReleaseVariant(context)));
+
+            if (!md5.equals("null")) {
+                if (md5HasRun && md5Passed) {
+                    mPreOtaText.setText(R.string.available_preinstall_notice);
+                } else if (md5HasRun) {
+                    mPreOtaText.setText(R.string.available_preinstall_notice_nohash);
+                }
+
+            } else {
+                mProgressBar.setVisibility(View.GONE);
+                mProgressCounterText.setVisibility(View.GONE);
+                mDownloadSpeedTextView.setVisibility(View.GONE);
+            }
+        }
     }
 
     @SuppressWarnings("deprecation")
@@ -333,7 +380,6 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         collapsed_title.setText(title);
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -381,54 +427,6 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         CharSequence string = byPass.markdownToSpannable(changeLogStr);
         changelogView.setText(string);
         changelogView.setMovementMethod(LinkMovementMethod.getInstance());
-    }
-
-    private static void setupUpdateNameInfo(Context context) {
-        boolean downloadFinished = TnsOtaDownload.getDownloadFinished(context);
-        boolean downloadIsRunning = TnsOtaDownload.getIsDownloadOnGoing(context);
-
-        if (!downloadFinished) {
-            if (downloadIsRunning) {
-                mMainUpdateHeader.setText(R.string.available_update_downloading);
-                mPreOtaText.setVisibility(View.GONE);
-                mProgressBar.setVisibility(View.VISIBLE);
-                mProgressCounterText.setVisibility(View.VISIBLE);
-                mDownloadSpeedTextView.setVisibility(View.VISIBLE);
-            } else {
-                mMainUpdateHeader.setText(R.string.available_update_install_info);
-                mPreOtaText.setText(R.string.available_update_install_info_desc);
-                mPreOtaText.setVisibility(View.VISIBLE);
-                mProgressBar.setVisibility(View.GONE);
-                mProgressCounterText.setVisibility(View.GONE);
-                mDownloadSpeedTextView.setVisibility(View.GONE);
-            }
-        } else { // Download has finished
-            String md5 = TnsOta.getMd5(context);
-            boolean md5HasRun = TnsOtaDownload.getHasMD5Run(context);
-            boolean md5Passed = TnsOtaDownload.getMD5Passed(context);
-
-            mProgressBar.setVisibility(View.GONE);
-            mProgressCounterText.setVisibility(View.GONE);
-            mDownloadSpeedTextView.setVisibility(View.GONE);
-
-            mPreOtaText.setText(R.string.available_preinstall_notice);
-            mPreOtaText.setVisibility(View.VISIBLE);
-            mMainUpdateHeader.setText(context.getResources().getString(R.string.available_update_install_ready,
-                    TnsOta.getReleaseVersion(context), TnsOta.getReleaseVariant(context)));
-
-            if (!md5.equals("null")) {
-                if (md5HasRun && md5Passed) {
-                    mPreOtaText.setText(R.string.available_preinstall_notice);
-                } else if (md5HasRun) {
-                    mPreOtaText.setText(R.string.available_preinstall_notice_nohash);
-                }
-
-            } else {
-                mProgressBar.setVisibility(View.GONE);
-                mProgressCounterText.setVisibility(View.GONE);
-                mDownloadSpeedTextView.setVisibility(View.GONE);
-            }
-        }
     }
 
     private void download() {

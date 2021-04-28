@@ -26,15 +26,15 @@ import android.util.Log;
 
 import java.io.File;
 
+import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
+import de.dlyt.yanndroid.fresh.database.TnsOta;
 import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
+import de.dlyt.yanndroid.fresh.hub.AvailableActivity;
+import de.dlyt.yanndroid.fresh.hub.utils.Preferences;
+import de.dlyt.yanndroid.fresh.services.TnsOtaApiService;
 import de.dlyt.yanndroid.fresh.utils.JobScheduler;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
-import de.dlyt.yanndroid.fresh.hub.AvailableActivity;
-import de.dlyt.yanndroid.fresh.services.TnsOtaApiService;
-import de.dlyt.yanndroid.fresh.Constants;
-import de.dlyt.yanndroid.fresh.hub.utils.Preferences;
-import de.dlyt.yanndroid.fresh.database.TnsOta;
 
 public class AppReceiver extends BroadcastReceiver implements Constants {
 
@@ -150,7 +150,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
             String isUninstallingAddon = TnsAddonDownload.getIsUninstallingAddon(context);
 
             if (isUninstallingAddon != null) {
-                File file = new java.io.File(context.getExternalFilesDir(OTA_DIR_ADDONS), isUninstallingAddon+".zip");
+                File file = new java.io.File(context.getExternalFilesDir(OTA_DIR_ADDONS), isUninstallingAddon + ".zip");
                 if (file.exists()) {
                     boolean deleted = file.delete();
                     if (!deleted) Log.e(TAG, "Unable to delete file...");

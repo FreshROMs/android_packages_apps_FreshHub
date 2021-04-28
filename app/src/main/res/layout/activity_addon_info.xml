@@ -24,10 +24,10 @@
 
             <ScrollView
                 android:id="@+id/content_scroll"
-                android:nestedScrollingEnabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:fillViewport="true">
+                android:fillViewport="true"
+                android:nestedScrollingEnabled="false">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -169,8 +169,8 @@
                             android:layout_marginHorizontal="24dp"
                             android:layout_marginTop="12.0dip"
                             android:singleLine="false"
-                            android:textAlignment="viewStart"
                             android:text="@string/available_changelog_content"
+                            android:textAlignment="viewStart"
                             android:textColor="@color/ota_changelog_text_color" />
 
                     </LinearLayout>
@@ -194,8 +194,8 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:orientation="vertical"
-            android:onClick="startAddonDownload">
+            android:onClick="startAddonDownload"
+            android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
                 style="?textAppearanceHeadline6"
@@ -215,8 +215,8 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:orientation="vertical"
-            android:onClick="addonRecovery">
+            android:onClick="addonRecovery"
+            android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
                 style="?textAppearanceHeadline6"
@@ -236,8 +236,8 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:orientation="vertical"
-            android:onClick="deleteConfirmAddonInfo">
+            android:onClick="deleteConfirmAddonInfo"
+            android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
                 style="?textAppearanceHeadline6"
@@ -257,8 +257,8 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:orientation="vertical"
-            android:onClick="startAddonDownload">
+            android:onClick="startAddonDownload"
+            android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
                 style="?textAppearanceHeadline6"
@@ -310,8 +310,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="start|center_vertical"
                             android:text="@string/downloading"
-                            android:textColor="@color/white"
                             android:textAlignment="viewStart"
+                            android:textColor="@color/white"
                             android:textSize="18sp" />
 
                         <LinearLayout
@@ -326,18 +326,18 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="start|center_vertical"
                                 android:text="0MB"
-                                android:textColor="@color/white"
                                 android:textAlignment="viewStart"
+                                android:textColor="@color/white"
                                 android:textSize="12sp" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 style="?android:attr/textAppearanceSmall"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" / "
                                 android:layout_marginHorizontal="4dp"
-                                android:textColor="@color/white"
+                                android:text=" / "
                                 android:textAlignment="viewStart"
+                                android:textColor="@color/white"
                                 android:textSize="12sp" />
 
                             <com.google.android.material.textview.MaterialTextView
@@ -346,8 +346,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0MB"
-                                android:textColor="@color/white"
                                 android:textAlignment="viewStart"
+                                android:textColor="@color/white"
                                 android:textSize="12sp" />
 
                         </LinearLayout>

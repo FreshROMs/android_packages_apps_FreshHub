@@ -49,40 +49,40 @@ public class TnsAddon {
         return mFullInfo;
     }
 
-    public Integer getVersionNumber() {
-        return mVersionNumber;
+    public void setFullInfo(String input) {
+        mFullInfo = input;
     }
 
-    public String getVersionName() {
-        return mVersionName;
+    public Integer getVersionNumber() {
+        return mVersionNumber;
     }
 
     public void setVersionNumber(Integer input) {
         mVersionNumber = input;
     }
 
-    public void setFullInfo(String input) {
-        mFullInfo = input;
+    public String getVersionName() {
+        return mVersionName;
     }
 
-    public void setImageUrl(String input) {
-        mImageUrl = input;
+    public void setVersionName(String input) {
+        mVersionName = input;
     }
 
     public String getImageUrl() {
         return mImageUrl;
     }
 
-    public void setPackageName(String input) {
-        mPackageName = input;
+    public void setImageUrl(String input) {
+        mImageUrl = input;
     }
 
     public String getPackageName() {
         return mPackageName;
     }
 
-    public void setVersionName(String input) {
-        mVersionName = input;
+    public void setPackageName(String input) {
+        mPackageName = input;
     }
 
     public String getDownloadLink() {

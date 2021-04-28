@@ -11,10 +11,10 @@ import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
 
 public class File {
     private static final int KILOBYTE = 1024;
+    public static DecimalFormat decimalFormat = new DecimalFormat("##0.#");
     private static int KB = KILOBYTE;
     private static int MB = KB * KB;
     private static int GB = MB * KB;
-    public static DecimalFormat decimalFormat = new DecimalFormat("##0.#");
 
     static {
         decimalFormat.setMaximumIntegerDigits(3);

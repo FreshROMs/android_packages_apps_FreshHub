@@ -45,16 +45,16 @@
                             style="?textAppearanceBody1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAlignment="viewStart"
                             android:text="@string/setting_notifications"
+                            android:textAlignment="viewStart"
                             android:textSize="18sp" />
 
                         <com.google.android.material.textview.MaterialTextView
                             style="?android:attr/textAppearanceSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAlignment="viewStart"
-                            android:text="@string/setting_notifications_summary" />
+                            android:text="@string/setting_notifications_summary"
+                            android:textAlignment="viewStart" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -103,8 +103,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:duplicateParentState="true"
-                            android:textAlignment="viewStart"
                             android:text="@string/background_frequency"
+                            android:textAlignment="viewStart"
                             android:textSize="18sp" />
 
                         <com.google.android.material.textview.MaterialTextView
@@ -112,9 +112,9 @@
                             style="?android:attr/textAppearanceSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAlignment="viewStart"
                             android:duplicateParentState="true"
-                            android:text="Single line" />
+                            android:text="Single line"
+                            android:textAlignment="viewStart" />
                     </LinearLayout>
 
                     <androidx.appcompat.widget.AppCompatSpinner
@@ -169,16 +169,16 @@
                             style="?textAppearanceBody1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAlignment="viewStart"
                             android:text="@string/setting_auto_download"
+                            android:textAlignment="viewStart"
                             android:textSize="18sp" />
 
                         <com.google.android.material.textview.MaterialTextView
                             style="?android:attr/textAppearanceSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAlignment="viewStart"
-                            android:text="@string/setting_auto_download_summary" />
+                            android:text="@string/setting_auto_download_summary"
+                            android:textAlignment="viewStart" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -228,16 +228,16 @@
                         style="?textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAlignment="viewStart"
                         android:text="@string/setting_app_icon"
+                        android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
                     <com.google.android.material.textview.MaterialTextView
                         style="?android:attr/textAppearanceSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAlignment="viewStart"
-                        android:text="@string/setting_app_icon_summary" />
+                        android:text="@string/setting_app_icon_summary"
+                        android:textAlignment="viewStart" />
                 </LinearLayout>
             </LinearLayout>
 

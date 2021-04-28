@@ -52,17 +52,17 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import de.dlyt.yanndroid.fresh.Constants;
+import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
+import de.dlyt.yanndroid.fresh.database.TnsOta;
 import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
 import de.dlyt.yanndroid.fresh.hub.utils.Preferences;
+import de.dlyt.yanndroid.fresh.services.TnsOtaApiService;
 import de.dlyt.yanndroid.fresh.utils.File;
 import de.dlyt.yanndroid.fresh.utils.JobScheduler;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
 import de.dlyt.yanndroid.fresh.utils.SystemProperties;
-import de.dlyt.yanndroid.fresh.R;
-import de.dlyt.yanndroid.fresh.services.TnsOtaApiService;
-import de.dlyt.yanndroid.fresh.Constants;
-import de.dlyt.yanndroid.fresh.database.TnsOta;
 import de.dlyt.yanndroid.fresh.utils.Tools;
 
 public class MainActivity extends AppCompatActivity implements Constants,
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     private static final int CHANGE_THEME_REQUEST_CODE = 2;
     private static final boolean ENABLE_COMPATIBILITY_CHECK = true;
     public static boolean hasRoot;
+    public static Handler UIHandler;
     @SuppressLint("StaticFieldLeak")
     private static SeslProgressBar mProgressBar;
     @SuppressLint("StaticFieldLeak")
@@ -82,6 +83,17 @@ public class MainActivity extends AppCompatActivity implements Constants,
     WebView webView;
     ProgressBar web_progressbar;
     ProgressBar ota_progressbar;
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(MANIFEST_LOADED)) {
+                updateAllLayouts();
+                ota_progressbar.setVisibility(View.GONE);
+                checkforAppUpdate();
+                findViewById(R.id.swiperefresh).setEnabled(true);
+            }
+        }
+    };
     SwipeRefreshLayout swipeRefreshLayout;
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -95,18 +107,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
     private Builder mDonateDialog;
     private Builder mPlayStoreDialog;
     private Builder mRebootDialog;
-    public static Handler UIHandler;
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(MANIFEST_LOADED)) {
-                updateAllLayouts();
-                ota_progressbar.setVisibility(View.GONE);
-                checkforAppUpdate();
-                findViewById(R.id.swiperefresh).setEnabled(true);
-            }
-        }
-    };
 
     public static void updateProgress(int progress) {
         if (mProgressBar != null) {
@@ -121,6 +121,10 @@ public class MainActivity extends AppCompatActivity implements Constants,
         view.setAlpha(enable ? 1f : 0.7f);
     }
 
+    public static void runOnUI(Runnable runnable) {
+        UIHandler.post(runnable);
+    }
+
     private void updateAllLayouts() {
         try {
             updateCommunityLinksLayout();
@@ -130,10 +134,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         } catch (Exception e) {
             // Suppress warning
         }
-    }
-
-    public static void runOnUI(Runnable runnable) {
-        UIHandler.post(runnable);
     }
 
     @Override
@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         String isUninstallingAddon = TnsAddonDownload.getIsUninstallingAddon(mContext);
 
         if (isUninstallingAddon != null) {
-            java.io.File file = new java.io.File(mContext.getExternalFilesDir(OTA_DIR_ADDONS), isUninstallingAddon+".zip");
+            java.io.File file = new java.io.File(mContext.getExternalFilesDir(OTA_DIR_ADDONS), isUninstallingAddon + ".zip");
             if (file.exists()) {
                 boolean deleted = file.delete();
                 if (!deleted) Log.e(TAG, "Unable to delete file...");

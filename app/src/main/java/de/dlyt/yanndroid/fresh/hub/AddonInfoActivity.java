@@ -1,7 +1,6 @@
 package de.dlyt.yanndroid.fresh.hub;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,7 +12,6 @@ import android.os.Looper;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -28,14 +26,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
 
-import de.dlyt.yanndroid.fresh.database.TnsAddon;
-import de.dlyt.yanndroid.fresh.services.TnsAddonApiService;
-import de.dlyt.yanndroid.fresh.utils.AddonProperties;
+import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.R;
+import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
 import de.dlyt.yanndroid.fresh.services.download.DownloadAddonInfo;
 import de.dlyt.yanndroid.fresh.services.download.DownloadAddonInfoProgress;
-import de.dlyt.yanndroid.fresh.Constants;
-import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
+import de.dlyt.yanndroid.fresh.utils.AddonProperties;
 import de.dlyt.yanndroid.fresh.utils.RecoveryInstall;
 import in.uncod.android.bypass.Bypass;
 
@@ -192,8 +188,8 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         deleteConfirm.setTitle(R.string.delete);
         deleteConfirm.setMessage(mContext.getString(R.string.delete_addon_confirm, mTitle));
         deleteConfirm.setPositiveButton(R.string.ok, (dialog, which) -> {
-            TnsAddonDownload.setIsUninstallingAddon(mContext, mTitle+"_"+mVersionNumber);
-            new RecoveryInstall(mContext, true, mTitle+"_"+mVersionNumber+".zip");
+            TnsAddonDownload.setIsUninstallingAddon(mContext, mTitle + "_" + mVersionNumber);
+            new RecoveryInstall(mContext, true, mTitle + "_" + mVersionNumber + ".zip");
         });
         deleteConfirm.setNegativeButton(R.string.cancel, null);
         deleteConfirm.show();
@@ -259,7 +255,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     }
 
     public void addonRecovery(View v) {
-        new RecoveryInstall(mContext, true, mTitle+"_"+mVersionNumber+".zip");
+        new RecoveryInstall(mContext, true, mTitle + "_" + mVersionNumber + ".zip");
     }
 
     public void initToolbar() {

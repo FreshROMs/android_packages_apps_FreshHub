@@ -64,7 +64,8 @@ public class UpdateCheckService extends JobService implements Constants {
                             if (updateAvailable) {
                                 Notifications.sendUpdateNotification(context, relVersion, relVariant);
                             }
-                        };
+                        }
+                        ;
                     }
                 }, 5000);
 

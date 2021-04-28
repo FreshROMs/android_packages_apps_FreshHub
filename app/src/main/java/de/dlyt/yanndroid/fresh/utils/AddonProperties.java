@@ -10,13 +10,13 @@ public class AddonProperties {
         File fileList;
 
         try {
-            meta = new File("/system/etc/fresh/addons/"+packageName+".metadata");
+            meta = new File("/system/etc/fresh/addons/" + packageName + ".metadata");
         } catch (Exception e) {
             return false;
         }
 
         try {
-            fileList = new File("/system/etc/fresh/addons/files-list/"+packageName+".txt");
+            fileList = new File("/system/etc/fresh/addons/files-list/" + packageName + ".txt");
         } catch (Exception e) {
             return false;
         }
@@ -28,7 +28,7 @@ public class AddonProperties {
         File noUninstall;
 
         try {
-            noUninstall = new File("/system/etc/fresh/addons/"+packageName+".keep");
+            noUninstall = new File("/system/etc/fresh/addons/" + packageName + ".keep");
         } catch (Exception e) {
             return false;
         }
@@ -40,7 +40,7 @@ public class AddonProperties {
         Process p;
         int result = 0;
         try {
-            p = new ProcessBuilder("/system/bin/cat", "/system/etc/fresh/addons/"+packageName+".metadata").redirectErrorStream(true)
+            p = new ProcessBuilder("/system/bin/cat", "/system/etc/fresh/addons/" + packageName + ".metadata").redirectErrorStream(true)
                     .start();
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String line;

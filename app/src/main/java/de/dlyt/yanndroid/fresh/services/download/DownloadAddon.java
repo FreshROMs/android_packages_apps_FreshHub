@@ -18,16 +18,14 @@ package de.dlyt.yanndroid.fresh.services.download;
 
 import android.app.DownloadManager;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
 import java.io.File;
-import java.io.IOException;
 
-import de.dlyt.yanndroid.fresh.hub.AddonActivity;
 import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.database.TnsAddonDownload;
+import de.dlyt.yanndroid.fresh.hub.AddonActivity;
 
 public class DownloadAddon implements Constants {
 

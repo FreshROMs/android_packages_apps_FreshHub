@@ -38,11 +38,6 @@ public class ScreenResolutionActivity extends AppCompatActivity {
     private Context mContext;
     private SharedPreferences sharedPreferences;
 
-    public void setSubtitle(String subtitle) {
-        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
-        expanded_subtitle.setText(subtitle);
-    }
-
     public static void setBypassBlacklist(Context context, boolean bool) {
         /* List of Global settings that allow blacklisted APIs to be called */
         String[] blacklistGlobalSettings = {
@@ -105,6 +100,11 @@ public class ScreenResolutionActivity extends AppCompatActivity {
                     .getMethod("setForcedDisplayDensityForUser", int.class, int.class, int.class)
                     .invoke(getWindowManagerService(), Display.DEFAULT_DISPLAY, density, USER_CURRENT_OR_SELF);
         }
+    }
+
+    public void setSubtitle(String subtitle) {
+        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
+        expanded_subtitle.setText(subtitle);
     }
 
     private void checkDefaultApiSetting() {

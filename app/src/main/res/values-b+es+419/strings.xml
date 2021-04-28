@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><resources>
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
     <!-- Creo que debería quedar con el mismo nombre, aunque en español podría traducir Centro Fresh no tendria tanto sentido. -->
     <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
     <string name="app_name">"Fresh Hub"</string>

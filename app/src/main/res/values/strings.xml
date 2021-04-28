@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><resources>
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
     <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
     <string name="app_name">"Fresh Hub"</string>
     <string name="closed" translatable="false">"closed"</string>

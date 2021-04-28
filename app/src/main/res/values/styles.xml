@@ -287,6 +287,7 @@
         <item name="android:src">@drawable/ic_addons_list_btn_cancel</item>
         <item name="android:tint">@color/raised_button_text_color</item>
     </style>
+
     <style name="addon_detail_progressbar" parent="@android:style/Widget.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/addons_detail_progressbar</item>
     </style>

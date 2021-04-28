@@ -12,8 +12,8 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.TaskStackBuilder;
 
 import de.dlyt.yanndroid.fresh.Constants;
-import de.dlyt.yanndroid.fresh.database.TnsOta;
 import de.dlyt.yanndroid.fresh.R;
+import de.dlyt.yanndroid.fresh.database.TnsOta;
 import de.dlyt.yanndroid.fresh.hub.AvailableActivity;
 import de.dlyt.yanndroid.fresh.hub.MainActivity;
 
