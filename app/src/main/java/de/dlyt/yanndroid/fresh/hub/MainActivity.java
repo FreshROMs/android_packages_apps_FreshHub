@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -269,6 +270,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
             TnsAddonDownload.setIsUninstallingAddon(mContext, null);
         }
+
+        egg();
     }
 
 
@@ -970,5 +973,33 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 });
             });
         }
+    }
+
+
+    public void egg() {
+        final Integer[] clicks = {0};
+        View about_sys_card = findViewById(R.id.about_sys_card);
+        about_sys_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clicks[0]++;
+                if (clicks[0] >= 5) {
+                    clicks[0] = 0;
+                    ComponentName comp = new ComponentName("com.android.systemui", "com.android.systemui.egg.MLandActivity");
+
+                    Intent intent = new Intent();
+                    intent.setComponent(comp);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    try {
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        Log.e("egg", e.toString());
+                    }
+                }
+            }
+        });
+
     }
 }
