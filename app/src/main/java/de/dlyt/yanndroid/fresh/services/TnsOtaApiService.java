@@ -27,11 +27,13 @@ import javax.xml.parsers.SAXParserFactory;
 import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.database.TnsOta;
+import de.dlyt.yanndroid.fresh.hub.utils.Preferences;
 import de.dlyt.yanndroid.fresh.utils.SystemProperties;
 
 public class TnsOtaApiService implements Constants {
 
     private static final String MANIFEST = "update_manifest.xml";
+    private static final String MANIFEST_ALT = "update_manifest_alt.xml";
     public final String TAG = this.getClass().getSimpleName();
 
     public TnsOtaApiService(Context context, boolean isForeground) {
@@ -39,46 +41,97 @@ public class TnsOtaApiService implements Constants {
         Handler handler = new Handler(Looper.getMainLooper());
 
         executor.execute(() -> {
+            boolean isUsingMirror = Preferences.getUsingMirrorService(context);
+
             File manifest = new File(context.getFilesDir().getPath(), MANIFEST);
+            File manifest_alt = new File(context.getFilesDir().getPath(), MANIFEST_ALT);
             if (manifest.exists()) {
-                boolean deleted = manifest.delete();
-                if (!deleted) Log.e(TAG, "Could not delete manifest file...");
+                boolean renamed = manifest.renameTo(manifest_alt);
+                if (!renamed) Log.e(TAG, "Could not rename manifest file...");
             }
 
             try {
-                InputStream input;
+                InputStream input = null;
+                boolean fetchSuccess = false;
 
-                URL url = new URL(
-                        SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_api_url)) + "/"
-                                + SystemProperties.getDeviceProduct() + "/"
-                                + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
-                                + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
+                if (!isUsingMirror) {
+                    try {
+                        URL url = new URL(
+                                SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_api_url)) + "/"
+                                        + SystemProperties.getDeviceProduct() + "/"
+                                        + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
+                                        + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
 
-                ////////////////////////////////////////////////////////////////////////////////////
-                // TO-DO: REMOVE ON PRODUCTION
-                // TODO
-                // IMPORTANT
-                url = new URL("https://ota.tensevntysevn.cf/fresh/a50xx/beta/21040501"); //todo: remove at release
-                // REMOVE ON RELEASE
-                // TODO
-                // IMPORTANT
-                ////////////////////////////////////////////////////////////////////////////////////
+                        URLConnection connection = url.openConnection();
+                        connection.setConnectTimeout(25000);
+                        connection.setReadTimeout(30000);
+                        connection.connect();
 
-                URLConnection connection = url.openConnection();
-                connection.connect();
-                input = new BufferedInputStream(url.openStream());
+                        input = new BufferedInputStream(url.openStream());
+                        fetchSuccess = true;
+                    } catch (IOException e) {
+                        if (SystemProperties.doesPropExist(context.getResources().getString(R.string.ota_swupdate_prop_api_url_mirror))) {
+                            Preferences.setUsingMirrorService(context, true);
+                            try {
+                                URL url = new URL(
+                                        SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_api_url_mirror)) + "/"
+                                                + SystemProperties.getDeviceProduct() + "/"
+                                                + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
+                                                + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
 
-                OutputStream output = context.openFileOutput(MANIFEST, Context.MODE_PRIVATE);
+                                URLConnection connection = url.openConnection();
+                                connection.setConnectTimeout(25000);
+                                connection.setReadTimeout(30000);
+                                connection.connect();
 
-                byte[] data = new byte[1024];
-                int count;
-                while ((count = input.read(data)) != -1) {
-                    output.write(data, 0, count);
+                                input = new BufferedInputStream(url.openStream());
+                                fetchSuccess = true;
+                            } catch (IOException x) {
+                                // return false
+                            }
+                        }
+                    }
+                } else {
+                    try {
+                        URL url = new URL(
+                                SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_api_url_mirror)) + "/"
+                                        + SystemProperties.getDeviceProduct() + "/"
+                                        + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
+                                        + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
+
+                        URLConnection connection = url.openConnection();
+                        connection.setConnectTimeout(25000);
+                        connection.setReadTimeout(30000);
+                        connection.connect();
+
+                        input = new BufferedInputStream(url.openStream());
+                        fetchSuccess = true;
+                    } catch (IOException x) {
+                        // return false
+                    }
                 }
 
-                output.flush();
-                output.close();
-                input.close();
+                if (fetchSuccess) {
+                    OutputStream output = context.openFileOutput(MANIFEST, Context.MODE_PRIVATE);
+
+                    byte[] data = new byte[1024];
+                    int count;
+                    while ((count = input.read(data)) != -1) {
+                        output.write(data, 0, count);
+                    }
+
+                    output.flush();
+                    output.close();
+                    input.close();
+
+                    if (manifest_alt.exists()) {
+                        boolean deleted = manifest_alt.delete();
+                        if (!deleted) Log.e(TAG, "Could not delete alt manifest file...");
+                    }
+                } else {
+                    boolean renamed = manifest_alt.renameTo(manifest);
+                    if (!renamed) Log.e(TAG, "Could not rename alt manifest file...");
+                }
 
                 TnsOtaParser parser = new TnsOtaParser();
                 parser.parse(new File(context.getFilesDir(), MANIFEST), context);

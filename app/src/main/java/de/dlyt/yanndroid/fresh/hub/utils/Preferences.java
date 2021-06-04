@@ -55,6 +55,10 @@ public class Preferences implements Constants {
         return getPrefs(context).getBoolean(UPDATER_AUTO_DOWNLOAD_SERVICE, false);
     }
 
+    public static boolean getUsingMirrorService(Context context) {
+        return getPrefs(context).getBoolean(IS_USING_SERVICE_MIRROR, false);
+    }
+
     public static int getBackgroundFrequency(Context context) {
         return Integer.parseInt(getPrefs(context).getString(UPDATER_BACK_FREQ, "43200"));
     }
@@ -82,6 +86,12 @@ public class Preferences implements Constants {
     public static void setBackgroundDownload(Context context, Boolean toggle) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putBoolean(UPDATER_AUTO_DOWNLOAD_SERVICE, toggle);
+        editor.apply();
+    }
+
+    public static void setUsingMirrorService(Context context, Boolean toggle) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putBoolean(IS_USING_SERVICE_MIRROR, toggle);
         editor.apply();
     }
 

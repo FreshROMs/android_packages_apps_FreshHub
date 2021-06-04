@@ -38,6 +38,7 @@ public interface Constants {
     String UPDATER_BACK_FREQ_OPTION = "background_frequency_option";
     String FIRST_RUN = "first_run";
     String APP_ICON_ENABLED = "app_icon_enabled";
+    String IS_USING_SERVICE_MIRROR = "service_mirror";
 
     // Broadcast intents
     String MANIFEST_LOADED = "com.ota.update.MANIFEST_LOADED";
