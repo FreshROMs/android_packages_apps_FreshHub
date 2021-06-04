@@ -22,7 +22,6 @@ import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -30,7 +29,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -39,16 +37,11 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SeslProgressBar;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.concurrent.ExecutorService;
@@ -67,6 +60,8 @@ import de.dlyt.yanndroid.fresh.utils.JobScheduler;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
 import de.dlyt.yanndroid.fresh.utils.SystemProperties;
 import de.dlyt.yanndroid.fresh.utils.Tools;
+import de.dlyt.yanndroid.samsung.drawer.OptionButton;
+import de.dlyt.yanndroid.samsung.layout.DrawerLayout;
 
 public class MainActivity extends AppCompatActivity implements Constants,
         ActivityCompat.OnRequestPermissionsResultCallback {
@@ -77,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     public static boolean hasRoot;
     public static Handler UIHandler;
     @SuppressLint("StaticFieldLeak")
-    private static SeslProgressBar mProgressBar;
+    private static de.dlyt.yanndroid.samsung.ProgressBar mProgressBar;
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
     private final String TAG = this.getClass().getSimpleName();
@@ -111,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
     private Builder mDonateDialog;
     private Builder mPlayStoreDialog;
     private Builder mRebootDialog;
+
+    private DrawerLayout drawerLayout;
 
     public static void updateProgress(int progress) {
         if (mProgressBar != null) {
@@ -153,9 +150,10 @@ public class MainActivity extends AppCompatActivity implements Constants,
         SwitchMaterial dataSaver = findViewById(R.id.switch_data_saver);
         SwitchMaterial appIcon = findViewById(R.id.switch_app_icon);
 
-        initToolbar();
-        initDrawer();
-        settilte(getString(R.string.update));
+
+        drawerLayout = findViewById(R.id.drawerLayout);
+        drawerLayout.setToolbarTitle(getString(R.string.update));
+        initDrawerItems();
         initWebView();
 
         Notifications.setupNotificationChannel(mContext);
@@ -279,63 +277,25 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
 
     public void checkforAppUpdate() {
-        View navigationIcon_Badge = findViewById(R.id.navigationIcon_new_badge);
-        View drawer_about_new_badge = findViewById(R.id.drawer_about_new_badge);
+
         try {
             PackageInfo packageInfo = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
             int appServerVersion = TnsOta.getAppVersion(mContext);
             int appLocalVersion = packageInfo.versionCode;
-            if (appLocalVersion < appServerVersion) {
-                navigationIcon_Badge.setVisibility(View.VISIBLE);
-                drawer_about_new_badge.setVisibility(View.VISIBLE);
-            } else {
-                navigationIcon_Badge.setVisibility(View.GONE);
-                drawer_about_new_badge.setVisibility(View.GONE);
-            }
+            Boolean showIcon = appLocalVersion < appServerVersion;
+            drawerLayout.showIconNotification(showIcon, showIcon);
         } catch (PackageManager.NameNotFoundException ignored) {
         }
     }
 
-    public void initDrawer() {
-        View content = findViewById(R.id.main_content);
-        DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
-        View drawer = findViewById(R.id.drawer);
-        ImageView navigationIcon = findViewById(R.id.navigationIcon);
-        View navigationIcon_Badge = findViewById(R.id.navigationIcon_new_badge);
-        navigationIcon_Badge.setVisibility(View.GONE);
 
-        ViewGroup.LayoutParams layoutParams = drawer.getLayoutParams();
-        layoutParams.width = (int) ((double) this.getResources().getDisplayMetrics().widthPixels / 1.19);
-        drawerLayout.setScrimColor(ContextCompat.getColor(getBaseContext(), R.color.drawer_dim_color));
-        drawerLayout.setDrawerElevation(0);
-
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.opend, R.string.closed) {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(drawerView, slideOffset);
-                Boolean isRtl = getResources().getBoolean(R.bool.tns_is_layout_rtl);
-                float slideX = drawerView.getWidth() * slideOffset;
-                if (isRtl) slideX = -(drawerView.getWidth() * slideOffset);
-
-                content.setTranslationX(slideX);
-            }
-        };
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-
-        navigationIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(drawer, true);
-            }
-        });
-
+    public void initDrawerItems() {
 
         /**Items*/
-        View drawer_about = findViewById(R.id.drawer_about);
-        drawer_about.setOnClickListener(new View.OnClickListener() {
+        drawerLayout.setDrawerIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openAbout(null);
+                openAbout();
             }
         });
 
@@ -344,11 +304,11 @@ public class MainActivity extends AppCompatActivity implements Constants,
         View ota_content = findViewById(R.id.ota_content);
 
 
-        View drawer_update = findViewById(R.id.drawer_update);
+        OptionButton drawer_update = findViewById(R.id.drawer_update);
         drawer_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                settilte(getString(R.string.update));
+                drawerLayout.setToolbarTitle(getString(R.string.update));
                 ota_content.setVisibility(View.VISIBLE);
                 ota_progressbar.setVisibility(View.VISIBLE);
                 if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext);
@@ -358,12 +318,12 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 updateRomUpdateLayouts(false);
                 refreshDrawer();
                 feedback_content.setVisibility(View.GONE);
-                drawerLayout.closeDrawer(drawer, true);
+                //drawerLayout.setDrawerOpen(false, true); //todo
             }
         });
 
 
-        View drawer_feedback = findViewById(R.id.drawer_feedback);
+        OptionButton drawer_feedback = findViewById(R.id.drawer_feedback);
         drawer_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -371,12 +331,12 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 feedback_content.setVisibility(View.VISIBLE);
                 web_progressbar.setVisibility(View.VISIBLE);
                 webView.loadUrl(feedback_url);
-                setSubtitle(getString(R.string.feedback));
-                drawerLayout.closeDrawer(drawer, true);
+                drawerLayout.setToolbarSubtitle(getString(R.string.feedback));
+                //drawerLayout.setDrawerOpen(false, true); //todo
             }
         });
 
-        View drawer_omc_request = findViewById(R.id.drawer_omc_request);
+        OptionButton drawer_omc_request = findViewById(R.id.drawer_omc_request);
         drawer_omc_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -384,12 +344,12 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 feedback_content.setVisibility(View.VISIBLE);
                 web_progressbar.setVisibility(View.VISIBLE);
                 webView.loadUrl(omc_url);
-                setSubtitle(getString(R.string.omc_request));
-                drawerLayout.closeDrawer(drawer, true);
+                drawerLayout.setToolbarSubtitle(getString(R.string.omc_request));
+                //drawerLayout.setDrawerOpen(false, true); //todo
             }
         });
 
-        View drawer_fresh_group = findViewById(R.id.drawer_fresh_group);
+        OptionButton drawer_fresh_group = findViewById(R.id.drawer_fresh_group);
         drawer_fresh_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -397,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         });
 
-        View drawer_discord_group = findViewById(R.id.drawer_github_issues);
+        OptionButton drawer_discord_group = findViewById(R.id.drawer_github_issues);
         drawer_discord_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -406,7 +366,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         });
 
 
-        View drawer_reboot = findViewById(R.id.drawer_reboot);
+        OptionButton drawer_reboot = findViewById(R.id.drawer_reboot);
         drawer_reboot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -414,7 +374,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
         });
 
-        View drawer_renoir = findViewById(R.id.drawer_renoir);
+        OptionButton drawer_renoir = findViewById(R.id.drawer_renoir);
         drawer_renoir.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, RenoirSettingsActivity.class);
             someActivityResultLauncher.launch(intent);
@@ -456,46 +416,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         webView.loadUrl(feedback_url);
     }
 
-    public void initToolbar() {
-        /** Def */
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        AppBarLayout AppBar = findViewById(R.id.app_bar);
-
-        TextView expanded_title = findViewById(R.id.expanded_title);
-        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
-        TextView collapsed_title = findViewById(R.id.collapsed_title);
-
-        /** 1/3 of the Screen */
-        ViewGroup.LayoutParams layoutParams = AppBar.getLayoutParams();
-        layoutParams.height = (int) ((double) this.getResources().getDisplayMetrics().heightPixels / 2.6);
-
-
-        /** Collapsing */
-        AppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                float percentage = (AppBar.getY() / AppBar.getTotalScrollRange());
-                expanded_title.setAlpha(1 - (percentage * 2 * -1));
-                expanded_subtitle.setAlpha(1 - (percentage * 2 * -1));
-                collapsed_title.setAlpha(percentage * -1);
-            }
-        });
-
-
-    }
-
-    public void settilte(String title) {
-        TextView expanded_title = findViewById(R.id.expanded_title);
-        TextView collapsed_title = findViewById(R.id.collapsed_title);
-        expanded_title.setText(title);
-        collapsed_title.setText(title);
-    }
-
-    public void setSubtitle(String subtitle) {
-        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
-        expanded_subtitle.setText(subtitle);
-    }
 
     @Override
     public void onStart() {
@@ -656,7 +576,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         TextView updateNotAvailableSummary = (TextView) findViewById(R.id.main_tv_no_update_available_summary);
         TextView updateCheckingSummary = (TextView) findViewById(R.id.main_tv_checking_update_summary);
 
-        mProgressBar = (SeslProgressBar) findViewById(R.id.bar_main_progress_bar);
+        mProgressBar = (de.dlyt.yanndroid.samsung.ProgressBar) findViewById(R.id.bar_main_progress_bar);
         mProgressBar.setVisibility(View.GONE);
 
         Long currentTimeMillis = System.currentTimeMillis();
@@ -691,7 +611,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 } else {
                     updateAvailableTitle.setText(getResources().getString(R.string
                             .main_update_available));
-                    setSubtitle(getResources().getString(R.string.main_update_available));
+                    drawerLayout.setToolbarSubtitle(getResources().getString(R.string.main_update_available));
                     String htmlColorOpen;
                     htmlColorOpen = "<font color='" + getResources().getColor(R.color.item_color) + "'>";
                     String htmlColorClose = "</font>";
@@ -702,7 +622,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 }
             } else {
                 updateNotAvailable.setVisibility(View.VISIBLE);
-                setSubtitle(getResources().getString(R.string.main_no_update_available));
+                drawerLayout.setToolbarSubtitle(getResources().getString(R.string.main_no_update_available));
 
                 CharSequence localizedTime = DateUtils.getRelativeTimeSpanString(lastCheckedTimeMillis, currentTimeMillis, DateUtils.DAY_IN_MILLIS);
 
@@ -715,7 +635,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             String romVersionBranch = !romBranchString.isEmpty() ? romBranchString.substring(0, 1).toUpperCase() + romBranchString.substring(1).toLowerCase() : " ";
 
             updateChecking.setVisibility(View.VISIBLE);
-            setSubtitle(getResources().getString(R.string.main_checking_updates));
+            drawerLayout.setToolbarSubtitle(getResources().getString(R.string.main_checking_updates));
 
             String updateCheckSummary = getResources().getString(R.string.system_name) + " " +
                     SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_release)) + " " +
@@ -940,7 +860,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         startActivity(intent);
     }
 
-    public void openAbout(View v) {
+    public void openAbout() {
         Intent intent = new Intent(mContext, AboutActivity.class);
         someActivityResultLauncher.launch(intent);
     }
@@ -992,9 +912,9 @@ public class MainActivity extends AppCompatActivity implements Constants,
         about_sys_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);
-                mHits[mHits.length-1] = SystemClock.uptimeMillis();
-                if (mHits[0] >= (SystemClock.uptimeMillis()-500)) {
+                System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
+                mHits[mHits.length - 1] = SystemClock.uptimeMillis();
+                if (mHits[0] >= (SystemClock.uptimeMillis() - 500)) {
                     ComponentName comp = new ComponentName("com.android.systemui", "com.android.systemui.egg.MLandActivity");
 
                     Intent intent = new Intent();

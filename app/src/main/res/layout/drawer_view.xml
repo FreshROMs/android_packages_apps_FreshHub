@@ -9,52 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24.5dp"
-        android:layout_marginVertical="24dp"
-        android:gravity="end|center_vertical"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:id="@+id/drawer_about_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/drawer_about"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="5.5dp"
-                android:src="@drawable/ic_info"
-                app:tint="@color/drawer_icon_color" />
-
-            <TextView
-                android:id="@+id/drawer_about_new_badge"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:layout_alignTop="@+id/drawer_about"
-                android:layout_alignEnd="@+id/drawer_about"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="1dp"
-                android:background="@drawable/new_badge_bg"
-                android:fontFamily="sec-roboto-light"
-                android:gravity="center"
-                android:text="N"
-                android:textColor="@color/white"
-                android:textSize="11dp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-        </FrameLayout>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:gravity="center"
         android:orientation="vertical">
@@ -88,242 +42,70 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/drawer_update"
+            <de.dlyt.yanndroid.samsung.drawer.OptionGroup
+                android:id="@+id/optionGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="@drawable/rounded_corner"
-                android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|start"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="14dp">
+                app:selectedOptionButton="@id/drawer_update">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_system_update"
-                    app:tint="@color/drawer_icon_color" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="?android:attr/textAppearanceLarge"
+                <de.dlyt.yanndroid.samsung.drawer.OptionButton
+                    android:id="@+id/drawer_update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:ellipsize="marquee"
-                    android:singleLine="true"
-                    android:text="@string/update"
-                    android:textAlignment="viewStart"
-                    android:textSize="18dp" />
-            </LinearLayout>
+                    app:icon="@drawable/ic_system_update"
+                    app:text="@string/update" />
 
-
-            <!--<View style="@style/DrawerDividerStyle" />-->
-
-
-            <LinearLayout
-                android:id="@+id/drawer_feedback"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="@drawable/rounded_corner"
-                android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|start"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="14dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_feedback"
-                    app:tint="@color/drawer_icon_color" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="?android:attr/textAppearanceLarge"
+                <de.dlyt.yanndroid.samsung.drawer.OptionButton
+                    android:id="@+id/drawer_feedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:ellipsize="marquee"
-                    android:singleLine="true"
-                    android:text="@string/feedback"
-                    android:textAlignment="viewStart"
-                    android:textSize="18dp" />
-            </LinearLayout>
+                    app:icon="@drawable/ic_feedback"
+                    app:text="@string/feedback" />
 
-
-            <LinearLayout
-                android:id="@+id/drawer_omc_request"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="@drawable/rounded_corner"
-                android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|start"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="14dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_request"
-                    app:tint="@color/drawer_icon_color" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="?android:attr/textAppearanceLarge"
+                <de.dlyt.yanndroid.samsung.drawer.OptionButton
+                    android:id="@+id/drawer_omc_request"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:ellipsize="marquee"
-                    android:singleLine="true"
-                    android:text="@string/omc_request"
-                    android:textAlignment="viewStart"
-                    android:textSize="18dp" />
-            </LinearLayout>
+                    app:icon="@drawable/ic_request"
+                    app:text="@string/omc_request" />
+
+
+            </de.dlyt.yanndroid.samsung.drawer.OptionGroup>
+
 
             <View style="@style/DrawerDividerStyle" />
 
-            <LinearLayout
+            <de.dlyt.yanndroid.samsung.drawer.OptionButton
                 android:id="@+id/drawer_fresh_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="@drawable/rounded_corner"
-                android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|start"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="12dp">
+                app:icon="@drawable/ic_drawer_telegram"
+                app:text="@string/fresh_updates" />
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_drawer_telegram"
-                    app:tint="@color/drawer_icon_color" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="?android:attr/textAppearanceLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:ellipsize="marquee"
-                    android:singleLine="true"
-                    android:text="@string/fresh_updates"
-                    android:textAlignment="viewStart"
-                    android:textSize="18dp" />
-            </LinearLayout>
-
-            <LinearLayout
+            <de.dlyt.yanndroid.samsung.drawer.OptionButton
                 android:id="@+id/drawer_github_issues"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="@drawable/rounded_corner"
-                android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|start"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="12dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_drawer_github"
-                    app:tint="@color/drawer_icon_color" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="?android:attr/textAppearanceLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:ellipsize="marquee"
-                    android:singleLine="true"
-                    android:text="@string/drawer_github_link"
-                    android:textAlignment="viewStart"
-                    android:textSize="18dp" />
-            </LinearLayout>
+                app:icon="@drawable/ic_drawer_github"
+                app:text="@string/drawer_github_link" />
 
             <View style="@style/DrawerDividerStyle" />
 
 
-            <LinearLayout
+            <de.dlyt.yanndroid.samsung.drawer.OptionButton
                 android:id="@+id/drawer_reboot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="@drawable/rounded_corner"
-                android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|start"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="14dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_refresh"
-                    app:tint="@color/drawer_icon_color" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="?android:attr/textAppearanceLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:ellipsize="marquee"
-                    android:singleLine="true"
-                    android:text="@string/reboot"
-                    android:textAlignment="viewStart"
-                    android:textSize="18dp" />
-            </LinearLayout>
+                app:icon="@drawable/ic_refresh"
+                app:text="@string/reboot" />
 
 
-            <LinearLayout
+            <de.dlyt.yanndroid.samsung.drawer.OptionButton
                 android:id="@+id/drawer_renoir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="@drawable/rounded_corner"
-                android:foregroundTint="@color/item_background_color"
-                android:gravity="center_vertical|start"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="14dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_refresh"
-                    app:tint="@color/drawer_icon_color" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="?android:attr/textAppearanceLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:ellipsize="marquee"
-                    android:singleLine="true"
-                    android:text="Renoir"
-                    android:textAlignment="viewStart"
-                    android:textSize="18dp" />
-            </LinearLayout>
+                app:icon="@drawable/ic_palette"
+                app:text="Renoir" />
 
 
         </LinearLayout>

@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -33,6 +31,7 @@ import de.dlyt.yanndroid.fresh.services.download.DownloadAddonInfo;
 import de.dlyt.yanndroid.fresh.services.download.DownloadAddonInfoProgress;
 import de.dlyt.yanndroid.fresh.utils.AddonProperties;
 import de.dlyt.yanndroid.fresh.utils.RecoveryInstall;
+import de.dlyt.yanndroid.samsung.layout.ToolbarLayout;
 import in.uncod.android.bypass.Bypass;
 
 public class AddonInfoActivity extends AppCompatActivity implements Constants {
@@ -105,10 +104,26 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
                 .cacheOnDisk(true)
                 .build();
 
-        initToolbar();
+        ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
+        toolbarLayout.setExpandable(false);
+        setSupportActionBar(toolbarLayout.getToolbar());
+        toolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        TextView collapsed_title = findViewById(R.id.collapsed_title);
+        collapsed_title.setText(mTitle);
+        collapsed_title.setAlpha(0);
 
-        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
-        expanded_subtitle.setText("");
+        ScrollView content_scroll = findViewById(R.id.content_scroll);
+        content_scroll.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                collapsed_title.setAlpha((float) (scrollY) / 120);
+            }
+        });
 
         final ImageView addonThumbnail = (ImageView) findViewById(R.id.addon_info_thumbnail);
         final TextView addonVersion = (TextView) findViewById(R.id.version_number);
@@ -146,19 +161,6 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         addonPackageName.setText(mPackageName);
         addonTotalSize.setText(de.dlyt.yanndroid.fresh.utils.File.formatDataFromBytes(mFileSize));
         addonName.setText(mTitle);
-        settilte("");
-
-        TextView collapsed_title = findViewById(R.id.collapsed_title);
-        collapsed_title.setText(mTitle);
-        collapsed_title.setAlpha(0);
-
-        ScrollView content_scroll = findViewById(R.id.content_scroll);
-        content_scroll.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                collapsed_title.setAlpha((float) (scrollY) / 120);
-            }
-        });
 
         Bypass byPass = new Bypass(mContext);
         CharSequence string = byPass.markdownToSpannable(fullInfo);
@@ -260,36 +262,4 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         new RecoveryInstall(mContext, true, mTitle + "_" + mVersionNumber + ".zip");
     }
 
-    public void initToolbar() {
-        /** Def */
-        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        AppBarLayout AppBar = findViewById(R.id.app_bar);
-
-
-        /** 1/3 of the Screen */
-        ViewGroup.LayoutParams layoutParams = AppBar.getLayoutParams();
-        layoutParams.height = (int) ((double) this.getResources().getDisplayMetrics().heightPixels / 2.6);
-
-        AppBar.setExpanded(false);
-
-        /**Back*/
-        ImageView navigationIcon = findViewById(R.id.navigationIcon);
-        View navigationIcon_Badge = findViewById(R.id.navigationIcon_new_badge);
-        navigationIcon_Badge.setVisibility(View.GONE);
-        navigationIcon.setImageResource(R.drawable.ic_back);
-        navigationIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-    }
-
-    public void settilte(String title) {
-        TextView expanded_title = findViewById(R.id.expanded_title);
-        TextView collapsed_title = findViewById(R.id.collapsed_title);
-        expanded_title.setText(title);
-        collapsed_title.setText(title);
-    }
 }

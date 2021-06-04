@@ -1,23 +1,7 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:windowBackground">@color/background_color</item>
-        <item name="android:statusBarColor">@color/background_color</item>
-        <item name="android:navigationBarColor" tools:targetApi="27">@color/background_color</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
-
-        <item name="android:theme">@style/Main</item>
-
-    </style>
-
-    <style name="SystemPreferenceTheme" parent="@style/AppTheme">
+    <style name="SystemPreferenceTheme" parent="@style/SamsungTheme">
         <item name="android:theme">@style/SystemPreference</item>
     </style>
 
-    <style name="SplashTheme" parent="@style/AppTheme">
-        <item name="android:windowBackground">@color/splash_background</item>
-        <item name="android:statusBarColor">@color/splash_background</item>
-        <item name="android:navigationBarColor" tools:targetApi="27">@color/splash_background</item>
-    </style>
 </resources>

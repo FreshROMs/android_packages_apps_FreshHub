@@ -17,16 +17,10 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.widget.SeslProgressBar;
-
-import com.google.android.material.appbar.AppBarLayout;
 
 import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.R;
@@ -38,13 +32,15 @@ import de.dlyt.yanndroid.fresh.services.download.DownloadRomProgress;
 import de.dlyt.yanndroid.fresh.utils.File;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
 import de.dlyt.yanndroid.fresh.utils.RecoveryInstall;
+import de.dlyt.yanndroid.samsung.ProgressBar;
+import de.dlyt.yanndroid.samsung.layout.ToolbarLayout;
 import in.uncod.android.bypass.Bypass;
 
 @SuppressLint("StaticFieldLeak")
 public class AvailableActivity extends Activity implements Constants, View.OnClickListener {
 
     public final static String TAG = "AvailableActivity";
-    public static SeslProgressBar mProgressBar;
+    public static ProgressBar mProgressBar;
     public static TextView mProgressCounterText;
     public static TextView mDownloadSpeedTextView;
     public static TextView mMainUpdateHeader;
@@ -104,8 +100,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         String localizedSpeed = File.formatDataFromBytes(downloadSpeed * 1000);
         long remainingTime = downloadSpeed != 0 ? ((total - downloaded) / downloadSpeed) / 1000 : 0;
 
-        String timeLeft = String.format("%02d:%02d:%02d", remainingTime / 3600,
-                (remainingTime % 3600) / 60, (remainingTime % 60));
+        String timeLeft = String.format("%02d:%02d:%02d", remainingTime / 3600, (remainingTime % 3600) / 60, (remainingTime % 60));
 
         mProgressCounterText.setText(context.getString(R.string.available_time_remaining, timeLeft));
         mDownloadSpeedTextView.setText(context.getString(R.string.available_download_speed, localizedSpeed));
@@ -290,11 +285,6 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         this.unregisterReceiver(mReceiver);
     }
 
-    public void setSubtitle(String subtitle) {
-        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
-        expanded_subtitle.setText(subtitle);
-    }
-
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -302,11 +292,18 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ota_available);
 
-        initToolbar();
-        settilte(getString(R.string.system_settings_plugin_title));
-        setSubtitle(getString(R.string.system_name) + " "
+        ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
+        toolbarLayout.setExpandable(false);
+        toolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        toolbarLayout.setSubtitle(getString(R.string.system_name) + " "
                 + TnsOta.getReleaseVersion(mContext) + " "
                 + TnsOta.getReleaseVariant(mContext));
+
 
         mDownloadRom = new DownloadRom();
 
@@ -332,53 +329,6 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         mLoadingDialog.setContentView(loadingLayout);
     }
 
-    public void initToolbar() {
-        /** Def */
-        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        AppBarLayout AppBar = findViewById(R.id.app_bar);
-
-        TextView expanded_title = findViewById(R.id.expanded_title);
-        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
-        TextView collapsed_title = findViewById(R.id.collapsed_title);
-
-        /** 1/3 of the Screen */
-        ViewGroup.LayoutParams layoutParams = AppBar.getLayoutParams();
-        layoutParams.height = (int) ((double) this.getResources().getDisplayMetrics().heightPixels / 2.6);
-
-
-        /** Collapsing */
-        AppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                float percentage = (AppBar.getY() / AppBar.getTotalScrollRange());
-                expanded_title.setAlpha(1 - (percentage * 2 * -1));
-                expanded_subtitle.setAlpha(1 - (percentage * 2 * -1));
-                collapsed_title.setAlpha(percentage * -1);
-            }
-        });
-        AppBar.setExpanded(false);
-
-        /**Back*/
-        ImageView navigationIcon = findViewById(R.id.navigationIcon);
-        View navigationIcon_Badge = findViewById(R.id.navigationIcon_new_badge);
-        navigationIcon_Badge.setVisibility(View.GONE);
-        navigationIcon.setImageResource(R.drawable.ic_back);
-        navigationIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-    }
-
-    public void settilte(String title) {
-        TextView expanded_title = findViewById(R.id.expanded_title);
-        TextView collapsed_title = findViewById(R.id.collapsed_title);
-        expanded_title.setText(title);
-        collapsed_title.setText(title);
-    }
 
     @Override
     public void onClick(View v) {

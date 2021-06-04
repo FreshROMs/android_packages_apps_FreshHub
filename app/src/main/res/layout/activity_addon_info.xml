@@ -5,179 +5,170 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/main_content"
+    <de.dlyt.yanndroid.samsung.layout.ToolbarLayout
+        android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:navigationIcon="@drawable/ic_samsung_back"
+        app:title="">
 
-        <include layout="@layout/toolbar_layout" />
-
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/content_scroll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
             android:fillViewport="true"
-            android:foreground="@drawable/rounded_corner_top"
-            android:orientation="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:nestedScrollingEnabled="false">
 
-
-            <ScrollView
-                android:id="@+id/content_scroll"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:fillViewport="true"
-                android:nestedScrollingEnabled="false">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fillViewport="true"
-                    android:orientation="vertical">
+                <RelativeLayout
+                    android:id="@+id/addon_list_item"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
 
-                    <RelativeLayout
-                        android:id="@+id/addon_list_item"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
+                    <FrameLayout
+                        android:id="@+id/addon_list_item_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="82.0dip"
+                        android:layout_marginStart="24.0dip"
+                        android:layout_marginLeft="24.0dip"
+                        android:layout_marginEnd="16.0dip"
+                        android:layout_marginRight="16.0dip"
+                        android:duplicateParentState="true">
 
                         <FrameLayout
-                            android:id="@+id/addon_list_item_image"
                             android:layout_width="wrap_content"
-                            android:layout_height="82.0dip"
-                            android:layout_marginStart="24.0dip"
-                            android:layout_marginLeft="24.0dip"
-                            android:layout_marginEnd="16.0dip"
-                            android:layout_marginRight="16.0dip"
-                            android:duplicateParentState="true">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:animateLayoutChanges="true">
 
-                            <FrameLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:animateLayoutChanges="true">
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="60.0dip"
+                                android:layout_height="60.0dip"
+                                android:elevation="12dp"
+                                app:cardBackgroundColor="@android:color/transparent"
+                                app:cardCornerRadius="15.0dip">
 
-                                <com.google.android.material.card.MaterialCardView
+                                <ImageView
+                                    android:id="@+id/addon_info_thumbnail"
                                     android:layout_width="60.0dip"
                                     android:layout_height="60.0dip"
-                                    android:elevation="12dp"
-                                    app:cardBackgroundColor="@android:color/transparent"
-                                    app:cardCornerRadius="15.0dip">
-
-                                    <ImageView
-                                        android:id="@+id/addon_info_thumbnail"
-                                        android:layout_width="60.0dip"
-                                        android:layout_height="60.0dip"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitXY"
-                                        android:src="@color/sesl_control_normal_color" />
-                                </com.google.android.material.card.MaterialCardView>
-                            </FrameLayout>
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitXY"
+                                    android:src="@color/sesl_control_normal_color" />
+                            </com.google.android.material.card.MaterialCardView>
                         </FrameLayout>
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/addon_list_item_image"
+                        android:orientation="vertical"
+                        android:paddingEnd="8dp">
 
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/addon_list_item_image"
-                            android:orientation="vertical"
-                            android:paddingEnd="8dp">
+                            android:orientation="horizontal">
 
                             <LinearLayout
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:layout_width="0.0dip"
+                                android:layout_height="82.0dip"
+                                android:layout_weight="1.0"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
 
                                 <LinearLayout
-                                    android:layout_width="0.0dip"
-                                    android:layout_height="82.0dip"
-                                    android:layout_weight="1.0"
+                                    android:id="@+id/addon_info_container"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:gravity="center_vertical"
-                                    android:orientation="vertical">
+                                    android:orientation="vertical"
+                                    android:paddingEnd="24dp">
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/title"
+                                        style="?textAppearanceHeadline6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:paddingEnd="24dp"
+                                        android:singleLine="true"
+                                        android:text="Addon Name"
+                                        android:textDirection="locale"
+                                        android:textSize="20.0sp" />
 
                                     <LinearLayout
-                                        android:id="@+id/addon_info_container"
                                         android:layout_width="fill_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center_vertical"
-                                        android:gravity="center_vertical"
                                         android:orientation="vertical"
                                         android:paddingEnd="24dp">
 
                                         <com.google.android.material.textview.MaterialTextView
-                                            android:id="@+id/title"
-                                            style="?textAppearanceHeadline6"
+                                            android:id="@+id/version_number"
+                                            style="?textAppearanceCaption"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:ellipsize="end"
-                                            android:paddingEnd="24dp"
                                             android:singleLine="true"
-                                            android:text="Addon Name"
-                                            android:textDirection="locale"
-                                            android:textSize="20.0sp" />
+                                            android:text="Last update"
+                                            android:textSize="14.0sp" />
 
-                                        <LinearLayout
-                                            android:layout_width="fill_parent"
+                                        <com.google.android.material.textview.MaterialTextView
+                                            android:id="@+id/package_name"
+                                            style="?android:attr/textAppearanceSmall"
+                                            android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:orientation="vertical"
-                                            android:paddingEnd="24dp">
-
-                                            <com.google.android.material.textview.MaterialTextView
-                                                android:id="@+id/version_number"
-                                                style="?textAppearanceCaption"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:singleLine="true"
-                                                android:text="Last update"
-                                                android:textSize="14.0sp" />
-
-                                            <com.google.android.material.textview.MaterialTextView
-                                                android:id="@+id/package_name"
-                                                style="?android:attr/textAppearanceSmall"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:singleLine="true"
-                                                android:text="Last update"
-                                                android:textSize="12.0sp" />
-                                        </LinearLayout>
+                                            android:singleLine="true"
+                                            android:text="Last update"
+                                            android:textSize="12.0sp" />
                                     </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginVertical="24dp"
-                        android:fillViewport="true"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.textview.MaterialTextView
-                            style="?textAppearanceHeadline6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="24dp"
-                            android:singleLine="false"
-                            android:text="Description"
-                            android:textAlignment="viewStart"
-                            android:textSize="18.0sp" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/addon_information_description"
-                            style="?textAppearanceBody2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="24dp"
-                            android:layout_marginTop="12.0dip"
-                            android:singleLine="false"
-                            android:text="@string/available_changelog_content"
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/ota_changelog_text_color" />
-
                     </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="24dp"
+                    android:fillViewport="true"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="?textAppearanceHeadline6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:singleLine="false"
+                        android:text="Description"
+                        android:textAlignment="viewStart"
+                        android:textSize="18.0sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/addon_information_description"
+                        style="?textAppearanceBody2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="12.0dip"
+                        android:singleLine="false"
+                        android:text="@string/available_changelog_content"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/ota_changelog_text_color" />
+
                 </LinearLayout>
-            </ScrollView>
-        </LinearLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </de.dlyt.yanndroid.samsung.layout.ToolbarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

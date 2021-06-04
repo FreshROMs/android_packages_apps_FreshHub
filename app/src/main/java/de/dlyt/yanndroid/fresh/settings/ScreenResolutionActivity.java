@@ -10,20 +10,18 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 
 import java.util.Scanner;
 
 import de.dlyt.yanndroid.fresh.R;
+import de.dlyt.yanndroid.samsung.layout.ToolbarLayout;
 
 public class ScreenResolutionActivity extends AppCompatActivity {
 
@@ -102,11 +100,6 @@ public class ScreenResolutionActivity extends AppCompatActivity {
         }
     }
 
-    public void setSubtitle(String subtitle) {
-        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
-        expanded_subtitle.setText(subtitle);
-    }
-
     private void checkDefaultApiSetting() {
         try {
             default_api_setting = Settings.Global.getInt(mContext.getContentResolver(), "hidden_api_policy");
@@ -121,9 +114,15 @@ public class ScreenResolutionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_resolution);
 
-        initToolbar();
-        settilte(getResources().getString(R.string.system_settings_resolution_plugin_title));
-        setSubtitle(" ");
+        ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
+        toolbarLayout.setExpanded(false, false);
+        setSupportActionBar(toolbarLayout.getToolbar());
+        toolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         sharedPreferences = getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
         checkDefaultApiSetting();
@@ -210,53 +209,6 @@ public class ScreenResolutionActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public void initToolbar() {
-        /** Def */
-        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        AppBarLayout AppBar = findViewById(R.id.app_bar);
-
-        TextView expanded_title = findViewById(R.id.expanded_title);
-        TextView expanded_subtitle = findViewById(R.id.expanded_subtitle);
-        TextView collapsed_title = findViewById(R.id.collapsed_title);
-
-        /** 1/3 of the Screen */
-        ViewGroup.LayoutParams layoutParams = AppBar.getLayoutParams();
-        layoutParams.height = (int) ((double) this.getResources().getDisplayMetrics().heightPixels / 2.6);
-
-
-        /** Collapsing */
-        AppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                float percentage = (AppBar.getY() / AppBar.getTotalScrollRange());
-                expanded_title.setAlpha(1 - (percentage * 2 * -1));
-                expanded_subtitle.setAlpha(1 - (percentage * 2 * -1));
-                collapsed_title.setAlpha(percentage * -1);
-            }
-        });
-        AppBar.setExpanded(false);
-
-        /**Back*/
-        ImageView navigationIcon = findViewById(R.id.navigationIcon);
-        View navigationIcon_Badge = findViewById(R.id.navigationIcon_new_badge);
-        navigationIcon_Badge.setVisibility(View.GONE);
-        navigationIcon.setImageResource(R.drawable.ic_back);
-        navigationIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-    }
-
-    public void settilte(String title) {
-        TextView expanded_title = findViewById(R.id.expanded_title);
-        TextView collapsed_title = findViewById(R.id.collapsed_title);
-        expanded_title.setText(title);
-        collapsed_title.setText(title);
     }
 
 }

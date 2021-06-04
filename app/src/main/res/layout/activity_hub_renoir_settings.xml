@@ -1,141 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<de.dlyt.yanndroid.samsung.layout.ToolbarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:navigationIcon="@drawable/ic_samsung_back"
+    app:title="@string/renoir_settings_title">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/main_content"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:foreground="@drawable/rounded_corner_bottom">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <include layout="@layout/toolbar_layout" />
+        <de.dlyt.yanndroid.samsung.SwitchBar
+            android:id="@+id/switch_renoir_enabled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="32dp"
+            android:orientation="vertical">
 
-            <androidx.core.widget.NestedScrollView
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/renoir_description_text"
+                style="?textAppearanceBody2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:text="@string/renoir_settings_desc"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="start|center"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.SeslSwitchBar
-                        android:id="@+id/switch_renoir_enabled"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="24dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginBottom="32dp"
+                        android:gravity="start|center"
                         android:orientation="vertical">
 
-                        <com.google.android.material.textview.MaterialTextView
-                            style="?textAppearanceBody2"
-                            android:id="@+id/renoir_description_text"
+                        <LinearLayout
+                            android:id="@+id/switch_renoir_lock_screen_layout"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:text="@string/renoir_settings_desc" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="match_parent"
+                            android:background="?selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="start|center_vertical"
+                            android:onClick="toggleRenoirSwitch"
+                            android:orientation="horizontal">
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:gravity="start|center"
-                                android:orientation="vertical">
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="24dp"
+                                android:layout_weight="1"
+                                android:duplicateParentState="true"
+                                android:gravity="center_vertical|start"
+                                android:orientation="horizontal"
+                                android:paddingEnd="16dp">
 
                                 <LinearLayout
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="start|center"
-                                    android:orientation="vertical">
+                                    android:duplicateParentState="true"
+                                    android:orientation="vertical"
+                                    android:paddingEnd="12dp">
 
-                                    <LinearLayout
-                                        android:id="@+id/switch_renoir_lock_screen_layout"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="?selectableItemBackground"
-                                        android:clickable="true"
-                                        android:focusable="true"
-                                        android:gravity="start|center_vertical"
-                                        android:onClick="toggleRenoirSwitch"
-                                        android:orientation="horizontal">
+                                    <com.google.android.material.textview.MaterialTextView
+                                        style="?textAppearanceBody1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:duplicateParentState="true"
+                                        android:text="@string/renoir_settings_lock_screen"
+                                        android:textAlignment="viewStart"
+                                        android:textSize="18sp" />
 
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="15dp"
-                                            android:layout_marginStart="24dp"
-                                            android:layout_weight="1"
-                                            android:gravity="center_vertical|start"
-                                            android:duplicateParentState="true"
-                                            android:orientation="horizontal"
-                                            android:paddingEnd="16dp">
-
-                                            <LinearLayout
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="vertical"
-                                                android:duplicateParentState="true"
-                                                android:paddingEnd="12dp">
-
-                                                <com.google.android.material.textview.MaterialTextView
-                                                    style="?textAppearanceBody1"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:duplicateParentState="true"
-                                                    android:text="@string/renoir_settings_lock_screen"
-                                                    android:textAlignment="viewStart"
-                                                    android:textSize="18sp" />
-
-                                                <com.google.android.material.textview.MaterialTextView
-                                                    style="?android:attr/textAppearanceSmall"
-                                                    android:layout_width="wrap_content"
-                                                    android:duplicateParentState="true"
-                                                    android:layout_height="wrap_content"
-                                                    android:text="@string/renoir_settings_lock_screen_desc"
-                                                    android:textAlignment="viewStart" />
-                                            </LinearLayout>
-                                        </LinearLayout>
-
-                                        <com.google.android.material.switchmaterial.SwitchMaterial
-                                            android:id="@+id/switch_renoir_lock_screen"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginEnd="32dp"
-                                            android:duplicateParentState="true"
-                                            android:paddingStart="8dp" />
-                                    </LinearLayout>
+                                    <com.google.android.material.textview.MaterialTextView
+                                        style="?android:attr/textAppearanceSmall"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:duplicateParentState="true"
+                                        android:text="@string/renoir_settings_lock_screen_desc"
+                                        android:textAlignment="viewStart" />
                                 </LinearLayout>
                             </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/switch_renoir_lock_screen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="32dp"
+                                android:duplicateParentState="true"
+                                android:paddingStart="8dp" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-
-
-            </androidx.core.widget.NestedScrollView>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</de.dlyt.yanndroid.samsung.layout.ToolbarLayout>

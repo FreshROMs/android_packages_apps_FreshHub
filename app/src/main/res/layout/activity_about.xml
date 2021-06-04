@@ -1,135 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<de.dlyt.yanndroid.samsung.layout.ToolbarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
+    android:id="@+id/toolbar_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:foreground="@drawable/rounded_corner_bottom">
-
-    <include
-        layout="@layout/toolbar_layout"
-        app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
+    app:title=""
+    app:navigationIcon="@drawable/ic_samsung_back">
 
     <LinearLayout
+        android:id="@+id/upper_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
+        android:gravity="top|center_horizontal"
         android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:paddingTop="64.0dip"
+        android:paddingBottom="24.0dip">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:nestedScrollingEnabled="false">
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10.0dip"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/app_name"
+            android:textColor="@color/ota_changelog_text_color"
+            android:textSize="40.0sp" />
 
-            <LinearLayout
+        <TextView
+            android:id="@+id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.0dip"
+            android:gravity="center"
+            android:text="@string/about_version_title"
+            android:textColor="@color/sesl_radiobutton_text_color"
+            android:textSize="16.0sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.0dip"
+            android:gravity="center"
+            android:text="@string/the_latest_version_is_already_installed"
+            android:textColor="@color/sesl_radiobutton_text_color"
+            android:textSize="16.0sp"
+            android:textStyle="normal" />
+
+        <ProgressBar
+            android:id="@+id/loading_bar"
+            style="@style/ProgressBarStyle.Circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/update_button"
+            style="@style/ButtonStyle.Invert"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:visibility="gone" />
+
+
+        <LinearLayout
+            android:id="@+id/lower_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="12.0dip"
+            android:gravity="bottom|center"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/osl_button"
+                style="@style/ButtonStyle.Invert.Secondary"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12.0dip"
+                android:onClick="openOpenSource"
+                android:text="@string/about_open_source_button" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="?android:attr/textAppearanceSmall"
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/about_bottom_byline"
+                android:textAlignment="center"
+                android:textStyle="bold" />
 
-                <LinearLayout
-                    android:id="@+id/app_info_layout"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:orientation="vertical">
-
-                    <ScrollView
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:fillViewport="true">
-
-                        <LinearLayout
-                            android:id="@+id/upper_layout"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="top|center_horizontal"
-                            android:orientation="vertical"
-                            android:paddingTop="64.0dip"
-                            android:paddingBottom="24.0dip">
-
-                            <TextView
-                                android:id="@+id/app_name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10.0dip"
-                                android:fontFamily="sans-serif-light"
-                                android:text="@string/app_name"
-                                android:textColor="@color/ota_changelog_text_color"
-                                android:textSize="40.0sp" />
-
-                            <TextView
-                                android:id="@+id/version"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="8.0dip"
-                                android:gravity="center"
-                                android:text="@string/about_version_title"
-                                android:textColor="@color/sesl_radiobutton_text_color"
-                                android:textSize="16.0sp"
-                                android:textStyle="normal" />
-
-                            <TextView
-                                android:id="@+id/status_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="8.0dip"
-                                android:gravity="center"
-                                android:text="@string/the_latest_version_is_already_installed"
-                                android:textColor="@color/sesl_radiobutton_text_color"
-                                android:textSize="16.0sp"
-                                android:textStyle="normal" />
-
-                            <ProgressBar
-                                android:id="@+id/loading_bar"
-                                style="@style/ProgressBarStyle.Circle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/update_button"
-                                style="@style/ButtonStyle.Invert"
-                                android:layout_width="250dp"
-                                android:layout_height="wrap_content"
-                                android:text="Update"
-                                android:visibility="gone" />
-
-
-                            <LinearLayout
-                                android:id="@+id/lower_layout"
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:layout_marginBottom="12.0dip"
-                                android:gravity="bottom|center"
-                                android:orientation="vertical">
-
-                                <com.google.android.material.button.MaterialButton
-                                    android:id="@+id/osl_button"
-                                    style="@style/ButtonStyle.Invert.Secondary"
-                                    android:layout_width="250dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="12.0dip"
-                                    android:onClick="openOpenSource"
-                                    android:text="@string/about_open_source_button" />
-
-                                <com.google.android.material.textview.MaterialTextView
-                                    style="?android:attr/textAppearanceSmall"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="24dp"
-                                    android:layout_marginTop="2dp"
-                                    android:layout_marginBottom="12dp"
-                                    android:text="@string/about_bottom_byline"
-                                    android:textAlignment="center"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-                    </ScrollView>
-
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
+        </LinearLayout>
     </LinearLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</de.dlyt.yanndroid.samsung.layout.ToolbarLayout>

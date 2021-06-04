@@ -1,32 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<de.dlyt.yanndroid.samsung.layout.ToolbarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
+    android:id="@+id/toolbar_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:foreground="@drawable/rounded_corner_bottom">
+    app:title="@string/main_addon"
+    app:navigationIcon="@drawable/ic_samsung_back">
 
-
-    <include layout="@layout/toolbar_layout" />
-
-
-    <LinearLayout
+    <ListView
+        android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_color"
-        android:fillViewport="true"
-        android:foreground="@drawable/rounded_corner_top"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <ListView
-            android:id="@+id/listview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@color/background_color"
-            android:nestedScrollingEnabled="true" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:divider="@color/background_color"
+        android:nestedScrollingEnabled="true" />
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</de.dlyt.yanndroid.samsung.layout.ToolbarLayout>

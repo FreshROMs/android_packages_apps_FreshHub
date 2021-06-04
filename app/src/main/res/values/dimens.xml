@@ -1,34 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="rounded_corner_size">26dp</dimen>
-    <item name="sesl_disabled_color_alpha" type="dimen">0.4</item>
-    <dimen name="download_btn_outline_size">1.0px</dimen>
-    <dimen name="sesl_progress_circle_size">60.0dip</dimen>
-    <dimen name="sesl_progress_circle_size_small">24.0dip</dimen>
-    <dimen name="sesl_switchbar_height">64.0dip</dimen>
-    <dimen name="sesl_switchbar_margin_end">24.0dip</dimen>
-    <dimen name="sesl_switchbar_margin_start">24.0dip</dimen>
-    <dimen name="sesl_switchbar_progress_margin_right">12.0dip</dimen>
-    <dimen name="sesl_text_size_body_1">14.0sp</dimen>
-    <dimen name="sesl_text_size_title">20.0sp</dimen>
-    <dimen name="sesl_toolbar_title_text_size">19.0sp</dimen>
-    <dimen name="sesl_progress_bar_min_height">16.0dip</dimen>
-
-    <dimen name="sesl_seekbar_padding_horizontal">16.0dip</dimen>
-    <dimen name="sesl_seekbar_ripple_radius">16.0dip</dimen>
-    <dimen name="sesl_seekbar_thumb_radius">8.5dp</dimen>
-    <dimen name="sesl_seekbar_track_height">3.0dip</dimen>
-    <dimen name="sesl_seekbar_track_height_expand">17.0dip</dimen>
-
-    <dimen name="spacing_vertical_small">16.0dip</dimen>
-    <dimen name="spacing_vertical_tiny">10.0dip</dimen>
-    <dimen name="progress_bar_height">24.0dip</dimen>
-    <dimen name="progress_bar_radius">12.0dip</dimen>
-
 
     <dimen name="sec_widget_preference_unclickable_margin_top">20.0dip</dimen>
     <dimen name="sec_widget_body_text_padding_start_end">24.0dip</dimen>
     <dimen name="sec_widget_img_margin">20.0dip</dimen>
-
+    <dimen name="download_btn_outline_size">1.0px</dimen>
 
 </resources>

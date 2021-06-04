@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import de.dlyt.yanndroid.fresh.R;
+import de.dlyt.yanndroid.samsung.layout.SplashViewAnimated;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,10 +20,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        ImageView fresh_fg = findViewById(R.id.splash_image_foreground);
-        Animation splash_anim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.splash_animation);
-        Handler handler = new Handler(Looper.getMainLooper());
-        splash_anim.setAnimationListener(new Animation.AnimationListener() {
+        SplashViewAnimated splash_anim = findViewById(R.id.splash_view);
+        splash_anim.setSplashAnimationListener(new Animation.AnimationListener() {
 
             @Override
             public void onAnimationStart(Animation animation) {
@@ -39,8 +38,9 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
 
+        Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(() -> {
-            fresh_fg.startAnimation(splash_anim);
+            splash_anim.startSplashAnimation();
         }, 500);
     }
 }

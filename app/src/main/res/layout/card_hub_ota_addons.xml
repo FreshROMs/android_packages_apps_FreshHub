@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleX="-1"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_samsung_back" />
 
     </LinearLayout>
 
