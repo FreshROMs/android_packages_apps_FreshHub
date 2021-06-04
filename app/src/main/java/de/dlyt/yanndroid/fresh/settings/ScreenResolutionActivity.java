@@ -164,10 +164,8 @@ public class ScreenResolutionActivity extends AppCompatActivity {
                 }
             }
         });
-        switch (resolution) { /**seems unnecessary but else the app crashes at the first time*/
-            case R.id.resolution_high:
-                resolution = R.id.resolution_high;
-                break;
+        switch (resolution) {
+            /**seems unnecessary but else the app crashes at the first time*/
             case R.id.resolution_medium:
                 resolution = R.id.resolution_medium;
                 break;
