@@ -95,6 +95,7 @@ Due to Android's new rules for Scoped Storage, you can find the update in /sdcar
     <string name="system_name">"Fresh"</string>
     <!-- Props -->
     <string name="ota_swupdate_prop_api_url" translatable="false">"ro.fresh.ota.api"</string>
+    <string name="ota_swupdate_prop_api_url_mirror" translatable="false">"ro.fresh.ota.api.mirror"</string>
     <string name="ota_swupdate_prop_date" translatable="false">"ro.system.build.date"</string>
     <string name="ota_swupdate_prop_date_actual" translatable="false">"ro.fresh.build.date"</string>
     <string name="ota_swupdate_prop_release" translatable="false">"ro.fresh.version"</string>
@@ -129,6 +130,20 @@ Due to Android's new rules for Scoped Storage, you can find the update in /sdcar
     <string name="system_notification_group_title">"Fresh OTA"</string>
     <string name="system_notification_channel_title">"Available updates"</string>
     <string name="system_notification_channel_ongoing_title">"Ongoing notifications"</string>
+
+    <string name="customization_notification_ongoing_channel_id" translatable="false">"TnsFreshCustomize"</string>
+    <string name="customization_notification_group_title">"Fresh Hub"</string>
+    <string name="customization_notification_channel_ongoing_title">"Ongoing customizations"</string>
+    <string name="customization_notification_channel_desc">"This notification channel allows the app to execute operations needed in the background."</string>
+
+    <string name="renoir_notification_title">@string/renoir_settings_title</string>
+    <string name="renoir_notification_desc">"Changing device theme based on wallpaper…"</string>
+    <string name="renoir_settings_title">"Color-matching Theme"</string>
+    <string name="renoir_settings_desc">"Make One UI yours by adapting the device theme with your current wallpaper."</string>
+    <string name="renoir_settings_desc_unavailable">"Color-matching Theme is not available because a third-party theme is applied."</string>
+    <string name="renoir_settings_lock_screen">"Use lock screen colors"</string>
+    <string name="renoir_settings_lock_screen_desc">"Use colors from your lock screen wallpaper in picking the device theme."</string>
+
     <string name="system_notification_channel_desc">"This notification channel allows the app to notify you about updates available on your device."</string>
     <string name="system_notification_available_title">"Software update available"</string>
     <string name="system_notification_available_desc">"Fresh %1$s %2$s is now available for your device!"</string>

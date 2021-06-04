@@ -327,6 +327,8 @@ public class AddonActivity extends AppCompatActivity implements Constants {
             boolean installed = AddonProperties.isAddonInstalled(item.getPackageName());
             boolean noUninstall = AddonProperties.isAddonNonUninstall(item.getPackageName());
             boolean updated = AddonProperties.getInstalledAddonVersion(item.getPackageName()) >= item.getVersionNumber();
+            if (updated)
+                finished = (file.exists()); // Addons installed outside Fresh Hub has a different size
 
             boolean downloading = false;
             long downloadId = TnsAddonDownload.getAddonDownload(mContext, item.getId());

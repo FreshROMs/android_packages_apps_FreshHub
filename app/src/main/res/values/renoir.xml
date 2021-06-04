@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="renoir_enabled_default">false</bool>
+
+    <color name="one">#0381fe</color>
+    <color name="inch_worm">#7f9c19</color>
+    <color name="pistachio">#9bbe04</color>
+    <color name="pacifika">#638000</color>
+    <color name="lima">#5dcc01</color>
+    <color name="chateau_green">#15b76d</color>
+    <color name="vida_loca">#469901</color>
+    <color name="fruit_salad">#00994f</color>
+    <color name="gossamer">#0c967c</color>
+    <color name="deep_sea">#008060</color>
+    <color name="emerald">#18dc7f</color>
+    <color name="picton_blue">#11b1f3</color>
+    <color name="havelock_blue">#0091ea</color>
+    <color name="cerulean_blue">#1e4bc6</color>
+    <color name="cornflower_blue">#6693ed</color>
+    <color name="chetwode_blue">#7882ff</color>
+    <color name="medium_purple">#8064f4</color>
+    <color name="studio">#6445e5</color>
+    <color name="rose">#ee2172</color>
+    <color name="red_ribbon">#f01446</color>
+    <color name="razzmatazz">#d60052</color>
+    <color name="alizarin_crimson">#e83d43</color>
+    <color name="cinnabar">#e53d35</color>
+    <color name="pumpkin">#ff7b22</color>
+    <color name="california">#ff9e00</color>
+    <color name="flamingo">#e95b31</color>
+    <color name="allports">#007bb3</color>
+    <color name="cobalt">#0043b3</color>
+    <color name="blue_gem">#001799</color>
+    <color name="deep_blue">#280080</color>
+    <color name="seance">#830099</color>
+    <color name="dark_blue">#4000cc</color>
+    <color name="blue_ribbon">#3351ff</color>
+    <color name="azure_radiance">#337fff</color>
+    <color name="electric_violet">#7333ff</color>
+    <color name="violet_eggplant">#ae00cc</color>
+    <color name="fuchsia_pink">#c400e6</color>
+    <color name="paprika">#990037</color>
+    <color name="carmine">#99001d</color>
+    <color name="totem_pole">#9b0000</color>
+    <color name="kenyan_copper">#801f00</color>
+    <color name="mai_tai">#b36600</color>
+    <color name="zest">#e68300</color>
+    <color name="torch_red">#ff1943</color>
+    <color name="vermilion">#ff5019</color>
+    <color name="monza">#cc0027</color>
+    <color name="smalt">#003999</color>
+    <color name="blue_lagoon">#007280</color>
+
+    <array name="renoir_color_resources">
+        <item>@color/one</item>
+        <item>@color/inch_worm</item>
+        <item>@color/pistachio</item>
+        <item>@color/pacifika</item>
+        <item>@color/lima</item>
+        <item>@color/chateau_green</item>
+        <item>@color/vida_loca</item>
+        <item>@color/fruit_salad</item>
+        <item>@color/gossamer</item>
+        <item>@color/deep_sea</item>
+        <item>@color/emerald</item>
+        <item>@color/picton_blue</item>
+        <item>@color/havelock_blue</item>
+        <item>@color/cerulean_blue</item>
+        <item>@color/cornflower_blue</item>
+        <item>@color/chetwode_blue</item>
+        <item>@color/medium_purple</item>
+        <item>@color/studio</item>
+        <item>@color/rose</item>
+        <item>@color/red_ribbon</item>
+        <item>@color/razzmatazz</item>
+        <item>@color/alizarin_crimson</item>
+        <item>@color/cinnabar</item>
+        <item>@color/pumpkin</item>
+        <item>@color/california</item>
+        <item>@color/flamingo</item>
+        <item>@color/allports</item>
+        <item>@color/cobalt</item>
+        <item>@color/blue_gem</item>
+        <item>@color/deep_blue</item>
+        <item>@color/seance</item>
+        <item>@color/dark_blue</item>
+        <item>@color/blue_ribbon</item>
+        <item>@color/azure_radiance</item>
+        <item>@color/electric_violet</item>
+        <item>@color/violet_eggplant</item>
+        <item>@color/fuchsia_pink</item>
+        <item>@color/paprika</item>
+        <item>@color/carmine</item>
+        <item>@color/totem_pole</item>
+        <item>@color/kenyan_copper</item>
+        <item>@color/mai_tai</item>
+        <item>@color/zest</item>
+        <item>@color/torch_red</item>
+        <item>@color/vermilion</item>
+        <item>@color/monza</item>
+        <item>@color/smalt</item>
+        <item>@color/blue_lagoon</item>
+    </array>
+
+    <string-array name="renoir_package_resources">
+        <item>io.tns.fresh.renoir.one</item>
+        <item>io.tns.fresh.renoir.inch_worm</item>
+        <item>io.tns.fresh.renoir.pistachio</item>
+        <item>io.tns.fresh.renoir.pacifika</item>
+        <item>io.tns.fresh.renoir.lima</item>
+        <item>io.tns.fresh.renoir.chateau_green</item>
+        <item>io.tns.fresh.renoir.vida_loca</item>
+        <item>io.tns.fresh.renoir.fruit_salad</item>
+        <item>io.tns.fresh.renoir.gossamer</item>
+        <item>io.tns.fresh.renoir.deep_sea</item>
+        <item>io.tns.fresh.renoir.emerald</item>
+        <item>io.tns.fresh.renoir.picton_blue</item>
+        <item>io.tns.fresh.renoir.havelock_blue</item>
+        <item>io.tns.fresh.renoir.cerulean_blue</item>
+        <item>io.tns.fresh.renoir.cornflower_blue</item>
+        <item>io.tns.fresh.renoir.chetwode_blue</item>
+        <item>io.tns.fresh.renoir.medium_purple</item>
+        <item>io.tns.fresh.renoir.studio</item>
+        <item>io.tns.fresh.renoir.rose</item>
+        <item>io.tns.fresh.renoir.red_ribbon</item>
+        <item>io.tns.fresh.renoir.razzmatazz</item>
+        <item>io.tns.fresh.renoir.alizarin_crimson</item>
+        <item>io.tns.fresh.renoir.cinnabar</item>
+        <item>io.tns.fresh.renoir.pumpkin</item>
+        <item>io.tns.fresh.renoir.california</item>
+        <item>io.tns.fresh.renoir.flamingo</item>
+        <item>io.tns.fresh.renoir.allports</item>
+        <item>io.tns.fresh.renoir.cobalt</item>
+        <item>io.tns.fresh.renoir.blue_gem</item>
+        <item>io.tns.fresh.renoir.deep_blue</item>
+        <item>io.tns.fresh.renoir.seance</item>
+        <item>io.tns.fresh.renoir.dark_blue</item>
+        <item>io.tns.fresh.renoir.blue_ribbon</item>
+        <item>io.tns.fresh.renoir.azure_radiance</item>
+        <item>io.tns.fresh.renoir.electric_violet</item>
+        <item>io.tns.fresh.renoir.violet_eggplant</item>
+        <item>io.tns.fresh.renoir.fuchsia_pink</item>
+        <item>io.tns.fresh.renoir.paprika</item>
+        <item>io.tns.fresh.renoir.carmine</item>
+        <item>io.tns.fresh.renoir.totem_pole</item>
+        <item>io.tns.fresh.renoir.kenyan_copper</item>
+        <item>io.tns.fresh.renoir.mai_tai</item>
+        <item>io.tns.fresh.renoir.zest</item>
+        <item>io.tns.fresh.renoir.torch_red</item>
+        <item>io.tns.fresh.renoir.vermilion</item>
+        <item>io.tns.fresh.renoir.monza</item>
+        <item>io.tns.fresh.renoir.smalt</item>
+        <item>io.tns.fresh.renoir.blue_lagoon</item>
+    </string-array>
+
+    <string-array name="renoir_core_package_resources">
+        <item>io.tns.fresh.renoir.core.systemui</item> <!-- SystemUI - always enabled first -->
+        <item>io.tns.fresh.renoir.core.aod</item> <!-- Always-on-Display -->
+        <item>io.tns.fresh.renoir.core.semlaumcher</item> <!-- One UI Home -->
+        <item>io.tns.fresh.renoir.core.phone</item> <!-- Phone Settings -->s
+        <item>io.tns.fresh.renoir.core.settings</item> <!-- Settings -->
+        <item>io.tns.fresh.renoir.core.biometrics</item> <!-- BiometricSetting -->
+        <item>io.tns.fresh.renoir.core.quickboard</item> <!-- Quickboard -->
+        <item>io.tns.fresh.renoir.core.yourphone</item> <!-- Your Phone -->
+        <item>io.tns.fresh.renoir.core.lock</item> <!-- Lock screen settings -->
+        <item>io.tns.fresh.renoir.core.mdec</item> <!-- Call & Text from Other Devices -->
+        <item>io.tns.fresh.renoir.core.fmm</item> <!-- Find My Mobile -->
+        <item>io.tns.fresh.renoir.core.camera</item> <!-- Camera -->
+        <item>io.tns.fresh.renoir.core.forest</item> <!-- Digital Wellbeing -->
+        <item>io.tns.fresh.renoir.core.sm</item> <!-- Smart Manager/Device Care -->
+        <item>io.tns.fresh.renoir.core.talkback</item> <!-- Talkback -->
+        <item>io.tns.fresh.renoir.core.accessibility</item> <!-- Accessibility -->
+        <item>io.tns.fresh.renoir.core.securefolder</item> <!-- Secure Folder -->
+    </string-array>
+</resources>

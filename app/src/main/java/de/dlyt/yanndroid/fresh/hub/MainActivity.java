@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -60,6 +61,7 @@ import de.dlyt.yanndroid.fresh.database.TnsOta;
 import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
 import de.dlyt.yanndroid.fresh.hub.utils.Preferences;
 import de.dlyt.yanndroid.fresh.services.TnsOtaApiService;
+import de.dlyt.yanndroid.fresh.settings.RenoirSettingsActivity;
 import de.dlyt.yanndroid.fresh.utils.File;
 import de.dlyt.yanndroid.fresh.utils.JobScheduler;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
@@ -79,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
     private final String TAG = this.getClass().getSimpleName();
-    String omc_url = "https://tiny.cc/FRSH-OMC";
-    String feedback_url = "https://tiny.cc/FRSH-Feedback";
+    String omc_url = "https://fresh.tensevntysevn.cf/app/omc/";
+    String feedback_url = "https://fresh.tensevntysevn.cf/app/feedback/";
     WebView webView;
     ProgressBar web_progressbar;
     ProgressBar ota_progressbar;
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MANIFEST_LOADED)) {
                 updateAllLayouts();
+                Notifications.cancelOngoingCheckNotification(context);
                 ota_progressbar.setVisibility(View.GONE);
                 checkforAppUpdate();
                 findViewById(R.id.swiperefresh).setEnabled(true);
@@ -242,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         });
 
         // Delete OTA on App open
-        Boolean isDeviceUpdating = TnsOtaDownload.getIsDeviceUpdating(mContext);
+        boolean isDeviceUpdating = TnsOtaDownload.getIsDeviceUpdating(mContext);
         if (isDeviceUpdating) {
             TnsOta.setUpdateAvailability(mContext);
             boolean isUpdateSuccessful = !(TnsOta.getUpdateAvailability(mContext));
@@ -409,6 +412,12 @@ public class MainActivity extends AppCompatActivity implements Constants,
             public void onClick(View v) {
                 mRebootDialog.show();
             }
+        });
+
+        View drawer_renoir = findViewById(R.id.drawer_renoir);
+        drawer_renoir.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, RenoirSettingsActivity.class);
+            someActivityResultLauncher.launch(intent);
         });
     }
 
@@ -977,14 +986,15 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
 
     public void egg() {
-        final Integer[] clicks = {0};
         View about_sys_card = findViewById(R.id.about_sys_card);
+        long[] mHits = new long[3];
+
         about_sys_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clicks[0]++;
-                if (clicks[0] >= 5) {
-                    clicks[0] = 0;
+                System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);
+                mHits[mHits.length-1] = SystemClock.uptimeMillis();
+                if (mHits[0] >= (SystemClock.uptimeMillis()-500)) {
                     ComponentName comp = new ComponentName("com.android.systemui", "com.android.systemui.egg.MLandActivity");
 
                     Intent intent = new Intent();
@@ -995,7 +1005,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                     try {
                         startActivity(intent);
                     } catch (Exception e) {
-                        Log.e("egg", e.toString());
+                        Log.e(TAG, "Unable to start activity " + intent.toString());
                     }
                 }
             }

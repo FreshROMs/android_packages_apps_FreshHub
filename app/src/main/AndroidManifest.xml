@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission
         android:name="android.permission.REBOOT"
         tools:ignore="ProtectedPermissions" />
@@ -41,7 +42,6 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".hub.AddonInfoActivity"
             android:screenOrientation="portrait" />
@@ -77,6 +77,9 @@
                 android:name="com.android.settings.summary"
                 android:resource="@string/system_settings_resolution_plugin_summary" />
         </activity>
+        <activity android:name=".settings.RenoirSettingsActivity"
+            android:label="@string/renoir_notification_title"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".hub.SplashActivity"
             android:label="@string/app_name"
@@ -141,6 +144,25 @@
                 <action android:name="com.ota.update.START_UPDATE_CHECK" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name=".renoir.RenoirReceiver"
+            android:enabled="@bool/renoir_enabled_default">
+            <intent-filter>
+                <action android:name="android.intent.action.WALLPAPER_CHANGED" />
+            </intent-filter>
+            <intent-filter android:priority="900">
+                <action android:name="com.samsung.android.theme.themecenter.THEME_APPLY" />
+            </intent-filter>
+            <intent-filter android:priority="900">
+                <action android:name="com.samsung.android.theme.themecenter.THEME_APPLY_START" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".renoir.RenoirService"
+            android:enabled="true"
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
