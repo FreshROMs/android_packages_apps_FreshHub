@@ -155,7 +155,12 @@ public class Notifications implements Constants {
 
     public static void cancelOngoingCheckNotification(Context context) {
         NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotifyManager.cancel(NOTIFICATION_ONGOING_ID);
+        StatusBarNotification[] notifications = mNotifyManager.getActiveNotifications();
+        for (StatusBarNotification notification : notifications) {
+            if (notification.getId() == NOTIFICATION_ONGOING_ID) {
+                mNotifyManager.cancel(NOTIFICATION_ONGOING_ID);
+            }
+        }
     }
 
     public static void cancelUpdateNotification(Context context) {

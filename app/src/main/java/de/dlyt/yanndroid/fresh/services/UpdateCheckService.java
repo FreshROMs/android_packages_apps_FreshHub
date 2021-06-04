@@ -17,8 +17,20 @@ import de.dlyt.yanndroid.fresh.utils.Notifications;
 
 public class UpdateCheckService extends JobService implements Constants {
 
+
     @Override
     public boolean onStopJob(JobParameters params) {
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        new Thread(new Runnable() {
+            final Context context = UpdateCheckService.this;
+            @Override
+            public void run() {
+                handler.postDelayed(() -> {
+                    Notifications.cancelOngoingCheckNotification(context);
+                }, 5000);
+            }
+        }).start();
         return true;
     }
 
