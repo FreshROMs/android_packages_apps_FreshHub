@@ -27,11 +27,9 @@ import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -82,18 +80,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
     WebView webView;
     ProgressBar web_progressbar;
     ProgressBar ota_progressbar;
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(MANIFEST_LOADED)) {
-                updateAllLayouts();
-                Notifications.cancelOngoingCheckNotification(context);
-                ota_progressbar.setVisibility(View.GONE);
-                checkforAppUpdate();
-                findViewById(R.id.swiperefresh).setEnabled(true);
-            }
-        }
-    };
     SwipeRefreshLayout swipeRefreshLayout;
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -107,8 +93,19 @@ public class MainActivity extends AppCompatActivity implements Constants,
     private Builder mDonateDialog;
     private Builder mPlayStoreDialog;
     private Builder mRebootDialog;
-
     private DrawerLayout drawerLayout;
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(MANIFEST_LOADED)) {
+                updateAllLayouts();
+                Notifications.cancelOngoingCheckNotification(context);
+                ota_progressbar.setVisibility(View.GONE);
+                checkforAppUpdate();
+                findViewById(R.id.swiperefresh).setEnabled(true);
+            }
+        }
+    };
 
     public static void updateProgress(int progress) {
         if (mProgressBar != null) {
@@ -147,9 +144,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
         webView = findViewById(R.id.webview);
         web_progressbar = findViewById(R.id.web_progressbar);
         ota_progressbar = findViewById(R.id.ota_progressbar);
-        SwitchMaterial notifSwitch = findViewById(R.id.switch_notifications);
-        SwitchMaterial dataSaver = findViewById(R.id.switch_data_saver);
         SwitchMaterial appIcon = findViewById(R.id.switch_app_icon);
+        SwitchMaterial notifSwitch = findViewById(R.id.switch_notifications);
 
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -172,10 +168,10 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
         createDialogs();
 
-        notifSwitch.setChecked(Preferences.getBackgroundService(mContext));
-        dataSaver.setChecked(Preferences.getBackgroundDownload(mContext));
-        dataSaver.setEnabled(Preferences.getBackgroundService(mContext));
+
         appIcon.setChecked(Preferences.getAppIconState(mContext));
+        notifSwitch.setChecked(Preferences.getBackgroundService(mContext));
+
 
         // But check permissions first - download will be started in the callback
         int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(),
@@ -186,61 +182,17 @@ public class MainActivity extends AppCompatActivity implements Constants,
                     PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
         }
 
-        LinearLayout background_options_layout = findViewById(R.id.background_options);
-        LinearLayout data_saver_layout = findViewById(R.id.data_saver_layout);
-        String[] background_options = getResources().getStringArray(R.array.updater_background_frequency_entries);
-        String[] background_values = getResources().getStringArray(R.array.updater_background_frequency_values);
-        TextView background_option_desc = findViewById(R.id.background_options_selected);
-        Spinner background_spinner = findViewById(R.id.background_options_spinner);
-        Integer background_selected = Preferences.getBackgroundFrequencyOption(mContext);
-
-        background_spinner.setAdapter(new ArrayAdapter<String>(mContext, R.layout.spinner_item, background_options));
-        ArrayAdapter background_spinner_adapter = (ArrayAdapter) background_spinner.getAdapter();
-        background_spinner_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        background_spinner_adapter.notifyDataSetChanged();
-
-        background_spinner.setSelection(background_selected);
-        background_option_desc.setText(background_options[background_selected]);
-        final int[] background_spinner_selection = {background_selected};
-
-        setLayoutEnabled(background_options_layout, Preferences.getBackgroundService(mContext));
-        setLayoutEnabled(data_saver_layout, Preferences.getBackgroundService(mContext));
-
-        background_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int selection, long id) {
-                background_spinner_selection[0] = selection;
-                String backgroundTime = background_values[selection];
-                background_option_desc.setText(background_options[selection]);
-                Preferences.setBackgroundFrequency(mContext, backgroundTime);
-                Preferences.setBackgroundFrequencyOption(mContext, selection);
-                JobScheduler.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        notifSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            Preferences.setBackgroundService(mContext, isChecked);
-            JobScheduler.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
-            setLayoutEnabled(background_options_layout, isChecked);
-            setLayoutEnabled(data_saver_layout, isChecked);
-
-            if (Preferences.getBackgroundDownload(mContext)) {
-                dataSaver.setChecked(isChecked);
-            }
-
-            dataSaver.setEnabled(isChecked);
-        });
-
-        dataSaver.setOnCheckedChangeListener((buttonView, isChecked) -> Preferences.setBackgroundDownload(mContext, isChecked));
-
         appIcon.setOnCheckedChangeListener((buttonView, isChecked) -> {
             Preferences.setAppIconState(mContext, isChecked);
             Preferences.toggleAppIcon(mContext, isChecked);
+        });
+
+        notifSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Preferences.setBackgroundService(mContext, isChecked);
+                JobScheduler.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
+            }
         });
 
         // Delete OTA on App open
@@ -463,6 +415,11 @@ public class MainActivity extends AppCompatActivity implements Constants,
             swipeRefreshLayout.setRefreshing(false);
             findViewById(R.id.swiperefresh).setEnabled(false);
         });
+
+
+        SwitchMaterial notifSwitch = findViewById(R.id.switch_notifications);
+        notifSwitch.setChecked(Preferences.getBackgroundService(mContext));
+
 
     }
 
@@ -761,14 +718,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 htmlColorClose));
     }
 
-    public void toggleNotificationSwitch(View v) {
-        SwitchMaterial notifSwitch = findViewById(R.id.switch_notifications);
-        notifSwitch.toggle();
-    }
-
-    public void toggleAutoUpdateSwitch(View v) {
-        SwitchMaterial dataSaver = findViewById(R.id.switch_data_saver);
-        dataSaver.toggle();
+    public void openNotiSettings(View v) {
+        startActivity(new Intent().setClass(getApplicationContext(), NotificationSettingsActivity.class));
     }
 
     public void toggleAppIconSwitch(View v) {
@@ -776,10 +727,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         appIcon.toggle();
     }
 
-    public void openNotificationFreqSpinner(View v) {
-        Spinner options_spinner = findViewById(R.id.background_options_spinner);
-        options_spinner.performClick();
-    }
 
     public void openCheckForUpdates(View v) {
         ota_progressbar.setVisibility(View.VISIBLE);
@@ -865,6 +812,34 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
     }
 
+    public void egg() {
+        View about_sys_card = findViewById(R.id.about_sys_card);
+        long[] mHits = new long[3];
+
+        about_sys_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
+                mHits[mHits.length - 1] = SystemClock.uptimeMillis();
+                if (mHits[0] >= (SystemClock.uptimeMillis() - 500)) {
+                    ComponentName comp = new ComponentName("com.android.systemui", "com.android.systemui.egg.MLandActivity");
+
+                    Intent intent = new Intent();
+                    intent.setComponent(comp);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    try {
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        Log.e(TAG, "Unable to start activity " + intent.toString());
+                    }
+                }
+            }
+        });
+
+    }
+
     private class CompatibilityTask implements Constants {
 
         public final String TAG = this.getClass().getSimpleName();
@@ -893,34 +868,5 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 });
             });
         }
-    }
-
-
-    public void egg() {
-        View about_sys_card = findViewById(R.id.about_sys_card);
-        long[] mHits = new long[3];
-
-        about_sys_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
-                mHits[mHits.length - 1] = SystemClock.uptimeMillis();
-                if (mHits[0] >= (SystemClock.uptimeMillis() - 500)) {
-                    ComponentName comp = new ComponentName("com.android.systemui", "com.android.systemui.egg.MLandActivity");
-
-                    Intent intent = new Intent();
-                    intent.setComponent(comp);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                    try {
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        Log.e(TAG, "Unable to start activity " + intent.toString());
-                    }
-                }
-            }
-        });
-
     }
 }

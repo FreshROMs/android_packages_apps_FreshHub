@@ -24,56 +24,12 @@ import io.tensevntysevn.fresh.OverlayService;
 
 public class RenoirService extends Service {
 
+    private static final String PREF_NAME = "fresh_system_settings";
+    private static final String RENOIR_CURRENT_COLOR_THEME = "renoir_current_system_theme";
     public static String RENOIR_SERVICE_ENABLED = "renoir_enabled";
     public static String RENOIR_DEFAULT_THEME = "io.tns.fresh.renoir.one";
     public static String RENOIR_WALLPAPER_BASED_ON_LOCK = "renoir_color_based_on_lock_screen";
     public static String RENOIR_SAMSUNG_THEME_APPLIED = "renoir_third_party_theme_applied";
-    private static final String PREF_NAME = "fresh_system_settings";
-    private static final String RENOIR_CURRENT_COLOR_THEME = "renoir_current_system_theme";
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        startForeground(1767, Notifications.sendOngoingRenoirNotification(this));
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if (isGalaxyThemeApplied(this)) {
-            // Skip everything if a third-party theme is applied. Just apply default then finish
-            if (!isGalaxyThemeCached(this))
-                setSystemColorTheme(this, RENOIR_DEFAULT_THEME, true); // Only apply overlay if status is not cached
-            return START_NOT_STICKY;
-        }
-
-        /* Get the wallpaper */
-        final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
-        WallpaperColors wallpaperDrawable = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
-
-        if (getColorBasedOnLock(this)) {
-            wallpaperDrawable = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_LOCK);
-        }
-
-        String nextOverlay = getColorScheme(this, wallpaperDrawable);
-        String currentOverlay = getSystemColorTheme(this);
-
-        if (!currentOverlay.equals(nextOverlay))
-            setSystemColorTheme(this, nextOverlay, false);
-
-        stopForeground(true);
-        return START_NOT_STICKY;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
 
     public static String getColorScheme(Context context, WallpaperColors wallpaperDrawable) {
         /* Initialize our array to get all available colors */
@@ -267,5 +223,49 @@ public class RenoirService extends Service {
 
     public static boolean isFreshBuildEligibleForRenoir(Context context) {
         return true;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        startForeground(1767, Notifications.sendOngoingRenoirNotification(this));
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (isGalaxyThemeApplied(this)) {
+            // Skip everything if a third-party theme is applied. Just apply default then finish
+            if (!isGalaxyThemeCached(this))
+                setSystemColorTheme(this, RENOIR_DEFAULT_THEME, true); // Only apply overlay if status is not cached
+            return START_NOT_STICKY;
+        }
+
+        /* Get the wallpaper */
+        final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
+        WallpaperColors wallpaperDrawable = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
+
+        if (getColorBasedOnLock(this)) {
+            wallpaperDrawable = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_LOCK);
+        }
+
+        String nextOverlay = getColorScheme(this, wallpaperDrawable);
+        String currentOverlay = getSystemColorTheme(this);
+
+        if (!currentOverlay.equals(nextOverlay))
+            setSystemColorTheme(this, nextOverlay, false);
+
+        stopForeground(true);
+        return START_NOT_STICKY;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 }

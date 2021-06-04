@@ -177,6 +177,8 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
 
         UIHandler = new Handler(Looper.getMainLooper());
         mImageLoader = ImageLoader.getInstance();
+
+
     }
 
     @Override

@@ -42,6 +42,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/SamsungTheme">
+        <activity android:name=".hub.NotificationSettingsActivity"></activity>
         <activity
             android:name=".hub.AddonInfoActivity"
             android:screenOrientation="portrait" />

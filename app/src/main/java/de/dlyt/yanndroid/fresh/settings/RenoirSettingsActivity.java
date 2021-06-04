@@ -23,6 +23,13 @@ public class RenoirSettingsActivity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
 
+    public static void setLayoutEnabled(LinearLayout view, boolean enable) {
+        view.setEnabled(enable);
+        view.setClickable(enable);
+        view.setFocusable(enable);
+        view.setAlpha(enable ? 1f : 0.7f);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,13 +95,6 @@ public class RenoirSettingsActivity extends AppCompatActivity {
                 setLayoutEnabled(renoirLsSwitchLayout, true);
             }, 1500);
         });
-    }
-
-    public static void setLayoutEnabled(LinearLayout view, boolean enable) {
-        view.setEnabled(enable);
-        view.setClickable(enable);
-        view.setFocusable(enable);
-        view.setAlpha(enable ? 1f : 0.7f);
     }
 
     public void toggleRenoirSwitch(View v) {

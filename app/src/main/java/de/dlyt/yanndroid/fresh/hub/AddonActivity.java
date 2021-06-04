@@ -27,7 +27,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -107,6 +106,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
         setContentView(R.layout.activity_addons);
 
         ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
+        toolbarLayout.setExpanded(false, false);
         setSupportActionBar(toolbarLayout.getToolbar());
         toolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

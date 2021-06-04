@@ -50,7 +50,7 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
     </style>
 
-    <style name="SpinnerStyle">
+    <style name="SpinnerDialogStyle">
         <item name="android:dialogCornerRadius" tools:targetApi="p">26dp</item>
         <item name="windowFixedHeightMajor">80%</item>
         <item name="windowFixedHeightMinor">80%</item>

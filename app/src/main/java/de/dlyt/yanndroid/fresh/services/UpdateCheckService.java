@@ -24,6 +24,7 @@ public class UpdateCheckService extends JobService implements Constants {
 
         new Thread(new Runnable() {
             final Context context = UpdateCheckService.this;
+
             @Override
             public void run() {
                 handler.postDelayed(() -> {

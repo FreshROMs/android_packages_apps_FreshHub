@@ -4,8 +4,8 @@
     android:id="@+id/toolbar_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:title="@string/main_addon"
-    app:navigationIcon="@drawable/ic_samsung_back">
+    app:navigationIcon="@drawable/ic_samsung_back"
+    app:title="@string/main_addon">
 
     <ListView
         android:id="@+id/listview"

@@ -5,6 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 
 public class RenoirReceiver extends BroadcastReceiver {
+    public static void runRenoir(Context context) {
+        Intent serviceIntent = new Intent(context, RenoirService.class);
+        context.startForegroundService(serviceIntent);
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
@@ -20,10 +25,5 @@ public class RenoirReceiver extends BroadcastReceiver {
                 }
             }
         }
-    }
-
-    public static void runRenoir(Context context) {
-        Intent serviceIntent = new Intent(context, RenoirService.class);
-        context.startForegroundService(serviceIntent);
     }
 }
