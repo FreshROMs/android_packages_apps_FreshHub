@@ -293,7 +293,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
         setContentView(R.layout.activity_ota_available);
 
         ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
-        toolbarLayout.setExpandable(false);
+        toolbarLayout.setExpanded(false, false);
         toolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

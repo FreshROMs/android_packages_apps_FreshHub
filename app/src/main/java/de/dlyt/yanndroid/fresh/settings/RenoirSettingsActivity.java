@@ -41,6 +41,7 @@ public class RenoirSettingsActivity extends AppCompatActivity {
 
         ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
         setSupportActionBar(toolbarLayout.getToolbar());
+        toolbarLayout.setExpanded(false, false);
         toolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

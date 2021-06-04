@@ -61,6 +61,7 @@ import de.dlyt.yanndroid.fresh.utils.Notifications;
 import de.dlyt.yanndroid.fresh.utils.SystemProperties;
 import de.dlyt.yanndroid.fresh.utils.Tools;
 import de.dlyt.yanndroid.samsung.drawer.OptionButton;
+import de.dlyt.yanndroid.samsung.drawer.OptionGroup;
 import de.dlyt.yanndroid.samsung.layout.DrawerLayout;
 
 public class MainActivity extends AppCompatActivity implements Constants,
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         SwitchMaterial appIcon = findViewById(R.id.switch_app_icon);
 
 
-        drawerLayout = findViewById(R.id.drawerLayout);
+        drawerLayout = findViewById(R.id.drawer_layout);
         drawerLayout.setToolbarTitle(getString(R.string.update));
         initDrawerItems();
         initWebView();
@@ -303,49 +304,39 @@ public class MainActivity extends AppCompatActivity implements Constants,
         View feedback_content = findViewById(R.id.feedback_content);
         View ota_content = findViewById(R.id.ota_content);
 
-
-        OptionButton drawer_update = findViewById(R.id.drawer_update);
-        drawer_update.setOnClickListener(new View.OnClickListener() {
+        OptionGroup optionGroup = findViewById(R.id.optionGroup);
+        optionGroup.setOnOptionButtonClickListener(new OptionGroup.OnOptionButtonClickListener() {
             @Override
-            public void onClick(View v) {
-                drawerLayout.setToolbarTitle(getString(R.string.update));
-                ota_content.setVisibility(View.VISIBLE);
-                ota_progressbar.setVisibility(View.VISIBLE);
-                if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext);
-                updateCommunityLinksLayout();
-                updateAddonsLayout();
-                updateRomInformation();
-                updateRomUpdateLayouts(false);
-                refreshDrawer();
-                feedback_content.setVisibility(View.GONE);
-                //drawerLayout.setDrawerOpen(false, true); //todo
-            }
-        });
-
-
-        OptionButton drawer_feedback = findViewById(R.id.drawer_feedback);
-        drawer_feedback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ota_content.setVisibility(View.GONE);
-                feedback_content.setVisibility(View.VISIBLE);
-                web_progressbar.setVisibility(View.VISIBLE);
-                webView.loadUrl(feedback_url);
-                drawerLayout.setToolbarSubtitle(getString(R.string.feedback));
-                //drawerLayout.setDrawerOpen(false, true); //todo
-            }
-        });
-
-        OptionButton drawer_omc_request = findViewById(R.id.drawer_omc_request);
-        drawer_omc_request.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ota_content.setVisibility(View.GONE);
-                feedback_content.setVisibility(View.VISIBLE);
-                web_progressbar.setVisibility(View.VISIBLE);
-                webView.loadUrl(omc_url);
-                drawerLayout.setToolbarSubtitle(getString(R.string.omc_request));
-                //drawerLayout.setDrawerOpen(false, true); //todo
+            public void onOptionButtonClick(OptionButton optionButton, int i, int i1) {
+                switch (i) {
+                    case R.id.drawer_update:
+                        drawerLayout.setToolbarTitle(getString(R.string.update));
+                        ota_content.setVisibility(View.VISIBLE);
+                        ota_progressbar.setVisibility(View.VISIBLE);
+                        if (ENABLE_COMPATIBILITY_CHECK) new CompatibilityTask(mContext);
+                        updateCommunityLinksLayout();
+                        updateAddonsLayout();
+                        updateRomInformation();
+                        updateRomUpdateLayouts(false);
+                        refreshDrawer();
+                        feedback_content.setVisibility(View.GONE);
+                        break;
+                    case R.id.drawer_feedback:
+                        ota_content.setVisibility(View.GONE);
+                        feedback_content.setVisibility(View.VISIBLE);
+                        web_progressbar.setVisibility(View.VISIBLE);
+                        webView.loadUrl(feedback_url);
+                        drawerLayout.setToolbarSubtitle(getString(R.string.feedback));
+                        break;
+                    case R.id.drawer_omc_request:
+                        ota_content.setVisibility(View.GONE);
+                        feedback_content.setVisibility(View.VISIBLE);
+                        web_progressbar.setVisibility(View.VISIBLE);
+                        webView.loadUrl(omc_url);
+                        drawerLayout.setToolbarSubtitle(getString(R.string.omc_request));
+                        break;
+                }
+                drawerLayout.setDrawerOpen(false, true);
             }
         });
 

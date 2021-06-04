@@ -41,7 +41,7 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
-        toolbarLayout.setExpandable(false);
+        toolbarLayout.setExpanded(false, false);
         setSupportActionBar(toolbarLayout.getToolbar());
         toolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

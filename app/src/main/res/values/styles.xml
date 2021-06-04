@@ -30,17 +30,6 @@
     </style>
 
 
-    <!--Radio-->
-
-    <!--todo remove-->
-    <style name="RadioButtonStyle.Vertical">
-        <item name="android:button">@null</item>
-        <item name="android:gravity">center</item>
-        <item name="android:drawableBottom">@drawable/sesl_btn_radio</item>
-        <item name="android:textColor">@color/sesl_radiobutton_text_color</item>
-    </style>
-
-
     <!--Dialog-->
     <style name="AlertDialogStyle" parent="android:Theme.Material.Dialog">
         <item name="android:backgroundTint">@color/item_background_color</item>

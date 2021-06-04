@@ -105,7 +105,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
                 .build();
 
         ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
-        toolbarLayout.setExpandable(false);
+        toolbarLayout.setExpanded(false, false);
         setSupportActionBar(toolbarLayout.getToolbar());
         toolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

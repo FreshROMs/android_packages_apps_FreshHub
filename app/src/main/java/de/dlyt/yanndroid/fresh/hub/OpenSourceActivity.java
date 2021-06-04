@@ -90,4 +90,11 @@ public class OpenSourceActivity extends AppCompatActivity {
         intent.setData(Uri.parse(url));
         startActivity(intent);
     }
+
+    public void openOneUI(View v) {
+        String url = "https://github.com/Yanndroid/SamsungOneUi";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
 }
