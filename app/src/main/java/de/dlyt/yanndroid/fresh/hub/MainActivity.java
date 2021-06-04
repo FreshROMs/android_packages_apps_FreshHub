@@ -61,6 +61,7 @@ import de.dlyt.yanndroid.fresh.database.TnsOta;
 import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
 import de.dlyt.yanndroid.fresh.hub.utils.Preferences;
 import de.dlyt.yanndroid.fresh.services.TnsOtaApiService;
+import de.dlyt.yanndroid.fresh.settings.RenoirSettingsActivity;
 import de.dlyt.yanndroid.fresh.utils.File;
 import de.dlyt.yanndroid.fresh.utils.JobScheduler;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
@@ -411,6 +412,12 @@ public class MainActivity extends AppCompatActivity implements Constants,
             public void onClick(View v) {
                 mRebootDialog.show();
             }
+        });
+
+        View drawer_renoir = findViewById(R.id.drawer_renoir);
+        drawer_renoir.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, RenoirSettingsActivity.class);
+            someActivityResultLauncher.launch(intent);
         });
     }
 

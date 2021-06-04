@@ -41,6 +41,7 @@ public interface Constants {
     String IS_USING_SERVICE_MIRROR = "service_mirror";
 
     // Broadcast intents
+    String WALLPAPER_CHANGED = "android.intent.action.WALLPAPER_CHANGED";
     String MANIFEST_LOADED = "com.ota.update.MANIFEST_LOADED";
     String DOWNLOAD_ROM_COMPLETE = "io.tensevntysevn.TnsOta.DOWNLOAD_ROM_COMPLETE";
     String DOWNLOAD_ADDON_DONE = "io.tensevntysevn.TnsOta.DOWNLOAD_ADDON_DONE";

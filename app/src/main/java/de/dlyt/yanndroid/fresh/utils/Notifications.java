@@ -1,11 +1,13 @@
 package de.dlyt.yanndroid.fresh.utils;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
@@ -153,6 +155,29 @@ public class Notifications implements Constants {
         mNotifyManager.notify(NOTIFICATION_ONGOING_ID, mBuilder.build());
     }
 
+    public static Notification sendOngoingRenoirNotification(Context context) {
+        if (DEBUGGING) Log.d(Tools.TAG, "Showing notification");
+
+        String CHANNEL_ID = context.getString(R.string.customization_notification_ongoing_channel_id);
+        int notificationColor = context.getResources().getColor(R.color.sesl_primary_color);
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
+
+        mBuilder.setContentTitle(context.getString(R.string.renoir_notification_title))
+                .setContentText(context.getString(R.string.renoir_notification_desc))
+                .setSmallIcon(R.drawable.ic_notif)
+                .setColor(notificationColor)
+                .setAutoCancel(false)
+                .setOngoing(true)
+                .setShowWhen(false)
+                .setPriority(NotificationCompat.PRIORITY_MIN)
+                .setDefaults(NotificationCompat.DEFAULT_LIGHTS)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setCategory(NotificationCompat.CATEGORY_SYSTEM);
+
+        return mBuilder.build();
+    }
+
     public static void cancelOngoingCheckNotification(Context context) {
         NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         StatusBarNotification[] notifications = mNotifyManager.getActiveNotifications();
@@ -196,6 +221,24 @@ public class Notifications implements Constants {
 
         CharSequence name = context.getString(R.string.system_notification_channel_ongoing_title);
         String CHANNEL_ID = context.getString(R.string.system_notification_ongoing_channel_id);
+        int importance = NotificationManager.IMPORTANCE_MIN;
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+        channel.setGroup(GROUP_ID);
+        channel.setDescription(description);
+        mNotifyManager.createNotificationChannelGroup(notificationGroup);
+        mNotifyManager.createNotificationChannel(channel);
+    }
+
+    public static void setupCustomizationNotifChannel(Context context) {
+        NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        String GROUP_ID = "tns_customize_group";
+        CharSequence groupName = context.getString(R.string.customization_notification_group_title);
+        String description = context.getString(R.string.customization_notification_channel_desc);
+        NotificationChannelGroup notificationGroup = new NotificationChannelGroup(GROUP_ID, groupName);
+
+        CharSequence name = context.getString(R.string.customization_notification_channel_ongoing_title);
+        String CHANNEL_ID = context.getString(R.string.customization_notification_ongoing_channel_id);
         int importance = NotificationManager.IMPORTANCE_MIN;
         NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
         channel.setGroup(GROUP_ID);
