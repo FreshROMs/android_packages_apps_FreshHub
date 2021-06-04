@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--Others-->
-    <color name="button_ripple_color">#515151</color>
-    <color name="button_background_color">#2bfafafa</color>
-    <color name="drawer_dim_color">#cc000000</color>
     <color name="ota_changelog_text_color">@color/sesl_white</color>
 
     <color name="ota_swupdate_new_sub_title_textcolor">#ff999999</color>
