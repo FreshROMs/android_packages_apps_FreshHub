@@ -978,14 +978,15 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
 
     public void egg() {
-        final Integer[] clicks = {0};
         View about_sys_card = findViewById(R.id.about_sys_card);
+        long[] mHits = new long[3];
+
         about_sys_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clicks[0]++;
-                if (clicks[0] >= 5) {
-                    clicks[0] = 0;
+                System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);
+                mHits[mHits.length-1] = SystemClock.uptimeMillis();
+                if (mHits[0] >= (SystemClock.uptimeMillis()-500)) {
                     ComponentName comp = new ComponentName("com.android.systemui", "com.android.systemui.egg.MLandActivity");
 
                     Intent intent = new Intent();
@@ -996,7 +997,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                     try {
                         startActivity(intent);
                     } catch (Exception e) {
-                        Log.e("egg", e.toString());
+                        Log.e(TAG, "Unable to start activity " + intent.toString());
                     }
                 }
             }
