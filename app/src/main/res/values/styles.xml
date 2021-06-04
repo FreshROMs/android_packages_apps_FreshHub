@@ -50,13 +50,6 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
     </style>
 
-    <style name="SpinnerDialogStyle">
-        <item name="android:dialogCornerRadius" tools:targetApi="p">26dp</item>
-        <item name="windowFixedHeightMajor">80%</item>
-        <item name="windowFixedHeightMinor">80%</item>
-    </style>
-
-
     <!--Transparent Activity-->
     <style name="Theme.MaterialComponents.Transparent.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="materialButtonStyle">@style/ButtonStyle</item>
