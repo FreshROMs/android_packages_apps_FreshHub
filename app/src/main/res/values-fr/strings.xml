@@ -81,13 +81,13 @@ En raison des nouvelles règles d'Android pour Scoped Storage, vous pouvez trouv
     <string name="main_rom_spl">"Niveau de patch de Sécurité:"</string>
     <string name="main_ota_version">"Version:"</string>
     <string name="main_ota_size">"Taille:"</string>
-    <string name="delete_addon_confirm">"Voulez-vous vraiment désinstaller% 1 $ s?"</string>
+    <string name="delete_addon_confirm">"Voulez-vous vraiment désinstaller %1$s?"</string>
     <!-- Available Strings -->
     <string name="available_update_downloading">"Téléchargement de la mise à jour…"</string>
     <string name="available_update_install_info">"Mettez à jour votre téléphone et obtenez de nouvelles fonctionnalités"</string>
     <string name="available_update_install_info_desc">"L'utilisation de données mobiles pour télécharger peut entraîner des frais supplémentaires. L'utilisation du Wi-Fi est recommandée."</string>
-    <string name="available_update_install_ready">"Fresh % 1 $ s% 2 $ s est prêt à être installé"</string>
-    <string name="available_time_remaining">"Temps restant:% s"</string>
+    <string name="available_update_install_ready">"Fresh %1$s %2$s est prêt à être installé"</string>
+    <string name="available_time_remaining">"Temps restant: %s"</string>
     <string name="available_download_speed">"%s/s
 "</string>
     <string name="system_name">"Fresh"</string>
@@ -107,9 +107,9 @@ En raison des nouvelles règles d'Android pour Scoped Storage, vous pouvez trouv
     <string name="system_notification_available_title">"Mise a jour disponible"</string>
     <string name="system_notification_available_desc">"Fresh %1$s %2$s est maintenant disponible pour votre appareil!"</string>
     <string name="system_notification_finish_title">"La mise a jour a été installée avec succès "</string>
-    <string name="system_notification_finish_desc">"Votre appareil a bien été mis à jour vers Fresh% 1 $ s% 2 $ s. Profitez d'un téléphone plus frais!"</string>
+    <string name="system_notification_finish_desc">"Votre appareil a bien été mis à jour vers Fresh %1$s %2$s. Profitez d'un téléphone plus frais!"</string>
     <string name="system_notification_failed_title">"Échec de la mise à jour du logiciel"</string>
-    <string name="system_notification_failed_desc">"Votre appareil n'a pas pu se mettre à jour. Fresh non mis à jour vers% 1 $ s% 2 $ s."</string>
+    <string name="system_notification_failed_desc">"Votre appareil n'a pas pu se mettre à jour. Fresh non mis à jour vers %1$s %2$s."</string>
     <string name="setting_notifications">"Notifications"</string>
     <string name="setting_notifications_summary">"Vérifiez automatiquement les mises à jour et affichez une notification si elle est disponible."</string>
     <string name="setting_auto_download">"Téléchargement automatique via Wi-Fi"</string>
