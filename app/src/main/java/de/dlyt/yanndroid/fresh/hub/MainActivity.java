@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
     private final String TAG = this.getClass().getSimpleName();
-    String omc_url = "https://tiny.cc/FRSH-OMC";
-    String feedback_url = "https://tiny.cc/FRSH-Feedback";
+    String omc_url = "https://fresh.tensevntysevn.cf/app/omc/";
+    String feedback_url = "https://fresh.tensevntysevn.cf/app/feedback/";
     WebView webView;
     ProgressBar web_progressbar;
     ProgressBar ota_progressbar;
@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MANIFEST_LOADED)) {
                 updateAllLayouts();
+                Notifications.cancelOngoingCheckNotification(context);
                 ota_progressbar.setVisibility(View.GONE);
                 checkforAppUpdate();
                 findViewById(R.id.swiperefresh).setEnabled(true);
@@ -242,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         });
 
         // Delete OTA on App open
-        Boolean isDeviceUpdating = TnsOtaDownload.getIsDeviceUpdating(mContext);
+        boolean isDeviceUpdating = TnsOtaDownload.getIsDeviceUpdating(mContext);
         if (isDeviceUpdating) {
             TnsOta.setUpdateAvailability(mContext);
             boolean isUpdateSuccessful = !(TnsOta.getUpdateAvailability(mContext));
