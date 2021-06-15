@@ -107,6 +107,27 @@ public class Preferences implements Constants {
         editor.apply();
     }
 
+    public static int getDataConnectionIconInt(Context context) {
+        return getPrefs(context).getInt("zest_data_icon_int", 0);
+    }
+
+    public static void setDataConnectionIconInt(Context context, Integer selection) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putInt("zest_data_icon_int", selection);
+        editor.apply();
+    }
+
+    public static int getWlanConnectionIconInt(Context context) {
+        return getPrefs(context).getInt("zest_wlan_icon_int", 0);
+    }
+
+    public static void setWlanConnectionIconInt(Context context, Integer selection) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putInt("zest_wlan_icon_int", selection);
+        editor.apply();
+    }
+
+
     public static void setFirstRun(Context context, boolean value) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putBoolean(FIRST_RUN, value);

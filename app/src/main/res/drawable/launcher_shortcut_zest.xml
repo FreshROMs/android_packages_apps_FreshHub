@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
     <background android:drawable="@drawable/adaptive_shortcut_background" />
-    <foreground android:drawable="@drawable/ic_shortcut_resolution" />
+    <foreground android:drawable="@drawable/ic_shortcut_zest" />
 </adaptive-icon>
