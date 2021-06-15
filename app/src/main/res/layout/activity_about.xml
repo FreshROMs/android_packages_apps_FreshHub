@@ -38,6 +38,17 @@
             android:textStyle="normal" />
 
         <TextView
+            android:id="@+id/version_experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.0dip"
+            android:gravity="center"
+            android:text="@string/app_name_experience"
+            android:textColor="@color/sesl_radiobutton_text_color"
+            android:textSize="16.0sp"
+            android:textStyle="normal" />
+
+        <TextView
             android:id="@+id/status_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,10 +85,13 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/osl_button"
                 style="@style/ButtonStyle.Invert.Secondary"
+                android:paddingVertical="10dp"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12.0dip"
                 android:onClick="openOpenSource"
+                android:fontFamily="sec-roboto-light"
+                android:textStyle="bold"
                 android:text="@string/about_open_source_button" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -89,7 +103,7 @@
                 android:layout_marginBottom="12dp"
                 android:text="@string/about_bottom_byline"
                 android:textAlignment="center"
-                android:textStyle="bold" />
+                android:fontFamily="sec-roboto-light" />
 
         </LinearLayout>
     </LinearLayout>
