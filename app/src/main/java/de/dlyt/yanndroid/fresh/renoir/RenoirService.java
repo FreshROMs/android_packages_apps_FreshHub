@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.IBinder;
-import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -20,10 +19,15 @@ import androidx.core.graphics.ColorUtils;
 import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
+import io.tensevntysevn.fresh.ExperienceUtils;
 import io.tensevntysevn.fresh.OverlayService;
 
-public class RenoirService extends Service {
+import com.github.tommyettinger.colorful.TrigTools;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class RenoirService extends Service {
     private static final String PREF_NAME = "fresh_system_settings";
     private static final String RENOIR_CURRENT_COLOR_THEME = "renoir_current_system_theme";
     public static String RENOIR_SERVICE_ENABLED = "renoir_enabled";
@@ -154,19 +158,26 @@ public class RenoirService extends Service {
     public static void setSystemColorTheme(Context context, String packageName, Boolean isSamsungThemeApplied) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
         final String oldOverlay = getSystemColorTheme(context); // Get old overlay to disable
-        sharedPreferences.edit().putString(RENOIR_CURRENT_COLOR_THEME, packageName).apply();
+        boolean wasSamsungThemeApplied = isGalaxyThemeCached(context);
+
         sharedPreferences.edit().putBoolean(RENOIR_SAMSUNG_THEME_APPLIED, isSamsungThemeApplied).apply();
         if (Constants.DEBUGGING) Log.i("RenoirService", "Renoir overlay set: " + packageName);
 
-        try {
-            if (!oldOverlay.equals(RENOIR_DEFAULT_THEME))
-                OverlayService.setOverlayState(context, oldOverlay, false);
+        ExecutorService mExecutor = Executors.newCachedThreadPool();
 
-            if (!packageName.equals(RENOIR_DEFAULT_THEME))
-                OverlayService.setOverlayState(context, packageName, true);
-        } catch (Exception e) {
-            sharedPreferences.edit().putString(RENOIR_CURRENT_COLOR_THEME, oldOverlay).apply();
-        }
+        mExecutor.execute(() -> {
+            if (isSamsungThemeApplied)
+                configureCorePackages(context, false);
+
+            if (wasSamsungThemeApplied)
+                configureCorePackages(context, true);
+
+            OverlayService.setOverlayState(oldOverlay, false);
+
+            if (!packageName.equals("disabled"))
+                sharedPreferences.edit().putString(RENOIR_CURRENT_COLOR_THEME, packageName).apply();
+                OverlayService.setOverlayState(packageName, true);
+        });
     }
 
     private static String getSystemColorTheme(Context context) {
@@ -190,12 +201,14 @@ public class RenoirService extends Service {
         PackageManager packageManager = context.getPackageManager();
         ComponentName wallpaperChangeIntent = new ComponentName(context, RenoirReceiver.class);
 
-        sharedPreferences.edit().putBoolean(RENOIR_SERVICE_ENABLED, bool).apply();
+        sharedPreferences.edit().putBoolean(RENOIR_SERVICE_ENABLED, bool).commit();
 
         if (bool) {
             RenoirReceiver.runRenoir(context);
+            configureCorePackages(context, true);
         } else {
-            setSystemColorTheme(context, RENOIR_DEFAULT_THEME, false);
+            configureCorePackages(context, false);
+            setSystemColorTheme(context, "disable", false);
         }
 
         packageManager.setComponentEnabledSetting(wallpaperChangeIntent,
@@ -205,15 +218,7 @@ public class RenoirService extends Service {
 
     public static Boolean getRenoirEnabled(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(RENOIR_SERVICE_ENABLED, context.getResources().getBoolean(R.bool.renoir_enabled_default));
-    }
-
-    public static boolean isGalaxyThemeApplied(Context context) {
-        String themePackage = Settings.Global.getString(context.getContentResolver(), "current_sec_active_themepackage");
-        String themePackageVersion = Settings.Global.getString(context.getContentResolver(), "current_sec_active_themepackage_version");
-
-        // Return true if these setting keys are not null or blank
-        return !(themePackage == null || themePackageVersion == null || themePackage.equals("") || themePackageVersion.equals(""));
+        return sharedPreferences.getBoolean(RENOIR_SERVICE_ENABLED, false);
     }
 
     public static boolean isGalaxyThemeCached(Context context) {
@@ -225,6 +230,17 @@ public class RenoirService extends Service {
         return true;
     }
 
+    public static void configureCorePackages(Context context, Boolean state) {
+        ExecutorService mExecutor = Executors.newCachedThreadPool();
+        String[] mRenoirCorePackages = context.getResources().getStringArray(R.array.renoir_core_package_resources);
+
+        mExecutor.execute(() -> {
+            for (String mRenoirCorePackage : mRenoirCorePackages) {
+                OverlayService.setOverlayState(mRenoirCorePackage, state);
+            }
+        });
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -233,26 +249,28 @@ public class RenoirService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (isGalaxyThemeApplied(this)) {
-            // Skip everything if a third-party theme is applied. Just apply default then finish
-            if (!isGalaxyThemeCached(this))
-                setSystemColorTheme(this, RENOIR_DEFAULT_THEME, true); // Only apply overlay if status is not cached
-            return START_NOT_STICKY;
+        if (getRenoirEnabled(this)) {
+            if (ExperienceUtils.isGalaxyThemeApplied(this)) {
+                // Skip everything if a third-party theme is applied. Just apply default then finish
+                if (!isGalaxyThemeCached(this))
+                    setSystemColorTheme(this, RENOIR_DEFAULT_THEME, true); // Only apply overlay if status is not cached
+                return START_NOT_STICKY;
+            }
+
+            /* Get the wallpaper */
+            final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
+            WallpaperColors wallpaperDrawable = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
+
+            if (getColorBasedOnLock(this)) {
+                wallpaperDrawable = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_LOCK);
+            }
+
+            String nextOverlay = getColorScheme(this, wallpaperDrawable);
+            String currentOverlay = getSystemColorTheme(this);
+
+            if (!currentOverlay.equals(nextOverlay))
+                setSystemColorTheme(this, nextOverlay, false);
         }
-
-        /* Get the wallpaper */
-        final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
-        WallpaperColors wallpaperDrawable = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
-
-        if (getColorBasedOnLock(this)) {
-            wallpaperDrawable = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_LOCK);
-        }
-
-        String nextOverlay = getColorScheme(this, wallpaperDrawable);
-        String currentOverlay = getSystemColorTheme(this);
-
-        if (!currentOverlay.equals(nextOverlay))
-            setSystemColorTheme(this, nextOverlay, false);
 
         stopForeground(true);
         return START_NOT_STICKY;
