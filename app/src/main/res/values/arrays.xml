@@ -29,6 +29,11 @@
         <item>io.tns.fresh.data.lte</item>
         <item>io.tns.fresh.data.next</item>
     </string-array>
+    <string-array name="data_connection_icon_packages_dex" translatable="false">
+        <item>io.tns.fresh.data.4g</item>
+        <item>io.tns.fresh.data.dex.lte</item>
+        <item>io.tns.fresh.data.dex.next</item>
+    </string-array>
 
     <string-array name="wlan_signal_icon_entries">
         <item>@string/zest_wlan_connection_icon_default</item>
@@ -39,6 +44,11 @@
         <item>io.tns.fresh.wlan.default</item>
         <item>io.tns.fresh.wlan.uplus</item>
         <item>io.tns.fresh.wlan.kt</item>
+    </string-array>
+    <string-array name="wlan_signal_icon_packages_dex" translatable="false">
+        <item>io.tns.fresh.wlan.default</item>
+        <item>io.tns.fresh.wlan.dex.uplus</item>
+        <item>io.tns.fresh.wlan.dex.kt</item>
     </string-array>
 
     <string-array name="screen_resolution_options_summary" translatable="false">

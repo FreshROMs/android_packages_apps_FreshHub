@@ -64,9 +64,11 @@ public class FreshSettingsActivity extends AppCompatActivity {
     TextView mDataIconSummary;
     String[] mDataIconEntries;
     String[] mDataIconPackages;
+    String[] mDataIconPackagesDeX;
     TextView mWlanIconSummary;
     String[] mWlanIconEntries;
     String[] mWlanIconPackages;
+    String[] mWlanIconPackagesDeX;
     ArrayAdapter<String> mDataIconAdapter;
     ArrayAdapter<String> mWlanIconAdapter;
 
@@ -101,9 +103,11 @@ public class FreshSettingsActivity extends AppCompatActivity {
         mDataIconSummary = findViewById(R.id.data_4g_icon_selected);
         mDataIconEntries = getResources().getStringArray(R.array.data_connection_icon_entries);
         mDataIconPackages = getResources().getStringArray(R.array.data_connection_icon_packages);
+        mDataIconPackagesDeX = getResources().getStringArray(R.array.data_connection_icon_packages_dex);
         mWlanIconSummary = findViewById(R.id.wlan_signal_icon_selected);
         mWlanIconEntries = getResources().getStringArray(R.array.wlan_signal_icon_entries);
         mWlanIconPackages = getResources().getStringArray(R.array.wlan_signal_icon_packages);
+        mWlanIconPackagesDeX = getResources().getStringArray(R.array.wlan_signal_icon_packages_dex);
         mDataIconAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mDataIconEntries);
         mWlanIconAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mWlanIconEntries);
 
@@ -315,7 +319,10 @@ public class FreshSettingsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int selection, long id) {
                 String oldPackage = mDataIconPackages[mDataIconSelected];
+                String oldPackageDeX = mDataIconPackagesDeX[mDataIconSelected];
+
                 String newPackage = mDataIconPackages[selection];
+                String newPackageDeX = mDataIconPackagesDeX[selection];
 
                 mDataIconSelected = selection;
                 mDataIconSummary.setText(mDataIconEntries[selection]);
@@ -323,11 +330,15 @@ public class FreshSettingsActivity extends AppCompatActivity {
 
                 if (!mBackground && !oldPackage.equals(newPackage)) {
                     mExecutor.execute(() -> {
-                        if (!oldPackage.equals(mWlanIconPackages[0]))
-                            OverlayService.setOverlayState(oldPackage, false);
-
-                        if (!newPackage.equals(mWlanIconPackages[0]))
+                        if (!newPackage.equals(mWlanIconPackages[0])) {
                             OverlayService.setOverlayState(newPackage, true);
+                            OverlayService.setOverlayState(newPackageDeX, true);
+                        }
+
+                        if (!oldPackage.equals(mWlanIconPackages[0])) {
+                            OverlayService.setOverlayState(oldPackage, false);
+                            OverlayService.setOverlayState(oldPackageDeX, false);
+                        }
                     });
                 }
             }
@@ -341,7 +352,10 @@ public class FreshSettingsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int selection, long id) {
                 String oldPackage = mWlanIconPackages[mWlanIconSelected];
+                String oldPackageDeX = mWlanIconPackagesDeX[mWlanIconSelected];
+
                 String newPackage = mWlanIconPackages[selection];
+                String newPackageDeX = mWlanIconPackagesDeX[selection];
 
                 mWlanIconSelected = selection;
                 mWlanIconSummary.setText(mWlanIconEntries[selection]);
@@ -349,11 +363,15 @@ public class FreshSettingsActivity extends AppCompatActivity {
 
                 if (!mBackground && !oldPackage.equals(newPackage)) {
                     mExecutor.execute(() -> {
-                        if (!oldPackage.equals(mWlanIconPackages[0]))
-                            OverlayService.setOverlayState(oldPackage, false);
-
-                        if (!newPackage.equals(mWlanIconPackages[0]))
+                        if (!newPackage.equals(mWlanIconPackages[0])) {
                             OverlayService.setOverlayState(newPackage, true);
+                            OverlayService.setOverlayState(newPackageDeX, true);
+                        }
+
+                        if (!oldPackage.equals(mWlanIconPackages[0])) {
+                            OverlayService.setOverlayState(oldPackage, false);
+                            OverlayService.setOverlayState(oldPackageDeX, false);
+                        }
                     });
                 }
             }
