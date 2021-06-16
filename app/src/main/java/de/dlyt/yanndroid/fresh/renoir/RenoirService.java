@@ -166,17 +166,19 @@ public class RenoirService extends Service {
         ExecutorService mExecutor = Executors.newCachedThreadPool();
 
         mExecutor.execute(() -> {
+            sharedPreferences.edit().putString(RENOIR_CURRENT_COLOR_THEME, packageName).apply();
+
             if (isSamsungThemeApplied)
                 configureCorePackages(context, false);
 
             if (wasSamsungThemeApplied)
                 configureCorePackages(context, true);
 
-            OverlayService.setOverlayState(oldOverlay, false);
-
-            if (!packageName.equals("disabled"))
-                sharedPreferences.edit().putString(RENOIR_CURRENT_COLOR_THEME, packageName).apply();
+            if (!packageName.equals("disable")) {
                 OverlayService.setOverlayState(packageName, true);
+            }
+
+            OverlayService.setOverlayState(oldOverlay, false);
         });
     }
 
@@ -253,7 +255,7 @@ public class RenoirService extends Service {
             if (ExperienceUtils.isGalaxyThemeApplied(this)) {
                 // Skip everything if a third-party theme is applied. Just apply default then finish
                 if (!isGalaxyThemeCached(this))
-                    setSystemColorTheme(this, RENOIR_DEFAULT_THEME, true); // Only apply overlay if status is not cached
+                    setSystemColorTheme(this, "disable", true); // Only apply overlay if status is not cached
                 return START_NOT_STICKY;
             }
 
