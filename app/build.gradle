@@ -11,8 +11,8 @@ android {
         minSdkVersion 30
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 24
-        versionCode 21051607
-        versionName "12.0.1.9"
+        versionCode 21061601
+        versionName "12.1.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,13 +45,17 @@ dependencies {
 
     implementation 'com.github.Yanndroid:SamsungOneUi:1.1.2'
 
-    implementation 'androidx.appcompat:appcompat:1.4.0-alpha01'
+    implementation 'androidx.appcompat:appcompat:1.4.0-alpha02'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "androidx.activity:activity:1.2.3"
     implementation "androidx.fragment:fragment:1.3.4"
+    implementation 'androidx.webkit:webkit:1.4.0'
+    implementation "androidx.preference:preference:1.1.1"
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    // TODO: Move L*a*b operations here
     implementation 'com.github.tommyettinger:colorful:0.5.1'
 
     implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"

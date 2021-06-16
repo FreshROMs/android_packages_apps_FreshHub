@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_color"
+    android:orientation="vertical"
+    android:paddingBottom="20.0dip">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sesl_relative_card_view_bg"
+        android:orientation="vertical"
+        android:paddingTop="20.0dip"
+        android:paddingEnd="24.0dip"
+        android:paddingBottom="20.0dip">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/link_title"
+            style="@style/sec_relative_link_title"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10.0dip"
+            android:layout_weight="1.0"
+            android:paddingStart="24.0dip"
+            android:text="@string/sesl_relative_widget_title" />
+
+        <LinearLayout
+            android:id="@+id/link_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                layout="@layout/card_zest_section_relative_links"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

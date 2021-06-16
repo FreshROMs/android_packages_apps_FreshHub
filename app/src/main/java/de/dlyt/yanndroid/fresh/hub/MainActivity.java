@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,10 +24,8 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -39,6 +38,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.webkit.WebResourceErrorCompat;
+import androidx.webkit.WebSettingsCompat;
+import androidx.webkit.WebViewClientCompat;
+import androidx.webkit.WebViewFeature;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -52,7 +55,7 @@ import de.dlyt.yanndroid.fresh.database.TnsOta;
 import de.dlyt.yanndroid.fresh.database.TnsOtaDownload;
 import de.dlyt.yanndroid.fresh.hub.utils.Preferences;
 import de.dlyt.yanndroid.fresh.services.TnsOtaApiService;
-import de.dlyt.yanndroid.fresh.settings.RenoirSettingsActivity;
+import de.dlyt.yanndroid.fresh.settings.sub.NotificationSettingsActivity;
 import de.dlyt.yanndroid.fresh.utils.File;
 import de.dlyt.yanndroid.fresh.utils.JobScheduler;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
     private final String TAG = this.getClass().getSimpleName();
     String omc_url = "https://fresh.tensevntysevn.cf/app/omc/";
     String feedback_url = "https://fresh.tensevntysevn.cf/app/feedback/";
-    WebView webView;
+    private WebView mWebView;
     ProgressBar web_progressbar;
     ProgressBar ota_progressbar;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -141,12 +144,11 @@ public class MainActivity extends AppCompatActivity implements Constants,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hub_main);
 
-        webView = findViewById(R.id.webview);
+        mWebView = findViewById(R.id.webview);
         web_progressbar = findViewById(R.id.web_progressbar);
         ota_progressbar = findViewById(R.id.ota_progressbar);
         SwitchMaterial appIcon = findViewById(R.id.switch_app_icon);
         SwitchMaterial notifSwitch = findViewById(R.id.switch_notifications);
-
 
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerLayout.setToolbarTitle(getString(R.string.update));
@@ -168,10 +170,8 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
         createDialogs();
 
-
         appIcon.setChecked(Preferences.getAppIconState(mContext));
         notifSwitch.setChecked(Preferences.getBackgroundService(mContext));
-
 
         // But check permissions first - download will be started in the callback
         int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(),
@@ -228,6 +228,22 @@ public class MainActivity extends AppCompatActivity implements Constants,
         egg();
     }
 
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+            switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
+                case Configuration.UI_MODE_NIGHT_YES:
+                    WebSettingsCompat.setForceDark(mWebView.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+                    break;
+                case Configuration.UI_MODE_NIGHT_NO:
+                case Configuration.UI_MODE_NIGHT_UNDEFINED:
+                    WebSettingsCompat.setForceDark(mWebView.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+                    break;
+            }
+        }
+    }
 
     public void checkforAppUpdate() {
 
@@ -240,7 +256,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
         } catch (PackageManager.NameNotFoundException ignored) {
         }
     }
-
 
     public void initDrawerItems() {
 
@@ -277,14 +292,14 @@ public class MainActivity extends AppCompatActivity implements Constants,
                         ota_content.setVisibility(View.GONE);
                         feedback_content.setVisibility(View.VISIBLE);
                         web_progressbar.setVisibility(View.VISIBLE);
-                        webView.loadUrl(feedback_url);
+                        mWebView.loadUrl(feedback_url);
                         drawerLayout.setToolbarSubtitle(getString(R.string.feedback));
                         break;
                     case R.id.drawer_omc_request:
                         ota_content.setVisibility(View.GONE);
                         feedback_content.setVisibility(View.VISIBLE);
                         web_progressbar.setVisibility(View.VISIBLE);
-                        webView.loadUrl(omc_url);
+                        mWebView.loadUrl(omc_url);
                         drawerLayout.setToolbarSubtitle(getString(R.string.omc_request));
                         break;
                 }
@@ -316,12 +331,6 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 mRebootDialog.show();
             }
         });
-
-        OptionButton drawer_renoir = findViewById(R.id.drawer_renoir);
-        drawer_renoir.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, RenoirSettingsActivity.class);
-            someActivityResultLauncher.launch(intent);
-        });
     }
 
     public void refreshDrawer() {
@@ -332,12 +341,14 @@ public class MainActivity extends AppCompatActivity implements Constants,
         }
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     public void initWebView() {
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient() {
+        mWebView.getSettings().setDomStorageEnabled(true);
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.setWebViewClient(new WebViewClientCompat() {
+
             @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            public void onPageStarted(@NonNull WebView view, @NonNull String url, @NonNull Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 web_progressbar.setVisibility(View.VISIBLE);
                 findViewById(R.id.swiperefresh).setEnabled(false);
@@ -351,12 +362,30 @@ public class MainActivity extends AppCompatActivity implements Constants,
             }
 
             @Override
-            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+            public void onReceivedError(@NonNull WebView view, @NonNull WebResourceRequest request, @NonNull WebResourceErrorCompat error) {
                 super.onReceivedError(view, request, error);
                 web_progressbar.setVisibility(View.GONE);
             }
         });
-        webView.loadUrl(feedback_url);
+
+        if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+            switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
+                case Configuration.UI_MODE_NIGHT_YES:
+                    WebSettingsCompat.setForceDark(mWebView.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+                    break;
+                case Configuration.UI_MODE_NIGHT_NO:
+                case Configuration.UI_MODE_NIGHT_UNDEFINED:
+                    WebSettingsCompat.setForceDark(mWebView.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+                    break;
+            }
+        }
+
+        //noinspection RestrictedApi
+        if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK_STRATEGY)) {
+            WebSettingsCompat.setForceDarkStrategy(mWebView.getSettings(), WebSettingsCompat.DARK_STRATEGY_PREFER_WEB_THEME_OVER_USER_AGENT_DARKENING);
+        }
+
+        mWebView.loadUrl(feedback_url);
     }
 
 
@@ -411,7 +440,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
             updateRomInformation();
             updateRomUpdateLayouts(false);
             refreshDrawer();
-            webView.reload();
+            mWebView.reload();
             swipeRefreshLayout.setRefreshing(false);
             findViewById(R.id.swiperefresh).setEnabled(false);
         });
@@ -433,18 +462,14 @@ public class MainActivity extends AppCompatActivity implements Constants,
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
-                if (grantResults.length <= 0 || grantResults[0]
-                        != PackageManager.PERMISSION_GRANTED) {
-                    new Builder(this, R.style.AlertDialogStyle)
-                            .setTitle(R.string.permission_not_granted_dialog_title)
-                            .setMessage(R.string.permission_not_granted_dialog_message)
-                            .setPositiveButton(R.string.dialog_ok, (dialog, which) ->
-                                    MainActivity.this.finish()).show();
-                    return;
-                }
-                break;
+        if (requestCode == PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
+            if (grantResults.length <= 0 || grantResults[0]
+                    != PackageManager.PERMISSION_GRANTED) {
+                new Builder(this, R.style.AlertDialogStyle)
+                        .setTitle(R.string.permission_not_granted_dialog_title)
+                        .setMessage(R.string.permission_not_granted_dialog_message)
+                        .setPositiveButton(R.string.dialog_ok, (dialog, which) ->
+                                MainActivity.this.finish()).show();
             }
         }
     }

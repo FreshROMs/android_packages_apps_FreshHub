@@ -59,14 +59,14 @@
                     android:id="@+id/drawer_feedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:icon="@drawable/ic_feedback"
+                    app:icon="@drawable/ic_drawer_feedback"
                     app:text="@string/feedback" />
 
                 <de.dlyt.yanndroid.samsung.drawer.OptionButton
                     android:id="@+id/drawer_omc_request"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:icon="@drawable/ic_request"
+                    app:icon="@drawable/ic_drawer_request"
                     app:text="@string/omc_request" />
 
 
@@ -98,14 +98,6 @@
                 android:layout_height="wrap_content"
                 app:icon="@drawable/ic_refresh"
                 app:text="@string/reboot" />
-
-
-            <de.dlyt.yanndroid.samsung.drawer.OptionButton
-                android:id="@+id/drawer_renoir"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_palette"
-                app:text="Renoir" />
 
 
         </LinearLayout>

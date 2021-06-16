@@ -202,9 +202,12 @@
                         style="@style/ButtonStyle.PreferenceSetting"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="100dp"
+                        android:layout_marginHorizontal="105dp"
                         android:layout_marginTop="15dp"
-                        android:text="Apply" />
+                        android:fontFamily="sec-roboto-light"
+                        android:paddingVertical="8dp"
+                        android:text="@string/screen_resolution_button_text"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

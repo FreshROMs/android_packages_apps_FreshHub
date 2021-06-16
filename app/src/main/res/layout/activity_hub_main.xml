@@ -14,7 +14,7 @@
     <!--This view will be in the drawer-->
     <include
         android:id="@+id/drawer_view"
-        layout="@layout/drawer_view" />
+        layout="@layout/hub_drawer_layout" />
 
 
     <!--This on the main screen-->

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="sesl_default_primary_color">#ff3e91ff</color>
+    <color name="sesl_default_secondary_color">#ff0072de</color>
+    <color name="sesl_base_switchbar_on_background_color">#4d0381fe</color>
+    <color name="sesl_base_switchbar_text_color">#ff3e91ff</color>
 
     <color name="ota_changelog_text_color">@color/sesl_white</color>
 
@@ -11,6 +15,5 @@
 
     <color name="raised_button_background_color">#2bfafafa</color>
     <color name="raised_button_text_color">#fffafafa</color>
-
-
+    <color name="zest_relative_widget_bg">#4d008cff</color>
 </resources>

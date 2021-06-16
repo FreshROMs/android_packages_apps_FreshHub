@@ -2,7 +2,20 @@
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
     <shortcut
         android:enabled="true"
-        android:icon="@drawable/shortcut_resolution"
+        android:icon="@drawable/launcher_shortcut_zest"
+        android:shortcutId="zest_fresh_settings"
+        android:shortcutLongLabel="@string/system_settings_zest_plugin_title"
+        android:shortcutShortLabel="@string/system_settings_zest_plugin_title">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="de.dlyt.yanndroid.fresh.settings.FreshSettingsActivity"
+            android:targetPackage="de.dlyt.yanndroid.fresh" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/launcher_shortcut_resolution"
         android:shortcutId="resolution_shortcut"
         android:shortcutLongLabel="@string/system_settings_resolution_plugin_title"
         android:shortcutShortLabel="@string/system_settings_resolution_plugin_title">
@@ -15,7 +28,7 @@
 
     <shortcut
         android:enabled="true"
-        android:icon="@drawable/shortcut_reboot"
+        android:icon="@drawable/launcher_shortcut_reboot"
         android:shortcutId="reboot_shortcut"
         android:shortcutLongLabel="@string/reboot"
         android:shortcutShortLabel="@string/reboot">

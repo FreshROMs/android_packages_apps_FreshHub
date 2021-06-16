@@ -51,6 +51,7 @@ public class AboutActivity extends AppCompatActivity {
         });
 
         TextView app_version = findViewById(R.id.version);
+        TextView experience_version = findViewById(R.id.version_experience);
 
         try {
             PackageInfo packageInfo = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
@@ -60,7 +61,10 @@ public class AboutActivity extends AppCompatActivity {
             app_version.setText(" ");
         }
 
-        Boolean updateAvailable = false;
+        String exp_version = getString(R.string.app_name_experience) + " " + getString(R.string.experience_version);
+        experience_version.setText(exp_version);
+
+        boolean updateAvailable = false;
 
         try {
             PackageInfo packageInfo = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);

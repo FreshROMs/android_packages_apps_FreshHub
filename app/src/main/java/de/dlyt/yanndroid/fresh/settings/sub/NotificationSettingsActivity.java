@@ -1,4 +1,4 @@
-package de.dlyt.yanndroid.fresh.hub;
+package de.dlyt.yanndroid.fresh.settings.sub;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -58,9 +59,9 @@ public class NotificationSettingsActivity extends AppCompatActivity {
 
         String[] background_options = getResources().getStringArray(R.array.updater_background_frequency_entries);
         String[] background_values = getResources().getStringArray(R.array.updater_background_frequency_values);
+        TextView background_option_desc = findViewById(R.id.background_options_selected);
         Spinner background_spinner = findViewById(R.id.background_options_spinner);
-        Integer background_selected = Preferences.getBackgroundFrequencyOption(mContext);
-
+        int background_selected = Preferences.getBackgroundFrequencyOption(mContext);
 
         ArrayAdapter<String> background_spinner_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, background_options);
         background_spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -68,7 +69,7 @@ public class NotificationSettingsActivity extends AppCompatActivity {
         background_spinner_adapter.notifyDataSetChanged();
 
         background_spinner.setSelection(background_selected);
-        final int[] background_spinner_selection = {background_selected};
+        background_option_desc.setText(background_options[background_selected]);
 
         setLayoutEnabled(background_options_layout, Preferences.getBackgroundService(mContext));
         setLayoutEnabled(background_spinner, Preferences.getBackgroundService(mContext));
@@ -77,8 +78,8 @@ public class NotificationSettingsActivity extends AppCompatActivity {
         background_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int selection, long id) {
-                background_spinner_selection[0] = selection;
                 String backgroundTime = background_values[selection];
+                background_option_desc.setText(background_options[selection]);
                 Preferences.setBackgroundFrequency(mContext, backgroundTime);
                 Preferences.setBackgroundFrequencyOption(mContext, selection);
                 JobScheduler.setBackgroundCheck(mContext, Preferences.getBackgroundService(mContext));
@@ -115,5 +116,10 @@ public class NotificationSettingsActivity extends AppCompatActivity {
     public void toggleAutoUpdateSwitch(View v) {
         SwitchMaterial dataSaver = findViewById(R.id.switch_data_saver);
         dataSaver.toggle();
+    }
+
+    public void openNotificationFreqSpinner(View v) {
+        Spinner options_spinner = findViewById(R.id.background_options_spinner);
+        options_spinner.performClick();
     }
 }
