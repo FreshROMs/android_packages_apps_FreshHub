@@ -57,7 +57,7 @@
                             android:layout_height="wrap_content"
                             android:text="Single line"
                             android:duplicateParentState="true"
-                            android:textColor="@color/sesl_default_primary_color" />
+                            android:textColor="?colorPrimary" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

@@ -5,10 +5,14 @@
     <color name="secondary_color">#ffffb949</color>
     <color name="primary_dark_color">#ffbd7800</color>
 
-    <color name="sesl_default_primary_color">#ff0381fe</color>
+    <color name="default_primary_color">#ff0381fe</color>
+    <color name="default_secondary_color">#ff3e91ff</color>
+    <color name="default_primary_dark_color">#ff0072de</color>
+
+    <!--<color name="sesl_default_primary_color">#ff0381fe</color>
     <color name="sesl_default_secondary_color">#ff3e91ff</color>
     <color name="sesl_base_switchbar_on_background_color">#5a0072de</color>
-    <color name="sesl_base_switchbar_text_color">#ff0072de</color>
+    <color name="sesl_base_switchbar_text_color">#ff0072de</color>-->
 
     <color name="ota_changelog_text_color">@color/sesl_black</color>
     <color name="system_settings_plugin_icon_bg_color">#ff7882ff</color>

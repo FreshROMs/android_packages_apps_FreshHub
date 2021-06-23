@@ -2,7 +2,7 @@
 
     <style name="SystemPreferenceTheme" parent="@style/SamsungTheme">
         <item name="android:theme">@style/SystemPreference</item>
-        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItem.Main</item>
+        <!--<item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItem.Main</item>-->
     </style>
 
 </resources>

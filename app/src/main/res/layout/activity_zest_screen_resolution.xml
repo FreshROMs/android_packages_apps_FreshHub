@@ -199,7 +199,6 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/resolution_apply"
-                        style="@style/ButtonStyle.PreferenceSetting"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="105dp"

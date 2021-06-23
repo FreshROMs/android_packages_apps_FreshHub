@@ -1,39 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="SystemPreference">
-        <item name="colorAccent">@color/sesl_default_primary_color</item>
-        <item name="colorBackgroundFloating">@color/sesl_background_floating</item>
-        <item name="colorControlActivated">@color/sesl_default_primary_color</item>
-        <item name="colorControlHighlight">@color/sesl_ripple_color</item>
-        <item name="colorControlNormal">@color/sesl_control_normal_color</item>
-        <item name="colorError">@color/sesl_error_color</item>
-        <item name="colorPrimary">@color/sesl_default_primary_color</item>
-        <item name="colorSecondary">@color/sesl_default_secondary_color</item>
-        <item name="colorPrimaryDark">@color/sesl_default_secondary_color</item>
-        <item name="checkboxStyle">@style/CheckBoxStyle</item>
-        <item name="materialCardViewStyle">@style/CardViewStyle</item>
-        <item name="switchStyle">@style/SwitchStyle.Preference</item>
-        <item name="seslSwitchBarStyle">@style/Base.Widget.AppCompat.SeslSwitchBar.Preference</item>
-        <item name="materialButtonStyle">@style/ButtonStyle</item>
-        <item name="radioButtonStyle">@style/RadioButtonStyle</item>
-        <item name="seekBarStyle">@style/SeekBarStyle</item>
-        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItem.Main</item>
-    </style>
-
-    <!--Button-->
-    <style name="ButtonStyle.PreferenceSetting">
-        <item name="android:backgroundTint">@color/sesl_preference_btn_color_state</item>
-        <item name="android:textColor">@color/white</item>
+    <style name="SystemPreference" parent="SamsungStyleMain">
+        <item name="colorPrimary">@color/default_primary_color</item>
+        <item name="colorSecondary">@color/default_secondary_color</item>
+        <item name="colorPrimaryDark">@color/default_primary_dark_color</item>
     </style>
 
     <!--Dialog-->
-    <style name="AlertDialogStyle" parent="android:Theme.Material.Dialog">
-        <item name="android:backgroundTint">@color/item_background_color</item>
-        <item name="android:textColorPrimary">?attr/textColorAlertDialogListItem</item>
-        <item name="android:textColor">@color/item_color</item>
-        <item name="android:dialogCornerRadius" tools:targetApi="p">26dp</item>
-        <item name="android:progressBarStyle">@style/ProgressBarStyle.Circle</item>
-    </style>
+    <style name="AlertDialogStyle" parent="android:Theme.DeviceDefault.Light.Dialog.Alert" />
 
     <style name="LargeProgressDialog">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -44,6 +18,10 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="SpinnerDialogStyle">
+        <item name="android:dialogCornerRadius" tools:targetApi="p">26dp</item>
     </style>
 
     <!--Transparent Activity-->
@@ -71,30 +49,10 @@
         <item name="android:progressDrawable">@drawable/addons_detail_progressbar</item>
     </style>
 
-    <style name="Base.Widget.AppCompat.SeslSwitchBar.Preference" parent="@style/Base.Widget.AppCompat.SeslSwitchBar">
-        <item name="seslSwitchBarBackgroundActivatedColor">
-            @color/sesl_base_switchbar_on_background_color
-        </item>
-        <item name="seslSwitchBarTextActivatedColor">@color/sesl_base_switchbar_text_color</item>
-    </style>
 
-    <style name="SwitchStyle.Preference" parent="@style/SwitchStyle">
-        <item name="android:thumb">@drawable/sesl_base_switch_thumb_selector</item>
-        <item name="track">@drawable/sesl_base_switch_track_selector</item>
-    </style>
 
-    <style name="SpinnerDropDownItem.Main" parent="@style/SpinnerDropDownItem">
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Widget.DropDownItem.Main
-        </item>
-        <item name="android:checkMark">@drawable/sesl_main_spinner_checked_ic_selector</item>
-    </style>
-    <style name="Base.TextAppearance.AppCompat.Widget.DropDownItem.Main" parent="@style/Base.TextAppearance.AppCompat.Widget.DropDownItem">
-        <item name="android:textColor">@color/sesl_default_dropdown_selector</item>
-    </style>
-    <style name="SpinnerDialogStyle">
-        <item name="android:dialogCornerRadius" tools:targetApi="p">26dp</item>
-    </style>
 
+    <!--Relative Card-->
     <style name="sec_relative_link_title">
         <item name="android:textSize">18.0sp</item>
         <item name="android:textColor">@color/ota_swupdate_new_title_textcolor</item>
@@ -106,7 +64,7 @@
         <item name="android:focusable">true</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">viewStart</item>
-        <item name="android:textColor">@color/sesl_default_primary_color</item>
+        <item name="android:textColor">?colorPrimary</item>
         <item name="android:fontFamily">sec-roboto-light</item>
         <item name="android:background">@drawable/sesl_relative_card_text_ripple_bg</item>
         <item name="android:paddingHorizontal">14dp</item>
@@ -114,6 +72,8 @@
         <item name="android:radius">26dp</item>
     </style>
 
+
+    <!--Others-->
     <style name="TextAppearance.Design.CollapsingToolbar.Expanded" parent="TextAppearance.AppCompat.Display1">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:fontFamily">sans-serif-light</item>

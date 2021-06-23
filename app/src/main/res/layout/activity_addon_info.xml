@@ -174,7 +174,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@color/sesl_primary_color"
+        android:background="?colorPrimary"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -271,7 +271,7 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/sesl_primary_dark_color"
+                android:background="?colorPrimaryDark"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 

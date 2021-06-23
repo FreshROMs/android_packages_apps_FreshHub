@@ -52,7 +52,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Single line"
-                            android:textColor="@color/sesl_default_primary_color" />
+                            android:textColor="?colorPrimary" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -173,7 +173,7 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/data_4g_icon_selected"
                         style="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/sesl_default_primary_color"
+                        android:textColor="?colorPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:duplicateParentState="true"
@@ -242,7 +242,7 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/wlan_signal_icon_selected"
                         style="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/sesl_default_primary_color"
+                        android:textColor="?colorPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:duplicateParentState="true"

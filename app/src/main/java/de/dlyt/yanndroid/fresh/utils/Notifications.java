@@ -24,7 +24,7 @@ public class Notifications implements Constants {
         if (DEBUGGING) Log.d(Tools.TAG, "Showing notification");
 
         String CHANNEL_ID = context.getString(R.string.system_notification_channel_id);
-        int notificationColor = context.getResources().getColor(R.color.sesl_primary_color);
+        int notificationColor = context.getResources().getColor(R.color.primary_color);
         String version = TnsOta.getReleaseVersion(context);
         String updateVariant = TnsOta.getReleaseVariant(context);
 
@@ -62,7 +62,7 @@ public class Notifications implements Constants {
         if (DEBUGGING) Log.d(Tools.TAG, "Showing notification");
 
         String CHANNEL_ID = context.getString(R.string.system_notification_channel_id);
-        int notificationColor = context.getResources().getColor(R.color.sesl_primary_color);
+        int notificationColor = context.getResources().getColor(R.color.primary_color);
         String updateVariant = TnsOta.getReleaseVariant(context);
 
         NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -104,7 +104,7 @@ public class Notifications implements Constants {
         if (DEBUGGING) Log.d(Tools.TAG, "Showing notification");
 
         String CHANNEL_ID = context.getString(R.string.system_notification_channel_id);
-        int notificationColor = context.getResources().getColor(R.color.sesl_primary_color);
+        int notificationColor = context.getResources().getColor(R.color.primary_color);
 
         NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
@@ -135,7 +135,7 @@ public class Notifications implements Constants {
         if (DEBUGGING) Log.d(Tools.TAG, "Showing notification");
 
         String CHANNEL_ID = context.getString(R.string.system_notification_ongoing_channel_id);
-        int notificationColor = context.getResources().getColor(R.color.sesl_primary_color);
+        int notificationColor = context.getResources().getColor(R.color.primary_color);
 
         NotificationManager mNotifyManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
@@ -159,7 +159,7 @@ public class Notifications implements Constants {
         if (DEBUGGING) Log.d(Tools.TAG, "Showing notification");
 
         String CHANNEL_ID = context.getString(R.string.customization_notification_ongoing_channel_id);
-        int notificationColor = context.getResources().getColor(R.color.sesl_primary_color);
+        int notificationColor = context.getResources().getColor(R.color.primary_color);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
 
