@@ -401,7 +401,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         // Also executes the manifest/update check
 
         if (!Tools.isDeviceOnline(mContext)) {
-            Builder notConnectedDialog = new Builder(mContext, R.style.AlertDialogStyle);
+            Builder notConnectedDialog = new Builder(mContext, R.style.DialogStyle);
             notConnectedDialog.setTitle(R.string.main_not_connected_title)
                     .setMessage(R.string.main_not_connected_message)
                     .setCancelable(false)
@@ -465,7 +465,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         if (requestCode == PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
             if (grantResults.length <= 0 || grantResults[0]
                     != PackageManager.PERMISSION_GRANTED) {
-                new Builder(this, R.style.AlertDialogStyle)
+                new Builder(this, R.style.DialogStyle)
                         .setTitle(R.string.permission_not_granted_dialog_title)
                         .setMessage(R.string.permission_not_granted_dialog_message)
                         .setPositiveButton(R.string.dialog_ok, (dialog, which) ->
@@ -476,7 +476,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
     private void createDialogs() {
         //reboot dialog
-        mRebootDialog = new Builder(mContext, R.style.AlertDialogStyle);
+        mRebootDialog = new Builder(mContext, R.style.DialogStyle);
         mRebootDialog.setTitle(R.string.are_you_sure)
                 .setMessage(R.string.available_reboot_confirm)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
@@ -485,7 +485,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
 
 
         // Compatibility Dialog
-        mCompatibilityDialog = new Builder(mContext, R.style.AlertDialogStyle);
+        mCompatibilityDialog = new Builder(mContext, R.style.DialogStyle);
         mCompatibilityDialog.setCancelable(false);
         mCompatibilityDialog.setTitle(R.string.main_not_compatible_title);
         mCompatibilityDialog.setMessage(R.string.main_not_compatible_message);
@@ -495,7 +495,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         //mCompatibilityDialog.setNegativeButton("debug", (dialog, which) -> dialog.cancel());
 
         // Donate Dialog
-        mDonateDialog = new Builder(this, R.style.AlertDialogStyle);
+        mDonateDialog = new Builder(this, R.style.DialogStyle);
         String[] donateItems = {"PayPal", "BitCoin"};
         mDonateDialog.setTitle(getResources().getString(R.string.donate))
                 .setSingleChoiceItems(donateItems, 0, null)
@@ -523,7 +523,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 .setNegativeButton(getResources().getString(R.string.cancel), (dialog, which) ->
                         dialog.cancel());
 
-        mPlayStoreDialog = new Builder(mContext, R.style.AlertDialogStyle);
+        mPlayStoreDialog = new Builder(mContext, R.style.DialogStyle);
         mPlayStoreDialog.setCancelable(true);
         mPlayStoreDialog.setTitle(R.string.main_playstore_title);
         mPlayStoreDialog.setMessage(R.string.main_playstore_message);

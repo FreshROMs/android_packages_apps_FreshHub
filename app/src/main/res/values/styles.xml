@@ -6,9 +6,6 @@
         <item name="colorPrimaryDark">@color/default_primary_dark_color</item>
     </style>
 
-    <!--Dialog-->
-    <style name="AlertDialogStyle" parent="android:Theme.DeviceDefault.Light.Dialog.Alert" />
-
     <style name="LargeProgressDialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>

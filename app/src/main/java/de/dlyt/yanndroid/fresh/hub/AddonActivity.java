@@ -212,7 +212,7 @@ public class AddonActivity extends AppCompatActivity implements Constants {
         }
 
         private void deleteConfirm(final File file, final TnsAddon item) {
-            Builder deleteConfirm = new Builder(mContext, R.style.AlertDialogStyle);
+            Builder deleteConfirm = new Builder(mContext, R.style.DialogStyle);
             deleteConfirm.setTitle(R.string.delete);
             deleteConfirm.setMessage(mContext.getResources().getString(R.string.delete_addon_confirm, item.getTitle()));
             deleteConfirm.setPositiveButton(R.string.ok, (dialog, which) -> {

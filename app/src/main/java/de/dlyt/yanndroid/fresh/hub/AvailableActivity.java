@@ -354,7 +354,7 @@ public class AvailableActivity extends Activity implements Constants, View.OnCli
     }
 
     private void setupDialogs() {
-        mDeleteDialog = new Builder(mContext, R.style.AlertDialogStyle);
+        mDeleteDialog = new Builder(mContext, R.style.DialogStyle);
         mDeleteDialog.setTitle(R.string.are_you_sure)
                 .setMessage(R.string.available_delete_confirm_message)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {

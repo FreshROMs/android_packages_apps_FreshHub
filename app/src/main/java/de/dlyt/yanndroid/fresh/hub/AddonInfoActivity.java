@@ -188,7 +188,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
     }
 
     public void deleteConfirmAddonInfo(View v) {
-        AlertDialog.Builder deleteConfirm = new AlertDialog.Builder(mContext, R.style.AlertDialogStyle);
+        AlertDialog.Builder deleteConfirm = new AlertDialog.Builder(mContext, R.style.DialogStyle);
         deleteConfirm.setTitle(R.string.delete);
         deleteConfirm.setMessage(mContext.getString(R.string.delete_addon_confirm, mTitle));
         deleteConfirm.setPositiveButton(R.string.ok, (dialog, which) -> {

@@ -18,7 +18,7 @@ public class QSTile extends TileService {
     @Override
     public void onClick() {
 
-        mRebootDialog = new AlertDialog.Builder(this, R.style.AlertDialogStyle);
+        mRebootDialog = new AlertDialog.Builder(this, R.style.DialogStyle);
 
         mRebootDialog.setTitle(R.string.are_you_sure)
                 .setMessage(R.string.available_reboot_confirm)
