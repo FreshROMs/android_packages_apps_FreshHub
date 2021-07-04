@@ -23,9 +23,9 @@
 
 
                 <LinearLayout
+                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
                     android:orientation="vertical">
 
 
@@ -34,6 +34,7 @@
                         android:layout_height="wrap_content">
 
                         <LinearLayout
+                            android:layout_marginHorizontal="@dimen/resolution_margin_land"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
@@ -118,15 +119,16 @@
                         android:layout_marginTop="10dp">
 
                         <LinearLayout
+                            android:layout_marginHorizontal="@dimen/resolution_margin_land"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="24dp"
                             android:layout_marginVertical="24dp"
                             android:clickable="false"
                             android:gravity="center_vertical"
                             android:orientation="vertical">
 
                             <RadioGroup
+                                android:layout_marginHorizontal="24dp"
                                 android:id="@+id/resolution_radiogroup"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -204,6 +206,7 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
                         android:fontFamily="sec-roboto-light"
                         android:paddingVertical="8dp"
                         android:text="@string/screen_resolution_button_text"

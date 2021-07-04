@@ -15,19 +15,6 @@
 
     <shortcut
         android:enabled="true"
-        android:icon="@drawable/launcher_shortcut_resolution"
-        android:shortcutId="resolution_shortcut"
-        android:shortcutLongLabel="@string/system_settings_resolution_plugin_title"
-        android:shortcutShortLabel="@string/system_settings_resolution_plugin_title">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetClass="de.dlyt.yanndroid.fresh.settings.ScreenResolutionActivity"
-            android:targetPackage="de.dlyt.yanndroid.fresh" />
-        <categories android:name="android.shortcut.conversation" />
-    </shortcut>
-
-    <shortcut
-        android:enabled="true"
         android:icon="@drawable/launcher_shortcut_reboot"
         android:shortcutId="reboot_shortcut"
         android:shortcutLongLabel="@string/reboot"

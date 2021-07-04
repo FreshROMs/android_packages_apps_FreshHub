@@ -4,11 +4,11 @@
     android:id="@+id/toolbar_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:expandable="false"
     app:navigationIcon="@drawable/ic_samsung_back"
     app:title="">
 
     <LinearLayout
-        android:id="@+id/upper_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="top|center_horizontal"
@@ -75,7 +75,6 @@
 
 
         <LinearLayout
-            android:id="@+id/lower_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="12.0dip"

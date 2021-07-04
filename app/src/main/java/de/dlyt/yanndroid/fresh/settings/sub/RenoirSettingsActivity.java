@@ -1,29 +1,28 @@
 package de.dlyt.yanndroid.fresh.settings.sub;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.renoir.RenoirService;
+import de.dlyt.yanndroid.samsung.ColorPickerDialog;
 import de.dlyt.yanndroid.samsung.SwitchBar;
 import de.dlyt.yanndroid.samsung.layout.ToolbarLayout;
 import io.tensevntysevn.fresh.ExperienceUtils;
@@ -85,7 +84,39 @@ public class RenoirSettingsActivity extends AppCompatActivity {
             setLayoutEnabled(renoirLsSwitchLayout, mRenoirEnabled);
             mRenoirLsSwitch.setEnabled(mRenoirLsWallpaper);
         }
+
+        colorPickerDemo();
     }
+
+
+    private void colorPickerDemo() {
+        MaterialCardView custom_color_card = findViewById(R.id.custom_color_card);
+        View custom_color_circle = findViewById(R.id.custom_color_circle);
+        GradientDrawable circleDrawable = (GradientDrawable) ((RippleDrawable) custom_color_circle.getBackground()).getDrawable(0);
+
+        custom_color_card.setOnClickListener(v -> {
+
+            float[] startColor = new float[3];
+            Color.colorToHSV(getResources().getColor(R.color.default_primary_color), startColor);
+
+            ColorPickerDialog mColorPickerDialog;
+            mColorPickerDialog = new ColorPickerDialog(mContext, 2, startColor);
+            mColorPickerDialog.setColorPickerChangeListener(new ColorPickerDialog.ColorPickerChangedListener() {
+                @Override
+                public void onColorChanged(int i, float[] fArr) {
+                    circleDrawable.setColor(ColorStateList.valueOf(Color.HSVToColor(fArr)));
+                }
+
+                @Override
+                public void onViewModeChanged(int i) {
+
+                }
+            });
+            mColorPickerDialog.show();
+
+        });
+    }
+
 
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
