@@ -29,6 +29,13 @@ public class ExperienceUtils {
         return !isThemePackageMissing && !isThemeVersionMissing;
     }
 
+    public static boolean isLsWallpaperUnavailable(Context context) {
+        Integer pluginWallpaperType = Settings.Secure.getInt(context.getContentResolver(),
+                    "plugin_lock_wallpaper_type", 0);
+
+        return pluginWallpaperType > 0;
+    }
+
     public static boolean isVideoEnhancerEnabled(Context context) {
         int enhancerEnabled = Settings.System.getInt(context.getContentResolver(),
                 "hdr_effect", 0);
