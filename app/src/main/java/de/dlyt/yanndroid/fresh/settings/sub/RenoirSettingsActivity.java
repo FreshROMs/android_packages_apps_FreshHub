@@ -84,11 +84,10 @@ public class RenoirSettingsActivity extends AppCompatActivity {
             setLayoutEnabled(renoirLsSwitchLayout, mRenoirEnabled);
             mRenoirLsSwitch.setEnabled(mRenoirLsWallpaper);
         }
-
-        colorPickerDemo();
+        // colorPickerDemo();
     }
 
-
+    /*
     private void colorPickerDemo() {
         MaterialCardView custom_color_card = findViewById(R.id.custom_color_card);
         View custom_color_circle = findViewById(R.id.custom_color_circle);
@@ -115,7 +114,7 @@ public class RenoirSettingsActivity extends AppCompatActivity {
             mColorPickerDialog.show();
 
         });
-    }
+    } */
 
 
     @Override
