@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
-    <string name="app_name">"FreshRom"</string>
     <string name="sesl_switchbar_off_text">"Выключить"</string>
     <string name="sesl_switchbar_on_text">"Включить"</string>
     <string name="main_update_available">"Доступно обновление"</string>
@@ -11,24 +9,25 @@
     <string name="main_website">"Веб-сайт"</string>
     <string name="main_website_summary">"Посетите официальный сайт Fresh"</string>
     <string name="main_donate">"Пожертвовать"</string>
-    <string name="main_donate_summary">"Помогите разработчику(разработчикам) этого ПЗУ!"</string>
+    <string name="main_donate_summary">"Помогите разработчику(разработчикам) это
+го ПЗУ!"</string>
     <string name="main_tap_to_view_progress">"Нажмите, чтобы просмотреть ход выполнения"</string>
     <string name="main_last_checked">"Последняя проверка"</string>
     <string name="main_addon">"Дополнения"</string>
     <string name="main_addon_summary">"Установите дополнения!"</string>
     <!-- ROM Information -->
     <string name="main_rom_information">"О устройстве"</string>
-    <string name="main_rom_version">"Версия выпуска"</string>
+    <string name="main_rom_version">"Версия релиза"</string>
     <string name="main_rom_build_date">"Дата сборки"</string>
     <!-- Dialogs -->
     <string name="main_not_compatible_title">"Подожди!"</string>
-    <string name="main_not_compatible_message">"Текущая настройка ПЗУ не настроена для работы с FreshApp. Пожалуйста, свяжитесь с сопровождающим ПЗУ, чтобы устранить эту проблему."</string>
+    <string name="main_not_compatible_message">"Текущая версия ОС не совместима с FreshApp. Пожалуйста, свяжитесь с сопровождающим чтобы устранить эту проблему."</string>
     <string name="main_not_connected_title">"Не подключен"</string>
-    <string name="main_not_connected_message">"Вы не подключены ни к какой сети.  Пожалуйста, включите мобильную сеть или Wi-Fi и попробуйте еще раз."</string>
+    <string name="main_not_connected_message">"Вы не подключены к сети. Пожалуйста, проверьте подключение к интернету и попробуйте еще раз."</string>
     <string name="main_playstore_title">"BitCoin"</string>
-    <string name="main_playstore_message">"У вас нет доступных приложений для обработки mime-типа «bitcoin:».
+    <string name="main_playstore_message">"У вас нет доступных приложений для обработки файлов типа «bitcoin:».
 
- Хотите найти его в магазине Google Play?"</string>
+Хотите поискать их в магазине Google Play?"</string>
     <!-- Content Descriptions -->
     <string name="main_button_icon">"Значок кнопки"</string>
     <string name="main_dev_website_icon">"Значок веб-сайта разработчика"</string>
@@ -44,14 +43,14 @@
     <string name="donate">"Пожертвовать"</string>
     <string name="delete_confirm">"Вы уверены, что хотите удалить этот файл?"</string>
     <string name="permission_not_granted_dialog_title">"Разрешения на хранение не предоставлены"</string>
-    <string name="permission_not_granted_dialog_message">"Пожалуйста, предоставьте разрешения Fresh Hub storage, чтобы иметь возможность получать обновления программного обеспечения и загружать дополнения."</string>
+    <string name="permission_not_granted_dialog_message">"Пожалуйста, предоставьте Fresh Hub разрешение на доступ к хранилищу, чтобы иметь возможность получать обновления программного обеспечения и загружать дополнения."</string>
     <string name="dialog_ok">"Хорошо"</string>
     <!-- About Strings -->
     <string name="about_version_title">"Версия"</string>
     <string name="available_changelog_content">"Ваш список изменений"</string>
     <string name="available_ready_to_install">"Готово к установке"</string>
-    <string name="available_md5_ok">"MD5 Соответствует"</string>
-    <string name="available_md5_failed">"MD5 Потерпел неудачу"</string>
+    <string name="available_md5_ok">"Контрольная сумма соответствует"</string>
+    <string name="available_md5_failed">"Контрольная сумма НЕ соответствует"</string>
     <string name="are_you_sure">"Вы уверены?"</string>
     <string name="available_delete_confirm_message">"Вы уверены, что хотите удалить загруженный файл?"</string>
     <string name="available_reboot_confirm">"Хотите перезагрузиться прямо сейчас?"</string>
@@ -59,10 +58,10 @@
     <string name="available_reboot_manual_title">"Пожалуйста, перезагрузитесь сейчас"</string>
     <string name="available_reboot_manual_message">"Пожалуйста, перезагрузитесь для восстановления и прошейте свой ПЗУ.
 
-Из-за новых правил Android для ограниченного хранилища вы можете найти обновление в /sdcard/Android/data/de.dlyt.yanndroid.fresh/Updates"</string>
+Из-за новых правил Android в отношении доступа к хранилищу вы можете найти обновление в /sdcard/Android/data/de.dlyt.yanndroid.fresh/Updates"</string>
     <!-- Preferences -->
     <string name="preferences_name">"Настройки"</string>
-    <string name="background_frequency">"Частота проверки обновления"</string>
+    <string name="background_frequency">"Период проверки обновлений"</string>
     <string name="background_60mins">"60 минут"</string>
     <string name="background_3hours">"3 часа"</string>
     <string name="background_6hours">"6 часов"</string>
@@ -73,8 +72,8 @@
     <!-- Drawer -->
     <string name="feedback">"Отзывы"</string>
     <string name="omc_request">"Запрос OMC"</string>
-    <string name="fresh_updates">"Новое Обновления"</string>
-    <string name="reboot">"Перезагрузка для восстановления"</string>
+    <string name="fresh_updates">"Новое обновление"</string>
+    <string name="reboot">"Перезагрузка в режим восстановления"</string>
     <string name="main_ota_information">"Информация об обновлении программного обеспечения"</string>
     <string name="main_rom_spl">"Уровень патча безопасности:"</string>
     <string name="main_ota_version">"Версия"</string>
@@ -89,36 +88,36 @@
     <string name="available_download_speed">"%s/s"</string>
     <string name="system_name">"Fresh"</string>
     <!-- System settings plugin -->
-    <string name="system_settings_plugin_title">"Обновление программного обеспечения"</string>
-    <string name="system_settings_plugin_summary">"Обновления устройств • Загрузка дополнений"</string>
+    <string name="system_settings_plugin_title">"Обновление ПО"</string>
+    <string name="system_settings_plugin_summary">"Обновления устройства • Загрузка дополнений"</string>
     <string name="system_settings_resolution_plugin_title">"Разрешение экрана"</string>
-    <string name="system_settings_resolution_plugin_summary">"Изменение разрешения и плотности устройства"</string>
+    <string name="system_settings_resolution_plugin_summary">"Изменение разрешения и плотности пикселей"</string>
     <!-- Resolution -->
     <string name="screen_resolution_desc_summary">"Некоторые приложения могут закрываться при изменении разрешения."</string>
-    <string name="high_resolution_summary">"Самые острые визуальные эффекты, большой расход батареи"</string>
-    <string name="medium_resolution_summary">"Улучшенные визуальные эффекты, умеренное использование батареи"</string>
-    <string name="low_resolution_summary">"Низкие визуальные эффекты, низкое использование батареи"</string>
-    <string name="system_notification_group_title">"Свежий ОТА"</string>
+    <string name="high_resolution_summary">"Самые лучшие визуальные эффекты, большой расход батареи"</string>
+    <string name="medium_resolution_summary">"Стандартные визуальные эффекты, умеренное использование батареи"</string>
+    <string name="low_resolution_summary">"Базовые визуальные эффекты, низкое использование батареи"</string>
+    <string name="system_notification_group_title">"Обновление Fresh"</string>
     <string name="system_notification_channel_title">"Доступные обновления"</string>
-    <string name="system_notification_channel_desc">"Этот канал уведомлений позволяет приложению уведомлять вас об обновлениях, доступных на вашем устройстве."</string>
+    <string name="system_notification_channel_desc">"Этот канал уведомлений позволяет приложению уведомлять вас об обновлениях, доступных для вашего устройства."</string>
     <string name="system_notification_available_title">"Доступно обновление программного обеспечения"</string>
     <string name="system_notification_available_desc">"Fresh %1$s %2$s теперь доступен для вашего устройства!"</string>
     <string name="system_notification_finish_title">"Ваш телефон был успешно обновлен"</string>
     <string name="system_notification_finish_desc">"Ваше устройство успешно обновлено до Fresh %1$s %2$s. Наслаждайтесь более новым телефоном!"</string>
     <string name="system_notification_failed_title">"Не удалось обновить программное обеспечение"</string>
-    <string name="system_notification_failed_desc">"Ваше устройство не удалось обновить. Телефон обновлен до %1$s %2$s."</string>
+    <string name="system_notification_failed_desc">"Ваше устройство не удалось обновить. Ошибка при установке версии %1$s %2$s."</string>
     <string name="setting_notifications">"Уведомления"</string>
-    <string name="setting_notifications_summary">"Автоматически проверяйте наличие обновлений и показывайте уведомление, если таковое имеется."</string>
+    <string name="setting_notifications_summary">"Автоматически проверять наличие обновлений и показывать уведомление, если таковое имеется."</string>
     <string name="setting_auto_download">"Автоматическая загрузка по Wi-Fi"</string>
-    <string name="setting_auto_download_summary">"Загружайте обновления программного обеспечения автоматически при подключении к сети Wi-Fi."</string>
+    <string name="setting_auto_download_summary">"Загружать обновления программного обеспечения автоматически при подключении к сети Wi-Fi."</string>
     <string name="main_header_community">"Присоединяйтесь к сообществу!"</string>
     <string name="main_community_discord_description">"Присоединяйтесь к официальному серверу Discord!"</string>
     <string name="main_community_discord">"Fresh Community Discord"</string>
     <string name="main_community_telegram">"Telegram Community"</string>
-    <string name="main_community_telegram_description">"Присоединяйтесь к сообществу Fresh Telegram"</string>
-    <string name="main_community_discussions">"Обсуждения GitHub"</string>
+    <string name="main_community_telegram_description">"Присоединяйтесь к сообществу Fresh в Telegram"</string>
+    <string name="main_community_discussions">"Обсуждения на GitHub"</string>
     <string name="main_community_discussions_description">"Обсудить новые функции и многое другое"</string>
-    <string name="main_community_xda">"XDA Forum"</string>
+    <string name="main_community_xda">"XDA форум"</string>
     <string name="main_community_xda_description">"Посетите форум Fresh для своего устройства"</string>
     <string name="setting_app_icon">"Добавить значок Fresh Hub"</string>
     <string name="setting_app_icon_summary">"Добавить Fresh Hub на экран приложений"</string>
@@ -130,8 +129,42 @@
     <string name="about_open_source_used">"Компоненты с открытым исходным кодом"</string>
     <string name="about_open_source_button">"Лицензии с открытым исходным кодом"</string>
     <string name="available_preinstall_notice">"Вы не сможете использовать свой телефон во время обновления даже для экстренных вызовов."</string>
-    <string name="available_preinstall_notice_nohash">"Не удалось проверить хэш пакета, продолжайте обновление на свой страх и риск.  Вы не сможете пользоваться телефоном во время обновления."</string>
+    <string name="available_preinstall_notice_nohash">"Не удалось проверить хэш-сумму пакета, продолжайте обновление на свой страх и риск. Вы не сможете пользоваться телефоном во время обновления."</string>
     <string name="addon_uninstall">"Удалить"</string>
     <string name="addon_update">"Обновить"</string>
     <string name="drawer_github_link">"Файл проблемы"</string>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name">"No need to translate"</string>
+    <string name="app_name_experience"/>
+    <string name="customization_notification_group_title"/>
+    <string name="system_notification_channel_ongoing_title"/>
+    <string name="customization_notification_channel_ongoing_title"/>
+    <string name="customization_notification_channel_desc">"Это уведомление необходимо приложению для работы в фоновом режиме"</string>
+    <string name="renoir_notification_title"/>
+    <string name="renoir_notification_desc">"Подстраивание темы телефона под цвет обоев"</string>
+    <string name="renoir_settings_title"/>
+    <string name="renoir_settings_desc">"Подстраивать цветовую схему One UI под установленные обои"</string>
+    <string name="renoir_settings_desc_unavailable">"Цветовая тема недоступна, поскольку устаноалена сторонняя."</string>
+    <string name="renoir_settings_lock_screen"/>
+    <string name="renoir_settings_lock_screen_desc"/>
+    <string name="system_settings_zest_plugin_title"/>
+    <string name="system_settings_zest_plugin_summary">"Кастомизация • Обновление ПО"</string>
+    <string name="sesl_relative_widget_title">"Ищете что-нибудь ещё?"</string>
+    <string name="zest_video_enhancer_title">"Улучшайзер видео"</string>
+    <string name="zest_video_enhancer_detail_desc">"Увеличить качество отображения в в видео для наслаждения более яркими и насыщенными цветами"</string>
+    <string name="zest_video_enhancer_detail_applist_title">"Доступные приложения"</string>
+    <string name="zest_relative_link_advanced">"Продвинутые настройки"</string>
+    <!-- Fuzzy -->
+    <string name="zest_relative_link_wallpaper">"Обои для домашнего экрана и экрана блокировки
+"</string>
+    <string name="zest_relative_link_themes"/>
+    <string name="screen_resolution_button_text">"Применить"</string>
+    <string name="zest_data_connection_icon">"Стиль иконки мобильной сети"</string>
+    <string name="zest_data_connection_icon_default">"Стандарт (4G)"</string>
+    <string name="zest_data_connection_icon_lte">"LTE"</string>
+    <string name="zest_data_connection_icon_next">"5G"</string>
+    <string name="zest_wlan_connection_icon">"Стиль иконки Wi-Fi"</string>
+    <string name="zest_wlan_connection_icon_default">"Стандарт"</string>
+    <string name="zest_wlan_connection_icon_uplus">"LG U+"</string>
+    <string name="zest_wlan_connection_icon_kt">"KT"</string>
 </resources>
