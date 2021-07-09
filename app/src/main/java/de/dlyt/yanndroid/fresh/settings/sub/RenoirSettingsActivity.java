@@ -63,7 +63,6 @@ public class RenoirSettingsActivity extends AppCompatActivity {
 
         mRenoirLsSwitch = findViewById(R.id.switch_renoir_lock_screen);
 
-        TextView renoirDescription = findViewById(R.id.renoir_description_text);
         renoirLsSwitchLayout = findViewById(R.id.switch_renoir_lock_screen_layout);
 
         ToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
@@ -76,14 +75,6 @@ public class RenoirSettingsActivity extends AppCompatActivity {
             }
         });
 
-        if (ExperienceUtils.isGalaxyThemeApplied(mContext)) {
-            mRenoirLsSwitch.setEnabled(false);
-            setLayoutEnabled(renoirLsSwitchLayout, false);
-            renoirDescription.setText(getString(R.string.renoir_settings_desc_unavailable));
-        } else {
-            setLayoutEnabled(renoirLsSwitchLayout, mRenoirEnabled);
-            mRenoirLsSwitch.setEnabled(mRenoirLsWallpaper);
-        }
         // colorPickerDemo();
     }
 
@@ -133,8 +124,24 @@ public class RenoirSettingsActivity extends AppCompatActivity {
     }
 
     private void updatePreferences() {
-        mRenoirEnabled = RenoirService.getRenoirEnabled(mContext);
-        mRenoirLsWallpaper = RenoirService.getColorBasedOnLock(mContext);
+        TextView renoirDescription = findViewById(R.id.renoir_description_text);
+        
+        if (ExperienceUtils.isGalaxyThemeApplied(mContext)) {
+            mRenoirLsSwitch.setEnabled(false);
+            setLayoutEnabled(renoirLsSwitchLayout, false);
+            renoirDescription.setText(getString(R.string.renoir_settings_desc_unavailable));
+            mRenoirEnabled = false;
+            mRenoirLsWallpaper = false;
+        } else if (ExperienceUtils.isLsWallpaperUnavailable(mContext)) {
+            setLayoutEnabled(renoirLsSwitchLayout, false);
+            mRenoirLsSwitch.setEnabled(false);
+            mRenoirLsWallpaper = false;
+        } else {
+            setLayoutEnabled(renoirLsSwitchLayout, mRenoirEnabled);
+            mRenoirLsSwitch.setEnabled(mRenoirLsWallpaper);
+            mRenoirEnabled = RenoirService.getRenoirEnabled(mContext);
+            mRenoirLsWallpaper = RenoirService.getColorBasedOnLock(mContext);
+        }
 
         mRenoirSwitchBar.setChecked(mRenoirEnabled);
         mRenoirLsSwitch.setChecked(mRenoirLsWallpaper);
