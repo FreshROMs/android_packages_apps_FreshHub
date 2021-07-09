@@ -39,7 +39,7 @@
                         style="?textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fresh version"
+                        android:text="@string/zest_version_fresh_rom"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
@@ -92,7 +92,7 @@
                         style="?textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="About Fresh Hub"
+                        android:text="@string/zest_version_fresh_hub"
                         android:textAlignment="viewStart"
                         android:textSize="18sp" />
 
