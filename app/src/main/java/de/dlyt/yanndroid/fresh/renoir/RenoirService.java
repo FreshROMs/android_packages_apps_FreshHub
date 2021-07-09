@@ -229,7 +229,8 @@ public class RenoirService extends Service {
     }
 
     public static boolean isFreshBuildEligibleForRenoir(Context context) {
-        return true;
+        PackageManager packageManager = context.getPackageManager();
+        return packageManager.hasSystemFeature("io.tensevntysevn.fresh.sainetto");
     }
 
     public static void configureCorePackages(Context context, Boolean state) {
