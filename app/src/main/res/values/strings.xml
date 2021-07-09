@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
-    <string name="app_name">"Fresh Hub"</string>
-    <string name="app_name_experience">"Fresh Experience Framework"</string>
     <string name="closed" translatable="false">"closed"</string>
     <string name="opend" translatable="false">"opend"</string>
     <string name="sesl_switchbar_off_text">"Off"</string>
@@ -96,9 +93,7 @@ Due to Android's new rules for Scoped Storage, you can find the update in /sdcar
     <string name="system_name">"Fresh"</string>
     <!-- Props -->
     <string name="ota_swupdate_prop_api_url" translatable="false">"ro.fresh.ota.api"</string>
-    <string name="ota_swupdate_prop_api_url_mirror" translatable="false">"ro.fresh.ota.api.mirror"</string>
     <string name="ota_swupdate_prop_date" translatable="false">"ro.system.build.date"</string>
-    <string name="ota_swupdate_prop_date_actual" translatable="false">"ro.fresh.build.date"</string>
     <string name="ota_swupdate_prop_release" translatable="false">"ro.fresh.version"</string>
     <string name="ota_swupdate_prop_version" translatable="false">"ro.fresh.build.version"</string>
     <string name="ota_swupdate_prop_branch" translatable="false">"ro.fresh.build.branch"</string>
@@ -127,7 +122,6 @@ Due to Android's new rules for Scoped Storage, you can find the update in /sdcar
     <string name="low_resolution_density" translatable="false">"210"</string>
     <!-- Notifications -->
     <string name="system_notification_channel_id" translatable="false">"TnsOta"</string>
-    <string name="system_notification_ongoing_channel_id" translatable="false">"TnsOtaOngoingNotif"</string>
     <string name="system_notification_group_title">"Fresh OTA"</string>
     <string name="system_notification_channel_title">"Available updates"</string>
     <string name="system_notification_channel_desc">"This notification channel allows the app to notify you about updates available on your device."</string>
@@ -164,14 +158,18 @@ Due to Android's new rules for Scoped Storage, you can find the update in /sdcar
     <string name="addon_uninstall">"Uninstall"</string>
     <string name="addon_update">"Update"</string>
     <string name="drawer_github_link">"File an Issue"</string>
-
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name">"Fresh Hub"</string>
+    <string name="app_name_experience">"Fresh Experience Framework"</string>
+    <string name="ota_swupdate_prop_api_url_mirror" translatable="false">"ro.fresh.ota.api.mirror"</string>
+    <string name="ota_swupdate_prop_date_actual" translatable="false">"ro.fresh.build.date"</string>
+    <string name="system_notification_ongoing_channel_id" translatable="false">"TnsOtaOngoingNotif"</string>
     <!-- Zest/Fresh Settings -->
     <string name="customization_notification_ongoing_channel_id" translatable="false">"TnsFreshCustomize"</string>
     <string name="customization_notification_group_title">"Fresh Hub"</string>
     <string name="system_notification_channel_ongoing_title">"Ongoing notifications"</string>
     <string name="customization_notification_channel_ongoing_title">"Ongoing customizations"</string>
     <string name="customization_notification_channel_desc">"This notification channel allows the app to execute operations needed in the background."</string>
-
     <string name="renoir_notification_title">@string/renoir_settings_title</string>
     <string name="renoir_notification_desc">"Changing device theme based on wallpaper…"</string>
     <string name="renoir_settings_title">"Color-matching Theme"</string>
@@ -179,29 +177,23 @@ Due to Android's new rules for Scoped Storage, you can find the update in /sdcar
     <string name="renoir_settings_desc_unavailable">"Color-matching Theme is not available because a third-party theme is applied."</string>
     <string name="renoir_settings_lock_screen">"Use lock screen colors"</string>
     <string name="renoir_settings_lock_screen_desc">"Use colors from your lock screen wallpaper in picking the device theme."</string>
-
     <string name="system_settings_zest_plugin_title">"Zest"</string>
     <string name="system_settings_zest_plugin_summary">"Customization  •  Software update"</string>
-    <string name="sesl_relative_widget_title">Looking for something else?</string>
-
-    <string name="zest_video_enhancer_title">Video enhancer</string>
-    <string name="zest_video_enhancer_detail_desc">Enhance the image quality of your videos to enjoy brighter and more vivid colors.</string>
-    <string name="zest_video_enhancer_detail_applist_title">Available apps</string>
-
-    <string name="zest_relative_link_advanced">Advanced settings</string>
-    <string name="zest_relative_link_wallpaper">Home and lock screen wallpaper</string>
-    <string name="zest_relative_link_themes">Samsung Themes</string>
-    <string name="screen_resolution_button_text">Apply</string>
-
-    <string name="zest_data_connection_icon">Data connection icon style</string>
-    <string name="zest_data_connection_icon_default">Default (4G)</string>
-    <string name="zest_data_connection_icon_lte">LTE</string>
-    <string name="zest_data_connection_icon_next">Next (5G)</string>
-
-    <string name="zest_wlan_connection_icon">Wi-Fi signal icon style</string>
-    <string name="zest_wlan_connection_icon_default">Default</string>
-    <string name="zest_wlan_connection_icon_uplus">LG U+</string>
-    <string name="zest_wlan_connection_icon_kt">KT</string>
-
-    <string name="experience_version" translatable="false">"12.2.0.0"</string>
+    <string name="sesl_relative_widget_title">"Looking for something else?"</string>
+    <string name="zest_video_enhancer_title">"Video enhancer"</string>
+    <string name="zest_video_enhancer_detail_desc">"Enhance the image quality of your videos to enjoy brighter and more vivid colors."</string>
+    <string name="zest_video_enhancer_detail_applist_title">"Available apps"</string>
+    <string name="zest_relative_link_advanced">"Advanced settings"</string>
+    <string name="zest_relative_link_wallpaper">"Home and lock screen wallpaper"</string>
+    <string name="zest_relative_link_themes">"Samsung Themes"</string>
+    <string name="screen_resolution_button_text">"Apply"</string>
+    <string name="zest_data_connection_icon">"Data connection icon style"</string>
+    <string name="zest_data_connection_icon_default">"Default (4G)"</string>
+    <string name="zest_data_connection_icon_lte">"LTE"</string>
+    <string name="zest_data_connection_icon_next">"Next (5G)"</string>
+    <string name="zest_wlan_connection_icon">"Wi-Fi signal icon style"</string>
+    <string name="zest_wlan_connection_icon_default">"Default"</string>
+    <string name="zest_wlan_connection_icon_uplus">"LG U+"</string>
+    <string name="zest_wlan_connection_icon_kt">"KT"</string>
+    <string name="experience_version" translatable="false">"12.1.92.0"</string>
 </resources>
