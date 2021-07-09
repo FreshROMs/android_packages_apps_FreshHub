@@ -37,6 +37,7 @@ import de.dlyt.yanndroid.fresh.renoir.RenoirService;
 import de.dlyt.yanndroid.fresh.settings.sub.HDREffectSettingsActivity;
 import de.dlyt.yanndroid.fresh.settings.sub.RenoirSettingsActivity;
 import de.dlyt.yanndroid.fresh.settings.sub.ScreenResolutionActivity;
+import de.dlyt.yanndroid.fresh.utils.Notifications;
 import de.dlyt.yanndroid.fresh.utils.SystemProperties;
 import de.dlyt.yanndroid.fresh.utils.Tools;
 import de.dlyt.yanndroid.samsung.layout.ToolbarLayout;
@@ -61,6 +62,8 @@ public class FreshSettingsActivity extends AppCompatActivity {
     TextView mOtaSummary;
     TextView mRenoirSummary;
     LinearLayout mRenoirLayout;
+    LinearLayout mResolutionLayout;
+    LinearLayout mZestLayout;
     TextView mDataIconSummary;
     String[] mDataIconEntries;
     String[] mDataIconPackages;
@@ -73,9 +76,9 @@ public class FreshSettingsActivity extends AppCompatActivity {
     ArrayAdapter<String> mWlanIconAdapter;
 
     int setResolution;
-    boolean setRenoir;
-    boolean setHDReffect;
-    boolean disableRenoir;
+    boolean setRenoir = false;
+    boolean setHDReffect = false;
+    boolean disableRenoir = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +100,8 @@ public class FreshSettingsActivity extends AppCompatActivity {
         mWlanIconSpinner = findViewById(R.id.wlan_signal_icon_spinner);
         mResolutionValues = getResources().getStringArray(R.array.screen_resolution_options_summary);
         mResolutionSummary = findViewById(R.id.zest_screen_resolution_subtitle);
-        mOtaSummary = findViewById(R.id.zest_update_subtitle);
+        mResolutionLayout = findViewById(R.id.zest_screen_resolution);
+        mOtaSummary = findViewById(R.id.zest_update_badge);
         mRenoirSummary = findViewById(R.id.zest_renoir_subtitle);
         mRenoirLayout = findViewById(R.id.zest_layout_renoir);
         mDataIconSummary = findViewById(R.id.data_4g_icon_selected);
@@ -110,6 +114,7 @@ public class FreshSettingsActivity extends AppCompatActivity {
         mWlanIconPackagesDeX = getResources().getStringArray(R.array.wlan_signal_icon_packages_dex);
         mDataIconAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mDataIconEntries);
         mWlanIconAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mWlanIconEntries);
+        mZestLayout = findViewById(R.id.zest_main_hki);
 
         setResolution = ScreenResolutionActivity.getResolutionInt(mContext);
         setRenoir = RenoirService.getRenoirEnabled(mContext);
@@ -151,7 +156,8 @@ public class FreshSettingsActivity extends AppCompatActivity {
             mFreshHubVersionText.setVisibility(View.GONE);
         }
 
-        estherEgg();
+        Notifications.setupCustomizationNotifChannel(mContext);
+        easterEgg();
     }
 
     @Override
@@ -189,6 +195,11 @@ public class FreshSettingsActivity extends AppCompatActivity {
         mBackground = true;
         updatePreferences();
         super.onConfigurationChanged(newConfig);
+    }
+
+    public static boolean isFreshBuildEligibleForZest(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        return packageManager.hasSystemFeature("io.tensevntysevn.fresh.hikari");
     }
 
     public void openZestCMT(View v) {
@@ -254,137 +265,149 @@ public class FreshSettingsActivity extends AppCompatActivity {
 
         final boolean updateAvailable = TnsOta.getUpdateAvailability(mContext);
         setResolution = ScreenResolutionActivity.getResolutionInt(mContext);
-        setRenoir = RenoirService.getRenoirEnabled(mContext);
         setHDReffect = ExperienceUtils.isVideoEnhancerEnabled(mContext);
-        disableRenoir = ExperienceUtils.isGalaxyThemeApplied(mContext);
 
         ExperienceUtils.getRealScreenWidth(mContext, Tools.getActivity(mContext));
 
-        mDataIconAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mDataIconSpinner.setAdapter(mDataIconAdapter);
-        mDataIconAdapter.notifyDataSetChanged();
+        if (!isFreshBuildEligibleForZest(mContext)) {
+            mZestLayout.setVisibility(View.GONE);
+        } else {
+            if (RenoirService.isFreshBuildEligibleForRenoir(mContext)) {
+                setRenoir = RenoirService.getRenoirEnabled(mContext);
+                disableRenoir = ExperienceUtils.isGalaxyThemeApplied(mContext);
 
-        mWlanIconAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mWlanIconSpinner.setAdapter(mWlanIconAdapter);
-        mWlanIconAdapter.notifyDataSetChanged();
+                mRenoirSwitch.setChecked(setRenoir);
+            } else {
+                mRenoirLayout.setVisibility(View.GONE);
+            }
+
+            mDataIconAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            mDataIconSpinner.setAdapter(mDataIconAdapter);
+            mDataIconAdapter.notifyDataSetChanged();
+
+            mWlanIconAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            mWlanIconSpinner.setAdapter(mWlanIconAdapter);
+            mWlanIconAdapter.notifyDataSetChanged();
+
+            mDataIconSelected = Preferences.getDataConnectionIconInt(mContext);
+            mWlanIconSelected = Preferences.getWlanConnectionIconInt(mContext);
+
+            mDataIconSpinner.setSelection(mDataIconSelected);
+            mDataIconSummary.setText(mDataIconEntries[mDataIconSelected]);
+
+            mWlanIconSpinner.setSelection(mWlanIconSelected);
+            mWlanIconSummary.setText(mWlanIconEntries[mWlanIconSelected]);
+
+            if (RenoirService.isFreshBuildEligibleForRenoir(mContext)) {
+                setLayoutEnabled(mRenoirLayout, !disableRenoir);
+                if (disableRenoir) {
+                    mRenoirSummary.setText(R.string.renoir_settings_desc_unavailable);
+                    mRenoirSwitch.setEnabled(false);
+                }
+
+                if (ExperienceUtils.isDesktopMode(mContext)) {
+                    setLayoutEnabled(mRenoirLayout, false);
+                    setLayoutEnabled(mResolutionLayout, false);
+                    mRenoirSwitch.setEnabled(false);
+                    findViewById(R.id.zest_relative_link_wallpaper).setVisibility(View.GONE);
+                    findViewById(R.id.zest_relative_link_themes).setVisibility(View.GONE);
+                }
+
+                mRenoirSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (!(isChecked == setRenoir) && !mBackground) {
+                        mRenoirSwitch.setEnabled(false);
+                        setLayoutEnabled(mRenoirLayout, false);
+                        RenoirService.setRenoirEnabled(this, isChecked);
+
+                        handler.postDelayed(() -> {
+                            setLayoutEnabled(mRenoirLayout, true);
+                            mRenoirSwitch.setEnabled(true);
+                        }, 1500);
+                    }
+                });
+            }
+
+            mDataIconSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int selection, long id) {
+                    String oldPackage = mDataIconPackages[mDataIconSelected];
+                    String oldPackageDeX = mDataIconPackagesDeX[mDataIconSelected];
+
+                    String newPackage = mDataIconPackages[selection];
+                    String newPackageDeX = mDataIconPackagesDeX[selection];
+
+                    mDataIconSelected = selection;
+                    mDataIconSummary.setText(mDataIconEntries[selection]);
+                    Preferences.setDataConnectionIconInt(mContext, selection);
+
+                    if (!mBackground && !oldPackage.equals(newPackage)) {
+                        mExecutor.execute(() -> {
+                            if (!newPackage.equals(mWlanIconPackages[0])) {
+                                OverlayService.setOverlayState(newPackage, true);
+                                OverlayService.setOverlayState(newPackageDeX, true);
+                            }
+
+                            if (!oldPackage.equals(mWlanIconPackages[0])) {
+                                OverlayService.setOverlayState(oldPackage, false);
+                                OverlayService.setOverlayState(oldPackageDeX, false);
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
+
+            mWlanIconSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int selection, long id) {
+                    String oldPackage = mWlanIconPackages[mWlanIconSelected];
+                    String oldPackageDeX = mWlanIconPackagesDeX[mWlanIconSelected];
+
+                    String newPackage = mWlanIconPackages[selection];
+                    String newPackageDeX = mWlanIconPackagesDeX[selection];
+
+                    mWlanIconSelected = selection;
+                    mWlanIconSummary.setText(mWlanIconEntries[selection]);
+                    Preferences.setWlanConnectionIconInt(mContext, selection);
+
+                    if (!mBackground && !oldPackage.equals(newPackage)) {
+                        mExecutor.execute(() -> {
+                            if (!newPackage.equals(mWlanIconPackages[0])) {
+                                OverlayService.setOverlayState(newPackage, true);
+                                OverlayService.setOverlayState(newPackageDeX, true);
+                            }
+
+                            if (!oldPackage.equals(mWlanIconPackages[0])) {
+                                OverlayService.setOverlayState(oldPackage, false);
+                                OverlayService.setOverlayState(oldPackageDeX, false);
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
+        }
 
         mResolutionSummary.setText(mResolutionValues[setResolution]);
-        mRenoirSwitch.setChecked(setRenoir);
         mHDReffectSwitch.setChecked(setHDReffect);
 
-        mDataIconSelected = Preferences.getDataConnectionIconInt(mContext);
-        mWlanIconSelected = Preferences.getWlanConnectionIconInt(mContext);
-
-        mDataIconSpinner.setSelection(mDataIconSelected);
-        mDataIconSummary.setText(mDataIconEntries[mDataIconSelected]);
-
-        mWlanIconSpinner.setSelection(mWlanIconSelected);
-        mWlanIconSummary.setText(mWlanIconEntries[mWlanIconSelected]);
-
-        setLayoutEnabled(mRenoirLayout, !disableRenoir);
-        if (disableRenoir) {
-            mRenoirSummary.setText(R.string.renoir_settings_desc_unavailable);
-            mRenoirSwitch.setEnabled(false);
-        }
-
         mOtaSummary.setVisibility(updateAvailable ? View.VISIBLE : View.GONE);
-
-        if (ExperienceUtils.isDesktopMode(mContext)) {
-            setLayoutEnabled(mRenoirLayout, false);
-            setLayoutEnabled(findViewById(R.id.data_4g_icon), false);
-            setLayoutEnabled(findViewById(R.id.wlan_signal_icon), false);
-            findViewById(R.id.zest_relative_link_wallpaper).setVisibility(View.GONE);
-            findViewById(R.id.zest_relative_link_themes).setVisibility(View.GONE);
-        }
 
         mHDReffectSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (!(isChecked == setHDReffect) && !mBackground)
                 ExperienceUtils.setVideoEnhancerEnabled(this, isChecked);
         });
 
-        mRenoirSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (!(isChecked == setRenoir) && !mBackground) {
-                mRenoirSwitch.setEnabled(false);
-                setLayoutEnabled(mRenoirLayout, false);
-                RenoirService.setRenoirEnabled(this, isChecked);
-
-                handler.postDelayed(() -> {
-                    setLayoutEnabled(mRenoirLayout, true);
-                    mRenoirSwitch.setEnabled(true);
-                }, 1500);
-            }
-        });
-
-        mDataIconSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int selection, long id) {
-                String oldPackage = mDataIconPackages[mDataIconSelected];
-                String oldPackageDeX = mDataIconPackagesDeX[mDataIconSelected];
-
-                String newPackage = mDataIconPackages[selection];
-                String newPackageDeX = mDataIconPackagesDeX[selection];
-
-                mDataIconSelected = selection;
-                mDataIconSummary.setText(mDataIconEntries[selection]);
-                Preferences.setDataConnectionIconInt(mContext, selection);
-
-                if (!mBackground && !oldPackage.equals(newPackage)) {
-                    mExecutor.execute(() -> {
-                        if (!newPackage.equals(mWlanIconPackages[0])) {
-                            OverlayService.setOverlayState(newPackage, true);
-                            OverlayService.setOverlayState(newPackageDeX, true);
-                        }
-
-                        if (!oldPackage.equals(mWlanIconPackages[0])) {
-                            OverlayService.setOverlayState(oldPackage, false);
-                            OverlayService.setOverlayState(oldPackageDeX, false);
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        mWlanIconSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int selection, long id) {
-                String oldPackage = mWlanIconPackages[mWlanIconSelected];
-                String oldPackageDeX = mWlanIconPackagesDeX[mWlanIconSelected];
-
-                String newPackage = mWlanIconPackages[selection];
-                String newPackageDeX = mWlanIconPackagesDeX[selection];
-
-                mWlanIconSelected = selection;
-                mWlanIconSummary.setText(mWlanIconEntries[selection]);
-                Preferences.setWlanConnectionIconInt(mContext, selection);
-
-                if (!mBackground && !oldPackage.equals(newPackage)) {
-                    mExecutor.execute(() -> {
-                        if (!newPackage.equals(mWlanIconPackages[0])) {
-                            OverlayService.setOverlayState(newPackage, true);
-                            OverlayService.setOverlayState(newPackageDeX, true);
-                        }
-
-                        if (!oldPackage.equals(mWlanIconPackages[0])) {
-                            OverlayService.setOverlayState(oldPackage, false);
-                            OverlayService.setOverlayState(oldPackageDeX, false);
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
         mBackground = false;
     }
 
-    public void estherEgg() {
+    public void easterEgg() {
         View mVersionLabel = findViewById(R.id.zest_rom_version);
         long[] mHits = new long[3];
 
@@ -393,7 +416,7 @@ public class FreshSettingsActivity extends AppCompatActivity {
             System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
             mHits[mHits.length - 1] = SystemClock.uptimeMillis();
             if (mHits[0] >= (SystemClock.uptimeMillis() - 500)) {
-                String url = "https://www.youtube.com/watch?v=4U8MvhH6GnA";
+                String url = "https://www.youtube.com/watch?v=HUIuISTRnBY";
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
                 startActivity(intent);
