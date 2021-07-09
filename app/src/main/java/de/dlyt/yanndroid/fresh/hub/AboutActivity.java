@@ -61,8 +61,14 @@ public class AboutActivity extends AppCompatActivity {
             app_version.setText(" ");
         }
 
-        String exp_version = getString(R.string.app_name_experience) + " " + getString(R.string.experience_version);
-        experience_version.setText(exp_version);
+
+        try {
+            PackageInfo packageInfoExp = mContext.getPackageManager().getPackageInfo("io.tensevntysevn.fresh.framework", 0);
+            String exp_version = getString(R.string.app_name_experience) + " " + packageInfoExp.versionName;
+            experience_version.setText(exp_version);
+        } catch (PackageManager.NameNotFoundException e) {
+            experience_version.setText(" ");
+        }
 
         boolean updateAvailable = false;
 
