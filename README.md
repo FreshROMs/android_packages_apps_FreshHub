@@ -5,6 +5,12 @@ A **useful** tool to help ROM developers provide OTA updates to their users. Pri
 
 Fresh Hub uses [One UI Libraries](https://github.com/Yanndroid/SamsungOneUi) from Yanndroid to provide the native device experience on Samsung devices. Thanks!
 
+## Downloads
+
+Fresh Hub releases used on Fresh, with the proper signing keys, can be downloaded from Fresh's SourceForge repository.
+
+[![Download Fresh Hub releases](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/freshroms/files/Hub/)
+
 ## Developing
 
 ### Pre-requisites
@@ -30,7 +36,7 @@ Fresh Hub is used by multiple users, on multiple devices, with multiple language
 
 ### Pull Requests
 
-Pull requests are always welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are always welcome. For major changes, please open an issue first to discuss what you would like to change. **It's recommended to make issues and pull requests on [TenSeventy7/FreshHub](https://github.com/TenSeventy7/FreshHub)** as the [main repository](https://github.com/Yanndroid/FreshHub) serves as the `upstream` for this app.
 
 Please make sure to test code before opening a pull request as to make merging efficient and convenient for everyone. Always remember to keep your code merged with current sources as well.
 
