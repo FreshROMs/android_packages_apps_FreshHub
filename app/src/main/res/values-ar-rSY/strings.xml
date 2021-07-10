@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
-    <string name="app_name">"Fresh Hub"</string>
     <string name="sesl_switchbar_off_text">"اغلاق"</string>
     <string name="sesl_switchbar_on_text">"تشغيل"</string>
     <string name="main_update_available">"هنالك تحديث متوفر"</string>
@@ -134,4 +132,37 @@
     <string name="addon_uninstall">"إلغاء التثبيت"</string>
     <string name="addon_update">"تحديث"</string>
     <string name="drawer_github_link">"اذكر مشكلة"</string>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name">"Fresh Hub"</string>
+    <string name="app_name_experience">"نظام تجربة Fresh"</string>
+    <string name="customization_notification_group_title">"Fresh Hub"</string>
+    <string name="system_notification_channel_ongoing_title">"الأشعارات الجارية"</string>
+    <string name="customization_notification_channel_ongoing_title">"التخصيصات ألجارية"</string>
+    <string name="customization_notification_channel_desc">"تسمح قناة الإشعارات هذه للتطبيق بتنفيذ العمليات المطلوبة في الخلفية."</string>
+    <string name="renoir_notification_title">@string/renoir_settings_title</string>
+    <string name="renoir_notification_desc">"تغيير ثيم الهاتف بحسب الخلفية..."</string>
+    <string name="renoir_settings_title">"مطابقة ألألوان"</string>
+    <string name="renoir_settings_desc">"اجعل One UI لك عن طريق تكييف سمة الجهاز مع الخلفية الحالية."</string>
+    <string name="renoir_settings_desc_unavailable">"مطابقة الالوان غير متوفرة بسبب استخدام تطبيق طرف ثالث."</string>
+    <string name="renoir_settings_lock_screen">"استخدم ألوان شاشة القفل"</string>
+    <string name="renoir_settings_lock_screen_desc">"استخدم الألوان من خلفية شاشة القفل في اختيار سمة الجهاز."</string>
+    <string name="system_settings_zest_plugin_title">"سحر"</string>
+    <string name="system_settings_zest_plugin_summary">"تخصيص • تحديث النظام"</string>
+    <string name="sesl_relative_widget_title">"هل تبحث عن شيء؟"</string>
+    <string name="zest_video_enhancer_title">"مُحسن الفيديو"</string>
+    <!-- Fuzzy -->
+    <string name="zest_video_enhancer_detail_desc">"تحسين جودة صورة مقاطع الفيديو الخاصة بك للاستمتاع بألوان أكثر إشراقًا وحيوية."</string>
+    <string name="zest_video_enhancer_detail_applist_title">"ألتطبيقات المتوفرة"</string>
+    <string name="zest_relative_link_advanced">"ألاعدادات المتقدمة"</string>
+    <string name="zest_relative_link_wallpaper">"الشاشة الرئيسية وخلفية قفل الشاشة"</string>
+    <string name="zest_relative_link_themes">"ثيمات Samsung"</string>
+    <string name="screen_resolution_button_text">"طَبق"</string>
+    <string name="zest_data_connection_icon">"شكل ايقونة إتصال البيانات"</string>
+    <string name="zest_data_connection_icon_default">"افتراضي (4G)"</string>
+    <string name="zest_data_connection_icon_lte">"LTE"</string>
+    <string name="zest_data_connection_icon_next">"التالي (5G)"</string>
+    <string name="zest_wlan_connection_icon">"شكل رمز إشارة Wi-fi"</string>
+    <string name="zest_wlan_connection_icon_default">"افتراضي"</string>
+    <string name="zest_wlan_connection_icon_uplus">"LG U+"</string>
+    <string name="zest_wlan_connection_icon_kt">"KT"</string>
 </resources>

@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -229,7 +230,8 @@ public class RenoirService extends Service {
     }
 
     public static boolean isFreshBuildEligibleForRenoir(Context context) {
-        return true;
+        PackageManager packageManager = context.getPackageManager();
+        return packageManager.hasSystemFeature("io.tensevntysevn.fresh.sainetto");
     }
 
     public static void configureCorePackages(Context context, Boolean state) {
@@ -263,7 +265,9 @@ public class RenoirService extends Service {
             final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
             WallpaperColors wallpaperDrawable = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
 
-            if (getColorBasedOnLock(this)) {
+            SystemClock.sleep(900);
+
+            if (getColorBasedOnLock(this) && !ExperienceUtils.isLsWallpaperUnavailable(this)) {
                 wallpaperDrawable = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_LOCK);
             }
 

@@ -38,15 +38,21 @@
                     android:text="@string/system_settings_plugin_title"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/zest_update_subtitle"
-                    style="?android:attr/textAppearanceSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/system_notification_available_title"
-                    android:textAlignment="viewStart" />
             </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/zest_update_badge"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/new_badge_bg"
+            android:fontFamily="sec-roboto-light"
+            android:gravity="center"
+            android:text="N"
+            android:textColor="@color/white"
+            android:textSize="11dp"
+            android:textStyle="bold" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

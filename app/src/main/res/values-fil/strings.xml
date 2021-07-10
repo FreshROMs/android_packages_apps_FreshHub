@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
-    <string name="app_name">"Fresh Hub"</string>
     <string name="sesl_switchbar_off_text">"Off"</string>
     <string name="sesl_switchbar_on_text">"On"</string>
     <string name="main_update_available">"May bagong update na available"</string>
@@ -134,4 +132,36 @@ Dahil sa mga bagong patakaran ng Android tungkol sa Scoped Storage, makikita ang
     <string name="addon_uninstall">"I-uninstall"</string>
     <string name="addon_update">"I-update"</string>
     <string name="drawer_github_link">"Mag-file ng Issue"</string>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name">"Fresh Hub"</string>
+    <string name="app_name_experience"/>
+    <string name="customization_notification_group_title">"Fresh Hub"</string>
+    <string name="system_notification_channel_ongoing_title">"Mga ongoing na notification"</string>
+    <string name="customization_notification_channel_ongoing_title">"Mga ongoing na customization"</string>
+    <string name="customization_notification_channel_desc">"Ang notification channel na ito ay naga-allow sa app na gumawa sa background."</string>
+    <string name="renoir_notification_title"/>
+    <string name="renoir_notification_desc">"Pinapalitan ang theme base sa wallpaper…"</string>
+    <string name="renoir_settings_title">"Color-matching na Tema"</string>
+    <string name="renoir_settings_desc">"Gawing sa iyo ang One UI sa pamamagitan ng pag-adapt ng tema ng device sa iyong wallpaper."</string>
+    <string name="renoir_settings_desc_unavailable">"Ang Color-matching na Tema ay hindi available dahil may ibang theme na naka-apply."</string>
+    <string name="renoir_settings_lock_screen">"Gamitin ang mga kulay mula sa lock screen."</string>
+    <string name="renoir_settings_lock_screen_desc">"Gamitin ang mga kulay mula sa iyong lock screen wallpaper sa pag-pili ng device theme."</string>
+    <string name="system_settings_zest_plugin_title">"Zest"</string>
+    <string name="system_settings_zest_plugin_summary">"Customization • Update ng software"</string>
+    <string name="sesl_relative_widget_title">"May hinahanap kang iba?"</string>
+    <string name="zest_video_enhancer_title">"Video enhancer"</string>
+    <string name="zest_video_enhancer_detail_desc">"I-enhance ang image quality ng iyong videos upang ma-enjoy ang mas maliwanag at mas makulay na display."</string>
+    <string name="zest_video_enhancer_detail_applist_title">"Mga available na app"</string>
+    <string name="zest_relative_link_advanced">"Advanced na settings"</string>
+    <string name="zest_relative_link_wallpaper">"Wallpaper ng home at lock screen"</string>
+    <string name="zest_relative_link_themes">"Samsung Themes"</string>
+    <string name="screen_resolution_button_text">"I-apply"</string>
+    <string name="zest_data_connection_icon">"Style ng data connection icon"</string>
+    <string name="zest_data_connection_icon_default">"Default (4G)"</string>
+    <string name="zest_data_connection_icon_lte">"LTE"</string>
+    <string name="zest_data_connection_icon_next">"5G"</string>
+    <string name="zest_wlan_connection_icon">"Style ng Wi-Fi signal icon"</string>
+    <string name="zest_wlan_connection_icon_default">"Default"</string>
+    <string name="zest_wlan_connection_icon_uplus">"LG U+"</string>
+    <string name="zest_wlan_connection_icon_kt">"KT"</string>
 </resources>

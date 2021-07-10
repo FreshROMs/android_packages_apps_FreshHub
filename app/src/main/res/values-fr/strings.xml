@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
-    <!-- Fuzzy -->
-    <string name="app_name">"Fresh Hub"</string>
     <string name="sesl_switchbar_off_text">"Désactivez"</string>
     <string name="sesl_switchbar_on_text">"Activez"</string>
     <!-- Fuzzy -->
@@ -42,7 +39,7 @@ Souhaitez-vous effectuer une recherche sur le Google Play Store pour en trouver 
     <string name="delete">"Supprimer"</string>
     <string name="download">"Télécharger"</string>
     <string name="install">"Inststaller"</string>
-    <string name="downloading">"Téléchargement..."</string>
+    <string name="downloading">"Téléchargement…"</string>
     <string name="donate">"Faire un Don"</string>
     <string name="delete_confirm">"Voulez-vous vraiment supprimer ce fichier?"</string>
     <string name="permission_not_granted_dialog_title">"Autorisations de stockage non accordées"</string>
@@ -67,8 +64,8 @@ En raison des nouvelles règles d'Android pour Scoped Storage, vous pouvez trouv
     <string name="background_frequency">"Mettre à jour la fréquence de vérification"</string>
     <string name="background_60mins">"60 minutes"</string>
     <string name="background_3hours">"3 heures"</string>
-    <string name="background_6hours">"6 heures "</string>
-    <string name="background_12hours">"12 heures "</string>
+    <string name="background_6hours">"6 heures"</string>
+    <string name="background_12hours">"12 heures"</string>
     <string name="background_24hours">"Une fois par jour"</string>
     <string name="background_3days">"Chaque troisième jour"</string>
     <string name="background_7days">"Une fois par semaine"</string>
@@ -87,9 +84,8 @@ En raison des nouvelles règles d'Android pour Scoped Storage, vous pouvez trouv
     <string name="available_update_install_info">"Mettez à jour votre téléphone et obtenez de nouvelles fonctionnalités"</string>
     <string name="available_update_install_info_desc">"L'utilisation de données mobiles pour télécharger peut entraîner des frais supplémentaires. L'utilisation du Wi-Fi est recommandée."</string>
     <string name="available_update_install_ready">"Fresh %1$s %2$s est prêt à être installé"</string>
-    <string name="available_time_remaining">"Temps restant: %s"</string>
-    <string name="available_download_speed">"%s/s
-"</string>
+    <string name="available_time_remaining">"Temps restant :%s"</string>
+    <string name="available_download_speed">"%s/s"</string>
     <string name="system_name">"Fresh"</string>
     <!-- System settings plugin -->
     <string name="system_settings_plugin_title">"Mise à jour logicielle"</string>
@@ -106,7 +102,7 @@ En raison des nouvelles règles d'Android pour Scoped Storage, vous pouvez trouv
     <string name="system_notification_channel_desc">"Ce canal de notification permet à l'application de vous informer des mises à jour disponibles sur votre appareil."</string>
     <string name="system_notification_available_title">"Mise a jour disponible"</string>
     <string name="system_notification_available_desc">"Fresh %1$s %2$s est maintenant disponible pour votre appareil!"</string>
-    <string name="system_notification_finish_title">"La mise a jour a été installée avec succès "</string>
+    <string name="system_notification_finish_title">"La mise a jour a été installée avec succès"</string>
     <string name="system_notification_finish_desc">"Votre appareil a bien été mis à jour vers Fresh %1$s %2$s. Profitez d'un téléphone plus frais!"</string>
     <string name="system_notification_failed_title">"Échec de la mise à jour du logiciel"</string>
     <string name="system_notification_failed_desc">"Votre appareil n'a pas pu se mettre à jour. Fresh non mis à jour vers %1$s %2$s."</string>
@@ -137,4 +133,36 @@ En raison des nouvelles règles d'Android pour Scoped Storage, vous pouvez trouv
     <string name="addon_uninstall">"Désinstaller"</string>
     <string name="addon_update">"Mettre à jour"</string>
     <string name="drawer_github_link">"Déposer un problème"</string>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name">"Centre Fresh"</string>
+    <string name="app_name_experience">"Fresh Framework Expérience"</string>
+    <string name="customization_notification_group_title">"Centre Fresh"</string>
+    <string name="system_notification_channel_ongoing_title">"Notifications en cours"</string>
+    <string name="customization_notification_channel_ongoing_title">"Personnalisations en cours"</string>
+    <string name="customization_notification_channel_desc">"Ce canal de notification permet à l'application d'exécuter les opérations nécessaires en arrière-plan."</string>
+    <string name="renoir_notification_title">"@chaîne/renoir_paramètres_titre"</string>
+    <string name="renoir_notification_desc">"Modification du thème de l'appareil en fonction du fond d'écran…"</string>
+    <string name="renoir_settings_title">"Thème de correspondance des couleurs"</string>
+    <string name="renoir_settings_desc">"Personnalisez One UI en adaptant le thème de l'appareil à votre fond d'écran actuel."</string>
+    <string name="renoir_settings_desc_unavailable">"Le thème de correspondance des couleurs n'est pas disponible car un thème tiers est appliqué."</string>
+    <string name="renoir_settings_lock_screen">"Utiliser les couleurs de l'écran de verrouillage"</string>
+    <string name="renoir_settings_lock_screen_desc">"Utilisez les couleurs du fond d'écran de votre écran de verrouillage pour choisir le thème de l'appareil."</string>
+    <string name="system_settings_zest_plugin_title">"Zeste"</string>
+    <string name="system_settings_zest_plugin_summary">"Personnalisation • Mise à jour du logiciel"</string>
+    <string name="sesl_relative_widget_title">"Vous cherchez autre chose ?"</string>
+    <string name="zest_video_enhancer_title">"Améliorateur vidéo"</string>
+    <string name="zest_video_enhancer_detail_desc">"Améliorez la qualité d'image de vos vidéos pour profiter de couleurs plus lumineuses et plus vives."</string>
+    <string name="zest_video_enhancer_detail_applist_title">"Applications disponibles"</string>
+    <string name="zest_relative_link_advanced">"Réglages avancés"</string>
+    <string name="zest_relative_link_wallpaper">"Fond d'écran d'accueil et de verrouillage"</string>
+    <string name="zest_relative_link_themes">"Thèmes Samsung "</string>
+    <string name="screen_resolution_button_text">"Appliquer"</string>
+    <string name="zest_data_connection_icon">"Style d'icône de connexion de données"</string>
+    <string name="zest_data_connection_icon_default">"Par défaut (4G)"</string>
+    <string name="zest_data_connection_icon_lte">"LTE"</string>
+    <string name="zest_data_connection_icon_next">"Suivant (5G)"</string>
+    <string name="zest_wlan_connection_icon">"Style d'icône de signal Wi-Fi"</string>
+    <string name="zest_wlan_connection_icon_default">"Par Défaut"</string>
+    <string name="zest_wlan_connection_icon_uplus">"LG U+"</string>
+    <string name="zest_wlan_connection_icon_kt">"KT"</string>
 </resources>

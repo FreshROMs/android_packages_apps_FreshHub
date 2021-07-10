@@ -19,3 +19,12 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 -renamesourcefileattribute SourceFile
+
+# Uncodin/Bypass
+-keep class in.uncod.android.bypass.Document { <init>(...); }
+-keep class in.uncod.android.bypass.Element {
+    <init>(...);
+    void setChildren(...);
+    void setParent(...);
+    void addAttribute(...);
+}

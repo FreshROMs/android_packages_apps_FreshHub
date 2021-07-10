@@ -11,8 +11,8 @@ android {
         minSdkVersion 30
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 24
-        versionCode 21061601
-        versionName "12.1.1.0"
+        versionCode 21070905
+        versionName "12.1.2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,7 +30,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
