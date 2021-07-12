@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -79,7 +80,7 @@ public class ScreenResolutionActivity extends AppCompatActivity {
         resolution_medium.setTypeface(Typeface.DEFAULT);
         resolution_high.setTypeface(Typeface.DEFAULT);
 
-        mResolution = sharedPreferences.getInt(SCREEN_RESOLUTION, mSelectedResolution);
+        mResolution = Settings.System.getInt(getContentResolver(), SCREEN_RESOLUTION, mSelectedResolution);
         mCurrentResolution = mResolution;
 
         mResGroup.setOnCheckedChangeListener((group, checkedId) -> {
@@ -119,7 +120,7 @@ public class ScreenResolutionActivity extends AppCompatActivity {
         mResApplyButton.setEnabled(false);
 
         mResApplyButton.setOnClickListener(v -> {
-            sharedPreferences.edit().putInt(SCREEN_RESOLUTION, mResolution).commit();
+            Settings.System.putInt(getContentResolver(), SCREEN_RESOLUTION, mResolution);
             mResApplyButton.setEnabled(false);
             mCurrentResolution = mResolution;
             ExperienceUtils.checkDefaultApiSetting(mContext);
@@ -172,8 +173,7 @@ public class ScreenResolutionActivity extends AppCompatActivity {
     }
 
     public static int getResolutionInt(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
-        return sharedPreferences.getInt(SCREEN_RESOLUTION, 2);
+        return Settings.System.getInt(context.getContentResolver(), SCREEN_RESOLUTION, 2);
     }
 
     @SuppressLint("PrivateApi")
