@@ -61,6 +61,10 @@
         android:supportsRtl="true"
         android:theme="@style/SamsungTheme">
 
+        <uses-library
+            android:name="fresh_platform_library"
+            android:required="true" />
+            
         <meta-data
             android:name="com.samsung.android.multidisplay.keep_process_alive"
             android:value="true" />
