@@ -96,7 +96,7 @@
                 android:id="@+id/drawer_reboot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:icon="@drawable/ic_samsung_restore"
+                app:icon="@drawable/ic_power_option_restart"
                 app:text="@string/reboot" />
 
 
