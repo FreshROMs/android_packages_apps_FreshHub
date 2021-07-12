@@ -176,7 +176,7 @@
 
         <service
             android:name=".services.QSTile"
-            android:icon="@drawable/ic_reboot"
+            android:icon="@drawable/ic_qs_tile_restart"
             android:label="@string/reboot"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
