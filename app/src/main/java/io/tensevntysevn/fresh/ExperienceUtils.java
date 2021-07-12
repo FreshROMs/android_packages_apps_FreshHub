@@ -59,7 +59,7 @@ public class ExperienceUtils {
            realScreenResolution = 1;
        }
 
-       Settings.System.putInt(getContentResolver(), SCREEN_RESOLUTION, realScreenResolution);
+       Settings.System.putInt(context.getContentResolver(), SCREEN_RESOLUTION, realScreenResolution);
        return realScreenResolution;
     }
 
