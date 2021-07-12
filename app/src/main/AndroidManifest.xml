@@ -61,6 +61,10 @@
         android:supportsRtl="true"
         android:theme="@style/SamsungTheme">
 
+        <uses-library
+            android:name="fresh_platform_library"
+            android:required="true" />
+            
         <meta-data
             android:name="com.samsung.android.multidisplay.keep_process_alive"
             android:value="true" />
@@ -176,7 +180,7 @@
 
         <service
             android:name=".services.QSTile"
-            android:icon="@drawable/ic_reboot"
+            android:icon="@drawable/ic_qs_tile_restart"
             android:label="@string/reboot"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>

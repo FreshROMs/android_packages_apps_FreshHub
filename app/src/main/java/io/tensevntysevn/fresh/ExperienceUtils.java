@@ -47,7 +47,6 @@ public class ExperienceUtils {
         String PREF_NAME = "fresh_system_settings";
         String SCREEN_RESOLUTION = "device_screen_resolution_int";
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
         int realScreenResolution = 0;
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -60,7 +59,7 @@ public class ExperienceUtils {
            realScreenResolution = 1;
        }
 
-       sharedPreferences.edit().putInt(SCREEN_RESOLUTION, realScreenResolution).commit();
+       Settings.System.putInt(context.getContentResolver(), SCREEN_RESOLUTION, realScreenResolution);
        return realScreenResolution;
     }
 

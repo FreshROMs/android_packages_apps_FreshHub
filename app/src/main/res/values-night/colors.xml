@@ -5,6 +5,10 @@
     <color name="sesl_base_switchbar_on_background_color">#4d0381fe</color>
     <color name="sesl_base_switchbar_text_color">#ff3e91ff</color>-->
 
+    <color name="default_primary_color">#ff3e91ff</color>
+    <color name="default_secondary_color">#ff0072de</color>
+    <color name="default_primary_dark_color">#ff3e91ff</color>
+
     <color name="ota_changelog_text_color">@color/sesl_white</color>
 
     <color name="ota_swupdate_new_sub_title_textcolor">#ff999999</color>

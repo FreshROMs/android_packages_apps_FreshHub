@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="SamsungTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@color/background_color</item>
+        <item name="android:statusBarColor">@color/background_color</item>
+        <item name="android:navigationBarColor">@color/background_color</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryDark">@color/primary_dark_color</item>
+        <item name="colorSecondary">@color/secondary_color</item>
+
+        <item name="android:theme">@style/SamsungStyleMain</item>
+    </style>
+
     <style name="SystemPreference" parent="SamsungStyleMain">
         <item name="colorPrimary">@color/default_primary_color</item>
         <item name="colorSecondary">@color/default_secondary_color</item>

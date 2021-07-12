@@ -20,6 +20,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.provider.Settings;
 import android.util.Log;
 
 import de.dlyt.yanndroid.fresh.Constants;
@@ -42,10 +43,13 @@ public class Preferences implements Constants {
     }
 
     public static boolean getAppIconState(Context context) {
+        int appIconEnabled = Settings.System.getInt(context.getContentResolver(),
+                APP_ICON_ENABLED, 1);
+
         if (DEBUGGING)
-            Log.d(TAG, "Background Service set to " + getPrefs(context).getBoolean
-                    (APP_ICON_ENABLED, true));
-        return getPrefs(context).getBoolean(APP_ICON_ENABLED, true);
+            Log.d(TAG, "Background Service set to " + (appIconEnabled == 1));
+
+        return appIconEnabled == 1;
     }
 
     public static boolean getBackgroundDownload(Context context) {
@@ -78,9 +82,7 @@ public class Preferences implements Constants {
     }
 
     public static void setAppIconState(Context context, Boolean toggle) {
-        SharedPreferences.Editor editor = getPrefs(context).edit();
-        editor.putBoolean(APP_ICON_ENABLED, toggle);
-        editor.apply();
+        Settings.System.putInt(context.getContentResolver(), APP_ICON_ENABLED, toggle ? 1 : 0);
     }
 
     public static void setBackgroundDownload(Context context, Boolean toggle) {
@@ -108,26 +110,21 @@ public class Preferences implements Constants {
     }
 
     public static int getDataConnectionIconInt(Context context) {
-        return getPrefs(context).getInt("zest_data_icon_int", 0);
+        return Settings.System.getInt(context.getContentResolver(), "zest_data_icon_int", 0);
     }
 
     public static void setDataConnectionIconInt(Context context, Integer selection) {
-        SharedPreferences.Editor editor = getPrefs(context).edit();
-        editor.putInt("zest_data_icon_int", selection);
-        editor.apply();
+        Settings.System.putInt(context.getContentResolver(), "zest_data_icon_int", selection);
     }
 
     public static int getWlanConnectionIconInt(Context context) {
-        return getPrefs(context).getInt("zest_wlan_icon_int", 0);
+        return Settings.System.getInt(context.getContentResolver(), "zest_wlan_icon_int", 0);
     }
 
     public static void setWlanConnectionIconInt(Context context, Integer selection) {
-        SharedPreferences.Editor editor = getPrefs(context).edit();
-        editor.putInt("zest_wlan_icon_int", selection);
-        editor.apply();
+        Settings.System.putInt(context.getContentResolver(), "zest_wlan_icon_int", selection);
     }
-
-
+    
     public static void setFirstRun(Context context, boolean value) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putBoolean(FIRST_RUN, value);

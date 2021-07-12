@@ -98,6 +98,15 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         mImageLoader = ImageLoader.getInstance();
         mDownloadAddon = new DownloadAddonInfo();
 
+        Intent intent = getIntent();
+
+        mAddonId = intent.getIntExtra("id", 0);
+        mDownloadUrl = intent.getStringExtra("downloadUrl");
+        mTitle = intent.getStringExtra("name");
+        mFileSize = intent.getLongExtra("totalSize", 0);
+        mPackageName = intent.getStringExtra("packageName");
+        mVersionNumber = intent.getIntExtra("versionNumber", 0);
+
         DisplayImageOptions imageLoaderOptions = new DisplayImageOptions.Builder()
                 .showImageForEmptyUri(R.color.sesl_control_normal_color)
                 .showImageOnFail(R.color.sesl_control_normal_color)
@@ -131,15 +140,6 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         final TextView addonFullInfo = (TextView) findViewById(R.id.addon_information_description);
         final TextView addonTotalSize = (TextView) findViewById(R.id.addon_download_total);
         final TextView addonName = (TextView) findViewById(R.id.title);
-
-        Intent intent = getIntent();
-
-        mAddonId = intent.getIntExtra("id", 0);
-        mDownloadUrl = intent.getStringExtra("downloadUrl");
-        mTitle = intent.getStringExtra("name");
-        mFileSize = intent.getLongExtra("totalSize", 0);
-        mPackageName = intent.getStringExtra("packageName");
-        mVersionNumber = intent.getIntExtra("versionNumber", 0);
 
         String versionName = intent.getStringExtra("versionName");
         String fullInfo = intent.getStringExtra("fullInfo");

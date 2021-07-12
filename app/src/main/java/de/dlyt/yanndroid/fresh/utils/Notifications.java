@@ -163,9 +163,9 @@ public class Notifications implements Constants {
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
 
-        mBuilder.setContentTitle(context.getString(R.string.renoir_notification_title))
+        mBuilder.setContentTitle(context.getString(R.string.renoir_settings_title))
                 .setContentText(context.getString(R.string.renoir_notification_desc))
-                .setSmallIcon(R.drawable.ic_notification_software_update)
+                .setSmallIcon(R.drawable.ic_notification_customization_service)
                 .setColor(notificationColor)
                 .setAutoCancel(false)
                 .setOngoing(true)
