@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -157,17 +158,17 @@ public class RenoirService extends Service {
     }
 
     public static void setSystemColorTheme(Context context, String packageName, Boolean isSamsungThemeApplied) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
         final String oldOverlay = getSystemColorTheme(context); // Get old overlay to disable
         boolean wasSamsungThemeApplied = isGalaxyThemeCached(context);
 
-        sharedPreferences.edit().putBoolean(RENOIR_SAMSUNG_THEME_APPLIED, isSamsungThemeApplied).apply();
+        Settings.System.putInt(context.getContentResolver(), RENOIR_SAMSUNG_THEME_APPLIED, isSamsungThemeApplied ? 1 : 0);
+
         if (Constants.DEBUGGING) Log.i("RenoirService", "Renoir overlay set: " + packageName);
 
         ExecutorService mExecutor = Executors.newCachedThreadPool();
 
         mExecutor.execute(() -> {
-            sharedPreferences.edit().putString(RENOIR_CURRENT_COLOR_THEME, packageName).apply();
+            Settings.System.putString(context.getContentResolver(), RENOIR_CURRENT_COLOR_THEME, packageName);
 
             if (isSamsungThemeApplied)
                 configureCorePackages(context, false);
@@ -184,27 +185,25 @@ public class RenoirService extends Service {
     }
 
     private static String getSystemColorTheme(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
-        return sharedPreferences.getString(RENOIR_CURRENT_COLOR_THEME, RENOIR_DEFAULT_THEME);
+        String colorTheme = Settings.System.getString(context.getContentResolver(), RENOIR_CURRENT_COLOR_THEME);
+        return (!(colorTheme == null) && !colorTheme.equals("")) ? colorTheme : RENOIR_DEFAULT_THEME;
     }
 
     public static void setColorBasedOnLock(Context context, Boolean bool) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
-        sharedPreferences.edit().putBoolean(RENOIR_WALLPAPER_BASED_ON_LOCK, bool).apply();
-        RenoirReceiver.runRenoir(context);
+        Settings.System.putInt(context.getContentResolver(), RENOIR_WALLPAPER_BASED_ON_LOCK, bool ? 1 : 0);
     }
 
     public static Boolean getColorBasedOnLock(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(RENOIR_WALLPAPER_BASED_ON_LOCK, false);
+        int isColorBasedOnLock = Settings.System.getInt(context.getContentResolver(),
+                RENOIR_WALLPAPER_BASED_ON_LOCK, 0);
+        return isColorBasedOnLock == 1;
     }
 
     public static void setRenoirEnabled(Context context, Boolean bool) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
         PackageManager packageManager = context.getPackageManager();
         ComponentName wallpaperChangeIntent = new ComponentName(context, RenoirReceiver.class);
 
-        sharedPreferences.edit().putBoolean(RENOIR_SERVICE_ENABLED, bool).commit();
+        Settings.System.putInt(context.getContentResolver(), RENOIR_SERVICE_ENABLED, bool ? 1 : 0);
 
         if (bool) {
             RenoirReceiver.runRenoir(context);
@@ -220,13 +219,15 @@ public class RenoirService extends Service {
     }
 
     public static Boolean getRenoirEnabled(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(RENOIR_SERVICE_ENABLED, false);
+        int renoirEnabled = Settings.System.getInt(context.getContentResolver(),
+                RENOIR_SERVICE_ENABLED, 0);
+        return renoirEnabled == 1;
     }
 
     public static boolean isGalaxyThemeCached(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(RENOIR_SAMSUNG_THEME_APPLIED, false);
+        int isGalaxyThemeCached = Settings.System.getInt(context.getContentResolver(),
+                RENOIR_SAMSUNG_THEME_APPLIED, 0);
+        return isGalaxyThemeCached == 1;
     }
 
     public static boolean isFreshBuildEligibleForRenoir(Context context) {
