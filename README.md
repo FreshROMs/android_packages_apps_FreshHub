@@ -1,4 +1,4 @@
-![Fresh Hub icon](https://github.com/TenSeventy7/FreshHub/raw/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
+![Fresh Hub icon](https://github.com/TenSeventy7/FreshHub/raw/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher_fresh_hub_round.png)
 # Fresh Hub [![GitHub license](https://img.shields.io/github/license/TenSeventy7/FreshHub?style=flat-square)](https://github.com/TenSeventy7/FreshHub/blob/main/LICENSE)
 
 A **useful** tool to help ROM developers provide OTA updates to their users. Primarily used within the [Fresh Project](https://github.com/FreshROMs) to distribute OTA updates.
