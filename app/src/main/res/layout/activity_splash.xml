@@ -6,6 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:background_image="@mipmap/ic_launcher_rounded_bg"
-    app:foreground_image="@mipmap/ic_launcher_foreground"
+    app:foreground_image="@drawable/ic_launcher_fresh_hub_foreground"
     app:text="@string/app_name"
     tools:context="de.dlyt.yanndroid.fresh.hub.SplashActivity" />
