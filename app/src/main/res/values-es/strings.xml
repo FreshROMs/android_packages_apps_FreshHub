@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="sesl_switchbar_off_text">"Apagado"</string>
+    <string name="sesl_switchbar_on_text">"Encendido"</string>
+    <string name="main_update_available">"Una actualización disponible"</string>
+    <string name="main_update_finished">"Descarga completa"</string>
+    <!-- Sin actualizaciones disponibles -->
+    <string name="main_no_update_available">"Sin actualizaciones disponibles"</string>
+    <string name="main_update_progress">"Progreso de descarga"</string>
+    <string name="main_website">"Página Web"</string>
+    <string name="main_website_summary">"Visita la pagina web oficial de Freesh"</string>
+    <string name="main_donate">"Donar"</string>
+    <!-- Ayuda a el desarroyador/es, de esta ROM! -->
+    <!-- Fuzzy -->
+    <string name="main_donate_summary">"Ayuda a los desarrolladores/as de esta ROM!"</string>
+    <string name="main_tap_to_view_progress">"Toca para ver el progreso"</string>
+    <string name="main_last_checked">"Última comprobación"</string>
+    <string name="main_addon">"Complementos"</string>
+    <string name="main_addon_summary">"Extiende tu experiencia Fresh!"</string>
+    <!-- ROM Information -->
+    <string name="main_rom_information">"Sobre tu dispositivo"</string>
+    <string name="main_rom_version">"Versión de lanzamiento:"</string>
+    <string name="main_rom_build_date">"Fecha de compilación:"</string>
+    <!-- Dialogs -->
+    <string name="main_not_compatible_title">"¡Espera!"</string>
+    <string name="main_not_compatible_message">"La configuración actual de la ROM no está configurada para ejecutarse con FreshApp. Póngase en contacto con el mantenedor de ROM para solucionar este problema."</string>
+    <string name="main_not_connected_title">"No conectado"</string>
+    <string name="main_not_connected_message">"No está conectado a ninguna red. Habilite la red móvil o WiFi e inténtelo de nuevo."</string>
+    <string name="main_playstore_title">"BitCoin"</string>
+    <string name="main_playstore_message">"No tiene ninguna aplicación disponible para manejar la moneda \"bitcoin:\".
+
+¿Desea buscar en Google Play Store para encontrar uno?"</string>
+    <!-- Content Descriptions -->
+    <string name="main_button_icon">"Icono de botón"</string>
+    <string name="main_dev_website_icon">"Icono del sitio web del desarrollador"</string>
+    <!-- Toast -->
+    <string name="main_release_ignored">"Se ha omitido la liberación."</string>
+    <!-- Generic strings -->
+    <string name="cancel">"Cancelar"</string>
+    <string name="ok">"Ok"</string>
+    <string name="delete">"Eliminar"</string>
+    <string name="download">"Descargar"</string>
+    <string name="install">"Instalar"</string>
+    <string name="downloading">"Descargando..."</string>
+    <string name="donate">"Donar"</string>
+    <string name="delete_confirm">"¿Está seguro de que desea eliminar este archivo?"</string>
+    <string name="permission_not_granted_dialog_title">"Permisos de almacenamiento no concedidos"</string>
+    <string name="permission_not_granted_dialog_message">"Conceda permisos de almacenamiento a Fresh Hub para poder recibir actualizaciones de software y descargar complementos."</string>
+    <string name="dialog_ok">"Ok"</string>
+    <!-- About Strings -->
+    <string name="about_version_title">"Versión"</string>
+    <string name="available_changelog_content">"Tu registro de cambios va aquí"</string>
+    <string name="available_ready_to_install">"Listo para instalar"</string>
+    <string name="available_md5_ok">"MD5 Correcto"</string>
+    <string name="available_md5_failed">"MD5 Fallido"</string>
+    <string name="are_you_sure">"¿Estás seguro?"</string>
+    <string name="available_delete_confirm_message">"¿Está seguro de que desea eliminar el archivo descargado?"</string>
+    <string name="available_reboot_confirm">"¿Te gustaría reiniciar ahora?"</string>
+    <string name="available_url_error">"Error de URL: Consulte a su desarrollador de ROM"</string>
+    <string name="available_reboot_manual_title">"Por favor reinicie ahora"</string>
+    <string name="available_reboot_manual_message">"Reinicie para recuperación y actualice su ROM. Debido a las nuevas reglas de Android para el almacenamiento con alcance, puede encontrar la actualización en /sdcard/Android/data/de.dlyt.yanndroid.fresh/Updates"</string>
+    <!-- Preferences -->
+    <string name="preferences_name">"Configuración"</string>
+    <string name="background_frequency">"Frecuencia de comprobación de actualizaciones"</string>
+    <string name="background_60mins">"60 minutos"</string>
+    <string name="background_3hours">"3 horas"</string>
+    <string name="background_6hours">"6 horas"</string>
+    <string name="background_12hours">"12 horas"</string>
+    <string name="background_24hours">"Una vez al día"</string>
+    <string name="background_3days">"Cada tres días"</string>
+    <string name="background_7days">"Una vez a la semana"</string>
+    <!-- Drawer -->
+    <string name="feedback">"Retroalimentación"</string>
+    <string name="omc_request">"Solicitud de OMC"</string>
+    <string name="fresh_updates">"Actualizaciones Fresh"</string>
+    <string name="reboot">"Reiniciar a recuperación"</string>
+    <string name="main_ota_information">"Información de actualización de software"</string>
+    <string name="main_rom_spl">"Nivel de parche de seguridad:"</string>
+    <string name="main_ota_version">"Versión:"</string>
+    <string name="main_ota_size">"Tamaño:"</string>
+    <string name="delete_addon_confirm">"¿Está seguro de que desea desinstalarlo %1$s?"</string>
+    <!-- Available Strings -->
+    <string name="available_update_downloading">"Descargando actualización..."</string>
+    <string name="available_update_install_info">"Actualiza tu teléfono y obtén nuevas funciones"</string>
+    <string name="available_update_install_info_desc">"El uso de datos móviles para descargar puede resultar en cargos adicionales. Se recomienda el uso de Wi-Fi."</string>
+    <string name="available_update_install_ready">"Fresh %1$s %2$s está listo para instalarse"</string>
+    <string name="available_time_remaining">"Tiempo restante: %s"</string>
+    <string name="available_download_speed">"%s/s"</string>
+    <string name="system_name">"Fresh"</string>
+    <!-- System settings plugin -->
+    <string name="system_settings_plugin_title">"Actualización de software"</string>
+    <string name="system_settings_plugin_summary">"Actualizaciones del dispositivo • Descargar complementos"</string>
+    <string name="system_settings_resolution_plugin_title">"Resolución de pantalla"</string>
+    <string name="system_settings_resolution_plugin_summary">"Cambiar la resolución y la densidad del dispositivo"</string>
+    <!-- Resolution -->
+    <string name="screen_resolution_desc_summary">"Algunas aplicaciones pueden cerrarse al cambiar la resolución."</string>
+    <string name="high_resolution_summary">"Imágenes más nítidas; mayor uso de la batería"</string>
+    <string name="medium_resolution_summary">"Imágenes mejoradas; uso moderado de la batería"</string>
+    <string name="low_resolution_summary">"Imágenes feas; menor uso de la batería"</string>
+    <string name="system_notification_group_title">"Fresh OTA"</string>
+    <string name="system_notification_channel_title">"Actualizaciones disponibles"</string>
+    <string name="system_notification_channel_desc">"Este canal de notificación permite que la aplicación le notifique sobre las actualizaciones disponibles en su dispositivo."</string>
+    <string name="system_notification_available_title">"Actualización de software disponible"</string>
+    <string name="system_notification_available_desc">"¡Fresh %1$s %2$s ya está disponible para su dispositivo!"</string>
+    <string name="system_notification_finish_title">"Tu teléfono se ha actualizado correctamente"</string>
+    <string name="system_notification_finish_desc">"Su dispositivo se actualiza correctamente a Fresh %1$s %2$s. ¡Disfruta de un teléfono más fresco!"</string>
+    <string name="system_notification_failed_title">"No se pudo actualizar el software"</string>
+    <string name="system_notification_failed_desc">"El dispositivo no se ha podido actualizar. Fresh no actualizado a %1$s %2$s."</string>
+    <string name="setting_notifications">"Notificaciones"</string>
+    <string name="setting_notifications_summary">"Compruebe automáticamente si hay actualizaciones y muestre una notificación si hay una disponible."</string>
+    <string name="setting_auto_download">"Descarga automática a través de Wi-Fi"</string>
+    <string name="setting_auto_download_summary">"Descargar las actualizaciones de software automáticamente cuando esté conectado a una red Wi-Fi."</string>
+    <string name="main_header_community">"Únete a la comunidad!"</string>
+    <string name="main_community_discord_description">"Únete al servidor oficial de Discord"</string>
+    <string name="main_community_discord">"Comunidad de Discord Fresh"</string>
+    <string name="main_community_telegram">"Comunidad de Telegram"</string>
+    <string name="main_community_telegram_description">"Unete a la comunidad de Telegram de Fresh"</string>
+    <string name="main_community_discussions">"GitHub Discussions"</string>
+    <string name="main_community_discussions_description">"Discute por nuevas características y más"</string>
+    <string name="main_community_xda">"XDA Forum"</string>
+    <string name="main_community_xda_description">"Visita el foro de Fresh para tu dispositivo"</string>
+    <string name="setting_app_icon">"Agregar el icono de Fresh Hub"</string>
+    <string name="setting_app_icon_summary">"Agregue Fresh Hub a la pantalla Aplicaciones."</string>
+    <string name="the_latest_version_is_already_installed">"La última versión ya está instalada."</string>
+    <string name="a_new_version_is_available">"Una nueva versión está disponible."</string>
+    <string name="main_checking_updates">"Revisando actualizaciones"</string>
+    <string name="about_bottom_byline">"Desarrollado por Yanndroid del The Fresh Project"</string>
+    <string name="about_open_source_fork">"Basado en Bliss OTA"</string>
+    <string name="about_open_source_used">"Componentes de código abierto"</string>
+    <string name="about_open_source_button">"Licencias de código abierto"</string>
+    <string name="available_preinstall_notice">"No podrás usar tu teléfono durante la actualización, ni siquiera para llamadas de emergencia."</string>
+    <string name="available_preinstall_notice_nohash">"La comprobación de el hash del paquete ha fallado, continúe con la actualización bajo su propio riesgo. No podrás usar tu teléfono durante la actualización."</string>
+    <string name="addon_uninstall">"Desintalar"</string>
+    <string name="addon_update">"Actualizar"</string>
+    <string name="drawer_github_link">"Presentar un problema"</string>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name">"Fresh Hub"</string>
+    <string name="app_name_experience">"Fresh Framework Experiencia"</string>
+    <string name="customization_notification_group_title">"Fresh Hub"</string>
+    <string name="system_notification_channel_ongoing_title">"Notificaciones en curso"</string>
+    <string name="customization_notification_channel_ongoing_title">"Personalizaciones en curso"</string>
+    <string name="customization_notification_channel_desc">"Este canal de notificación permite a la aplicación ejecutar las operaciones necesarias en segundo plano."</string>
+    <string name="renoir_notification_title">@string/renoir_settings_title</string>
+    <string name="renoir_notification_desc">"Cambia el tema del dispositivo basado en el fondo de pantalla..."</string>
+    <string name="renoir_settings_title">"Tema de coincidencia de colores"</string>
+    <string name="renoir_settings_desc">"Haz que One UI sea tuyo adaptando el tema del dispositivo con tu fondo de pantalla actual."</string>
+    <string name="renoir_settings_desc_unavailable">"El tema de coincidencia de colores no está disponible porque se a aplicado un tema de terceros."</string>
+    <string name="renoir_settings_lock_screen">"Usar colores de pantalla de bloqueo"</string>
+    <string name="renoir_settings_lock_screen_desc">"Utilice los colores de su fondo de pantalla de bloqueo en la selección del tema del dispositivo."</string>
+    <string name="system_settings_zest_plugin_title">"Zest"</string>
+    <string name="system_settings_zest_plugin_summary">"Personalización • Actualización de software"</string>
+    <string name="sesl_relative_widget_title">"¿Buscas algo más?"</string>
+    <string name="zest_video_enhancer_title">"Potenciador de vídeo"</string>
+    <string name="zest_video_enhancer_detail_desc">"Mejora la calidad de imagen de tus vídeos para disfrutar de colores más brillantes y vivos."</string>
+    <string name="zest_video_enhancer_detail_applist_title">"Aplicaciones disponibles"</string>
+    <string name="zest_relative_link_advanced">"Configuración Avanzada"</string>
+    <string name="zest_relative_link_wallpaper">"Fondo de pantalla de inicio y de bloqueo"</string>
+    <string name="zest_relative_link_themes">"Samsung Temas"</string>
+    <string name="screen_resolution_button_text">"Aplicar"</string>
+    <string name="zest_data_connection_icon">"Estilo del icono de conexión de datos"</string>
+    <string name="zest_data_connection_icon_default">"Por defecto (4G)"</string>
+    <string name="zest_data_connection_icon_lte">"LTE"</string>
+    <string name="zest_data_connection_icon_next">"Siguiente (5)"</string>
+    <string name="zest_wlan_connection_icon">"Estilo del icono de señal Wi-Fi"</string>
+    <string name="zest_wlan_connection_icon_default">"Por Defecto"</string>
+    <string name="zest_wlan_connection_icon_uplus">"LG U+"</string>
+    <string name="zest_wlan_connection_icon_kt">"KT"</string>
+    <string name="zest_version_fresh_rom">"Versión del sistema"</string>
+    <string name="zest_version_fresh_hub">"Versión Fresh Hub"</string>
+</resources>
