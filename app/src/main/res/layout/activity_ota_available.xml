@@ -265,6 +265,9 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/menu_available_download"
                 style="@style/ButtonStyle.Invert"
+                android:paddingVertical="10dp"
+                android:fontFamily="sec-roboto-light"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/download" />
@@ -272,6 +275,9 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/menu_available_install"
                 style="@style/ButtonStyle.Invert"
+                android:paddingVertical="10dp"
+                android:fontFamily="sec-roboto-light"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/install" />
@@ -279,6 +285,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/menu_available_cancel"
                 style="@style/ButtonStyle.Invert.Secondary"
+                android:paddingVertical="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/cancel" />
@@ -286,6 +293,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/menu_available_delete"
                 style="@style/ButtonStyle.Invert.Secondary"
+                android:paddingVertical="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/delete" />
