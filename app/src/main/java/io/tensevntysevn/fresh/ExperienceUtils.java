@@ -9,7 +9,11 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 
 import de.dlyt.yanndroid.fresh.settings.sub.ScreenResolutionActivity;
@@ -138,6 +142,36 @@ public class ExperienceUtils {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static String getProp(String propName) {
+        Process p;
+        String result = "";
+        try {
+            p = new ProcessBuilder("/system/bin/getprop", propName).redirectErrorStream(true)
+                    .start();
+            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line;
+            while ((line = br.readLine()) != null) {
+                result = line;
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @SuppressLint("PrivateApi")
+    public static void setProp(String key, String value) {
+        try {
+            Class<?> c = Class.forName("android.os.SystemProperties");
+            Method set = c.getMethod("set", String.class, String.class);
+            set.invoke(c, key, value );
+        } catch (Exception e) {
+            Log.d("PropService", "Error setting property " + key + " to" + value + "!");
+            e.printStackTrace();
         }
     }
 }

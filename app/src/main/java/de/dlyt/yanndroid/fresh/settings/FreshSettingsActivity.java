@@ -38,7 +38,6 @@ import de.dlyt.yanndroid.fresh.settings.sub.HDREffectSettingsActivity;
 import de.dlyt.yanndroid.fresh.settings.sub.RenoirSettingsActivity;
 import de.dlyt.yanndroid.fresh.settings.sub.ScreenResolutionActivity;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
-import de.dlyt.yanndroid.fresh.utils.SystemProperties;
 import de.dlyt.yanndroid.fresh.utils.Tools;
 import de.dlyt.yanndroid.samsung.layout.ToolbarLayout;
 import io.tensevntysevn.fresh.ExperienceUtils;
@@ -127,20 +126,20 @@ public class FreshSettingsActivity extends AppCompatActivity {
         mResolutionSummary.setText(mResolutionValues[setResolution]);
 
         String romVersionBranch = "";
-        String romBranchString = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_branch));
+        String romBranchString = ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_branch));
 
         if (!romBranchString.isEmpty()) {
             romVersionBranch = romBranchString.substring(0, 1).toUpperCase() + romBranchString.substring(1).toLowerCase();
         }
 
-        String romVersion = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_release)) + " "
+        String romVersion = ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_release)) + " "
                 + romVersionBranch
-                + " (" + SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_version)) + ")";
+                + " (" + ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_version)) + ")";
 
-        String buildDate = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date));
+        String buildDate = ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_date));
 
-        if (!(SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual))).equals("")) {
-            buildDate = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual));
+        if (!(ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual))).equals("")) {
+            buildDate = ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual));
         }
 
         String dualLineVersion = romVersion + "\n" + buildDate;

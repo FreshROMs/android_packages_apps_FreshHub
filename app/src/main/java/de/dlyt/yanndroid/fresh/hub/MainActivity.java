@@ -64,6 +64,7 @@ import de.dlyt.yanndroid.fresh.utils.Tools;
 import de.dlyt.yanndroid.samsung.drawer.OptionButton;
 import de.dlyt.yanndroid.samsung.drawer.OptionGroup;
 import de.dlyt.yanndroid.samsung.layout.DrawerLayout;
+import io.tensevntysevn.fresh.ExperienceUtils;
 
 public class MainActivity extends AppCompatActivity implements Constants,
         ActivityCompat.OnRequestPermissionsResultCallback {
@@ -604,14 +605,14 @@ public class MainActivity extends AppCompatActivity implements Constants,
                 updateNotAvailableSummary.setText(String.format("%s%s", lastChecked, localizedTime));
             }
         } else {
-            String romBranchString = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_branch));
+            String romBranchString = ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_branch));
             String romVersionBranch = !romBranchString.isEmpty() ? romBranchString.substring(0, 1).toUpperCase() + romBranchString.substring(1).toLowerCase() : " ";
 
             updateChecking.setVisibility(View.VISIBLE);
             drawerLayout.setToolbarSubtitle(getResources().getString(R.string.main_checking_updates));
 
             String updateCheckSummary = getResources().getString(R.string.system_name) + " " +
-                    SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_release)) + " " +
+                    ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_release)) + " " +
                     romVersionBranch;
 
             updateCheckingSummary.setText(Html.fromHtml(updateCheckSummary));
@@ -712,9 +713,9 @@ public class MainActivity extends AppCompatActivity implements Constants,
         TextView romVersion = (TextView) findViewById(R.id.tv_main_rom_version);
         String romVersionTitle = getApplicationContext().getResources().getString(R.string
                 .system_name) + " ";
-        String romVersionName = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_release)) + " ";
-        String romBranchString = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_branch));
-        String romVersionString = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_version));
+        String romVersionName = ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_release)) + " ";
+        String romBranchString = ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_branch));
+        String romVersionString = ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_version));
         if (!romBranchString.isEmpty()) {
             String romVersionBranch = romBranchString.substring(0, 1).toUpperCase() + romBranchString.substring(1).toLowerCase();
             romVersion.setText(Html.fromHtml(htmlColorOpen + romVersionTitle + romVersionName + romVersionBranch + separator_open + romVersionString + separator_close + htmlColorClose));
@@ -725,10 +726,10 @@ public class MainActivity extends AppCompatActivity implements Constants,
         String romDateTitle = getApplicationContext().getResources().getString(R.string
                 .main_rom_build_date) + " ";
 
-        String romDateActual = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date));
+        String romDateActual = ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_date));
 
-        if (!(SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual))).equals("")) {
-            romDateActual = SystemProperties.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual));
+        if (!(ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual))).equals("")) {
+            romDateActual = ExperienceUtils.getProp(getResources().getString(R.string.ota_swupdate_prop_date_actual));
         }
 
         romDate.setText(Html.fromHtml(romDateTitle + htmlColorOpen + romDateActual +
@@ -738,7 +739,7 @@ public class MainActivity extends AppCompatActivity implements Constants,
         TextView splVersion = (TextView) findViewById(R.id.tv_main_android_spl);
         String romSplTitle = getApplicationContext().getResources().getString(R.string
                 .main_rom_spl) + " ";
-        String romSplActual = TnsOta.renderAndroidSpl(SystemProperties.getProp("ro.build.version.security_patch"));
+        String romSplActual = TnsOta.renderAndroidSpl(ExperienceUtils.getProp("ro.build.version.security_patch"));
         splVersion.setText(Html.fromHtml(romSplTitle + htmlColorOpen + romSplActual +
                 htmlColorClose));
     }

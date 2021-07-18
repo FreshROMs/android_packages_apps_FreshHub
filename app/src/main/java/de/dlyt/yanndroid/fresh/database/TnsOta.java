@@ -31,8 +31,8 @@ import java.util.Locale;
 
 import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.R;
-import de.dlyt.yanndroid.fresh.utils.SystemProperties;
 import de.dlyt.yanndroid.fresh.utils.Tools;
+import io.tensevntysevn.fresh.ExperienceUtils;
 
 public class TnsOta implements Constants {
 
@@ -387,7 +387,7 @@ public class TnsOta implements Constants {
     public static void setUpdateAvailability(Context context) {
         // Grab the data from the device and manifest
         int otaVersion = getVersionNumber(context);
-        String currentVer = SystemProperties.getProp("ro.fresh.build.version");
+        String currentVer = ExperienceUtils.getProp("ro.fresh.build.version");
         String manifestVer = Integer.toString(otaVersion);
 
         boolean available;
