@@ -173,8 +173,23 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name="io.tensevntysevn.fresh.maverick.MaverickReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".renoir.RenoirService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name="io.tensevntysevn.fresh.maverick.MaverickService"
             android:enabled="true"
             android:exported="false" />
 
