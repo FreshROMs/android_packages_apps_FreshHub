@@ -35,6 +35,7 @@ import de.dlyt.yanndroid.fresh.hub.utils.Preferences;
 import de.dlyt.yanndroid.fresh.services.TnsOtaApiService;
 import de.dlyt.yanndroid.fresh.utils.JobScheduler;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
+import io.tensevntysevn.fresh.MaverickService;
 
 public class AppReceiver extends BroadcastReceiver implements Constants {
 
@@ -145,6 +146,9 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
             if (DEBUGGING) {
                 Log.d(TAG, "Boot received");
             }
+
+            // MaverickService.setMaverickService(context);
+
             boolean backgroundCheck = Preferences.getBackgroundService(context);
             boolean isDeviceUpdating = TnsOtaDownload.getIsDeviceUpdating(context);
             String isUninstallingAddon = TnsAddonDownload.getIsUninstallingAddon(context);

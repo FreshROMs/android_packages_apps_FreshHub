@@ -162,16 +162,4 @@ public class ExperienceUtils {
         }
         return result;
     }
-
-    @SuppressLint("PrivateApi")
-    public static void setProp(String key, String value) {
-        try {
-            Class<?> c = Class.forName("android.os.SystemProperties");
-            Method set = c.getMethod("set", String.class, String.class);
-            set.invoke(c, key, value );
-        } catch (Exception e) {
-            Log.d("PropService", "Error setting property " + key + " to" + value + "!");
-            e.printStackTrace();
-        }
-    }
 }
