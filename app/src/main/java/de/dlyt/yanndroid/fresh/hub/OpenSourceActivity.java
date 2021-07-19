@@ -70,6 +70,20 @@ public class OpenSourceActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openCalyxOS(View v) {
+        String url = "https://github.com/CalyxOS";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    public void openGrapheneOS(View v) {
+        String url = "https://github.com/GrapheneOS";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
     public void openImageLoader(View v) {
         String url = "https://github.com/nostra13/Android-Universal-Image-Loader";
         Intent intent = new Intent(Intent.ACTION_VIEW);
