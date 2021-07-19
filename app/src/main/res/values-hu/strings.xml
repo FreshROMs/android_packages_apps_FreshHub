@@ -79,7 +79,7 @@
     <string name="available_update_downloading">"Frissítés letöltése..."</string>
     <string name="available_update_install_info">"Frissítsd a telefonod hogy új dolgokat kaphass "</string>
     <string name="available_update_install_info_desc">"Mobil internettel letölteni esetleges költségeket jelent. Wi-Fi-t használni a javasolt"</string>
-    <string name="available_update_install_ready">"Fresh %1#$s %2$s kész a telepítéshez"</string>
+    <string name="available_update_install_ready">"Fresh %1$s %2$s kész a telepítéshez"</string>
     <string name="available_time_remaining">"Hátralévő idő: %s"</string>
     <string name="available_download_speed">"%s/s"</string>
     <string name="system_name">"Fresh"</string>
