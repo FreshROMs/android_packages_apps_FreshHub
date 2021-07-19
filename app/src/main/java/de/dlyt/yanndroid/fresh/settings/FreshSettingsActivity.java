@@ -3,11 +3,9 @@ package de.dlyt.yanndroid.fresh.settings;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -17,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,10 +26,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.topjohnwu.superuser.Shell;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import de.dlyt.yanndroid.fresh.BuildConfig;
+import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.database.TnsOta;
 import de.dlyt.yanndroid.fresh.hub.AboutActivity;
@@ -45,7 +47,7 @@ import de.dlyt.yanndroid.fresh.utils.Tools;
 import de.dlyt.yanndroid.samsung.layout.ToolbarLayout;
 import io.tensevntysevn.fresh.ExperienceUtils;
 import io.tensevntysevn.fresh.OverlayService;
-import io.tensevntysevn.fresh.maverick.MaverickService;
+import io.tensevntysevn.fresh.MaverickService;
 
 public class FreshSettingsActivity extends AppCompatActivity {
 
@@ -83,7 +85,6 @@ public class FreshSettingsActivity extends AppCompatActivity {
 
     TextView mMaverickSummary;
     String[] mMaverickEntries;
-    int[] mMaverickValues;
     ArrayAdapter<String> mMaverickAdapter;
 
     int setResolution;
@@ -129,8 +130,7 @@ public class FreshSettingsActivity extends AppCompatActivity {
         mZestSecurityLayout = findViewById(R.id.zest_main_security);
 
         mMaverickSummary = findViewById(R.id.maverick_options_selected);
-        mMaverickEntries = getResources().getStringArray(R.array.zest_maverick_options_entries);
-        mMaverickValues = getResources().getIntArray(R.array.zest_maverick_options_values);
+        mMaverickEntries = MaverickService.isDeviceSecure(mContext) ? getResources().getStringArray(R.array.zest_maverick_options_entries_secure) : getResources().getStringArray(R.array.zest_maverick_options_entries_unsecure);
         mMaverickAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mMaverickEntries);
         mMaverickSpinner = findViewById(R.id.maverick_options_spinner);
 
@@ -180,6 +180,7 @@ public class FreshSettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        mBackground = true;
         updatePreferences();
         super.onResume();
     }
@@ -271,6 +272,11 @@ public class FreshSettingsActivity extends AppCompatActivity {
         options_spinner.performClick();
     }
 
+    public void openMaverickOptionsSpinner(View v) {
+        Spinner options_spinner = findViewById(R.id.maverick_options_spinner);
+        options_spinner.performClick();
+    }
+
     public static void setLayoutEnabled(View view, boolean enable) {
         view.setEnabled(enable);
         view.setClickable(enable);
@@ -290,31 +296,41 @@ public class FreshSettingsActivity extends AppCompatActivity {
         if (!MaverickService.isReploidPresent()) {
             mZestSecurityLayout.setVisibility(View.GONE);
         } else {
+            mMaverickEntries = MaverickService.isDeviceSecure(mContext) ? getResources().getStringArray(R.array.zest_maverick_options_entries_secure) : getResources().getStringArray(R.array.zest_maverick_options_entries_unsecure);
+            mMaverickAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mMaverickEntries);
             mMaverickAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mMaverickSpinner.setAdapter(mMaverickAdapter);
             mMaverickAdapter.notifyDataSetChanged();
             mMaverickSelected = MaverickService.getReploidLevel(mContext);
+            mMaverickSpinner.setSelection(mMaverickSelected);
             mMaverickSummary.setText(mMaverickEntries[mMaverickSelected]);
 
             mMaverickSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int selection, long id) {
-                    if (selection == 0) {
-                        AlertDialog.Builder mWarningDialog = new AlertDialog.Builder(mContext, R.style.DialogStyle);
-                        mWarningDialog.setTitle(R.string.zest_maverick_preference_allow_title)
-                                .setMessage(R.string.zest_maverick_preference_allow_warning)
-                                .setCancelable(false)
-                                .setPositiveButton(R.string.ok, (dialog, which) -> {
-                                    mMaverickSelected = selection;
-                                    mMaverickSummary.setText(mMaverickEntries[selection]);
-                                    MaverickService.setReploidLevel(mContext, selection);
-                                })
-                                .setNegativeButton(R.string.cancel, null)
-                                .show();
-                    } else {
-                        mMaverickSelected = selection;
-                        mMaverickSummary.setText(mMaverickEntries[selection]);
-                        MaverickService.setReploidLevel(mContext, selection);
+                    if (!mBackground && selection != mMaverickSelected) {
+                        int actualSelection = selection;
+                        if (selection == 0) {
+                            AlertDialog.Builder mWarningDialog = new AlertDialog.Builder(mContext, R.style.DialogStyle);
+                            mWarningDialog.setTitle(R.string.zest_maverick_preference_allow_title)
+                                    .setMessage(R.string.zest_maverick_preference_allow_warning)
+                                    .setCancelable(false)
+                                    .setPositiveButton(R.string.ok, (dialog, which) -> {
+                                        mMaverickSelected = 0;
+                                        mMaverickSummary.setText(mMaverickEntries[0]);
+                                        MaverickService.setReploidLevel(mContext, 0);
+                                    })
+                                    .setNegativeButton(R.string.cancel, null)
+                                    .show();
+                        } else {
+                            if (!MaverickService.isDeviceSecure(mContext)) {
+                                actualSelection = selection + 1;
+                            }
+
+                            mMaverickSelected = selection;
+                            mMaverickSummary.setText(mMaverickEntries[selection]);
+                            MaverickService.setReploidLevel(mContext, actualSelection);
+                        }
                     }
                 }
 
