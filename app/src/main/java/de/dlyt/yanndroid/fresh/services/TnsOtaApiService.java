@@ -29,6 +29,7 @@ import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.database.TnsOta;
 import de.dlyt.yanndroid.fresh.hub.utils.Preferences;
 import de.dlyt.yanndroid.fresh.utils.SystemProperties;
+import io.tensevntysevn.fresh.ExperienceUtils;
 
 public class TnsOtaApiService implements Constants {
 
@@ -57,10 +58,10 @@ public class TnsOtaApiService implements Constants {
                 if (!isUsingMirror) {
                     try {
                         URL url = new URL(
-                                SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_api_url)) + "/"
+                                ExperienceUtils.getProp(context.getResources().getString(R.string.ota_swupdate_prop_api_url)) + "/"
                                         + SystemProperties.getDeviceProduct() + "/"
-                                        + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
-                                        + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
+                                        + ExperienceUtils.getProp(context.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
+                                        + ExperienceUtils.getProp(context.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
 
                         URLConnection connection = url.openConnection();
                         connection.setConnectTimeout(25000);
@@ -74,10 +75,10 @@ public class TnsOtaApiService implements Constants {
                             Preferences.setUsingMirrorService(context, true);
                             try {
                                 URL url = new URL(
-                                        SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_api_url_mirror)) + "/"
+                                        ExperienceUtils.getProp(context.getResources().getString(R.string.ota_swupdate_prop_api_url_mirror)) + "/"
                                                 + SystemProperties.getDeviceProduct() + "/"
-                                                + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
-                                                + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
+                                                + ExperienceUtils.getProp(context.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
+                                                + ExperienceUtils.getProp(context.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
 
                                 URLConnection connection = url.openConnection();
                                 connection.setConnectTimeout(25000);
@@ -94,10 +95,10 @@ public class TnsOtaApiService implements Constants {
                 } else {
                     try {
                         URL url = new URL(
-                                SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_api_url_mirror)) + "/"
+                                ExperienceUtils.getProp(context.getResources().getString(R.string.ota_swupdate_prop_api_url_mirror)) + "/"
                                         + SystemProperties.getDeviceProduct() + "/"
-                                        + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
-                                        + SystemProperties.getProp(context.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
+                                        + ExperienceUtils.getProp(context.getResources().getString(R.string.ota_swupdate_prop_branch)) + "/"
+                                        + ExperienceUtils.getProp(context.getResources().getString(R.string.ota_swupdate_prop_version)) + "/");
 
                         URLConnection connection = url.openConnection();
                         connection.setConnectTimeout(25000);

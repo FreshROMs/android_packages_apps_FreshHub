@@ -1,13 +1,11 @@
 package de.dlyt.yanndroid.fresh.renoir;
 
-import android.app.Activity;
 import android.app.Service;
 import android.app.WallpaperColors;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.IBinder;
@@ -18,22 +16,19 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.ColorUtils;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import de.dlyt.yanndroid.fresh.Constants;
 import de.dlyt.yanndroid.fresh.R;
 import de.dlyt.yanndroid.fresh.utils.Notifications;
 import io.tensevntysevn.fresh.ExperienceUtils;
 import io.tensevntysevn.fresh.OverlayService;
 
-import com.github.tommyettinger.colorful.TrigTools;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 public class RenoirService extends Service {
-    private static final String PREF_NAME = "fresh_system_settings";
     private static final String RENOIR_CURRENT_COLOR_THEME = "renoir_current_system_theme";
     public static String RENOIR_SERVICE_ENABLED = "renoir_enabled";
-    public static String RENOIR_DEFAULT_THEME = "io.tns.fresh.renoir.one";
+    public static String RENOIR_DEFAULT_THEME = "io.tns.fresh.theme.one";
     public static String RENOIR_WALLPAPER_BASED_ON_LOCK = "renoir_color_based_on_lock_screen";
     public static String RENOIR_SAMSUNG_THEME_APPLIED = "renoir_third_party_theme_applied";
 

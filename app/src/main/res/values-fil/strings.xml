@@ -134,7 +134,7 @@ Dahil sa mga bagong patakaran ng Android tungkol sa Scoped Storage, makikita ang
     <string name="drawer_github_link">"Mag-file ng Issue"</string>
     <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
     <string name="app_name">"Fresh Hub"</string>
-    <string name="app_name_experience"/>
+    <string name="app_name_experience">"Fresh Experience Framework"</string>
     <string name="customization_notification_group_title">"Fresh Hub"</string>
     <string name="system_notification_channel_ongoing_title">"Mga ongoing na notification"</string>
     <string name="customization_notification_channel_ongoing_title">"Mga ongoing na customization"</string>
@@ -164,4 +164,6 @@ Dahil sa mga bagong patakaran ng Android tungkol sa Scoped Storage, makikita ang
     <string name="zest_wlan_connection_icon_default">"Default"</string>
     <string name="zest_wlan_connection_icon_uplus">"LG U+"</string>
     <string name="zest_wlan_connection_icon_kt">"KT"</string>
+    <string name="zest_version_fresh_rom">"Bersyon ng Fresh"</string>
+    <string name="zest_version_fresh_hub">"About sa Fresh Hub"</string>
 </resources>

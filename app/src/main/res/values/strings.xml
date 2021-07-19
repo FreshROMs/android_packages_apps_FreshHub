@@ -196,6 +196,16 @@ Due to Android's new rules for Scoped Storage, you can find the update in /sdcar
     <string name="zest_wlan_connection_icon_uplus">"LG U+"</string>
     <string name="zest_wlan_connection_icon_kt">"KT"</string>
     <string name="experience_version" translatable="false">"12.1.92.0"</string>
-    <string name="zest_version_fresh_rom">Fresh version</string>
-    <string name="zest_version_fresh_hub">About Fresh Hub</string>
+    <string name="zest_version_fresh_rom">"Fresh version"</string>
+    <string name="zest_version_fresh_hub">"About Fresh Hub"</string>
+
+    <string name="zest_maverick_preference_title">Allow new USB devices</string>
+
+    <string name="zest_maverick_preference_allow">Always allow</string>
+    <string name="zest_maverick_preference_allow_title">Warning</string>
+    <string name="zest_maverick_preference_allow_warning">Allowing new USB devices when locked is a security risk and may allow attackers to take control of your device.
+
+Are you sure you want to continue?</string>
+    <string name="zest_maverick_preference_dynamic">Allow when unlocked</string>
+    <string name="zest_maverick_preference_deny">Always deny</string>
 </resources>

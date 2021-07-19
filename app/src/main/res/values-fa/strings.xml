@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="sesl_switchbar_off_text">"خاموش"</string>
+    <string name="sesl_switchbar_on_text">"روشن"</string>
+    <string name="main_update_available">"بروزرسانی در دسترس است"</string>
+    <string name="main_update_finished">"بارگیری کامل شد"</string>
+    <string name="main_no_update_available">"بروزرسانی در دسترس نیست"</string>
+    <string name="main_update_progress">"وضعیت بارگیری"</string>
+    <string name="main_website">"وب‌سایت"</string>
+    <string name="main_website_summary">"بازدید از وب‌سایت رسمی Fresh"</string>
+    <string name="main_donate">"حمایت"</string>
+    <string name="main_donate_summary">"به توسعه‌دهندگان این رام کمک کنید!"</string>
+    <string name="main_tap_to_view_progress">"برای دیدن وضعیت ضربه بزنید"</string>
+    <string name="main_last_checked">"آخرین بررسی"</string>
+    <string name="main_addon">"افزونه‌ها"</string>
+    <string name="main_addon_summary">"تجربه‌تان از Fresh را گسترش دهید!"</string>
+    <!-- ROM Information -->
+    <string name="main_rom_information">"درباره دستگاهتان"</string>
+    <string name="main_rom_version">"نسخه انتشار:"</string>
+    <string name="main_rom_build_date">"تاریخ ساخت:"</string>
+    <!-- Dialogs -->
+    <string name="main_not_compatible_title">"صبر کنید!"</string>
+    <string name="main_not_compatible_message">"رام کنونی شما برای اجرای FreshApp پیکربندی نشده است. لطفا برای حل مشکل با سرپرست رام تماس بگیرید."</string>
+    <string name="main_not_connected_title">"متصل نیست"</string>
+    <string name="main_not_connected_message">"شما به هیچ شبکه‌ای متصل نیستید. لطفا اتصال داده یا وای‌فای را روشن کرده و مجددا تلاش کنید."</string>
+    <string name="main_playstore_title">"بیت‌کوین"</string>
+    <string name="main_playstore_message">"شما هیچ برنامه‌ای برای بکارگیری \"بیت‌کوین\" ندارید.
+
+آیا مایل هستید در گوگل‌پلی برای پیدا کردن یک برنامه جستجو کنید؟"</string>
+    <!-- Content Descriptions -->
+    <string name="main_button_icon">"آیکون دکمه"</string>
+    <string name="main_dev_website_icon">"آیکون وب‌سایت توسعه‌دهنده"</string>
+    <!-- Toast -->
+    <string name="main_release_ignored">"انتشار رد شد."</string>
+    <!-- Generic strings -->
+    <string name="cancel">"لغو"</string>
+    <string name="ok">"تایید"</string>
+    <string name="delete">"حذف"</string>
+    <string name="download">"بارگیری"</string>
+    <string name="install">"نصب"</string>
+    <string name="downloading">"درحال بارگیری..."</string>
+    <string name="donate">"حمایت"</string>
+    <string name="delete_confirm">"آیا از حذف این فایل اطمینان دارید؟"</string>
+    <string name="permission_not_granted_dialog_title">"مجوز حافظه داده نشده است"</string>
+    <string name="permission_not_granted_dialog_message">"لطفا به Fresh Hub اجازه دسترسی به حافظه را بدهید تا بتواند بروزرسانی‌ها را دریافت و افزونه‌ها را بارگیری کند."</string>
+    <string name="dialog_ok">"تایید"</string>
+    <!-- About Strings -->
+    <string name="about_version_title">"نسخه"</string>
+    <string name="available_changelog_content">"لیست تغییرات شما به اینجا می‌رود"</string>
+    <string name="available_ready_to_install">"آماده برای نصب"</string>
+    <string name="available_md5_ok">"MD5 تطبیق داده شد"</string>
+    <string name="available_md5_failed">"تطبیق MD5 شکست خورد"</string>
+    <string name="are_you_sure">"آیا اطمینان دارید؟"</string>
+    <string name="available_delete_confirm_message">"آیا مطمئنید که می‌خواهید فایل دانلود شده را حذف کنید؟"</string>
+    <string name="available_reboot_confirm">"آیا می‌خواهید اکنون ریبوت کنید؟"</string>
+    <string name="available_url_error">"خطای URL: لطفا به توسعه‌دهنده رام خود مراجعه کنید"</string>
+    <string name="available_reboot_manual_title">"لطفا اکنون ریبوت کنید"</string>
+    <string name="available_reboot_manual_message">"لطفا به ریکاوری ریبوت کنید و رام خود را فلش کنید.
+
+بدلیل قوانین جدید اندروید برای فضای ذخیره‌سازی محدود، شما می‌توانید بروزرسانی را در مسیر
+/sdcard/Android/data/de.dlyt.yanndroid.fresh/Updates
+پیدا کنید"</string>
+    <!-- Preferences -->
+    <string name="preferences_name">"تنظیمات"</string>
+    <string name="background_frequency">"دوره بررسی بروزرسانی"</string>
+    <string name="background_60mins">"۶۰ دقیقه"</string>
+    <string name="background_3hours">"۳ ساعت"</string>
+    <string name="background_6hours">"۶ ساعت"</string>
+    <string name="background_12hours">"۱۲ ساعت"</string>
+    <string name="background_24hours">"روزی یک بار"</string>
+    <string name="background_3days">"هر سه روز"</string>
+    <string name="background_7days">"هفته ای یک بار"</string>
+    <!-- Drawer -->
+    <string name="feedback">"بازخورد"</string>
+    <string name="omc_request">"درخواست OMC"</string>
+    <string name="fresh_updates">"بروزرسانی‌های Fresh"</string>
+    <string name="reboot">"ریبوت به ریکاوری"</string>
+    <string name="main_ota_information">"اطلاعات بروزرسانی نرم‌افزار"</string>
+    <string name="main_rom_spl">"سطح وصله امنیتی:"</string>
+    <string name="main_ota_version">"نسخه:"</string>
+    <string name="main_ota_size">"اندازه:"</string>
+    <string name="delete_addon_confirm">"آیا می‌خواهید %1$s را حذف کنید؟"</string>
+    <!-- Available Strings -->
+    <string name="available_update_downloading">"درحال بارگیری بروزرسانی..."</string>
+    <string name="available_update_install_info">"تلفن خود را بروزرسانی کنید و ویژگی‌های جدید دریافت کنید"</string>
+    <string name="available_update_install_info_desc">"استفاده از دیتای همراه برای بارگیری ممکن است سبب هزینه‌های اضافی شود. استفاده از وای‌فای توصیه می‌شود."</string>
+    <string name="available_update_install_ready">"فرِش %1$s %2$s آماده نصب است"</string>
+    <string name="available_time_remaining">"زمان باقی‌مانده: %s"</string>
+    <string name="available_download_speed">"%s/s"</string>
+    <string name="system_name">"Fresh"</string>
+    <!-- System settings plugin -->
+    <string name="system_settings_plugin_title">"بروزرسانی نرم‌افزار"</string>
+    <string name="system_settings_plugin_summary">"بروزرسانی دستگاه • بارگیری افزونه‌ها"</string>
+    <string name="system_settings_resolution_plugin_title">"وضوح نمایشگر"</string>
+    <string name="system_settings_resolution_plugin_summary">"تغییر دادن وضوح و تراکم نمایشگر دستگاه"</string>
+    <!-- Resolution -->
+    <string name="screen_resolution_desc_summary">"برخی برنامه‌ها ممکن است هنگام تغییر وضوح بسته شوند."</string>
+    <string name="high_resolution_summary">"واضح‌ترین تصاویر، بیشترین مصرف باتری"</string>
+    <string name="medium_resolution_summary">"تصاویر بهبود یافته، مصرف باتری متوسط"</string>
+    <string name="low_resolution_summary">"تصاویر بی‌کیفیت، کمترین مصرف باتری"</string>
+    <string name="system_notification_group_title">"Fresh OTA"</string>
+    <string name="system_notification_channel_title">"بروزرسانی‌های در دسترس"</string>
+    <string name="system_notification_channel_desc">"این کانال اعلان به برنامه اجازه می‌دهد تا شما را درباره بروزرسانی‌های در دسترس در دستگاه مطلع کند."</string>
+    <string name="system_notification_available_title">"بروزرسانی نرم‌افزار در دسترس است"</string>
+    <string name="system_notification_available_desc">"فرِش %1$s %2$s هم‌اکنون برای دستگاهتان در دسترس است!"</string>
+    <string name="system_notification_finish_title">"تلفنتان با موفقیت بروزرسانی شد"</string>
+    <string name="system_notification_finish_desc">"تلفن شما با موفقیت به فرِش %1$s %2$s بروزرسانی شد. از تلفن تازه‌تر لذت ببرید!"</string>
+    <string name="system_notification_failed_title">"بروزرسانی نرم‌افزار شکست خورد"</string>
+    <string name="system_notification_failed_desc">"دستگاه شما بروزرسانی نشد. فرِش به %1$s %2$s بروزرسانی نشد."</string>
+    <string name="setting_notifications">"اعلان‌ها"</string>
+    <string name="setting_notifications_summary">"بررسی خودکار بروزرسانی و نمایش یک اعلان در صورت در دسترس بودن."</string>
+    <string name="setting_auto_download">"بارگیری خودکار از طریق وای‌فای"</string>
+    <string name="setting_auto_download_summary">"بارگیری خودکار بروزرسانی نرم‌افزار هنگام اتصال به یک شبکه وای‌فای."</string>
+    <string name="main_header_community">"به انجمن بپیوندید!"</string>
+    <string name="main_community_discord_description">"پیوستن به سرور رسمی دیسکورد!"</string>
+    <string name="main_community_discord">"انجمن دیسکورد Fresh"</string>
+    <string name="main_community_telegram">"انجمن تلگرام"</string>
+    <string name="main_community_telegram_description">"پیوستن به انجمن تلگرامی Fresh"</string>
+    <string name="main_community_discussions">"گفتگوهای گیت‌هاب"</string>
+    <string name="main_community_discussions_description">"درباره ویژگی‌های جدید و بیشتر بحث کنید"</string>
+    <string name="main_community_xda">"انجمن XDA"</string>
+    <string name="main_community_xda_description">"بازدید از انجمن Fresh برای دستگاه شما"</string>
+    <string name="setting_app_icon">"افزودن آیکون Fresh Hub"</string>
+    <string name="setting_app_icon_summary">"افزودن Fresh Hub به صفحه برنامه‌ها."</string>
+    <string name="the_latest_version_is_already_installed">"آخرین نسخه قبلا نصب شده است."</string>
+    <string name="a_new_version_is_available">"یک نسخه جدید در دسترس است."</string>
+    <string name="main_checking_updates">"درحال بررسی برای بروزرسانی‌ها"</string>
+    <string name="about_bottom_byline">"توسعه یافته توسط Yanndroid برای پروژه Fresh"</string>
+    <string name="about_open_source_fork">"بر پایه Bliss OTA"</string>
+    <string name="about_open_source_used">"اجزای متن باز"</string>
+    <string name="about_open_source_button">"مجوزهای منبع آزاد"</string>
+    <string name="available_preinstall_notice">"شما نمی‌توانید از تلفنتان در حین بروزرسانی استفاده کنید، حتی برای تماس‌های اضطراری."</string>
+    <string name="available_preinstall_notice_nohash">"بررسی package hash ناموفق بود، ادامه بروزرسانی با مسئولیت خودتان است. شما نمی‌توانید از تلفنتان حین بروزرسانی استفاده کنید."</string>
+    <string name="addon_uninstall">"حذف نصب"</string>
+    <string name="addon_update">"بروزرسانی"</string>
+    <string name="drawer_github_link">"مطرح کردن یک مشکل"</string>
+    <!-- We recommend ONLY translating "Hub". Put the word "Fresh" where necessary. -->
+    <string name="app_name">"Fresh Hub"</string>
+    <string name="app_name_experience">"Fresh Experience Framework"</string>
+    <string name="customization_notification_group_title">"Fresh Hub"</string>
+    <string name="system_notification_channel_ongoing_title">"اعلان‌های جاری"</string>
+    <string name="customization_notification_channel_ongoing_title">"شخصی‌سازی های جاری"</string>
+    <string name="customization_notification_channel_desc">"این کانال اعلان به برنامه اجازه می‌دهد تا عملیات‌های مورد نظر را در پس‌زمینه اجرا کند."</string>
+    <string name="renoir_notification_title">@string/renoir_settings_title</string>
+    <string name="renoir_notification_desc">"درحال تغییر تم دستگاه بر اساس تصویر زمینه..."</string>
+    <string name="renoir_settings_title">"تم مطابق با رنگ"</string>
+    <string name="renoir_settings_desc">"با سازگار کردن تم دستگاه با تصویر زمینه کنونی خود One UI را دلخواه خود کنید."</string>
+    <string name="renoir_settings_desc_unavailable">"تم مطابق رنگ در دسترس نیست زیرا یک تم شخص ثالث اعمال شده است."</string>
+    <string name="renoir_settings_lock_screen">"استفاده از رنگ‌های صفحه قفل"</string>
+    <string name="renoir_settings_lock_screen_desc">"استفاده از رنگ‌های تصویر زمینه صفحه قفل شما در انتخاب تم دستگاه."</string>
+    <string name="system_settings_zest_plugin_title">"مزه"</string>
+    <string name="system_settings_zest_plugin_summary">"شخصی‌سازی • بروزرسانی نرم‌افزار"</string>
+    <string name="sesl_relative_widget_title">"به دنبال چیز دیگری هستید؟"</string>
+    <string name="zest_video_enhancer_title">"تقویت‌کننده ویدیو"</string>
+    <string name="zest_video_enhancer_detail_desc">"کیفیت تصاویر ویدیو‌های خود را افزایش دهید تا از رنگ‌های روشن‌تر و واضح‌تر لذت ببرید."</string>
+    <string name="zest_video_enhancer_detail_applist_title">"برنامه‌های در دسترس"</string>
+    <string name="zest_relative_link_advanced">"تنظیمات پيشرفته"</string>
+    <string name="zest_relative_link_wallpaper">"تصویر زمینه صفحه اصلی و صفحه قفل"</string>
+    <string name="zest_relative_link_themes">"تم‌های سامسونگ"</string>
+    <string name="screen_resolution_button_text">"اعمال"</string>
+    <string name="zest_data_connection_icon">"سبک آیکون اتصال داده"</string>
+    <string name="zest_data_connection_icon_default">"پیش‌فرض (4G)"</string>
+    <string name="zest_data_connection_icon_lte">"LTE"</string>
+    <string name="zest_data_connection_icon_next">"آینده (5G)"</string>
+    <string name="zest_wlan_connection_icon">"سبک آیکون سیگنال وای‌فای"</string>
+    <string name="zest_wlan_connection_icon_default">"پیش‌فرض"</string>
+    <string name="zest_wlan_connection_icon_uplus">"LG U+"</string>
+    <string name="zest_wlan_connection_icon_kt">"KT"</string>
+    <string name="zest_version_fresh_rom">"نسخه Fresh"</string>
+    <string name="zest_version_fresh_hub">"درباره Fresh Hub"</string>
+</resources>

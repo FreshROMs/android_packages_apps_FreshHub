@@ -64,7 +64,21 @@ public class OpenSourceActivity extends AppCompatActivity {
     }
 
     public void openRootTools(View v) {
-        String url = "https://github.com/Stericson/RootTools";
+        String url = "https://github.com/topjohnwu/libsu";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    public void openCalyxOS(View v) {
+        String url = "https://github.com/CalyxOS";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    public void openGrapheneOS(View v) {
+        String url = "https://github.com/GrapheneOS";
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         startActivity(intent);

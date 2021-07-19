@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import io.tensevntysevn.fresh.ExperienceUtils;
+
 public class SystemProperties {
     public static Boolean doesPropExist(String propName) {
         boolean valid = false;
@@ -28,35 +30,17 @@ public class SystemProperties {
         return valid;
     }
 
-    public static String getProp(String propName) {
-        Process p;
-        String result = "";
-        try {
-            p = new ProcessBuilder("/system/bin/getprop", propName).redirectErrorStream(true)
-                    .start();
-            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String line;
-            while ((line = br.readLine()) != null) {
-                result = line;
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
     public static String getDeviceCodename() {
         return Build.DEVICE;
     }
 
     public static String getDeviceProduct() {
-        if (!(getProp("ro.fresh.device.product").equals(""))) {
-            return getProp("ro.fresh.device.product");
-        } else if (!(getProp("ro.product.vendor.name").equals(""))) {
-            return getProp("ro.product.vendor.name");
-        } else if (!(getProp("ro.product.odm.name").equals(""))) {
-            return getProp("ro.product.odm.name");
+        if (!(ExperienceUtils.getProp("ro.fresh.device.product").equals(""))) {
+            return ExperienceUtils.getProp("ro.fresh.device.product");
+        } else if (!(ExperienceUtils.getProp("ro.product.vendor.name").equals(""))) {
+            return ExperienceUtils.getProp("ro.product.vendor.name");
+        } else if (!(ExperienceUtils.getProp("ro.product.odm.name").equals(""))) {
+            return ExperienceUtils.getProp("ro.product.odm.name");
         } else {
             return Build.PRODUCT;
         }

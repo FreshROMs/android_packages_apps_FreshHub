@@ -164,4 +164,6 @@ Datorită noilor reguli Android pentru spațiul de stocare extins, puteți găsi
     <string name="zest_wlan_connection_icon_default">"Implicit"</string>
     <string name="zest_wlan_connection_icon_uplus">"LG U+"</string>
     <string name="zest_wlan_connection_icon_kt">"KT"</string>
+    <string name="zest_version_fresh_rom">"Versiunea Fresh"</string>
+    <string name="zest_version_fresh_hub">"Despre Fresh Hub"</string>
 </resources>
