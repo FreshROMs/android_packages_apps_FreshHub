@@ -35,6 +35,8 @@ public class MaverickService {
      * So far only Fresh Core supports it right now.
      **/
     public static boolean isReploidPresent() {
+        return false;
+        /*
         File disableUSB;
         if (Constants.DEBUGGING) Log.d("MaverickService", "Checking presence of Reploid");
 
@@ -47,6 +49,7 @@ public class MaverickService {
 
         if (Constants.DEBUGGING) Log.d("MaverickService", "Success checking presence: " + disableUSB.exists());
         return disableUSB.exists();
+         */
     }
 
     /**
