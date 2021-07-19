@@ -64,7 +64,7 @@ public class OpenSourceActivity extends AppCompatActivity {
     }
 
     public void openRootTools(View v) {
-        String url = "https://github.com/Stericson/RootTools";
+        String url = "https://github.com/topjohnwu/libsu";
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         startActivity(intent);

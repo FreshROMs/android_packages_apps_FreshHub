@@ -198,13 +198,13 @@
                             style="?textAppearanceBody1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RootTools" />
+                            android:text="libsu" />
 
                         <com.google.android.material.textview.MaterialTextView
                             style="?android:attr/textAppearanceSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Stericson - Apache-2.0 and GPL v2" />
+                            android:text="John Wu - Apache-2.0" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
