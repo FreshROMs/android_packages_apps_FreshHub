@@ -3,8 +3,11 @@ package de.dlyt.yanndroid.fresh.settings;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -42,6 +45,7 @@ import de.dlyt.yanndroid.fresh.utils.Tools;
 import de.dlyt.yanndroid.samsung.layout.ToolbarLayout;
 import io.tensevntysevn.fresh.ExperienceUtils;
 import io.tensevntysevn.fresh.OverlayService;
+import io.tensevntysevn.fresh.maverick.MaverickService;
 
 public class FreshSettingsActivity extends AppCompatActivity {
 
@@ -49,12 +53,14 @@ public class FreshSettingsActivity extends AppCompatActivity {
     private static ExecutorService mExecutor;
     private static Integer mDataIconSelected;
     private static Integer mWlanIconSelected;
+    private static Integer mMaverickSelected;
     private static boolean mBackground = true;
 
     private static SwitchMaterial mRenoirSwitch;
     private static SwitchMaterial mHDReffectSwitch;
     private static Spinner mDataIconSpinner;
     private static Spinner mWlanIconSpinner;
+    private static Spinner mMaverickSpinner;
 
     String[] mResolutionValues;
     TextView mResolutionSummary;
@@ -63,6 +69,7 @@ public class FreshSettingsActivity extends AppCompatActivity {
     LinearLayout mRenoirLayout;
     LinearLayout mResolutionLayout;
     LinearLayout mZestLayout;
+    LinearLayout mZestSecurityLayout;
     TextView mDataIconSummary;
     String[] mDataIconEntries;
     String[] mDataIconPackages;
@@ -73,6 +80,11 @@ public class FreshSettingsActivity extends AppCompatActivity {
     String[] mWlanIconPackagesDeX;
     ArrayAdapter<String> mDataIconAdapter;
     ArrayAdapter<String> mWlanIconAdapter;
+
+    TextView mMaverickSummary;
+    String[] mMaverickEntries;
+    int[] mMaverickValues;
+    ArrayAdapter<String> mMaverickAdapter;
 
     int setResolution;
     boolean setRenoir = false;
@@ -114,6 +126,13 @@ public class FreshSettingsActivity extends AppCompatActivity {
         mDataIconAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mDataIconEntries);
         mWlanIconAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mWlanIconEntries);
         mZestLayout = findViewById(R.id.zest_main_hki);
+        mZestSecurityLayout = findViewById(R.id.zest_main_security);
+
+        mMaverickSummary = findViewById(R.id.maverick_options_selected);
+        mMaverickEntries = getResources().getStringArray(R.array.zest_maverick_options_entries);
+        mMaverickValues = getResources().getIntArray(R.array.zest_maverick_options_values);
+        mMaverickAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mMaverickEntries);
+        mMaverickSpinner = findViewById(R.id.maverick_options_spinner);
 
         setResolution = ScreenResolutionActivity.getResolutionInt(mContext);
         setRenoir = RenoirService.getRenoirEnabled(mContext);
@@ -267,6 +286,43 @@ public class FreshSettingsActivity extends AppCompatActivity {
         setHDReffect = ExperienceUtils.isVideoEnhancerEnabled(mContext);
 
         ExperienceUtils.getRealScreenWidth(mContext, Tools.getActivity(mContext));
+
+        if (!MaverickService.isReploidPresent()) {
+            mZestSecurityLayout.setVisibility(View.GONE);
+        } else {
+            mMaverickAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            mMaverickSpinner.setAdapter(mMaverickAdapter);
+            mMaverickAdapter.notifyDataSetChanged();
+            mMaverickSelected = MaverickService.getReploidLevel(mContext);
+            mMaverickSummary.setText(mMaverickEntries[mMaverickSelected]);
+
+            mMaverickSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int selection, long id) {
+                    if (selection == 0) {
+                        AlertDialog.Builder mWarningDialog = new AlertDialog.Builder(mContext, R.style.DialogStyle);
+                        mWarningDialog.setTitle(R.string.zest_maverick_preference_allow_title)
+                                .setMessage(R.string.zest_maverick_preference_allow_warning)
+                                .setCancelable(false)
+                                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                                    mMaverickSelected = selection;
+                                    mMaverickSummary.setText(mMaverickEntries[selection]);
+                                    MaverickService.setReploidLevel(mContext, selection);
+                                })
+                                .setNegativeButton(R.string.cancel, null)
+                                .show();
+                    } else {
+                        mMaverickSelected = selection;
+                        mMaverickSummary.setText(mMaverickEntries[selection]);
+                        MaverickService.setReploidLevel(mContext, selection);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
+        }
 
         if (!isFreshBuildEligibleForZest(mContext)) {
             mZestLayout.setVisibility(View.GONE);

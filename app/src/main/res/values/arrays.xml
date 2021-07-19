@@ -19,6 +19,17 @@
         <item>604800</item>
     </string-array>
 
+    <string-array name="zest_maverick_options_entries">
+        <item>@string/zest_maverick_preference_allow</item>
+        <item>@string/zest_maverick_preference_dynamic</item>
+        <item>@string/zest_maverick_preference_deny</item>
+    </string-array>
+    <integer-array name="zest_maverick_options_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+
     <string-array name="data_connection_icon_entries">
         <item>@string/zest_data_connection_icon_default</item>
         <item>@string/zest_data_connection_icon_lte</item>
