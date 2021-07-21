@@ -124,8 +124,8 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
         });
         TextView collapsed_title = findViewById(R.id.collapsed_title);
         collapsed_title.setText(mTitle);
-        collapsed_title.setAlpha(0);
 
+        /*
         ScrollView content_scroll = findViewById(R.id.content_scroll);
         content_scroll.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
@@ -133,6 +133,7 @@ public class AddonInfoActivity extends AppCompatActivity implements Constants {
                 collapsed_title.setAlpha((float) (scrollY) / 120);
             }
         });
+        */
 
         final ImageView addonThumbnail = (ImageView) findViewById(R.id.addon_info_thumbnail);
         final TextView addonVersion = (TextView) findViewById(R.id.version_number);
