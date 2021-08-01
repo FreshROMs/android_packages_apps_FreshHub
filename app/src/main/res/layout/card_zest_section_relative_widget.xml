@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@color/background_color"
     android:orientation="vertical"
     android:paddingBottom="20.0dip">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <de.dlyt.yanndroid.samsung.RelatedCard
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/sesl_relative_card_view_bg"
-        android:orientation="vertical"
-        android:paddingTop="20.0dip"
-        android:paddingEnd="24.0dip"
-        android:paddingBottom="20.0dip">
+        app:title="@string/sesl_relative_widget_title">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/link_title"
-            style="@style/sec_relative_link_title"
+            android:id="@+id/zest_relative_link_advanced"
+            style="@style/RelatedButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginBottom="10.0dip"
-            android:layout_weight="1.0"
-            android:paddingStart="24.0dip"
-            android:text="@string/sesl_relative_widget_title" />
-
-        <LinearLayout
-            android:id="@+id/link_container"
-            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:onClick="openZestShortcutSecAdvanced"
+            android:text="@string/zest_relative_link_advanced" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/zest_relative_link_wallpaper"
+            style="@style/RelatedButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="openZestShortcutSecWallpaper"
+            android:text="@string/zest_relative_link_wallpaper" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/zest_relative_link_themes"
+            style="@style/RelatedButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="openZestShortcutSecThemes"
+            android:text="@string/zest_relative_link_themes" />
 
-            <include
-                layout="@layout/card_zest_section_relative_links"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </LinearLayout>
+    </de.dlyt.yanndroid.samsung.RelatedCard>
 </LinearLayout>
