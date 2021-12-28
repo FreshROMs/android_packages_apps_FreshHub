@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "FreshApp"
+rootProject.name = "FreshHub"
